@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+  <!-- Required meta tags-->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Colorlib Templates" />
+  <meta name="author" content="Colorlib" />
+  <meta name="keywords" content="Colorlib Templates" />
+  <link rel="icon" type="image/png" href="image (1).ico" />
+  <!-- Title Page-->
+  <title>Bellissimmo</title>
+
+  <!-- Icons font CSS-->
+  <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all" />
+  <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all" />
+  <!-- Font special for pages-->
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS-->
+  <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all" />
+  <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all" />
+
+  <!-- Main CSS-->
+  <link href="index.css" rel="stylesheet" media="all" />
+
+  <style>
+    a,
+    a:hover,
+    a:focus,
+    a:active {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .button {
+      background-color: #008cba;
+      /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      transition: transform .2s;
+    }
+
+    .button {
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+      /* Safari and Chrome */
+    }
+
+
+
+
+    .button:hover {
+      transform: scale(1.1);
+      /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    let a
+    if (navigator.userAgent.match(/Android/i) ||
+      navigator.userAgent.match(/webOS/i) ||
+      navigator.userAgent.match(/iPhone/i) ||
+      navigator.userAgent.match(/iPad/i) ||
+      navigator.userAgent.match(/iPod/i) ||
+      navigator.userAgent.match(/BlackBerry/i) ||
+      navigator.userAgent.match(/Windows Phone/i)) {
+      a = true;
+    } else {
+      a = false;
+    }
+    if (a == true) {
+      // window.alert("Not optimised for mobile devices yet, but hey good things take time and patience is key")
+      window.location.assign("mobileEntry.html")
+      // window.close()
+    }
+  </script>
+
+  <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
+    <div class="wrapper wrapper--w780">
+      <div class="card card-3">
+        <div class="card-heading"></div>
+        <div class="card-body">
+          <h2 class="title">Registration Info</h2>
+          <form action="getSignup" method="POST" id="usrform">
+            <div class="input-group">
+              <input class="input--style-3" type="text" placeholder="Name" autocomplete="off" name="name" id="name"
+                required />
+            </div>
+            <div class="input-group">
+              <input class="input--style-3 js-datepicker" autocomplete="off" type="text" placeholder="Birthdate (yyyy-mm-dd)"
+                name="birthday" id="birthday" required />
+              <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+            </div>
+            <div class="input-group">
+              <div class="rs-select2 js-select-simple select--no-search">
+                <select name="gender" required>
+                  <option id="gender" disabled="disabled" selected="selected">
+                    Gender
+                  </option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>
+                <div class="select-dropdown"></div>
+              </div>
+            </div>
+            <div class="input-group">
+              <input class="input--style-3" autocomplete="off" type="email" placeholder="Email" name="email" id="email"
+                required />
+            </div>
+
+            <div class="input-group">
+              <input class="input--style-3" autocomplete="off" type="password" placeholder="Password" name="password"
+                id="password" required />
+            </div>
+
+            <div class="input-group">
+              <input class="input--style-3" autocomplete="off" type="text" placeholder="Mobile_1" name="mobile_1" id="mobile_1"
+                required />
+            </div>
+
+            <div class="input-group">
+              <input class="input--style-3" autocomplete="off" type="text" placeholder="Mobile_2 (Optional)" name="mobile_2" id="mobile_2"
+               />
+            </div>
+            
+            <div class="input-group">
+              <input class="input--style-3" autocomplete="off" type="text" placeholder="Address" name="address" id="address"
+                required />
+            </div>
+
+            <div class="p-t-10">
+              <button class="btn btn--pill btn--green" type="submit" id="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+
+
+          <div class="p-t-10">
+            <label for="haveAccount" class="input--style-3">Already a user?&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <a href="login.html">
+              <button type="button" id="haveAccount" class="button">
+                Log in
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script>
+      function retrieve() {
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+
+        //console.log(name);
+      }
+    </script> -->
+
+
+  <!-- Jquery JS-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- Vendor JS-->
+  <script src="vendor/select2/select2.min.js"></script>
+  <script src="vendor/datepicker/moment.min.js"></script>
+  <script src="vendor/datepicker/daterangepicker.js"></script>
+
+  <!-- Main JS-->
+  <script src="js/global.js"></script>
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

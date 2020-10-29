@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    let a
+    if (navigator.userAgent.match(/Android/i) ||
+      navigator.userAgent.match(/webOS/i) ||
+      navigator.userAgent.match(/iPhone/i) ||
+      navigator.userAgent.match(/iPad/i) ||
+      navigator.userAgent.match(/iPod/i) ||
+      navigator.userAgent.match(/BlackBerry/i) ||
+      navigator.userAgent.match(/Windows Phone/i)) {
+      a = true;
+    } else {
+      a = false;
+    }
+    if(a==true){
+      // window.alert("Not optimised for mobile devices yet, but hey good things take time and patience is key")
+      window.location.assign("mobileEntry.html")
+      // window.close()
+    }
+  </script>
+  <title>Bellissimmo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="image (1).ico" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor_login/bootstrap/css/bootstrap.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts_login/font-awesome-4.7.0/css/font-awesome.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts_login/Linearicons-Free-v1.0.0/icon-font.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor_login/animate/animate.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor_login/css-hamburgers/hamburgers.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor_login/animsition/css/animsition.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor_login/select2/select2.min.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor_login/daterangepicker/daterangepicker.css" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="css_login/util.css" />
+  <link rel="stylesheet" type="text/css" href="css_login/main.css" />
+  <!--===============================================================================================-->
+</head>
+<style>
+  body {
+    overflow: hidden;
+  }
+
+  .logo{
+    position:absolute;
+    right:8%;
+    top:-5%;
+    
+  }
+
+  .login100-form-btn:hover {
+      -ms-transform: scale(1.05);
+      /* IE 9 */
+      -webkit-transform: scale(1.05);
+      /* Safari 3-8 */
+      transform: scale(1.05);
+    }
+
+</style>
+
+<body style="background-color: #666666">
+  
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="logo"><img src="loginLogo.png" style="width:80%;"></div>
+      <div class="wrap-login100">
+        <form class="login100-form validate-form" action="getLogin" method="POST">
+          <span class="login100-form-title p-b-43" style="color: rgb(0, 0, 0);"> Login to continue </span>
+
+          <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+            <input class="input100" type="text" name="email" style="color: rgb(255, 255, 255);" autocomplete="off" />
+            <span class="focus-input100"></span>
+            <span class="label-input100" style="color: rgb(255, 255, 255);">Email</span>
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Password is required">
+            <input class="input100" type="password" name="pass" style="color: rgb(255, 255, 255);" autocomplete="off"/>
+            <span class="focus-input100"></span>
+            <span class="label-input100" style="color: rgb(255, 255, 255);">Password</span>
+          </div>
+
+          <div class="flex-sb-m w-full p-t-3 p-b-32">
+            <div class="contact100-form-checkbox">
+              <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" />
+              <label class="label-checkbox100" for="ckb1" style="color: rgb(255, 255, 255);">
+                Remember me &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; <a href="register.html"><span style="color: white;">Don't have an account?</span></a>
+              </label>
+            </div>
+            
+
+          </div>
+
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn" style="background-color: rgb(29, 136, 136);">Login</button>
+            <br> <br>
+            <br>
+            <button class="login100-form-btn" style="background-color: rgb(29, 136, 136);" onclick="landingPage()">Login As Guest</button>
+
+          </div>
+
+
+        </form>
+
+        <div class="login100-more" style="background-image: url('https://jooinn.com/images1280_/airplane-flying-under-white-clouds-during-night-time.jpg')"></div>
+      </div>
+    </div>
+  </div>
+
+  <!--===============================================================================================-->
+  <script src="vendor_login/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor_login/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor_login/bootstrap/js/popper.js"></script>
+  <script src="vendor_login/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor_login/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor_login/daterangepicker/moment.min.js"></script>
+  <script src="vendor_login/daterangepicker/daterangepicker.js"></script>
+  <!--===============================================================================================-->
+  <script src="vendor_login/countdowntime/countdowntime.js"></script>
+  <!--===============================================================================================-->
+  <script src="js_login/main.js"></script>
+
+
+  <script>
+
+  function landingPage() {
+
+      window.location.href = "landingPageGuest.html"
+    }
+  </script>
+</body>
+
+</html>
