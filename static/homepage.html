@@ -10,6 +10,19 @@
     <div id = "post"></div>
     <!-- <a href="" -->
     <button type="button" onclick="createpost()">Create Post</button>
+
+    <form action="getDetails" method="POST">
+     <div>
+        <input type="text" name="start" id="start"> 
+     </div>   
+
+     <div>
+        <input type="text" name="end" id="end"> 
+     </div>  
+
+     <button style="background-color: rgb(29, 136, 136);" onclick="getDetails()">Search</button>
+
+    </form>
     <script src="homepage.js"></script>
 
 </body>
