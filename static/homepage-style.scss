@@ -1,0 +1,423 @@
+$dark-red:rgba(138,9,21,1);
+$pale-pink:rgba(186,94,113,1);
+$text-light:rgb(255, 233, 237);
+$text-dark:rgb(65, 5, 11);
+$height-field: 3.5rem;
+$font-size-custom: 1.1em;
+$before-color:rgba(255, 233, 237,0.7);
+$after-color: rgba(255, 255, 255,1);
+$colone: #ff8a00;
+$coltwo: #da1b60;
+$size: 1.35rem;
+$color_: #7a7a8c;
+$ground: #1d1e22; // ffffff
+$border: #4c4f5a;
+
+$duration: 500;
+
+
+@mixin removeStyle(){
+    outline:none;
+    background: transparent;
+    text-decoration:none;
+    border:none;
+}
+
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Sarabun', sans-serif;
+    user-select: none;
+}
+
+html{
+    height: 100vh;
+    width: 100vw;
+
+}
+
+body{
+    height: 100%;
+    width:100%;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.page-1{
+    height: 100%;
+    width: 100%;
+    background-image: url("../images/bg-1@0.25x.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
+    //layout
+    display: grid;
+    grid-template-rows: 10% 30% 60%;
+}
+
+
+
+.nav-bar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size:1.1rem;
+}
+
+.other-links{
+    width: 45%;
+    
+}
+
+.logo{
+    margin: auto 0;
+}
+.nav-items{
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    a:active , a:visited, a:link{
+        transition: all 200ms ease-in;
+        color: $text-dark;
+    }
+}
+
+.signup{
+    position: relative; //required to send the after element back
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow:hidden;
+    border-radius: 2em;
+    height: 2.4em;
+    width: 10em;
+    cursor: pointer; //faulty
+    transition: all 700ms ease-in-out;
+    background-image: linear-gradient(50deg, $text-dark, $dark-red);
+    a:active , a:visited, a:link{
+        color:$text-light;
+    }
+    &:hover{
+        border-radius: 2px;
+    }
+    /*
+            
+
+        &::before{
+            transform: translateY(0%);
+            height: 2.5em;
+            border-radius: 2px;
+        }
+    &::before{
+        content: " ";
+        display: block;
+        transform: translateY(100%);
+        position: absolute;
+        z-index: -1;
+        height: 2.5em;
+        width: 10em;
+        border-radius: 2em;
+        transition: all 500ms ease-in;
+        //transition: border 200ms ease-in;
+        background-image: linear-gradient(50deg, $text-dark, $dark-red);
+    }*/
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-text{
+    width: 88%;
+    color: rgb(240, 240, 240);
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    line-height: 1rem;
+}
+
+.text-content{
+    
+    width: 89%;
+    font-family: 'Great Vibes', cursive;
+    font-size: 5rem;
+    font-weight: bolder;
+    color:rgba(240, 240, 240, 0.8);
+    text-shadow:4px 4px 30px rgba(0,0,0,0.7);
+    border-radius:3px;
+}
+
+.main-content{
+    display: flex;
+    justify-content: center;
+}
+
+.content{
+    border-radius: 4px;
+    margin-top: 7em;
+    height: 15em;
+    width: 90%;
+    //background-color: rgba(255,255,255,0.1);
+    background-color: rgba(252, 168, 185, 0.15);
+    backdrop-filter: blur(25px);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em 5em;
+}
+
+.heading{
+    color: $text-light;
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+    margin-bottom: 0.5em;
+}
+
+.input-fields{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.search-flights{
+    height: 2.5em;
+    width: 12em;
+    background-image: linear-gradient(50deg, $dark-red, $text-dark);
+    border: none;
+    outline: none;
+    border-radius: 2em;
+    color: $text-light;
+    font-size: 1.1rem;
+    cursor: pointer;
+    justify-self: flex-end;
+    align-self: flex-end;
+    transition: all 500ms ease-in;
+    &:hover{
+        border-radius: 2px;
+    }
+}
+
+
+//departure date-field 
+.fa-calendar-day{
+    color: $before-color;
+    opacity: 0.5;
+    position: absolute;
+    top: 50.5%;
+    left: 90%;
+    font-size: 1.335rem;
+    pointer-events: none;
+    cursor: pointer;
+
+}
+::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-image: url("../images/calendar.png");
+    margin-bottom: 0.5em;
+    cursor: pointer;
+  }
+  
+
+#today{
+    user-select: none; //not working
+    
+}
+
+//location markers
+.location{
+    color: $before-color;
+    position: absolute;
+    top: 50%;
+    left: 88%;
+    font-size: 1.1rem;
+}
+//passenger buttons
+.buttons{
+    position: absolute;
+    top: 50%;
+    left: 80%;
+}
+
+.add, .subtract{
+    @include removeStyle();
+    cursor: pointer;
+    color: $before-color;
+    font-size: 1rem;
+
+    .fas{
+        pointer-events: none;
+    }
+    
+}
+
+.add{
+    margin-right: 0.5em;
+}
+
+//removing arrows from input type number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+//text-field animation
+.formi{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width:15rem;
+    height:$height-field;
+    overflow: hidden;
+    //background-color:rgba(240, 240, 240, 0.1);
+    //backdrop-filter: blur(10px);
+
+}
+.formi input{
+    @include removeStyle();
+    color: $after-color;
+    cursor: pointer;
+    height: 100%;
+    width:100%;
+    font-size: 1.1rem;
+    padding-top: $height-field - 1.5rem;
+        &:focus + .label-name .content-name, &:valid + .label-name .content-name{
+            /* :valid ensures that when input text is added and the focus is shifted somwehere else
+            the label doesn't come back to its initial position*/
+            color:$after-color;
+            font-size:$font-size-custom - $font-size-custom/10;           
+            transform: translateY(-150%);
+        }
+    
+    
+}
+
+.formi label{
+    @include removeStyle();
+    position: absolute;
+    pointer-events: none;
+    width:100%;
+    height:100%;
+    bottom:0;
+    border-bottom: 2px solid $before-color;
+    color:$before-color;
+        &::after{
+            content: "";
+            position: absolute;
+            width:100%;
+            height: 100%;
+            border-bottom: 2px solid $after-color;
+            left:0;
+            transform: translateX(-100%);
+            
+            /*Moving the blue line out of frame initially also, 
+            since overflow is not hidden it is visible on the frame when overflow:hidden; 
+            not applied to parent*/
+            transition: transform 500ms ease;
+        }
+
+}
+
+.content-name{
+    position: absolute;
+    top: $height-field - 1.5rem;
+    transition: all 500ms ease;
+    font-size: $font-size-custom;
+}
+
+.formi input:focus + .label-name::after, .formi input:valid + label::after{
+    transform:translateX(0%);
+    border-color: $after-color;
+    
+    
+}
+
+//radio buttons
+.passenger-class{
+    display: flex;
+    margin-top: 0.5em;
+    color: $before-color;
+    label {
+        position: relative;
+        margin: 0.675rem 1.35rem;
+        display: flex;
+        width: auto;
+        align-items: center;
+        cursor: pointer;
+      }
+    .uno{
+        margin-left: 0rem;
+    }
+      .check {
+        margin-right: 7px;
+        width: 1.35rem;
+        height: 1.35rem;
+      }
+      .check #border {
+        fill: none;
+        stroke:$before-color;
+        stroke-width: 3;
+        stroke-linecap: round;
+      }
+      .check #dot {
+        fill: url(#gradient);
+        transform: scale(0);
+        transform-origin: 50% 50%;
+      }
+      
+      input {
+        display: none;
+      }
+      input:checked + label {
+        font-weight:600;
+        //background-color:#cf1545;
+        background: linear-gradient(80deg, #cf1545, #f0547c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      input:checked + label svg #border {
+        stroke: url(#gradient);
+        stroke-dasharray: 145;
+        stroke-dashoffset: 145;
+        animation: checked 500ms ease forwards;
+      }
+      input:checked + label svg #dot {
+        transform: scale(1);
+        transition: transform 500ms cubic-bezier(0.57, 0.21, 0.69, 3.25);
+      }
+      
+      @keyframes checked {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+}
+
+
