@@ -3,14 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,700;1,800&display=swap" rel="stylesheet">
+    <link href="homepage-style.css" rel="stylesheet" type="text/css"/>
     <title>Homepage</title>
 </head>
 <body>
-    <h1>This is Homepage! :D</h1>
-    <div id = "post"></div>
-    <!-- <a href="" -->
-    <button type="button" onclick="createpost()">Create Post</button>
+        <div class="page-1">
+            <div class="nav-bar">
+                <div class="logo">Logo</div>
+                <div class="other-links">
+                    <ul class="nav-items">
+                        <li class="about"><a href="#">About</a></li>
+                        <li class="flights"><a href="#">Meals</a></li>
+                        <li class="login"><a href="#">LogIn</a></li>
+                        <li class="signup"><a href="#">SignUp</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text">
+               <div class="text-content">
+                Flying Made Easier...
+               </div>
+               <div class="sub-text">
+                   Explore the cheapest flights on one go
+               </div>
+            </div>
+            <div class="main-content">
+                <div class="content">
+                    <div class="heading">Flights.</div>
+                    <div class="input-fields">
+                        <div class="formi">
+                            <input type="text" name="from" required autocomplete="off">
+                            <label name="from" class="label-name">
+                                <span class="content-name">
+                                   From:
+                                </span>
+                               </label>
+                            <div class="location">
+                              <i class="fas fa-map-marker"></i>
+                            </div>
+                         </div>
+    
+                         <div class="formi">
+                            <input type="text" name="whereto" required autocomplete="off">
+                            <label name="whereto" class="label-name">
+                                <span class="content-name">
+                                   Where To? 
+                                </span>
+                              </label>
+                              <div class="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                              </div>
+                         </div>
+    
+                         <div class="formi date">
+                            <input type="text" name="deptdate" required autocomplete="off" id="today" onfocus="(this.type='date') (this.value=new Date().toISOString().substr(0, 10))" onblur="if(!this.value)this.type='text'">
+                            <label name="deptdate" class="label-name">
+                                <span class="content-name">
+                                   Departure Date:
+                                </span>
+                            </label>
+                            <i class="fas fa-calendar-day"></i>
+                         </div>
+                         <div class="formi passenger">
+                            <input type="number" name="passenger" class="passenger-inp" required autocomplete="off" min="1" max="99" >
+                            <label name="passenger" class="label-name">
+                                <span class="content-name">
+                                   Passengers:
+                                </span>
+                            </label>
+                            <div class="buttons">
+                                <button class="add"><i class="fas fa-plus"></i></button>
+                                <button class="subtract"><i class="fas fa-minus"></i></button>
+                            </div>
+                         </div>
+                         
+                    </div>
+                    <div class="passenger-class">
+                        <input type="radio" name="field" id="Uno" checked/>
+                        <label class="uno" for="Uno">
+                          <svg class="check" viewbox="0 0 40 40">
+                            <defs>
+                              <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#cf1545"></stop>
+                                <stop offset="100%" stop-color="#f0547c"></stop>
+                              </linearGradient>
+                            </defs>
+                            <circle id="border" r="18px" cx="20px" cy="20px"></circle>
+                            <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
+                          </svg>Economy
+                        </label>
+                        <input type="radio" name="field" id="Dos"/>
+                        <label for="Dos">
+                          <svg class="check" viewbox="0 0 40 40">
+                            <defs>
+                              <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#ff8a00"></stop>
+                                <stop offset="100%" stop-color="#da1b60"></stop>
+                              </linearGradient>
+                            </defs>
+                            <circle id="border" r="18px" cx="20px" cy="20px"></circle>
+                            <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
+                          </svg>Premium Economy
+                        </label>
+                        <input type="radio" name="field" id="Tres"/>
+                        <label for="Tres">
+                          <svg class="check" viewbox="0 0 40 40">
+                            <defs>
+                              <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#ff8a00"></stop>
+                                <stop offset="100%" stop-color="#da1b60"></stop>
+                              </linearGradient>
+                            </defs>
+                            <circle id="border" r="18px" cx="20px" cy="20px"></circle>
+                            <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
+                        </svg> Business
+                        </label>
+                        <input type="radio" name="field" id="Cuatro"/>
+                        <label for="Cuatro">
+                          <svg class="check" viewbox="0 0 40 40">
+                            <defs>
+                              <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+                                <stop offset="0%" stop-color="#ff8a00"></stop>
+                                <stop offset="100%" stop-color="#da1b60"></stop>
+                              </linearGradient>
+                            </defs>
+                            <circle id="border" r="18px" cx="20px" cy="20px"></circle>
+                            <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
+                          </svg>First Class
+                        </label>
+                    </div>
+                    <button class="search-flights">
+                        Search Flights
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    <script src="./script-1.js"></script>
     <script src="homepage.js"></script>
-
 </body>
 </html>
