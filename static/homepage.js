@@ -15,6 +15,8 @@
 
 
 
+
+
     fetch("/get_token").then((res) => {
         res.text().then((data) => {
             // document.getElementsByClassName("navbar-text")[0].innerHTML = data;
@@ -24,6 +26,18 @@
             sessionStorage.setItem('token', data);
         })
     });
+
+
+// ==================================================================================
+
+let planeNodes = {
+    "bangalore" : 0,
+    "mumbai" : 1,
+    "delhi" : 2,
+    "kolkata" : 3
+}
+
+
 
 function createpost(){
    
