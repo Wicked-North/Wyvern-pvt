@@ -1,19 +1,18 @@
 $dark-red:rgba(138,9,21,1);
+//bright-red rgba(207, 21, 69,1) dark-red rgba(138,9,21,1) text-dark rgb(65, 5, 11)
 $pale-pink:rgba(186,94,113,1);
-$text-light:rgb(255, 233, 237);
-$text-dark:rgb(65, 5, 11);
+$bright-red:rgba(207, 21, 69,1);
+$bright-pink:rgb(255, 30, 105);
+$text-light:rgb(244, 240, 255);
+$text-dark:rgb(43, 0, 73);
+$darkest-accent:rgb(0, 0, 0);
 $height-field: 3.5rem;
 $font-size-custom: 1.1em;
-$before-color:rgba(255, 233, 237,0.7);
-$after-color: rgba(255, 255, 255,1);
-$colone: #ff8a00;
-$coltwo: #da1b60;
+$before-color:rgba(97, 4, 44,1);
+$after-color: rgb(43, 0, 73);
 $size: 1.35rem;
-$color_: #7a7a8c;
-$ground: #1d1e22; // ffffff
-$border: #4c4f5a;
-
 $duration: 500;
+
 
 
 @mixin removeStyle(){
@@ -54,12 +53,11 @@ a{
 .page-1{
     height: 100%;
     width: 100%;
-    background-image: url("../images/bg-1@0.25x.jpg");
+    background-image: url("../images/elizabeth-camp-9q7prd3EeT0-unsplash.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
-
     //layout
     display: grid;
     grid-template-rows: 10% 30% 60%;
@@ -88,16 +86,23 @@ a{
     justify-content: space-evenly;
     align-items: center;
     height: 100%;
+    font-weight: bold;
+    line-height: 60px;
+    font-weight:900;
+    font-size:1em;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
     a:active , a:visited, a:link{
         transition: all 200ms ease-in;
         color: $text-dark;
     }
 }
 
-.signup{
+/*.signup{
     position: relative; //required to send the after element back
     z-index: 10000;
     display: flex;
+    transform:scale(1);
     justify-content: center;
     align-items: center;
     overflow:hidden;
@@ -108,7 +113,7 @@ a{
     transition: all 700ms ease-in-out;
     background-image: linear-gradient(50deg, $text-dark, $dark-red);
     a:active , a:visited, a:link{
-        color:$text-light;
+        color:$before-color;
     }
     &:hover{
         border-radius: 2px;
@@ -133,8 +138,8 @@ a{
         transition: all 500ms ease-in;
         //transition: border 200ms ease-in;
         background-image: linear-gradient(50deg, $text-dark, $dark-red);
-    }*/
-}
+    }
+}*/
 
 .text{
     display: flex;
@@ -145,7 +150,7 @@ a{
 
 .sub-text{
     width: 88%;
-    color: rgb(240, 240, 240);
+    color: $text-light;
     font-weight: 600;
     letter-spacing: 0.05rem;
     line-height: 1rem;
@@ -157,9 +162,10 @@ a{
     font-family: 'Great Vibes', cursive;
     font-size: 5rem;
     font-weight: bolder;
-    color:rgba(240, 240, 240, 0.8);
+    color:$text-light;
     text-shadow:4px 4px 30px rgba(0,0,0,0.7);
     border-radius:3px;
+    opacity: 0.7;
 }
 
 .main-content{
@@ -173,15 +179,17 @@ a{
     height: 15em;
     width: 90%;
     //background-color: rgba(255,255,255,0.1);
-    background-color: rgba(252, 168, 185, 0.15);
-    backdrop-filter: blur(25px);
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(45px);
     display: flex;
     flex-direction: column;
     padding: 1.5em 5em;
+    font-weight: 600;
+    //box-shadow: 2px 2px 40px rgba(255, 205, 205, 0.3);
 }
 
 .heading{
-    color: $text-light;
+    color: $before-color;
     font-size: 1.1rem;
     letter-spacing: 0.05rem;
     margin-bottom: 0.5em;
@@ -195,22 +203,78 @@ a{
 
 
 .search-flights{
+    justify-self: flex-end;
+    align-self: flex-end;
+    /*
+    display: block;
+    transform:scale(1);
     height: 2.5em;
     width: 12em;
     background-image: linear-gradient(50deg, $dark-red, $text-dark);
     border: none;
     outline: none;
     border-radius: 2em;
-    color: $text-light;
+    color: $before-color;
     font-size: 1.1rem;
     cursor: pointer;
-    justify-self: flex-end;
-    align-self: flex-end;
     transition: all 500ms ease-in;
     &:hover{
         border-radius: 2px;
-    }
+    }*/
 }
+
+//gradient-btn hover animation
+.btn {
+    position: relative;
+    display: inline-block;
+    width: 277px;
+    height: 50px;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 60px;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration:none;
+    font-family: 'Roboto', sans-serif;
+    font-weight:900;
+    font-size:17px;
+    letter-spacing: 0.045em;
+}
+
+.btn svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.btn svg rect {
+    /*stroke: #EC0033;*/
+    stroke-width: 4;
+    stroke-dasharray: 353, 0;
+    stroke-dashoffset: 0;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+}
+
+.btn span{
+  background: rgb(255,130,130);
+  background: -moz-linear-gradient(left,  $after-color 0%, $before-color 100%);
+  background: -webkit-linear-gradient(left,  $after-color 0%,$before-color 100%);
+  background: linear-gradient(to right,  $after-color 0%,$before-color 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8282', endColorstr='#e178ed',GradientType=1 );
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn:hover svg rect {
+    stroke-width: 4;
+    stroke-dasharray: 196, 543;
+    stroke-dashoffset: 437;
+}
+
 
 
 //departure date-field 
@@ -359,6 +423,13 @@ input[type=number] {
     
 }
 
+.fas{
+    background-image: linear-gradient(50deg, $after-color, $before-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.9;
+}
+
 //radio buttons
 .passenger-class{
     display: flex;
@@ -387,7 +458,7 @@ input[type=number] {
         stroke-linecap: round;
       }
       .check #dot {
-        fill: url(#gradient);
+        fill: url(#grad1);
         transform: scale(0);
         transform-origin: 50% 50%;
       }
@@ -398,12 +469,12 @@ input[type=number] {
       input:checked + label {
         font-weight:600;
         //background-color:#cf1545;
-        background: linear-gradient(80deg, #cf1545, #f0547c);
+        background: linear-gradient(80deg, $before-color, $after-color);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
       input:checked + label svg #border {
-        stroke: url(#gradient);
+        stroke: url(#grad1);
         stroke-dasharray: 145;
         stroke-dashoffset: 145;
         animation: checked 500ms ease forwards;

@@ -31,7 +31,7 @@ a {
 .page-1 {
   height: 100%;
   width: 100%;
-  background-image: url("../images/bg-1@0.25x.jpg");
+  background-image: url("../images/elizabeth-camp-9q7prd3EeT0-unsplash.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -73,35 +73,41 @@ a {
       -ms-flex-align: center;
           align-items: center;
   height: 100%;
+  font-weight: bold;
+  line-height: 60px;
+  font-weight: 900;
+  font-size: 1em;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
 }
 
 .nav-items a:active, .nav-items a:visited, .nav-items a:link {
   -webkit-transition: all 200ms ease-in;
   transition: all 200ms ease-in;
-  color: #41050b;
+  color: #2b0049;
 }
 
-.signup {
-  position: relative;
-  z-index: 10000;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  overflow: hidden;
-  border-radius: 2em;
-  height: 2.4em;
-  width: 10em;
-  cursor: pointer;
-  -webkit-transition: all 700ms ease-in-out;
-  transition: all 700ms ease-in-out;
-  background-image: linear-gradient(50deg, #41050b, #8a0915);
-  /*
+/*.signup{
+    position: relative; //required to send the after element back
+    z-index: 10000;
+    display: flex;
+    transform:scale(1);
+    justify-content: center;
+    align-items: center;
+    overflow:hidden;
+    border-radius: 2em;
+    height: 2.4em;
+    width: 10em;
+    cursor: pointer; //faulty
+    transition: all 700ms ease-in-out;
+    background-image: linear-gradient(50deg, $text-dark, $dark-red);
+    a:active , a:visited, a:link{
+        color:$before-color;
+    }
+    &:hover{
+        border-radius: 2px;
+    }
+    /*
             
 
         &::before{
@@ -121,17 +127,8 @@ a {
         transition: all 500ms ease-in;
         //transition: border 200ms ease-in;
         background-image: linear-gradient(50deg, $text-dark, $dark-red);
-    }*/
-}
-
-.signup a:active, .signup a:visited, .signup a:link {
-  color: #ffe9ed;
-}
-
-.signup:hover {
-  border-radius: 2px;
-}
-
+    }
+}*/
 .text {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -150,7 +147,7 @@ a {
 
 .sub-text {
   width: 88%;
-  color: #f0f0f0;
+  color: #f4f0ff;
   font-weight: 600;
   letter-spacing: 0.05rem;
   line-height: 1rem;
@@ -161,9 +158,10 @@ a {
   font-family: 'Great Vibes', cursive;
   font-size: 5rem;
   font-weight: bolder;
-  color: rgba(240, 240, 240, 0.8);
+  color: #f4f0ff;
   text-shadow: 4px 4px 30px rgba(0, 0, 0, 0.7);
   border-radius: 3px;
+  opacity: 0.7;
 }
 
 .main-content {
@@ -180,9 +178,9 @@ a {
   margin-top: 7em;
   height: 15em;
   width: 90%;
-  background-color: rgba(252, 168, 185, 0.15);
-  -webkit-backdrop-filter: blur(25px);
-          backdrop-filter: blur(25px);
+  background-color: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(45px);
+          backdrop-filter: blur(45px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -191,10 +189,11 @@ a {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 1.5em 5em;
+  font-weight: 600;
 }
 
 .heading {
-  color: #ffe9ed;
+  color: #61042c;
   font-size: 1.1rem;
   letter-spacing: 0.05rem;
   margin-bottom: 0.5em;
@@ -211,28 +210,78 @@ a {
 }
 
 .search-flights {
-  height: 2.5em;
-  width: 12em;
-  background-image: linear-gradient(50deg, #8a0915, #41050b);
-  border: none;
-  outline: none;
-  border-radius: 2em;
-  color: #ffe9ed;
-  font-size: 1.1rem;
-  cursor: pointer;
   justify-self: flex-end;
   -ms-flex-item-align: end;
       align-self: flex-end;
-  -webkit-transition: all 500ms ease-in;
-  transition: all 500ms ease-in;
+  /*
+    display: block;
+    transform:scale(1);
+    height: 2.5em;
+    width: 12em;
+    background-image: linear-gradient(50deg, $dark-red, $text-dark);
+    border: none;
+    outline: none;
+    border-radius: 2em;
+    color: $before-color;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 500ms ease-in;
+    &:hover{
+        border-radius: 2px;
+    }*/
 }
 
-.search-flights:hover {
-  border-radius: 2px;
+.btn {
+  position: relative;
+  display: inline-block;
+  width: 277px;
+  height: 50px;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 0.045em;
+}
+
+.btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn svg rect {
+  /*stroke: #EC0033;*/
+  stroke-width: 4;
+  stroke-dasharray: 353, 0;
+  stroke-dashoffset: 0;
+  -webkit-transition: all 600ms ease;
+  transition: all 600ms ease;
+}
+
+.btn span {
+  background: #ff8282;
+  background: -webkit-gradient(linear, left top, right top, from(#2b0049), to(#61042c));
+  background: linear-gradient(to right, #2b0049 0%, #61042c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8282', endColorstr='#e178ed',GradientType=1 );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn:hover svg rect {
+  stroke-width: 4;
+  stroke-dasharray: 196, 543;
+  stroke-dashoffset: 437;
 }
 
 .fa-calendar-day {
-  color: rgba(255, 233, 237, 0.7);
+  color: #61042c;
   opacity: 0.5;
   position: absolute;
   top: 50.5%;
@@ -262,7 +311,7 @@ a {
 }
 
 .location {
-  color: rgba(255, 233, 237, 0.7);
+  color: #61042c;
   position: absolute;
   top: 50%;
   left: 88%;
@@ -281,7 +330,7 @@ a {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  color: rgba(255, 233, 237, 0.7);
+  color: #61042c;
   font-size: 1rem;
 }
 
@@ -324,7 +373,7 @@ input[type=number] {
   background: transparent;
   text-decoration: none;
   border: none;
-  color: white;
+  color: #2b0049;
   cursor: pointer;
   height: 100%;
   width: 100%;
@@ -335,7 +384,7 @@ input[type=number] {
 .formi input:focus + .label-name .content-name, .formi input:valid + .label-name .content-name {
   /* :valid ensures that when input text is added and the focus is shifted somwehere else
             the label doesn't come back to its initial position*/
-  color: white;
+  color: #2b0049;
   font-size: 0.99em;
   -webkit-transform: translateY(-150%);
           transform: translateY(-150%);
@@ -351,8 +400,8 @@ input[type=number] {
   width: 100%;
   height: 100%;
   bottom: 0;
-  border-bottom: 2px solid rgba(255, 233, 237, 0.7);
-  color: rgba(255, 233, 237, 0.7);
+  border-bottom: 2px solid #61042c;
+  color: #61042c;
 }
 
 .formi label::after {
@@ -360,7 +409,7 @@ input[type=number] {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #2b0049;
   left: 0;
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
@@ -384,7 +433,14 @@ input[type=number] {
 .formi input:focus + .label-name::after, .formi input:valid + label::after {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
-  border-color: white;
+  border-color: #2b0049;
+}
+
+.fas {
+  background-image: linear-gradient(50deg, #2b0049, #61042c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.9;
 }
 
 .passenger-class {
@@ -392,7 +448,7 @@ input[type=number] {
   display: -ms-flexbox;
   display: flex;
   margin-top: 0.5em;
-  color: rgba(255, 233, 237, 0.7);
+  color: #61042c;
 }
 
 .passenger-class label {
@@ -420,13 +476,13 @@ input[type=number] {
 
 .passenger-class .check #border {
   fill: none;
-  stroke: rgba(255, 233, 237, 0.7);
+  stroke: #61042c;
   stroke-width: 3;
   stroke-linecap: round;
 }
 
 .passenger-class .check #dot {
-  fill: url(#gradient);
+  fill: url(#grad1);
   -webkit-transform: scale(0);
           transform: scale(0);
   -webkit-transform-origin: 50% 50%;
@@ -439,13 +495,13 @@ input[type=number] {
 
 .passenger-class input:checked + label {
   font-weight: 600;
-  background: linear-gradient(80deg, #cf1545, #f0547c);
+  background: linear-gradient(80deg, #61042c, #2b0049);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .passenger-class input:checked + label svg #border {
-  stroke: url(#gradient);
+  stroke: url(#grad1);
   stroke-dasharray: 145;
   stroke-dashoffset: 145;
   -webkit-animation: checked 500ms ease forwards;

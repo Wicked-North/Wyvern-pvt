@@ -25,4 +25,3 @@ $(".subtract").click(()=>{
         $(".passenger-inp").val(valuePas);
     }
 });
-
