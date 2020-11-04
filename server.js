@@ -47,6 +47,8 @@ app.use(bodyParser.urlencoded({
     extended: true
   }));
 
+app.use(bodyParser.json());
+
 app.use(express.static(path.join(__dirname, "static")));
 
 
@@ -160,18 +162,45 @@ app.post('/getLogin', (req, res)=>{
     })
 })
 
-app.post("/getDetails", (req, res) =>{
-//console.log(req)
-let start = req.body.start
-let end = req.body.end
-var searchSql = `select * from flights where start = '${start}' && end = '${end}'`
+app.post("/getViaDetails", (req, res) =>{
+console.log(req)
+var nodeObj = req.body
+console.log(nodeObj)
+var searchSql = `select * from flights where start = '${nodeObj.start}' && end = '${nodeObj.end}' and via is not NULL`
 con.query(searchSql, (err, result) =>{
     if(err) throw err;
-    //console.log(result)
+    console.log(result)
     res.json(result)
 })
-console.log(start, end)
+//res.json({name : "abhra"})
 });
+
+app.post("/getDirectDetails", (req, res) =>{
+    console.log(req)
+    var nodeObj = req.body
+    console.log(nodeObj)
+    var searchSql = `select * from flights where start = '${nodeObj.start}' && end = '${nodeObj.end}' and via is NULL`
+    con.query(searchSql, (err, result) =>{
+        if(err) throw err;
+        console.log(result)
+        res.json(result)
+    })
+    //res.json({name : "abhra"})
+    });
+
+    app.post("/optimisedVia", (req, res) =>{
+        console.log(req)
+        var nodeObj = req.body
+        console.log(nodeObj)
+        var searchSql = `select * from flights where start = '${nodeObj.start}' && end = '${nodeObj.end}' && via = '${nodeObj.via}'`
+        con.query(searchSql, (err, result) =>{
+            if(err) throw err;
+            console.log(result)
+            res.json(result)
+        })
+        //res.json({name : "abhra"})
+        });
+    
 
 
 app.get("/get_sess", (req, res) => {
@@ -187,7 +216,7 @@ app.get('/get_token', (req, res)=>{
     vtoken = ""
 })
 
-app.get('/data', verifyToken, (req, res) =>{
+app.get('/data', (req, res) =>{
     //console.log(req)
   
         res.json({
@@ -195,27 +224,27 @@ app.get('/data', verifyToken, (req, res) =>{
         })
 })
 
-async function verifyToken(req, res, next){
+// async function verifyToken(req, res, next){
     
-    console.log('in verify token')
-    //console.log(req)
-try{
-        const bearerHeader = req.headers["authorisation"];
-        if (typeof bearerHeader !== "undefined") {
-            const bearer = bearerHeader.split(' ');
-            const bearerToken = bearer[1];
-            let authData = await jwt.verify(bearerToken, "secretkey");
-            console.log(bearerToken)
-            console.log(req.token)
-            next();
-        } else {
-          res.status(403).json({message : "authentication failed"});
-        }
-    } catch(error){
-        res.status(403).json({message : "authentication failed"})
-    }
+//     console.log('in verify token')
+//     //console.log(req)
+// try{
+//         const bearerHeader = req.headers["authorisation"];
+//         if (typeof bearerHeader !== "undefined") {
+//             const bearer = bearerHeader.split(' ');
+//             const bearerToken = bearer[1];
+//             let authData = await jwt.verify(bearerToken, "secretkey");
+//             console.log(bearerToken)
+//             console.log(req.token)
+//             next();
+//         } else {
+//           res.status(403).json({message : "authentication failed"});
+//         }
+//     } catch(error){
+//         res.status(403).json({message : "authentication failed"})
+//     }
      
-}
+// }
 
 
 function insertDirectPath(){
