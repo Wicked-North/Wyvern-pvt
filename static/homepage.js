@@ -15,7 +15,7 @@
 
 
 
-
+console.log("TUM SABH CHUTIYE HO")
 
     fetch("/get_token").then((res) => {
         res.text().then((data) => {
