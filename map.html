@@ -70,6 +70,18 @@
       stroke="url(#grad1)" 
       fill="transparent" 
       class="flight" stroke-width="3" d="M 186 209 Q 150 100 160 250 " />
+  
+      <image xlink:href="plane.png" id="plane1" x="-30" y="-30" width="60" height="60" >
+        <animateMotion class="svg-anim" id="planemotion" dur="1.5s"  rotate="auto" begin="0s;planemotion1.end" calcMode="spline" keySplines="0.833333 0.02 0.5 1" >
+             <mpath xlink:href="#pathSet-1"></mpath>
+        </animateMotion>
+    </image>
+
+    <image xlink:href="plane.png" id="plane2" x="-30" y="-30" width="60" height="60" >
+      <animateMotion class="svg-anim" id="planemotion1" dur="1.5s" rotate="auto"  begin="planemotion.end" calcMode="spline" keySplines="0.833333 0.02 0.5 1" >
+           <mpath xlink:href="#pathSet-2"></mpath>
+      </animateMotion>
+  </image>
      
     
 </svg>

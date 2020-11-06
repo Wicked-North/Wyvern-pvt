@@ -396,6 +396,11 @@ customElements.define('world-map-location', WorldMapLocation);
 function showPath(start,via,end){
 
 if(end){
+   document.getElementById('plane2').style.display='block' 
+
+
+   document.getElementById('planemotion').style.display='none'
+
    var x1=document.getElementById(start).getAttribute("left").slice(0,3)
    var y1=document.getElementById(start).getAttribute("top").slice(0,3)
    var x2=document.getElementById(via).getAttribute("left").slice(0,3)
@@ -427,7 +432,10 @@ if(end){
    }
    
    if(!end){
-
+      
+   document.getElementById('planemotion1').style.display='none'
+   document.getElementById('plane2').style.display='none' 
+   
    var x1=document.getElementById(start).getAttribute("left").slice(0,3)
    var y1=document.getElementById(start).getAttribute("top").slice(0,3)
    var x2=document.getElementById(via).getAttribute("left").slice(0,3)
@@ -455,8 +463,6 @@ if(end){
    }
    
 
- 
-
-   
-
 }
+
+
