@@ -1,4 +1,5 @@
 'use strict';
+//SHADOW DOM START-----------------
 
 class WorldMap extends HTMLElement {
   static get TEMPLATE () {
@@ -231,7 +232,7 @@ class WorldMapLocation extends HTMLElement {
       .dot {
         z-index:1;
         display: inline-block;
-        position:fixed;
+        position:absolute;
         background: #6355ff;
         border-radius: 50%;
         width: 10px;
@@ -241,7 +242,7 @@ class WorldMapLocation extends HTMLElement {
         
       }
       .dot.anim {
-         position:fixed;
+         position:absolute;
 
         animation-duration: 0s;
         animation-fill-mode: backwards;
@@ -249,7 +250,7 @@ class WorldMapLocation extends HTMLElement {
         animation-timing-function: linear;
       }
       .spread {
-         position:fixed;
+         position:absolute;
 
         display: inline-block;
         background: transparent;
@@ -262,7 +263,7 @@ class WorldMapLocation extends HTMLElement {
 
       }
       .spread.anim {
-         position:fixed;
+         position:absolute;
 
         animation-duration: 1.5s;
         animation-name: spread;
@@ -389,3 +390,73 @@ class WorldMapLocation extends HTMLElement {
 
 customElements.define('world-map', WorldMap);
 customElements.define('world-map-location', WorldMapLocation);
+
+//SHADOW DOM END+++++++++++++++++++++
+
+function showPath(start,via,end){
+
+if(end){
+   var x1=document.getElementById(start).getAttribute("left").slice(0,3)
+   var y1=document.getElementById(start).getAttribute("top").slice(0,3)
+   var x2=document.getElementById(via).getAttribute("left").slice(0,3)
+   var y2=document.getElementById(via).getAttribute("top").slice(0,3)
+   var x3=document.getElementById(end).getAttribute("left").slice(0,3)
+   var y3=document.getElementById(end).getAttribute("top").slice(0,3)
+   document.getElementById('pathSet-2').style.display="block"
+   document.getElementById('delhi').style.opacity=0
+   document.getElementById('kolkata').style.opacity=0
+
+   document.getElementById('ahmedabad').style.opacity=0
+   document.getElementById('mumbai').style.opacity=0
+
+   document.getElementById('hyderabad').style.opacity=0
+   document.getElementById('jaipur').style.opacity=0
+
+   document.getElementById('bangalore').style.opacity=0
+
+
+   document.getElementById(start).style.opacity=1
+   
+   document.getElementById(via).style.opacity=1
+   document.getElementById(end).style.opacity=1
+   
+   document.getElementById('pathSet-1').setAttribute("d",`M ${x1} ${y1} Q 150 100 ${x2} ${y2} `)
+
+   document.getElementById('pathSet-2').setAttribute("d",`M ${x2} ${y2} Q 150 100 ${x3} ${y3} `)
+
+   }
+   
+   if(!end){
+
+   var x1=document.getElementById(start).getAttribute("left").slice(0,3)
+   var y1=document.getElementById(start).getAttribute("top").slice(0,3)
+   var x2=document.getElementById(via).getAttribute("left").slice(0,3)
+   var y2=document.getElementById(via).getAttribute("top").slice(0,3)
+  
+   document.getElementById('pathSet-2').style.display="none"
+   document.getElementById('delhi').style.opacity=0
+   document.getElementById('kolkata').style.opacity=0
+
+   document.getElementById('ahmedabad').style.opacity=0
+   document.getElementById('mumbai').style.opacity=0
+
+   document.getElementById('hyderabad').style.opacity=0
+   document.getElementById('jaipur').style.opacity=0
+
+   document.getElementById('bangalore').style.opacity=0
+
+
+   document.getElementById(start).style.opacity=1
+   
+   document.getElementById(via).style.opacity=1
+   
+   document.getElementById('pathSet-1').setAttribute("d",`M ${x1} ${y1} Q 150 100 ${x2} ${y2} `)
+
+   }
+   
+
+ 
+
+   
+
+}
