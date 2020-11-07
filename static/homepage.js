@@ -263,6 +263,9 @@ function sortDepartureTime(){
     console.log(viaFlights)
 }
 
+function selectFlight(){
+  window.location.assign("app.html")
+}
 
 
 // function createpost(){
