@@ -3,7 +3,8 @@ var slideUp = '<h6>Vivek Gupta </h6>\
 <h6>Male</h6>\
 <h6>vivek@abc.com</h6>\
 <h6>9875631214</h6>';
-
+let paymentDetails = false
+let details
 var slideDown = '<small>Your name should match how it appears on the ID that you will use at the airport</small>\
 <p id="card4pd"><strong>Personal Details </strong></p>\
 <div class="control-group">\
@@ -48,7 +49,6 @@ var slideDown = '<small>Your name should match how it appears on the ID that you
 </div>\
 </div>';
 
-var details = false;
 
 function continueToPayment() {
     var chk = $('#inlineRadio1').checked
@@ -59,9 +59,9 @@ function continueToPayment() {
     var rbtn2 = $('#inlineRadio2').val();
     var dob = $('#start').val();
     var phno = $('#phone').val();
-    var emailid= $('#exampleInputEmail1').val();
+    var emailid = $('#exampleInputEmail1').val();
     console.log(fname, mname, lname, rbtn1, dob, phno, emailid, chk)
-    
+
     let pobj = {
         fname,
         mname,
@@ -76,27 +76,30 @@ function continueToPayment() {
     console.log(pobj)
     //fetch()
     document.getElementById("paymentform").innerHTML = slideUp;
-    document.getElementById("detailsButton").style.visibility = "visible";
-    document.getElementById("detailsButton").disabled = false;
-    details = true;
+    //document.getElementById("detailsButton").style.visibility = "visible";
+    //document.getElementById("detailsButton").disabled = false;
+    document.getElementById("detailsButton1").style.display = "block"
+    details = false;
+    paymentsSlideUpDown()
     // document.forms.submit();
     // document.getElementById("")
 }
 
 function slideUpDown() {
+    
     if (details) {
-        document.getElementById("paymentform").innerHTML = slideDown;
-        details = false;
-    }
-    else {
         document.getElementById("paymentform").innerHTML = slideUp;
+        details = false;
+      
+    } else {
+        document.getElementById("paymentform").innerHTML = slideDown;
         details = true;
     }
 }
 
 
-var paymentSlideDownDetails = "<h1>Bye</h1>";
-var paymentSlideUpDetails = '<p><i class="fa fa-exclamation-triangle" aria-hidden="true" id="yellowexclamation"></i>\
+var paymentSlideUpDetails = "";
+var paymentSlideDownDetails = '<p><i class="fa fa-exclamation-triangle" aria-hidden="true" id="yellowexclamation"></i>\
 SpiceJet charges a fee for use of some payment methods. If the fee applies, you will <span id="card5text2">see the amount after selecting your payment method.</span>\
 <p id="card5text2">\
 You may need to present the card that you use below when you check in at the airport, so\
@@ -161,14 +164,15 @@ info.\
 
 
 
-var paymentDetails = true;
+
+
 function paymentsSlideUpDown() {
+    document.getElementById("detailsButton2").style.display = "block"
     if (paymentDetails) {
-        document.getElementById("paymentDetails").innerHTML = paymentSlideDownDetails;
-        paymentDetails = false;
-    }
-    else {
         document.getElementById("paymentDetails").innerHTML = paymentSlideUpDetails;
+        paymentDetails = false;
+    } else {
+        document.getElementById("paymentDetails").innerHTML = paymentSlideDownDetails;
         paymentDetails = true;
     }
 }

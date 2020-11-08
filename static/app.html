@@ -68,7 +68,7 @@
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
 						<span>Who's travelling?</span>
-						<button id="detailsButton" onclick="slideUpDown()"><i class="fa fa-pencil"
+						<button id="detailsButton1" onclick="slideUpDown()" style="display: none;"><i class="fa fa-pencil"
 								aria-hidden="true"></i></Button>
 					</li>
 					<li id="customerDetails" class="list-group-item">
@@ -83,7 +83,7 @@
 								<div class="controls">
 									<i class="fa fa-user" aria-hidden="true" id="usericon"></i>
 									<input class="input-small" id="FirstName" name="FirstName" placeholder="First name"
-										type="text" value="" />
+										type="text" value="" required />
 									<input class="input-small" id="MiddleName" name="MiddleName"
 										placeholder="Middle name" type="text" value="" />
 									<input class="input-small" id="LastName" name="LastName" placeholder="Last name"
@@ -140,79 +140,12 @@
 					<li class="list-group-item"><strong>
 							<h3>Payments</h3>
 						</strong>
-						<button id="detailsButton" onclick="paymentsSlideUpDown()"><i class="fa fa-pencil"
+						<button id="detailsButton2" onclick="paymentsSlideUpDown()" style = "display: none"><i class="fa fa-pencil"
 								aria-hidden="true"></i></Button>
 					</li>
 					<li class="list-group-item">
 						<div id="paymentDetails">
-							<p><i class="fa fa-exclamation-triangle" aria-hidden="true" id="yellowexclamation"></i>
-								SpiceJet charges a fee for use of some payment methods. If the fee applies, you'll <span
-									id="card5text2">see the amount after selecting your payment method.</span>
-
-							<p id="card5text2">
-								You may need to present the card that you use below when you check in at the airport, so
-								bring it with you on the day of departure.</p>
-							</p>
-							<!-- </li>
-						<li class="list-group-item"> -->
-							<i class="fab fa-google-pay" id="gpayicon"></i>
-							<!-- </li>
-						<li class="list-group-item"> -->
-							<div class="dropdown" id="card5dropbox"><i class="fa fa-credit-card-alt" aria-hidden="true"
-									id="creditcard"></i>
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Dropdown button
-								</button>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item" href="#">Action</a>
-									<a class="dropdown-item" href="#">Another action</a>
-									<a class="dropdown-item" href="#">Something else here</a>
-								</div>
-							</div>
-
-							<div class="form-group" id="cardnumber">
-								<label for="cardNumber">CARD NUMBER</label>
-								<div class="input-group">
-									<input type="tel" class="form-control" name="cardNumber"
-										placeholder="Valid Card Number" autocomplete="cc-number" required autofocus />
-								</div>
-							</div>
-							<div id="cddetails">
-								<label for="expyear">Exp Year :</label>
-								<input type="text" id="expyear" name="expyear" placeholder="2018">
-
-								<label for="cvv" id="cv">CVV :</label>
-								<input type="text" id="cvv" name="cvv" placeholder="352">
-							</div>
-							<div id="namecard">
-								<label for="cname">Name on Card :</label>
-								<input type="text" id="cname" name="cardname" placeholder="John More Doe">
-							</div>
-							<div id="card5add">
-								<label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-								<input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-							</div>
-
-							<div id="card5city">
-								<label for="city"><i class="fa fa-institution"></i> City</label>
-								<input type="text" id="city" name="city" placeholder="New York">
-							</div>
-
-							<div id="card5state">
-								<label for="state">State</label>
-								<input type="text" id="state" name="state" placeholder="NY">
-							</div>
-
-							<small id="card5bottomtext">By continuing,you agree to the google Payments <a href="">terms
-									and
-									services.</a>
-								The Google payments <a href="">privacy Notice</a> describes how google handles payments
-								info.
-							</small>
-							<div align="right">
-								<button type="button" class="btn btn-primary" id="savebutton"><span>Save</span></button>
-							</div>
+					
 						</div>
 					</li>
 				</ul>
