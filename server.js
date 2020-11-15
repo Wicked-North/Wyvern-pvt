@@ -39,8 +39,9 @@ const app = express();
 var con = mysql.createConnection({
     host : "localhost",
     user : "root",
-    password : "abhra",
+    password : "",
     database : "wyvern",
+    multipleStatements:true
 })
 
 app.use(bodyParser.urlencoded({
@@ -203,17 +204,40 @@ app.post("/getDirectDetails", (req, res) =>{
         });
 
     app.post("/bookSeats", (req, res) =>{
-        console.log(req)
-        let days=req.body.day
-        let fnums=req.body.fnum
-        let seatStrings=req.body.seat
-        var searchSql = `update seats set ${days}='${seatStrings}' where flight_num='${fnums}'`
+        var days=req.body[0].seats.day
+        var seatString=req.body[0].seats.seat
+        var fnums=req.body[0].seats.fnum
+
+         var searchSql = `update seats set ${days}='${seatString}' where flight_num='${fnums}'`
         con.query(searchSql, (err, result) =>{
             if(err) throw err;
             else
                 console.log("Updated")
         })
-        //res.json({name : "abhra"})
+
+        
+        for(var i=0;i<req.body[0].pass.length;i++){
+            var name=req.body[0].pass[i].name
+            var dob=req.body[0].pass[i].dob
+            var email=req.body[0].pass[i].email
+            var phone=req.body[0].pass[i].phone 
+            var flight=req.body[0].pass[i].flight 
+            var PNRpas=req.body[0].pass[i].paspnr 
+            var seatNo=req.body[0].pass[i].seats 
+            var pasGen=req.body[0].pass[i].gender 
+
+
+            var searchSql = `insert into passenger (paspnr,pname,pemail,pmobile,flight_no,seat_no,userID,gender,dob)values(${PNRpas},'${name}','${email}',${phone},'${flight}','${seatNo}',111,'${pasGen}','${dob}')`
+            con.query(searchSql, (err, result) =>{
+            if(err) throw err;
+            else
+                console.log("Updated")
+        })
+
+        }
+        
+
+
         });
         app.post("/getSeatDets", (req, res) =>{
             var days=req.body.day

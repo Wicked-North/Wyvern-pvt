@@ -7,6 +7,8 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link href='seatBooking.css' rel='stylesheet' type='text/css'>
+
 
 	<title>Card page</title>
 
@@ -17,7 +19,7 @@
 	<script src="https://kit.fontawesome.com/528142d28e.js" crossorigin="anonymous"></script>
 
 	<body>
-		<div class="container">
+		<div class="container" >
 
 			<div class="card" id="card1">
 				<div class="cardimg" style="width: 18rem;">
@@ -129,6 +131,11 @@
 								<button type="button" class="btn btn-primary"
 									onclick="continueToPayment();"><span>Continue</span></button>
 							</div>
+
+							<div alignment = "right">
+								<button type="button" class="btn btn-primary"
+									onclick="savePas();"><span>Save</span></button>
+							</div>
 						</div>
 					</li>
 
@@ -155,6 +162,11 @@
 			<div class="card" id="card6">
 				<div class="card-body">
 					<h3 class="card1sttext">Select Seats</h3>
+					<div id="seatSelection"></div>	
+					<div alignment = "right">
+						<button type="button" class="btn btn-primary"
+							onclick="bookSeats();"><span>BOOK</span></button>
+					</div>
 				</div>
 			</div>
 
@@ -279,6 +291,9 @@
 			</p>
 
 		</div>
+		<script src = 'seatBooking.js'></script>
+
+
 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -299,6 +314,9 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
 			crossorigin="anonymous"></script>
+
+
+
 	</body>
 </body>
 
