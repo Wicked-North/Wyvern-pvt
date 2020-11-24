@@ -1,0 +1,545 @@
+$darkest-grey:rgb(42, 42, 48);
+$black:rgb(16, 16, 17);
+$medium-grey:rgb(78, 78, 80);
+$transparent-grey:rgba(78, 78, 80,0.4);
+$black-lighter:rgba(8, 8, 8, 0.3);
+$font-light:rgb(240, 247, 238);
+$height-field: 3.5rem;
+$font-size-custom: 1.2em;
+$before-color: rgb(255, 154, 139);
+$after-color:rgb(240, 247, 238);
+$grad-pink:rgb(255, 154, 139);
+$grad-red:rgb(219, 39, 99);
+$light-pink:rgb(255, 189, 179);
+
+@mixin removeStyle(){
+    outline:none;
+    background: transparent;
+    text-decoration:none;
+    border:none;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+    scrollbar-width: none;
+    
+}
+
+
+
+body{
+    height: 100vh;
+    width: 100vw;
+    overflow:hidden;
+    font-family: 'Average Sans', sans-serif;
+}
+
+//icons styling
+.fas{
+    background-image: linear-gradient(50deg, $grad-pink, $grad-red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.9;
+    display: block;
+}
+
+.home-page{
+    height: 100%;
+    width: 100%;
+    color:$font-light;
+}
+
+.row-1{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 51% 49%;
+    
+}
+
+.col-1, .col-2{
+
+    height: 100%;
+}
+
+.col-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(45deg,$darkest-grey,$black);
+}
+
+.col-2{
+    background-color: $medium-grey;
+    padding:3em 4em;
+}
+
+//form content styling
+.main-content-1{
+    display:flex;
+    flex-direction:column;
+    height: 70%;
+    width:70%;
+}
+
+.title-1{
+    font-family: 'Overlock', cursive;
+    font-size:2.5rem;
+    font-weight:900;
+
+}
+
+
+
+//text-field animation
+.formi{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width:90%;
+    height:$height-field;
+    overflow: hidden;
+    margin-top: 1em;
+    //background-color:rgba(240, 240, 240, 0.1);
+    //backdrop-filter: blur(10px);
+
+}
+.formi input{
+    @include removeStyle();
+    color: $after-color;
+    cursor: pointer;
+    height: 100%;
+    width:100%;
+    font-size: 1.1rem;
+    padding-top: $height-field - 1.5rem;
+        &:focus + .label-name .content-name, &:valid + .label-name .content-name{
+            /* :valid ensures that when input text is added and the focus is shifted somwehere else
+            the label doesn't come back to its initial position*/
+            color:$after-color;
+            font-size:$font-size-custom - $font-size-custom/10;           
+            transform: translateY(-140%);
+        }
+    
+    
+}
+
+.formi label{
+    @include removeStyle();
+    position: absolute;
+    pointer-events: none;
+    width:100%;
+    height:100%;
+    bottom:0;
+    border-bottom: 2px solid $before-color;
+    color:$before-color;
+        &::after{
+            content: "";
+            position: absolute;
+            width:100%;
+            height: 100%;
+            border-bottom: 2px solid $after-color;
+            left:0;
+            transform: translateX(-100%);
+            
+            /*Moving the blue line out of frame initially also, 
+            since overflow is not hidden it is visible on the frame when overflow:hidden; 
+            not applied to parent*/
+            transition: transform 500ms ease;
+        }
+
+}
+
+.content-name{
+    position: absolute;
+    top: $height-field - 1.5rem;
+    transition: all 500ms ease;
+    font-size: $font-size-custom;
+}
+
+.formi input:focus + .label-name::after, .formi:valid  + label::after{
+    transform:translateX(0%);
+    border-color: $after-color;
+    
+    
+}
+
+
+//passenger buttons
+.buttons{
+    position: absolute;
+    top: 50%;
+    left: 90%;
+}
+
+.add, .subtract{
+    @include removeStyle();
+    cursor: pointer;
+    color: $before-color;
+    font-size: 1rem;
+
+    .fas{
+        pointer-events: none;
+    }
+    
+}
+
+.add{
+    margin-right: 0.5em;
+}
+
+//removing arrows from input type number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+//departure date-field 
+.fa-calendar-day{
+    color: $before-color;
+    opacity: 0.8;
+    position: absolute;
+    top: 50.5%;
+    left: 94%;
+    font-size: 1.335rem;
+    pointer-events: none;
+    cursor: pointer;
+
+}
+::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-image: url("../images/calendar.png");
+    margin-bottom: 0.5em;
+    cursor: pointer;
+  }
+  
+
+#today{
+    user-select: none; //not working
+    
+}
+
+
+
+
+//dropdown
+
+//arrow downs for dropdown
+.arrow{
+    color: $before-color;
+    position: absolute;
+    top: 50%;
+    left: 95%;
+    font-size: 1.4rem;
+    font-weight:lighter;
+}
+
+.fa-angle-down{
+    transform:rotate(0deg);
+}
+
+
+.dropdown{
+    position: absolute;
+    background-color: rgba(26, 26, 29,0.3);
+    backdrop-filter: blur(10px);
+    z-index: 100000;
+    width: 32%;
+    overflow: scroll;
+    border-bottom: 3px solid $grad-pink;
+    box-shadow: 0 1px 40px rgba(255,255,255,0.1);
+
+    display: none;
+    height:0;
+    transition: all 400ms ease-in;
+    div{
+        padding-left: 1em;
+        height: 3em;
+        border: 3px solid $grad-pink;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all 200ms ease-in;
+        
+        &:hover{
+            color: $darkest-grey;
+            background-color: rgb(255, 154, 139);
+            
+        }
+    }
+}
+
+@supports not (backdrop-filter: blur(10px)){
+    .dropdown{
+        background-color: $darkest-grey;
+    }
+}
+
+
+@keyframes onclick{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(0.9);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+//gradient-btn hover animation
+.btn {
+    position: relative;
+    display: inline-block;
+    outline:none;
+    width: 277px;
+    height: 50px;
+    font-weight: 700;
+    line-height: 60px;
+    text-align: center;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration:none;
+    font-weight:900;
+    font-size:1.5rem;
+    letter-spacing: 0.045em;
+    margin: 1.5em 40%;
+    
+}
+
+.animateButton{
+    animation-name: onclick;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+}
+
+
+.btn svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.btn svg rect {
+    /*stroke: #EC0033;*/
+    stroke-width: 4;
+    stroke-dasharray: 353, 0;
+    stroke-dashoffset: 0;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+}
+
+.btn span{
+  background: rgb(255,130,130);
+  background: -moz-linear-gradient(left,  $grad-pink 0%, $grad-red 100%);
+  background: -webkit-linear-gradient(left,  $grad-pink 0%,$grad-red 100%);
+  background: linear-gradient(to right,  $grad-pink 0%,$grad-red 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8282', endColorstr='#e178ed',GradientType=1 );
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn:hover svg rect {
+    stroke-width: 4;
+    stroke-dasharray: 196, 543;
+    stroke-dashoffset: 437;
+}
+
+.overlay{
+    background-image: linear-gradient(45deg,$darkest-grey,$black);
+    height: 100%;
+    width:51%;
+    position: absolute;
+    overflow: scroll;
+    opacity: 0;
+    transform: translateX(-150%);
+    transition: all 400ms ease-in;
+    
+}
+
+.direct-flights-o , .via-flights-o{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.card{
+    border: 4px solid transparent;
+    border-image-slice: 1;
+    width: 85%;
+    height: 7em;
+    margin-bottom: 1em;
+    cursor: pointer;
+    transition: all 250ms ease-in;
+    background: $black-lighter;
+
+    &:hover {
+        color: $light-pink;
+        transform:scale(1.05);
+        
+    }
+}
+
+.overlay-title{
+    font-family: 'Overlock', cursive;
+    font-size:2.3rem;
+    font-weight:900;
+    display:block;
+    margin-left: auto;
+    width: 90%;
+    margin-top: 1.5em;
+}
+
+.overlay-title-2{
+    font-size:2.1rem;
+
+    span{
+        //font-size: 2rem;
+        font-family: 'Overlock', cursive;
+    }
+}
+
+.direct-flights-title, .via-flights-title{
+    width: 80%;
+    margin: 0.5em 0;
+    font-size: 1.5rem;
+}
+
+.via-flights-title{
+    margin-left:10% ;
+}
+
+@keyframes onclickCard{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(0.95);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.animateCard{
+    animation-name: onclickCard;
+    animation-duration: 400ms;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+
+}
+
+.card-content{
+    margin: 1em 0 0 1em;
+    font-size:1.2rem;
+    pointer-events: none;
+    width: 100%;
+}
+
+
+.places , .time, .price-details{
+    display: flex;
+}
+
+.content-details{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5em;
+}
+
+
+.places, .time{
+    border-right: 2px solid transparent;
+    border-image: linear-gradient($grad-pink,$grad-red);
+    border-image-slice: 1;
+}
+
+
+.via-flights-o{
+    .places{
+        width: 48%;
+    }
+    
+    .time, .price-details{
+        margin-left: 0.5em;
+        width:26%;
+    }
+    
+}
+
+.direct-flights-o{
+    .places{
+        width: 35%;
+    }
+
+    .time, .price-details{
+        width: 30%;
+        margin-left: 0.5em;
+    }
+}
+
+.via-flights-o .card-4{
+    background-image: linear-gradient(45deg,$grad-pink,$grad-red);
+    color: $darkest-grey;
+    border:none;
+    font-weight: 700;
+
+    .places , .time{
+        border-image: none;
+        border-right: 2px solid $darkest-grey;
+    }
+
+}
+
+.optimised{
+    display: flex;
+    span{
+        opacity:0.9;
+        font-weight:500;
+        display: flex;
+        color: $darkest-grey;
+       
+        .dot-opt{
+            height: 0.3em;
+            width: 0.3em;
+            border-radius:50%;
+            background: $darkest-grey;
+            margin: auto 0;
+        }
+    }
+}
+
+.sortby{
+
+    font-size: 1.2rem;
+    color: $font-light;
+
+    button{
+        @include removeStyle();
+        color: $font-light;
+        font-size: 1.15rem;
+    }
+}
