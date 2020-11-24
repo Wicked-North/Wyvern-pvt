@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+	
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,69 +74,11 @@
 								aria-hidden="true"></i></Button>
 					</li>
 					<li id="customerDetails" class="list-group-item">
-						<div id="paymentform">
+						<form id="passform" onsubmit="continueToPayment()" >
+
+
 							<!-- form required -->
-							<small>Your name should match how it appears on the ID that you'll use at
-								the airport</small>
-
-							<p id="card4pd"><strong>Personal Details </strong></p>
-
-							<div class="control-group">
-								<div class="controls">
-									<i class="fa fa-user" aria-hidden="true" id="usericon"></i>
-									<input class="input-small" id="FirstName" name="FirstName" placeholder="First name"
-										type="text" value="" required />
-									<input class="input-small" id="MiddleName" name="MiddleName"
-										placeholder="Middle name" type="text" value="" />
-									<input class="input-small" id="LastName" name="LastName" placeholder="Last name"
-										type="text" value="" />
-								</div>
-							</div>
-							<div id="card4buttons">
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions"
-										id="inlineRadio1" value="option1">
-									<label class="form-check-label" for="inlineRadio1"><span
-											id="femalespace">Female</span></label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="inlineRadioOptions"
-										id="inlineRadio2" value="option2">
-									<label class="form-check-label" for="inlineRadio2"><span
-											id="malespace">Male</span></label>
-								</div>
-							</div>
-
-							<div id="card4dob">
-								<label for="start" id="dob">Date Of Birth:
-									<input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
-										max="2018-12-31">
-
-								</label>
-							</div>
-							<div id="card4phone">
-								<label for="phone">Contact Details:</label>
-								<input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-							</div>
-							<div class="form-group" id="card4email">
-								<label for="exampleInputEmail1">Email address</label>
-								<input type="email" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp">
-								<small id="emailHelp" class="form-text text-muted">We'll never share your email with
-									anyone
-									else.</small>
-							</div>
-
-							<div alignment = "right">
-								<button type="button" class="btn btn-primary"
-									onclick="continueToPayment();"><span>Continue</span></button>
-							</div>
-
-							<div alignment = "right">
-								<button type="button" class="btn btn-primary"
-									onclick="savePas();"><span>Save</span></button>
-							</div>
-						</div>
+						</form>	
 					</li>
 
 				</ul>
@@ -147,13 +89,17 @@
 					<li class="list-group-item"><strong>
 							<h3>Payments</h3>
 						</strong>
-						<button id="detailsButton2" onclick="paymentsSlideUpDown()" style = "display: none"><i class="fa fa-pencil"
+						<button type='button' id="detailsButton2" onclick="paymentsSlideUpDown()" style = "display: none"><i class="fa fa-pencil"
 								aria-hidden="true"></i></Button>
 					</li>
 					<li class="list-group-item">
-						<div id="paymentDetails">
-					
-						</div>
+						<form id='payForm' onsubmit="showSB()">
+
+							<div id="paymentDetails">
+							</div>
+
+						</form>
+						
 					</li>
 				</ul>
 			</div>
@@ -162,17 +108,36 @@
 			<div class="card" id="card6">
 				<div class="card-body">
 					<h3 class="card1sttext">Select Seats</h3>
-					<div id="seatSelection"></div>	
+					<div id='passengerSeat'></div>
+
+					<button id="detailsButton3" onclick="seatUpDown()" style="display: none;"><i class="fa fa-pencil"
+						aria-hidden="true"></i></button>
+
+					<div id="seatSelection">
+
+					</div>
+						
+				</li>
+
+					</div>
 					<div alignment = "right">
 						<button type="button" class="btn btn-primary"
-							onclick="bookSeats();"><span>BOOK</span></button>
+							onclick="continueToRev()" style='display:none' id='continueToRev'><span>Continue</span></button>
 					</div>
+					
 				</div>
 			</div>
 
 			<div class="card" ext id="card7">
 				<div class="card-body">
-					<h3 class="card1sttext">Review Booking</h3>
+					<h3 class="card1sttext">Review Booking</h3>	
+				</div>
+
+				<div id=revBooking></div>
+
+				<div alignment = "right">
+					<button type="button" class="btn btn-primary"
+						onclick="bookSeats();" id='finalBook' style='display: none;'><span>BOOK</span></button>
 				</div>
 			</div>
 

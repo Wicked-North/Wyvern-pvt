@@ -15,7 +15,7 @@
     } else {
       a = false;
     }
-    if(a==true){
+    if (a == true) {
       // window.alert("Not optimised for mobile devices yet, but hey good things take time and patience is key")
       window.location.assign("mobileEntry.html")
       // window.close()
@@ -52,40 +52,41 @@
     overflow: hidden;
   }
 
-  .logo{
-    position:absolute;
-    right:8%;
-    top:-5%;
-    
+  .logo {
+    position: absolute;
+    right: 8%;
+    top: -5%;
+
   }
 
   .login100-form-btn:hover {
-      -ms-transform: scale(1.05);
-      /* IE 9 */
-      -webkit-transform: scale(1.05);
-      /* Safari 3-8 */
-      transform: scale(1.05);
-    }
-
+    -ms-transform: scale(1.05);
+    /* IE 9 */
+    -webkit-transform: scale(1.05);
+    /* Safari 3-8 */
+    transform: scale(1.05);
+  }
 </style>
 
 <body style="background-color: #666666">
-  
+
   <div class="limiter">
     <div class="container-login100">
       <div class="logo"><img src="loginLogo.png" style="width:80%;"></div>
       <div class="wrap-login100">
-        <form class="login100-form validate-form" action="getLogin" method="POST">
+        <form id='loginForm' class="login100-form validate-form" onsubmit="landingPage()">
           <span class="login100-form-title p-b-43" style="color: rgb(0, 0, 0);"> Login to continue </span>
 
           <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-            <input class="input100" type="text" name="email" style="color: rgb(255, 255, 255);" autocomplete="off" />
+            <input class="input100" type="text" name="email" id='email' style="color: rgb(255, 255, 255);"
+              autocomplete="off" />
             <span class="focus-input100"></span>
             <span class="label-input100" style="color: rgb(255, 255, 255);">Email</span>
           </div>
 
           <div class="wrap-input100 validate-input" data-validate="Password is required">
-            <input class="input100" type="password" name="pass" style="color: rgb(255, 255, 255);" autocomplete="off"/>
+            <input class="input100" type="password" name="pass" id='pass' style="color: rgb(255, 255, 255);"
+              autocomplete="off" />
             <span class="focus-input100"></span>
             <span class="label-input100" style="color: rgb(255, 255, 255);">Password</span>
           </div>
@@ -94,29 +95,39 @@
             <div class="contact100-form-checkbox">
               <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" />
               <label class="label-checkbox100" for="ckb1" style="color: rgb(255, 255, 255);">
-                Remember me &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; <a href="register.html"><span style="color: white;">Don't have an account?</span></a>
+                Remember me
+                &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                <a href="register.html"><span style="color: white;">Don't have an account?</span></a>
               </label>
             </div>
-            
+
 
           </div>
 
           <div class="container-login100-form-btn">
-            <button class="login100-form-btn" style="background-color: rgb(29, 136, 136);">Login</button>
+            <input type="submit" class="login100-form-btn" style="background-color: rgb(29, 136, 136)" value='Continue'>
             <br> <br>
             <br>
-            <button class="login100-form-btn" style="background-color: rgb(29, 136, 136);" onclick="landingPage()">Login As Guest</button>
+            <button class="login100-form-btn" style="background-color: rgb(29, 136, 136);">Login As Guest</button>
 
           </div>
 
 
         </form>
 
-        <div class="login100-more" style="background-image: url('https://jooinn.com/images1280_/airplane-flying-under-white-clouds-during-night-time.jpg')"></div>
+        <div class="login100-more"
+          style="background-image: url('https://jooinn.com/images1280_/airplane-flying-under-white-clouds-during-night-time.jpg')">
+        </div>
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
 
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
   <!--===============================================================================================-->
   <script src="vendor_login/jquery/jquery-3.2.1.min.js"></script>
   <!--===============================================================================================-->
@@ -136,10 +147,55 @@
 
 
   <script>
+    $("#loginForm").submit(function (e) {
+      e.preventDefault();
+    });
 
-  function landingPage() {
+    function landingPage() {
 
-      window.location.href = "landingPageGuest.html"
+      console.log("helloooo")
+      let email = document.getElementById('email').value
+      let password = document.getElementById('pass').value
+      let data = {
+        email: email,
+        password: password
+      }
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      };
+
+
+      fetch("/getLogin", options).then((res) => res.json().then((data) => {
+        console.log(data)
+        if (data.successful == '0') {
+          console.log('not successful')
+        }
+        // else if(data.successful == 'incorrect email'){console.log('Email is incorrect')}
+        else {
+          fillSessionStorage()
+
+          function fillSessionStorage() {
+            sessionStorage.setItem('token', data.token)
+            sessionStorage.setItem('user_id', data.user_id)
+            sessionStorage.setItem('dob', data.dob)
+            sessionStorage.setItem('sess', data.sess)
+            sessionStorage.setItem('user_name', data.user_name)
+            sessionStorage.setItem('gender', data.gender)
+            sessionStorage.setItem('mobile', data.mobile)
+          }
+
+          console.log('successful')
+
+          window.location.assign('homepage.html')
+
+        }
+
+      })).catch((err) => console.log(err))
+
     }
   </script>
 </body>
