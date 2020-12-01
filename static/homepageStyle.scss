@@ -38,6 +38,7 @@ body{
     width: 100vw;
     overflow:hidden;
     font-family: 'Average Sans', sans-serif;
+    
 }
 
 //icons styling
@@ -533,7 +534,7 @@ input[type=number] {
 }
 
 .sortby{
-
+    display:flex;
     font-size: 1.2rem;
     color: $font-light;
 
@@ -541,5 +542,8 @@ input[type=number] {
         @include removeStyle();
         color: $font-light;
         font-size: 1.15rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

@@ -1,0 +1,113 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  height: 768px;
+  width: 1024px;
+  font-family: 'Average Sans', sans-serif;
+  padding: 10em 15em;
+}
+
+body {
+  background: linear-gradient(51deg, #2a2a30, #4e4e50, #0f0f10, #565657);
+  background-size: 800% 800%;
+  -webkit-animation: AnimationName 51s ease infinite;
+  animation: AnimationName 51s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 69%;
+  }
+  50% {
+    background-position: 100% 32%;
+  }
+  100% {
+    background-position: 0% 69%;
+  }
+}
+
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 69%;
+  }
+  50% {
+    background-position: 100% 32%;
+  }
+  100% {
+    background-position: 0% 69%;
+  }
+}
+
+.sub-title, .sub-title-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #f0f7ee;
+  font-size: 1.2rem;
+}
+
+.sub-title .fa-user, .sub-title-2 .fa-user {
+  margin-right: 0.5em;
+}
+
+.fa-circle {
+  display: block;
+  font-size: 4px;
+  margin-left: 2em;
+  margin-right: 2em;
+  opacity: 0.8;
+}
+
+.sub-title-2 {
+  font-size: 1.7rem;
+  letter-spacing: 0.05rem;
+}
+
+.title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 3.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Overlock', cursive;
+  font-weight: 700;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(45deg, #ff9a8b, #db2763);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.title i {
+  display: block;
+  font-size: 1.5rem;
+  margin: auto 0.5em;
+  opacity: 0.8;
+}
+
+/*
+.title-via, .icon-via{
+    display: none !important;
+}
+*/
+/*# sourceMappingURL=static-card.css.map */
