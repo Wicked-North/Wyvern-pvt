@@ -43,6 +43,18 @@ $(".subtract").click(()=>{
 });
 
 //form selection options
+
+var placeSelect={
+    "Ahmedabad":"place-1",
+    "Bangalore":"place-2",
+    "Delhi":"place-3",
+    "Hyderabad":"place-4",
+    "Jaipur":"place-5",
+    "Kolkata":"place-6",
+    "Mumbai":"place-7",
+}
+var fromPlaceElem="";
+var toPlaceElem="";
 var fromDeSelectOpts=0;
 var toDeSelectOpts=0;
 //dropdown for from
@@ -51,11 +63,11 @@ $(".from").click(fromSelect)
 $(".from input").blur(selectOpt)
 
 function fromSelect(){
-    
+    //var inpTo=$(".to input").val()
     fromDeSelectOpts++;
-    //console.log("from"+fromDeSelectOpts)
     $(".dropdown-from").css("display","block");
-
+    //toPlaceElem=$(`.${placeSelect[inpTo]}`)
+    //$(`.${placeSelect[inpTo]}`).remove()
     setTimeout(()=>{
         $(".dropdown-from").css("height","11em");
     },200);
@@ -69,11 +81,19 @@ $(".to").click(toSelect)
 $(".to input").blur(selectOpt)
 
 function toSelect(){
-    
+    var inp=$(".from input").val()
     $(".dropdown-to").css("display","block");
+    console.log("input",inp)
+    console.log(placeSelect[inp])
+    fromPlaceElem=$(`.${placeSelect[inp]}`)
+    console.log(fromPlaceElem)
+    $(`.${placeSelect[inp]}`).remove()
     setTimeout(()=>{
         $(".dropdown-to").css("height","11em");
-    },200);  
+    },200); 
+   
+     
+
 }
 
 
@@ -93,14 +113,22 @@ function tierSelect(){
 
 
 
-//selecting a place
-$(".place-1").click(selectOpt)
-$(".place-2").click(selectOpt)
-$(".place-3").click(selectOpt)
-$(".place-4").click(selectOpt)
-$(".place-5").click(selectOpt)
-$(".place-6").click(selectOpt)
-$(".place-7").click(selectOpt)
+//selecting a place (binding event to a static element)
+$(".dropdown-from").on('click',".place-1",selectOpt)
+$(".dropdown-from").on('click',".place-2",selectOpt)
+$(".dropdown-from").on('click',".place-3",selectOpt)
+$(".dropdown-from").on('click',".place-4",selectOpt)
+$(".dropdown-from").on('click',".place-5",selectOpt)
+$(".dropdown-from").on('click',".place-6",selectOpt)
+$(".dropdown-from").on('click',".place-7",selectOpt)
+
+$(".dropdown-to").on('click',".place-1",selectOpt)
+$(".dropdown-to").on('click',".place-2",selectOpt)
+$(".dropdown-to").on('click',".place-3",selectOpt)
+$(".dropdown-to").on('click',".place-4",selectOpt)
+$(".dropdown-to").on('click',".place-5",selectOpt)
+$(".dropdown-to").on('click',".place-6",selectOpt)
+$(".dropdown-to").on('click',".place-7",selectOpt)
 
 //tier selection
 $(".tier-1").click(selectOpt)
@@ -115,11 +143,16 @@ function selectOpt(evt){
     console.log($(evt.target).parents().hasClass("dropdown")) */
 
     if($(evt.target).parents().hasClass("dropdown")){
-        console.log("inside")
-        if($(evt.target).parents().hasClass("dropdown-from")){
+        //console.log("inside")
+        if($(evt.target).parents().hasClass("dropdown-from") && $(evt.target).text()!=$(".to input").val()){
+            
             $(".from input").val($(evt.target).text())
-
             if($("input").val()!=""){
+                console.log("adding element")
+                console.log(fromPlaceElem[0])
+
+                $(".dropdown").append(fromPlaceElem[0])
+                //$(".dropdown-from").append(fromPlaceElem[0])
                 $(".from .label-name .content-name").css(
                     {
                         "color":"rgb(240, 247, 238)",
@@ -127,12 +160,14 @@ function selectOpt(evt){
                         "transform": "translateY(-140%)"
                     }
                 )
-            
+                
             }
         }
         else if($(evt.target).parents().hasClass("dropdown-to")){
             $(".to input").val($(evt.target).text())
-            if($("input").val()!=""){
+            if($("input").val()!="")
+            {
+                
                 $(".to .label-name .content-name").css(
                     {
                         "color":"rgb(240, 247, 238)",
@@ -140,6 +175,9 @@ function selectOpt(evt){
                         "transform": "translateY(-140%)"
                     }
                 )
+                
+                
+
             
             }
            
@@ -204,7 +242,7 @@ function updateDirectCard(arr){
                   {"flightName":"Indigo","flightNum":`(IN - ${getRndInteger(100,999)})`}]
     from=$("#start").val();
     dest=$("#end").val();
-    
+    console.log("direct",arr)
     var possibleDirFlights=[];
     var countDirCard=2;
     var dirFLightsName, dirFlightsNum;
@@ -269,7 +307,7 @@ function updateDirectCard(arr){
             $(`.price-${count}`).text(numberWithCommas(priceNew))
         }
 
-    console.log("pos",possibleDirFlights)
+    //console.log("pos",possibleDirFlights)
     
 
 
@@ -461,3 +499,14 @@ function animatingCard(evt){
 
 
 //sortPrice();
+const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+const d = new Date("1/10/1999"); //date is in mm/dd/yyyy format
+console.log("month",d.getMonth())
+console.log("The current month is " + monthNames[d.getMonth()]);
+console.log("date"+d.getDate())
+
+
+

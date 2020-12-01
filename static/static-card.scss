@@ -1,0 +1,110 @@
+$darkest-grey:rgb(42, 42, 48);
+$black:rgb(16, 16, 17);
+$medium-grey:rgb(78, 78, 80);
+$transparent-grey:rgba(78, 78, 80,0.4);
+$black-lighter:rgba(8, 8, 8, 0.3);
+$font-light:rgb(240, 247, 238);
+$height-field: 3.5rem;
+$font-size-custom: 1.2em;
+$before-color: rgb(255, 154, 139);
+$after-color:rgb(240, 247, 238);
+$grad-pink:rgb(255, 154, 139);
+$grad-red:rgb(219, 39, 99);
+$light-pink:rgb(255, 189, 179);
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+    scrollbar-width: none;
+    
+}
+
+body{
+
+    height: 768px;
+    width: 1024px;
+    font-family: 'Average Sans', sans-serif;
+    padding: 10em 15em;
+
+}
+
+body {
+    background: linear-gradient(51deg, #2a2a30, #4e4e50, #0f0f10, #565657);
+    background-size: 800% 800%;
+
+    -webkit-animation: AnimationName 51s ease infinite;
+    -moz-animation: AnimationName 51s ease infinite;
+    animation: AnimationName 51s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 69%}
+    50%{background-position:100% 32%}
+    100%{background-position:0% 69%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 69%}
+    50%{background-position:100% 32%}
+    100%{background-position:0% 69%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 69%}
+    50%{background-position:100% 32%}
+    100%{background-position:0% 69%}
+}
+
+.sub-title, .sub-title-2{
+    display: flex;
+    align-items: center;
+    color: $font-light;
+    font-size: 1.2rem;
+    .fa-user{
+        margin-right: 0.5em;
+    }
+    
+}
+
+.fa-circle{
+    display: block;
+    font-size:4px;
+    margin-left: 2em;
+    margin-right: 2em;
+    opacity: 0.8;
+
+}
+
+.sub-title-2{
+    font-size: 1.7rem;
+    letter-spacing: 0.05rem;
+}
+
+.title{
+    display: flex;
+    font-size: 3.5rem;
+    align-items: center;
+    font-family: 'Overlock', cursive;
+    font-weight: 700;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(45deg, $grad-pink, $grad-red);
+    width: fit-content;
+    i{
+        display: block;
+        font-size: 1.5rem;
+        margin: auto 0.5em;
+        opacity: 0.8;
+    }
+}
+
+/*
+.title-via, .icon-via{
+    display: none !important;
+}
+*/
+
+
