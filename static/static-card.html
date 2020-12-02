@@ -5,23 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> <!--MATERIAL UI ICONS-->
     <link href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link href="static-card.css" rel="stylesheet" type="text/css"/>
     <title>Document</title>
 </head>
 <body>
-    <div class="sub-title">
-        <div class="tripType">One-Way Trip</div> <i class="fas fa-circle"></i> <i class="fas fa-user"></i> <div class="passNum">1</div> <i class="fas fa-circle"></i> <div class="coachClass">Economy</div>      
-    </div>
-    <div class="title">
-        <div class="title-from">Kolkata</div><div class="icon-arrow"><i class="fas fa-arrow-right icon-via"></i></div><div class="title-via">Bangalore</div><div class="icon-arrow"><i class="fas fa-arrow-right"></i></div><div class="title-to">Jaipur</div>
-    </div>
-    <div class="sub-title-2">
-        Selected Flights
-    </div>
-    <div class="selected-card">
-       <div class="visible-content"></div>
-       <div class="hidden-content"></div> 
+    <div class="static-container">
+        <div class="sub-title">
+            <div class="tripType">One-Way Trip</div> <i class="fas fa-circle"></i> <i class="fas fa-user"></i> <div class="passNum">1</div> <i class="fas fa-circle"></i> <div class="coachClass">Economy</div>      
+        </div>
+        <div class="title">
+            <div class="title-from">Kolkata</div><div class="icon-arrow"><i class="fas fa-arrow-right icon-via"></i></div><div class="title-via">Bangalore</div><div class="icon-arrow"><i class="fas fa-arrow-right"></i></div><div class="title-to">Jaipur</div>
+        </div>
+        <div class="sub-title-2">
+            Selected Flights
+        </div>
+        <div class="selected-card">
+           <div class="visible-content">
+               <div class="short-content">
+                <div class="col-1">
+                    <div class="dateMain">
+                        <div class="date">12</div>&nbsp;<div class="month">December</div>,&nbsp;<div class="day">Monday</div>
+                        <i class="fas fa-circle"></i> 
+                        <div class="timeMain">
+                            <div class="deptTime">13:50:00</div>&nbsp;-&nbsp; <div class="arrivalTime">18:10:00</div>
+                        </div>
+                       </div>
+                       <div class="flightName">
+                           Spice Jet
+                       </div>
+                   </div>
+                   <div class="col-2">
+                    <div class="timeDiff">
+                        <div class="hours">2</div>&nbsp;hr&nbsp;
+                        <div class="minutes">30</div>&nbsp;min
+                    </div>
+                    <div class="abvPlaceName">
+                        <div class="abvFrom">CCU</div>&nbsp;-&nbsp;
+                        <div class="abvVia">BLR</div>&nbsp;-&nbsp;
+                        <div class="abvTo">JAI</div>
+                    </div>
+                   </div>
+                   <div class="col-3">
+                       Nonstop
+                   </div>
+               </div>
+               <div class="long-content">
+                    <div class="title-long-content">
+                        Departing Flight 
+                        <i class="fas fa-circle"></i> 
+                        <div class="dateMain">
+                            <div class="date">12</div>&nbsp;<div class="month">December</div>,&nbsp;<div class="day">Monday</div>
+                        </div>
+                    </div>
+                    <div class="main-long-content">
+                        <div class="col-1">
+                            <div class="locIcons">
+                                <ul>
+                                    <li><i class="fas fa-dot-circle"></i></li>
+                                    <li class="viaDot"><i class="fas fa-circle"></i></li>
+                                    <li class="viaDot"><i class="fas fa-dot-circle"></i></li>
+                                    <li><i class="fas fa-circle"></i></li>
+                                    <li><i class="fas fa-dot-circle"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row-2-1">
+                                <div class="departTime">18:30:00</div>
+                                <i class="fas fa-circle"></i> 
+                                <div class="deptAirport">Netaji Subhash Chandra Bose International Airport (<div class="departAbv">CCU</div>)</div>
+                            </div>
+                            <div class="row-2-2">
+                                <div class="viaTime">Via</div>
+                                <i class="fas fa-circle"></i>
+                                <div class="deptAirport">Kempegowda International Airport (<div class="departAbv">BLR</div>)</div>
+                            </div>
+                            <div class="row-2-3">
+                                <div class="departTime">22:30:00</div>
+                                <i class="fas fa-circle"></i> 
+                                <div class="deptAirport">Jaipur International Airport (<div class="departAbv">JAI</div>)</div>
+                            </div>
+
+                            <div class="row-2-4 travelTime">
+                                Travel Time:&nbsp;
+                                <div class="travelTimeHours">2</div>&nbsp;hr&nbsp;
+                                <div class="travelTimeMinutes">30</div>&nbsp;min
+                                <i class="fas fa-circle"></i> 
+                                <div class="flightName">Spice Jet</div>
+                                <i class="fas fa-circle"></i> 
+                                <div class="coachClass">Economy</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <a href="./home-page.html" class="btn btn-change-flight">
+                                <svg width="277" height="62">
+                                  <defs>
+                                    <linearGradient id="grad1">
+                                        <stop offset="0%" stop-color="#FF9A8B" />
+                                        <stop offset="10%" stop-color="#FF6A88" />
+                                        <stop offset="100%" stop-color="#DB2763" />
+                                    </linearGradient>
+                                  </defs>
+                                   <rect x="5" y="5" rx="2" fill="none" stroke="url(#grad1)" width="235" height="47"></rect>
+                                </svg>
+                                  <span>Change Flight</span>
+                              </a>
+
+                            <div class="legRoom"><div class="addFuncIcon"><i class="far fa-paper-plane"></i></div> Average legroom (29 in)</div>
+                            <div class="usbOutlet"><div class="addFuncIcon"><i class="fab fa-usb"></i></div>In-seat USB outlet</div>
+                            <div class="streamMedia"><div class="addFuncIcon"><i class="fas fa-wifi"></i></div>Stream media to your device</div>
+                        </div>
+                    </div>
+               </div>
+               <div class="col-4">
+                <div class="dropdown-btn">
+                    <a href="#"><i class="fas fa-angle-down"></i></a>
+                </div>
+               </div>
+
+           </div>
+        </div>
+        <div class="additional-info-card">
+            <div class="row-3-1">
+                <div class="col-3-1">
+                    <i class="fas fa-suitcase"></i>&nbsp; 1 free carry-on
+                </div>
+                <div class="col-3-2">
+                    <i class="fas fa-luggage-cart"></i>&nbsp; 1st checked bag free
+                </div>
+            </div>
+            <div class="row-3-2">
+                <i class="fas fa-exclamation-triangle"></i> Bag fee info isn't available
+            </div>
+        </div>
+        <div class="disclaimer">
+            Baggage conditions apply to your entire trip. Bag fees may be higher at the airport.
+        </div>
+        <a href="#" class="btn btn-confirm">
+            
+            <svg width="277" height="62">
+                <defs>
+                    <linearGradient id="grad2">
+                        <stop offset="0%" stop-color="#FF9A8B" />
+                        <stop offset="10%" stop-color="#FF6A88" />
+                        <stop offset="100%" stop-color="#DB2763" />
+                    </linearGradient>
+                </defs>
+               <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad2)" width="240" height="50"></rect>
+            </svg>
+              <span>Proceed</span>
+          </a>
     </div>
     <script src="script-1.js"></script>
     

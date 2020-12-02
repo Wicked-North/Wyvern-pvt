@@ -12,6 +12,8 @@ $grad-pink:rgb(255, 154, 139);
 $grad-red:rgb(219, 39, 99);
 $light-pink:rgb(255, 189, 179);
 
+
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -23,20 +25,23 @@ $light-pink:rgb(255, 189, 179);
     scrollbar-width: none;
     
 }
+a, a:visited, a:link{
+    text-decoration: none;
+}
 
 body{
 
-    height: 768px;
-    width: 1024px;
+    height: 100vh;
+    width: 100vw;
     font-family: 'Average Sans', sans-serif;
-    padding: 10em 15em;
+    padding: 6.5% 15%;
+    color:$font-light;
 
 }
 
 body {
-    background: linear-gradient(51deg, #2a2a30, #4e4e50, #0f0f10, #565657);
+    background: linear-gradient(51deg, #2a2a30, #080808, #2a2a30,#0f0f10,#010101);
     background-size: 800% 800%;
-
     -webkit-animation: AnimationName 51s ease infinite;
     -moz-animation: AnimationName 51s ease infinite;
     animation: AnimationName 51s ease infinite;
@@ -62,40 +67,38 @@ body {
     display: flex;
     align-items: center;
     color: $font-light;
-    font-size: 1.2rem;
+    font-size: 18px;
     .fa-user{
         margin-right: 0.5em;
     }
     
 }
 
-.fa-circle{
-    display: block;
-    font-size:4px;
-    margin-left: 2em;
-    margin-right: 2em;
-    opacity: 0.8;
-
-}
 
 .sub-title-2{
-    font-size: 1.7rem;
+    font-size: 24px;
     letter-spacing: 0.05rem;
+    font-weight:700;
+    line-height:36px;
 }
 
 .title{
     display: flex;
-    font-size: 3.5rem;
+    font-size: 48px;
     align-items: center;
     font-family: 'Overlock', cursive;
     font-weight: 700;
     background-clip: text;
+    div, i{
+        color: transparent;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: linear-gradient(45deg, $grad-pink, $grad-red);
+    }
     width: fit-content;
     i{
         display: block;
-        font-size: 1.5rem;
+        font-size: 50%;
         margin: auto 0.5em;
         opacity: 0.8;
     }
@@ -106,5 +109,338 @@ body {
     display: none !important;
 }
 */
+.main-long-content{
+    display: flex;
+    .col-3{
+        color: $grad-pink;
+        font-size: 1rem;
+        line-height: 24px;
+        margin:0 2em;
+    }
+}
+
+.selected-card, .additional-info-card{
+    border: 2px solid $grad-red;
+    border-radius:2px;
+    padding: 18px;
+    font-size: 18px;
+    width: 100%;
+    margin: 0.5rem 0;
+    
+    
+}
+
+.selected-card{
+    height:5em;
+    transition: all 265ms ease-in;
+    cursor:pointer;
+}
+
+.visible-content{
+    display: flex;
+    flex-direction: column;
+}
+.short-content{
+    display:flex;
+    justify-content: space-between;
+    width: 90%;
+    opacity: 1;
+}
+
+.long-content{
+    width: 100%;
+    display:none;
+    opacity:0;
+    transition: opacity 265ms ease-out;
+}
+
+
+
+
+.dateMain{
+    display:flex;
+}
+
+.timeMain{
+    display: flex;
+}
+
+.flightName{
+    color: $grad-pink;
+    /* background-image: linear-gradient(45deg, $grad-pink, $grad-red, $grad-pink);
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: max-content; */
+}
+
+.timeDiff{
+    display:flex;
+}
+
+.col-4{
+    margin: 0 0 0 2em;
+    position: absolute;
+    left: 76%;
+    .dropdown-btn {
+        display: flex;
+      }
+
+      .dropdown-btn{
+        i{
+            display:inline-block;
+            transform:rotate(0deg);
+        }
+    }
+
+    .dropdown-btn i {
+        color:$darkest-grey;
+        transition: all 265ms ease-out;
+        pointer-events: none;
+        display:block;
+        margin:15px;
+        //margin: 12px 15px;
+        font-size: 1.2em;
+      }
+      .dropdown-btn a:before {
+        position: absolute;
+        z-index:-1;
+        transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        content: " ";
+        width: 45px;
+        height: 45px;
+        border-radius: 100%;
+        display: block;
+        background: linear-gradient(45deg, $grad-red, $grad-pink);
+        transition: all 265ms ease-out;
+
+      }
+    
+      .dropdown-btn a:hover:before {
+        transform: scale(0);
+        transition: all 265ms ease-in;
+      }
+      
+      .dropdown-btn a:hover i {
+        font-size:2rem;
+        color: #ff003c;
+        background: -webkit-linear-gradient(45deg, $grad-pink,$grad-red);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 265ms ease-in;
+      }
+      
+}
+
+
+.abvPlaceName{
+    display:flex;
+    color:$grad-pink;
+}
+
+
+
+.title-long-content{
+    display: flex;
+    font-size: 1.4rem;
+    width: max-content;
+}
+
+@for $i from 1 through 4{
+    .row-2-#{$i}{
+        display: flex;
+        margin-top:0.55em;
+    }
+}
+
+.deptAirport{
+    display: flex;
+}
+
+.travelTime{
+    color: $grad-pink;
+    font-size: 1rem;
+}
+
+.fa-circle{
+    display: block;
+    font-size:4px;
+    margin: auto 2em;
+    opacity: 0.8;
+}
+
+.locIcons {
+    color:$grad-pink;
+    opacity: 0.8;
+    .fa-dot-circle{
+        font-size: 12px;
+        margin: auto;
+    }
+    .fa-circle{
+        font-size: 5px;
+        margin:auto;
+    }
+
+    ul{
+        list-style-type: none;
+        margin:0.8em 1em 0 0.5em;
+        padding: 0;
+    }
+    li{
+        display: flex;
+        align-items: center;
+        margin-top: 0.5em;
+    }
+
+   /*  .viaDot{
+        display: none;
+    } */
+}
+
+.usbOutlet, .streamMedia, .legRoom{
+    display: flex;
+}
+
+.fa-usb{
+    display: inline-block;
+    transform: rotate(270deg);
+}
+
+.fa-wifi{
+    display: inline-block;
+    transform: rotate(45deg);
+}
+
+.addFuncIcon{
+    margin: 0 0.5em;
+}
+
+//gradient-btn hover animation
+.btn {
+    position: relative;
+    display: inline-block;
+    outline:none;
+    width: 240px;
+    height: 50px;
+    line-height: 60px;
+    text-align: center;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration:none;
+    //font-weight:900;
+    font-size:1.2rem;
+    letter-spacing: 0.045em;
+    margin: 0 0 1em 0;
+    
+}
+
+.animateButton{
+    animation-name: onclick;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+}
+
+
+.btn svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.btn svg rect {
+    /*stroke: #EC0033;*/
+    stroke-width: 3;
+    stroke-dasharray: 353, 0;
+    stroke-dashoffset: 0;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+}
+
+.btn span{
+  background: rgb(255,130,130);
+  background: -moz-linear-gradient(left,  $grad-pink 0%, $font-light 100%);
+  background: -webkit-linear-gradient(left,  $grad-pink 0%,$font-light 100%);
+  background: linear-gradient(to right,  $grad-pink 0%,$font-light 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8282', endColorstr='#e178ed',GradientType=1 );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+}
+
+
+.btn:hover svg rect {
+    stroke-width: 3;
+    stroke-dasharray: 190, 543;
+    stroke-dashoffset: 437;
+}
+
+.btn-confirm:hover svg rect{
+    stroke-width: 3;
+    stroke-dasharray: 170, 543;
+    stroke-dashoffset: 437;
+}
+
+.btn-confirm{
+    margin-top: 1em;
+    margin-left: 75%;
+}
+
+@keyframes onclick{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(0.95);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.col-3-1, .col-3-2{
+    display: flex;
+    line-height:32px;
+}
+
+.col-3-1{
+    margin-right: 2em;
+}
+
+
+.additional-info-card{
+    color:$grad-pink;
+    font-size: 1rem;
+    i{
+        opacity:0.8;
+        margin: auto 0;
+    }
+}
+
+.row-3-1{
+    display:flex;
+}
+
+
+.disclaimer{
+    font-size:0.9rem;
+    opacity: 0.7;
+}
+
+//error
+//validating form page-1
+
+.error{
+    color:$grad-red;
+    margin-top: 0.2em;
+    position:absolute;
+    font-size:1rem; 
+    transition:all 265ms ease-out;
+    display:inline-block;
+    transform:scale(0);
+}
+
 
 

@@ -4,6 +4,44 @@ var from="", dest="";
 var flightArr=[]; 
 var totalFlights; 
 var dirflights;
+var compFlightInfo=[
+    {
+        "place":"Ahmedabad",
+        "airportName":"Sardar Vallabhai Patel International Airport",
+        "abbName":"AMD"
+    },
+    {
+        "place":"Bangalore",
+        "airportName":"Kempegowda International Airport",
+        "abbName":"BLR"
+    },
+    {
+        "place":"Delhi",
+        "airportName":"Indira Gandhi International Airport",
+        "abbName":"DEL"
+    },
+    {
+        "place":"Hyderabad",
+        "airportName":"Rajiv Gandhi International Airport",
+        "abbName":"HYD"
+    },
+    {
+        "place":"Jaipur",
+        "airportName":"Jaipur International Airport",
+        "abbName":"JAI"
+    },
+    {
+        "place":"Kolkata",
+        "airportName":"Netaji Subhash Chandra Bose International Airport",
+        "abbName":"CCU"
+    },
+    {
+        "place":"Mumbai",
+        "airportName":"Chhatrapati Shivaji Maharaj International Airport",
+        "abbName":"BOM"
+    }
+
+]
 
 //adding commas to numbers
 function numberWithCommas(number) {
@@ -144,7 +182,7 @@ function selectOpt(evt){
 
     if($(evt.target).parents().hasClass("dropdown")){
         //console.log("inside")
-        if($(evt.target).parents().hasClass("dropdown-from") && $(evt.target).text()!=$(".to input").val()){
+        if($(evt.target).parents().hasClass("dropdown-from") /* && $(evt.target).text()!=$(".to input").val() */){
             
             $(".from input").val($(evt.target).text())
             if($("input").val()!=""){
@@ -214,15 +252,79 @@ function selectOpt(evt){
     
 //button on click
 
-$(".btn").click(()=>{
+$(".home-page .btn").click(()=>{
     $(".btn").addClass("animateButton");
     setTimeout(()=>{
         $(".btn").removeClass("animateButton");
 
     },500)
 
-    $(".overlay").css("transform","translateX(0%)")
-    $(".overlay").css("opacity","1")
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if((!$("#start").val())){
+            console.log("invalid")
+            $(".source-error").css("transform","scale(1)")
+        }
+        else{
+            $(".source-error").css("transform","scale(0)")
+        }
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#end").val())){
+            $(".dest-error").css("transform","scale(1)")
+        }
+        else{
+            $(".dest-error").css("transform","scale(0)")
+        }
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#date").val())){
+            $(".date-error").css("transform","scale(1)")
+        }
+        else{
+            $(".date-error").css("transform","scale(0)")
+        }
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#passenger").val())){
+            $(".pass-error").css("transform","scale(1)")
+        }
+        else{
+            $(".pass-error").css("transform","scale(0)")
+        }
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#tier").val())){
+            $(".class-error").css("transform","scale(1)")
+        }
+        else{
+            $(".class-error").css("transform","scale(0)")
+        }
+    }
+
+    /* if(($("#start").val())){
+        console.log("invalid")
+        $(".source-error").css("transform","scale(0)")
+    }
+    if(($("#end").val())){
+        $(".dest-error").css("transform","scale(0)")
+    }
+    if(($("#date").val())){
+        $(".date-error").css("transform","scale(0)")
+    }
+    if(($("#passenger").val())){
+        $(".pass-error").css("transform","scale(0)")
+    }
+    if(($("#tier").val())){
+        $(".class-error").css("transform","scale(0)")
+    } */
+
+    else{
+        console.log("valid")
+        $(".error").css("transform","scale(0)")
+        $(".overlay").css("transform","translateX(0%)")
+        $(".overlay").css("opacity","1")
+    }
+    
     
 })
 
@@ -499,6 +601,14 @@ function animatingCard(evt){
 
 
 //sortPrice();
+
+//script for the static-card page
+//default values in case of any error
+var startPlace="Bangalore"
+var endPlace="Kolkata"
+startPlace=$("#start").val()
+endPlace=$("#end").val()
+
 const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
@@ -508,5 +618,80 @@ console.log("month",d.getMonth())
 console.log("The current month is " + monthNames[d.getMonth()]);
 console.log("date"+d.getDate())
 
+
+//time difference
+function diff(start, end) {
+    start = start.split(":");
+    end = end.split(":");
+    var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+    var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+    var diff = endDate.getTime() - startDate.getTime();
+    console.log(diff)
+    var hours = Math.floor(diff / 1000 / 60 / 60); //diff is in MILLISECONDS converting it into hours
+    console.log(hours)
+    diff -= hours * 1000 * 60 * 60; //subtracting the number of ms in hours to get the no. of minutes
+    var minutes = Math.floor(diff / 1000 / 60);
+
+    // If using time pickers with 24 hours format, add the below line get exact hours
+    if (hours < 0)
+       hours = hours + 24;
+
+    return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+}
+
+
+var tim=diff("12:50:00","23:30:00")
+console.log("time"+tim)
+
+$(".static-container").on('load',staticCard)
+function staticCard(){
+    console.log("static")
+}
+
+
+//button on click for the static-page
+$(".btn-change-flight").click((evt)=>{
+    $(".btn-change-flight").addClass("animateButton");
+    setTimeout(()=>{
+        $(".btn-change-flight").removeClass("animateButton");
+
+    },500)
+})
+
+$(".btn-confirm").click((evt)=>{
+    $(".btn-confirm").addClass("animateButton");
+    setTimeout(()=>{
+        $(".btn-confirm").removeClass("animateButton");
+
+    },500)
+})
+
+$(".dropdown-btn").on('click',cardOpen)
+$(".selected-card").on('click',cardOpen)
+function cardOpen(evt){
+    console.log("margin",$(".dropdown-btn i").css("margin"))
+    if($(".dropdown-btn i").css("margin-top")=="15px"){
+        $(".dropdown-btn i").css("margin","12px 15px")
+        $(".dropdown-btn i").css("transform","rotate(180deg)")
+        $(".long-content").css("display","block")
+        $(".short-content").css("display","none")
+        $(".selected-card").css("height","12em")
+        $(".short-content").css("opacity","0")
+        setTimeout(()=>{
+            $(".long-content").css("opacity","1")
+        },365)
+    }
+    else{
+        $(".dropdown-btn i").css("margin","15px")
+        $(".dropdown-btn i").css("transform","rotate(0deg)")
+        $(".short-content").css("display","flex")
+        $(".long-content").css("display","none")
+        $(".selected-card").css("height","5em")
+        $(".long-content").css("opacity","0")
+        setTimeout(()=>{
+            $(".short-content").css("opacity","1")
+        },365)
+    }
+}
 
 

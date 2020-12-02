@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script> <!--ICONS-->
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script> <!--ANIME for path-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.js"></script> <!--TWEEN for plane-->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script> <!--VALIDATION PLUGIN-->
     <link href="./homepageStyle.css" rel="stylesheet" type="text/css" /> 
     <link href="map.css" rel="stylesheet" type="text/css"/>
     <title>Document</title>
@@ -22,20 +23,21 @@
                   <div class="line-1">Search</div>
                   <div class="line-2">For Flights.</div>
                 </div>
-                <div class="form-content">
+                <form name="searchFlights" class="form-content">
                   <div class="formi from">
-                    <input type="text" name="start" required autocomplete="off" id="start" readonly>
+                    <input type="text" name="start" required autocomplete="off" id="start" readonly required>
                     <label name="from" class="label-name">
                         <span class="content-name">
                            From:
                         </span>
                        </label>
-                    
+                       
                       <div class="arrow">
                         <i class="fas fa-angle-down"></i>
                       </div>
                     
-                 </div>
+                 </div> 
+                 <div class="error source-error">Please enter a valid Source.</div>
                  <div class="dropdown dropdown-from">
                    <div class="place-1">Ahmedabad</div>
                    <div class="place-2">Bangalore</div>
@@ -46,7 +48,7 @@
                    <div class="place-7">Mumbai</div>
                  </div>
                  <div class="formi to">
-                  <input type="text" name="end" required autocomplete="off" id="end" readonly>
+                  <input type="text" name="end" required autocomplete="off" id="end" readonly required>
                   <label name="whereto" class="label-name">
                       <span class="content-name">
                          Where To? 
@@ -58,6 +60,7 @@
                     </div>
                   
                  </div>
+                 <div class="error dest-error" >Please enter a valid Destination.</div>
                  <div class="dropdown dropdown-to">
                   <div class="place-1">Ahmedabad</div>
                   <div class="place-2">Bangalore</div>
@@ -68,7 +71,7 @@
                   <div class="place-7">Mumbai</div>
                 </div>
                  <div class="formi date">
-                  <input type="text" name="deptdate" required autocomplete="off" id="today" onfocus="(this.type='date') (this.value=new Date().toISOString().substr(0, 10))" onblur="if(!this.value)this.type='text'">
+                  <input type="text" name="deptdate" required autocomplete="off" id="date" required onfocus="(this.type='date') (this.value=new Date().toISOString().substr(0, 10))" onblur="if(!this.value)this.type='text'">
                   <label name="deptdate" class="label-name">
                       <span class="content-name">
                          Departure Date:
@@ -76,8 +79,9 @@
                   </label>
                   <i class="fas fa-calendar-day"></i>
                  </div>
+                 <div class="error date-error">Please enter a valid Departure Date.</div>
                  <div class="formi passenger">
-                  <input type="number" name="passenger" class="passenger-inp" required autocomplete="off" min="1" max="99" >
+                  <input type="number" name="passenger" id="passenger" class="passenger-inp" required autocomplete="off" min="1" max="99" >
                   <label name="passenger" class="label-name">
                       <span class="content-name">
                          Passengers:
@@ -88,6 +92,7 @@
                       <button class="subtract"><i class="fas fa-minus"></i></button>
                   </div>
                  </div>
+                 <div class="error pass-error">Please enter valid number of passengers.</div>
                  <div class="formi tier">
                   <input type="text" name="tier" required autocomplete="off" id="tier" readonly>
                   <label name="tier" class="label-name">
@@ -101,6 +106,7 @@
                     </div>
                   
                  </div>
+                 <div class="error class-error">Please enter a valid Class</div>
                  <div class="dropdown dropdown-tier">
                   <div class="tier-1">Economy</div>
                   <div class="tier-2">Premium Economy</div>
@@ -119,7 +125,7 @@
                   </svg>
                     <span>Search</span>
                 </a>
-                </div>
+                </form name="searchFlights">
   
                 
               </div>
@@ -270,7 +276,20 @@
                     </div>
                   </div>
                 </div>
+                
               </div>
+              <a href="./static-card.html" class="btn search-btn">
+                <svg width="277" height="62">
+                  <defs>
+                      <linearGradient id="grad2">
+                          <stop offset="0%" stop-color="rgb(255, 30, 105)"/>
+                          <stop offset="100%" stop-color="rgba(82, 6, 148,1)" />
+                      </linearGradient>
+                  </defs>
+                   <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+                </svg>
+                  <span>Select Flight</span>
+              </a>
             </div>
             <div class="col-2">
                 <div class="lines">
@@ -339,6 +358,5 @@
     <script src="./script-1.js"></script>
     <script src="homepage.js"></script>
     <script src="seatBooking.js"></script>
-    
 </body>
 </html>

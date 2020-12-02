@@ -72,7 +72,6 @@ body{
 .col-1{
     display: flex;
     justify-content: center;
-    align-items: center;
     background-image: linear-gradient(45deg,$darkest-grey,$black);
 }
 
@@ -93,7 +92,7 @@ body{
     font-family: 'Overlock', cursive;
     font-size:2.5rem;
     font-weight:900;
-
+    margin-top: 2em;
 }
 
 
@@ -106,7 +105,7 @@ body{
     width:90%;
     height:$height-field;
     overflow: hidden;
-    margin-top: 1em;
+    margin-top: 1.2em;
     //background-color:rgba(240, 240, 240, 0.1);
     //backdrop-filter: blur(10px);
 
@@ -300,7 +299,7 @@ input[type=number] {
         transform:scale(1);
     }
     50%{
-        transform:scale(0.9);
+        transform:scale(0.95);
     }
     100%{
         transform: scale(1);
@@ -321,9 +320,9 @@ input[type=number] {
     cursor: pointer;
     text-decoration:none;
     font-weight:900;
-    font-size:1.5rem;
+    font-size:1.4rem;
     letter-spacing: 0.045em;
-    margin: 1.5em 40%;
+    margin: 1.5em 36%;
     
 }
 
@@ -396,12 +395,16 @@ input[type=number] {
     cursor: pointer;
     transition: all 250ms ease-in;
     background: $black-lighter;
-
+    
     &:hover {
         color: $light-pink;
         transform:scale(1.05);
         
     }
+}
+
+.card-8{
+    margin-bottom:0;
 }
 
 .overlay-title{
@@ -426,7 +429,7 @@ input[type=number] {
 .direct-flights-title, .via-flights-title{
     width: 80%;
     margin: 0.5em 0;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 .via-flights-title{
@@ -455,9 +458,10 @@ input[type=number] {
 
 .card-content{
     margin: 1em 0 0 1em;
-    font-size:1.2rem;
+    font-size:1.1rem;
     pointer-events: none;
     width: 100%;
+
 }
 
 
@@ -546,4 +550,21 @@ input[type=number] {
         justify-content: center;
         align-items: center;
     }
+}
+
+.search-btn{
+    left:5.8em;
+}
+
+//error
+//validating form page-1
+
+.error{
+    color:$grad-red;
+    margin-top: 0.1em;
+    position:absolute;
+    font-size:0.8rem; 
+    transition:all 265ms ease-out;
+    display:inline-block;
+    transform:scale(0);
 }
