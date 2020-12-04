@@ -194,7 +194,8 @@ function searchFlights(){
 
     
     fetch("/getDirectDetails", options).then((res)  => res.json().then((data) => {
-        console.log(data) //direct flight
+        var arr=[...data]
+        console.log("direct flights"+arr) //direct flight
         updateDirectCard(data)
         //console.log("abhra ghosh")
         // let message = data;
@@ -204,7 +205,7 @@ function searchFlights(){
 
 
     fetch("/optimisedVia", options).then((res)  => res.json().then((data) => {
-        console.log(data)
+        console.log("optimised via",data)
         //console.log("abhra ghosh")
         // let message = data;
         // console.log(data.message)
