@@ -462,13 +462,13 @@ function updateViaCard(arr){
         $(`.price-${countViaCard}`).text(priceVia)
         var elem=` <div class="card-${countViaCard} card">
                   <div class="card-content">
-                    <div class="flight-name-${countViaCard}">${viaFlightsName}</div>
+                    <div class="flight-name-${countViaCard} flight-name">${viaFlightsName}</div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-${countViaCard} from-overlay">${viaflights[i].start.charAt(0).toUpperCase() + viaflights[i].start.slice(1) }</div>&nbsp;-&nbsp;<div class="via-${countViaCard} via-overlay">${viaflights[i].via.charAt(0).toUpperCase() + viaflights[i].via.slice(1) }</div>&nbsp;-&nbsp;<div class="to-${countViaCard} to-overlay">${viaflights[i].end.charAt(0).toUpperCase() + viaflights[i].end.slice(1) }</div>
                       </div>
                       <div class="time">
-                        <div class="from-time-${countViaCard}">${viaflights[i].departure}</div>&nbsp;-&nbsp;<div class="to-time-${countViaCard}">${viaflights[i].arrival}</div>
+                        <div class="fromTime from-time-${countViaCard}">${viaflights[i].departure}</div>&nbsp;-&nbsp;<div class="toTime to-time-${countViaCard}">${viaflights[i].arrival}</div>
                       </div>
                       <div class="price-details">
                         Price: &#8377; <div class="price-${countViaCard}">${priceVia}</div>
@@ -621,6 +621,8 @@ $(".overlay .search-btn").click((event)=>{
             viaPlace=$("."+cardClass+" .via-overlay").text()
             sessionStorage.setItem("via",viaPlace)
             sessionStorage.setItem("Flight-Name",$("."+cardClass+" .flight-name").text())
+            sessionStorage.setItem("departureTime",$("."+cardClass+" .fromTime").text())
+            sessionStorage.setItem("arrivalTime",$("."+cardClass+" .toTime").text())
             //console.log("card class"+cardClass)
             countSelection++;
         }
@@ -653,6 +655,29 @@ $(".overlay .search-btn").click((event)=>{
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"];
 const weekDays=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+//time difference
+function diff(start, end) {
+    start = start.split(":");
+    end = end.split(":");
+    var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+    var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+    var diff = endDate.getTime() - startDate.getTime();
+    console.log(diff)
+    var hours = Math.floor(diff / 1000 / 60 / 60); //diff is in MILLISECONDS converting it into hours
+    console.log(hours)
+    diff -= hours * 1000 * 60 * 60; //subtracting the number of ms in hours to get the no. of minutes
+    var minutes = Math.floor(diff / 1000 / 60);
+
+    // If using time pickers with 24 hours format, add the below line get exact hours
+    if (hours < 0)
+       hours = hours + 24;
+
+    return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+}
+
+
+
 //updating values of static-card
 $(".static-container").ready(()=>{
     //getting these values on button click of homepage 
@@ -663,9 +688,12 @@ $(".static-container").ready(()=>{
     var tier=sessionStorage.getItem("class")
     var connecting=sessionStorage.getItem("via")
     var flightname=sessionStorage.getItem("Flight-Name")
+    var arrTime=sessionStorage.getItem("arrivalTime")
+    var deptTime=sessionStorage.getItem("departureTime")
+    var time, hrs, mins
     var airportNameSrc,abbvNameSrc,airportNameDest,abbvNameDest='',airportNameVia, abbvNameVia
     //console.log("objectdsdsds",compFlightInfo[src])
-    console.log("values",src,dest,departureDate,numPassenger,tier,connecting,flightname)
+    console.log("values",src,dest,departureDate,numPassenger,tier,connecting,flightname,arrTime,deptTime)
     
     $(".static-container .title-from").text(src)
     $(".static-container .title-to").text(dest)
@@ -674,7 +702,16 @@ $(".static-container").ready(()=>{
 
     //getting values from overlay 
     $(".static-container .title-via").text(connecting)
-
+    $(".static-container .flightName").text(flightname)
+    $(".static-container .deptTime").text(deptTime)
+    $(".static-container .arrivalTime").text(arrTime)
+    time=diff(deptTime,arrTime)
+    time=time.split(":")
+    hrs=time[0]
+    mins=time[1]
+    console.log("time diff"+time)
+    $(".static-container .hours").text(hrs)
+    $(".static-container .minutes").text(mins)
     const d = new Date(departureDate); //converting date to string format
 
     $(".static-container .date").text(d.getDate())
@@ -713,43 +750,6 @@ $(".static-container").ready(()=>{
     $(".abbvVia").text(abbvNameVia)
 
 })
-
-
-
-
-
-
-
-
-//time difference
-function diff(start, end) {
-    start = start.split(":");
-    end = end.split(":");
-    var startDate = new Date(0, 0, 0, start[0], start[1], 0);
-    var endDate = new Date(0, 0, 0, end[0], end[1], 0);
-    var diff = endDate.getTime() - startDate.getTime();
-    console.log(diff)
-    var hours = Math.floor(diff / 1000 / 60 / 60); //diff is in MILLISECONDS converting it into hours
-    console.log(hours)
-    diff -= hours * 1000 * 60 * 60; //subtracting the number of ms in hours to get the no. of minutes
-    var minutes = Math.floor(diff / 1000 / 60);
-
-    // If using time pickers with 24 hours format, add the below line get exact hours
-    if (hours < 0)
-       hours = hours + 24;
-
-    return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
-}
-
-
-var tim=diff("12:50:00","23:30:00")
-console.log("time"+tim)
-
-$(".static-container").on('load',staticCard)
-function staticCard(){
-    console.log("static")
-}
-
 
 //button on click for the static-page
 $(".btn-change-flight").click((evt)=>{
