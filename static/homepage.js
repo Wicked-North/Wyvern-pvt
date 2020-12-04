@@ -16,7 +16,7 @@
 //                     console.log(res)
 
 //                     console.log(data)
-
+$(".btn").click(searchFlights)
 //                     sessionStorage.setItem('user_id', data.user_id)
 //                     sessionStorage.setItem('user_name', data.user_name)
 //                     sessionStorage.setItem('gender', data.gender)
@@ -59,6 +59,8 @@
 //     bangalore :6
 // }
 let viaFlights = []
+let directFlights=[]
+let optimisedFlight=[]
 let planeNodes = ["delhi", "jaipur", "ahmedabad", "mumbai", "hyderabad", "kolkata", "bangalore"]
 
 const INFINITY = 9999
@@ -160,8 +162,9 @@ function dijkstra(G, n, startnode, endnode) {
 
 function searchFlights() {
 
-    var startplace = $('#start').val();
-    var endplace = $('#end').val();
+    var startplace = $('#start').val().toLowerCase();
+    var endplace = $('#end').val().toLowerCase();
+    console.log("start",startplace)
     var start = planeNodes.indexOf(startplace)
     var end = planeNodes.indexOf(endplace)
     console.log(start, end)
@@ -191,9 +194,12 @@ function searchFlights() {
 
     fetch("/getViaDetails", options).then((res) => res.json().then((data) => {
         console.log(data)
+        //viaFlights=[]
         viaFlights = [...data]
         //console.log(viaFlights, "abhra")
 
+        console.log(viaFlights, "abhra")
+        updateViaCard(viaFlights)
         //console.log(viaFlights[1].arrival.slice(0,2), "ghosh")
         // data.sort((a, b) => {
         //     return a.price - b.price;
@@ -201,15 +207,15 @@ function searchFlights() {
         // console.log(data)
         //console.log("abhra ghosh")
         // let message = data;
-        // console.log(data.message)
+        // console.log(data.message) 
         // document.getElementById('post').innerHTML = data.message;
     })).catch((err) => console.log(err))
+    
 
-
-
-    fetch("/getDirectDetails", options).then((res) => res.json().then((data) => {
-        console.log(data)
-
+    
+    fetch("/getDirectDetails", options).then((res)  => res.json().then((data) => {
+        console.log(data) //direct flight
+        updateDirectCard(data)
         //console.log("abhra ghosh")
         // let message = data;
         // console.log(data.message)
@@ -227,7 +233,8 @@ function searchFlights() {
 
 }
 
-function sortPrice() {
+
+function sortPrice(){
 
     let j
     let itemPrice
@@ -242,6 +249,7 @@ function sortPrice() {
         viaFlights[j + 1] = itemObj
     }
     console.log(viaFlights)
+    updateViaCard(viaFlights)
 }
 
 function sortArrivalTime() {
@@ -261,6 +269,7 @@ function sortArrivalTime() {
         viaFlights[j + 1] = itemObj
     }
     console.log(viaFlights)
+    updateViaCard(viaFlights)
 }
 
 function sortDepartureTime() {
@@ -280,6 +289,7 @@ function sortDepartureTime() {
         viaFlights[j + 1] = itemObj
     }
     console.log(viaFlights)
+    updateViaCard(viaFlights)
 }
 
 function selectFlight() {
@@ -289,6 +299,7 @@ function selectFlight() {
 function showPastBookings(){
 
 }
+
 
 
 // function createpost(){
@@ -311,3 +322,5 @@ function showPastBookings(){
 
 // console.log("hello")
 // }
+
+

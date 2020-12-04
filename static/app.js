@@ -708,7 +708,7 @@ function showSB() {
     //document.getElementById("seatSelection").innerHTML = seatBookUp;
     // paymentDetails = true;
     // 
-    passengerSelect("1")
+    passengerSelect("0")
 
 }
 
@@ -892,6 +892,7 @@ function paymentsSlideUpDown() {
     document.getElementById("detailsButton1").style.display = "none"
     document.getElementById('detailsButton2').style.display = 'none'
     document.getElementById('detailsButton3').style.display = 'none'
+    document.getElementById('continueToRev').style.display = 'none'
 
     document.getElementById('revBooking').innerHTML = ''
     document.getElementById('seatSelection').innerHTML = ''

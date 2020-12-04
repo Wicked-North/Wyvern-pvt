@@ -1,5 +1,6 @@
 let seats = []
 let allDetails = []
+let userId = sessionStorage.getItem('user_id')
 let flightno = 'ai-443'
 let getDetails = {
     fnum: 'ai-443',
@@ -76,7 +77,7 @@ function bookSeats() {
         type: "economic",
         flight_num: 'ai-443',
         price: 5000,
-        userid: "2"
+        userid: userId
     }
 
 

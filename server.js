@@ -1,4 +1,5 @@
 var mysql = require('mysql')
+const pool = require("./db");
 const bcrypt = require('bcrypt')
 const saltRounds = 10;
 const jwt = require('jsonwebtoken')
@@ -49,8 +50,6 @@ time = [
 
 flight_name = ['indigo', 'vistara', "air india", 'go air', 'spice jet', 'jet airways']
 
-
-
 const app = express();
 
 var con = mysql.createConnection({
@@ -60,6 +59,7 @@ var con = mysql.createConnection({
     database: "wyvern",
     multipleStatements: true
 })
+
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -73,7 +73,7 @@ app.use(bodyParser.json());
 
 con.connect((err, res) => {
     if (err) throw err;
-    else console.log("connected")
+    else console.log("Db Connected")
 })
 
 app.post('/getSignup', (req, res) => {
@@ -249,7 +249,7 @@ app.get('/get_userDetails', (req, res) => {
 
 
 app.post("/getViaDetails", (req, res) => {
-    console.log(req)
+    //console.log(req)
     var nodeObj = req.body
     console.log(nodeObj)
     var searchSql = `select * from flights where start = '${nodeObj.start}' && end = '${nodeObj.end}' and via is not NULL`
@@ -262,7 +262,7 @@ app.post("/getViaDetails", (req, res) => {
 });
 
 app.post("/getDirectDetails", (req, res) => {
-    console.log(req)
+   // console.log(req)
     var nodeObj = req.body
     console.log(nodeObj)
     var searchSql = `select * from flights where start = '${nodeObj.start}' && end = '${nodeObj.end}' and via is NULL`
@@ -275,7 +275,7 @@ app.post("/getDirectDetails", (req, res) => {
 });
 
 app.post("/optimisedVia", (req, res) => {
-    console.log(req)
+   // console.log(req)
     var nodeObj = req.body
     console.log(nodeObj)
     var searchSql = `select * from flights where start = '${nodeObj.start}' && end = '${nodeObj.end}' && via = '${nodeObj.via}'`
@@ -353,6 +353,7 @@ app.post("/bookSeats", (req, res) => {
 
 });
 
+// app.get()
 
 
 
@@ -446,7 +447,7 @@ function insertDirectPath() {
 
 
 //One time function for feeding values into SQL
-function insertViaPath() {
+function abcd() {
     var cou = 604
     var places = ["bangalore", "delhi", "mumbai", "kolkata", "jaipur", "hyderabad", "ahmedabad"];
     for (var i = 0; i < places.length; i++) {
@@ -485,45 +486,202 @@ function insertViaPath() {
 }
 //insertViaPath()
 
-app.post("/showBookings", (req, res) => {
-    let allBookings = []
+app.post("/getCurrentTicketsPassengers", (req, resp) => {
+   
     var userID = req.body.userId
+    let pnrWiseTickets = []
+    var distinctPnrSql = `select distinct pnr from tickets where userid = ${userID}`
+    con.query(distinctPnrSql, (err,res) =>{
+        if (err) throw err
+        console.log(res)
+        for(let i = 0; i<res.length; i++){
+            let curTicketsPassengers = `
+            select t.pnr, t.class, t.flight_num, t.userID, t.total_price, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name from flights f, tickets t, passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
 
-
-    var upcoming = `select * from tickets where userID='${userID}'`
-    var past = `select * from completedTickets`
-
-    con.query(upcoming, (err, result) => {
-        if (err) throw err;
-        else {
-            console.log(result)
-            allBookings.push({
-                upcoming: result
-            })
-
-            con.query(past, (err, result) => {
+            con.query(curTicketsPassengers, (err, result) => {
                 if (err) throw err;
                 else {
                     console.log(result)
-                    allBookings.push({
-                        past: result
-                    })
+                    pnrWiseTickets.push(result)
                 }
-
-                res.json(allBookings)
-                console.log(allBookings)
-        
         
             })
-
         }
-
-
+        setTimeout(()=>{
+            console.log(pnrWiseTickets)
+            resp.json(pnrWiseTickets)
+        }, 1000)
+       
     })
 
-  
-    
 });
+
+app.post("/getPastTicketsPassengers", (req, resp) => {
+   
+    var userID = req.body.userId
+    let pnrWiseTickets = []
+    var distinctPnrSql = `select distinct pnr from completed_tickets where userid = ${userID}`
+    con.query(distinctPnrSql, (err,res) =>{
+        if (err) throw err
+        console.log(res)
+        for(let i = 0; i<res.length; i++){
+            let curTicketsPassengers = `
+            select t.pnr, t.class, t.flight_num, t.userID, t.total_price, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name from flights f, completed_tickets t, completed_passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
+
+            con.query(curTicketsPassengers, (err, result) => {
+                if (err) throw err;
+                else {
+                    console.log(result)
+                    pnrWiseTickets.push(result)
+                }
+        
+            })
+        }
+        setTimeout(()=>{
+            console.log(pnrWiseTickets)
+            resp.json(pnrWiseTickets)
+        }, 1000)
+       
+    })
+
+});
+
+
+//===============================================  ADMIN SECTION===============================================================================
+
+app.get('/getCurrentTicketDetails', async (req, res)=>{
+    try{
+    let sql = `select* from tickets`
+    let [result] = await pool.query(sql)
+    console.log(result)
+    res.json(result)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+app.get('/getPreviousTicketDetails', async (req, res)=>{
+    try{
+    let sql = `select* from completed_tickets where status = 'completed'`
+    let [result] = await pool.query(sql)
+    console.log(result)
+    res.json(result)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+app.get('/getCancelledTicketDetails', async (req, res)=>{
+    try{
+    let sql = `select* from completed_tickets where status = 'cancelled'`
+    let [result] = await pool.query(sql)
+    console.log(result)
+    res.json(result)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+app.post('/getTicketDetailsByPnr',async (req, res)=>{
+    //console.log(req)
+    try{
+    console.log(req)
+    let pnr = req.body.pnr
+    let sql = `select* from tickets where pnr = '${pnr}'`
+    let [result] = await pool.query(sql)
+    console.log(result)
+    res.json(result)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+app.post('/getTicketDetailsByUserid',async (req, res)=>{
+    let userTickDets = []
+    //console.log(req)
+    try{
+    console.log(req)
+    let uid = req.body.uid
+    let sqlCur = `select* from tickets where userid = '${uid}'`
+    let sqlPrev = `select* from completed_tickets where userid = '${uid}' and status = 'completed'`
+    let sqlCanc = `select* from completed_tickets where userid = '${uid}' and status = 'cancelled'`
+    //console.log(sql)
+    let [resultCur] = await pool.query(sqlCur)
+    //console.log(resultCur)
+    userTickDets.push(resultCur)
+    let [resultPrev] = await pool.query(sqlPrev)
+    userTickDets.push(resultPrev)
+    let [resultCanc] = await pool.query(sqlCanc)
+    userTickDets.push(resultCanc)
+    res.json(userTickDets)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+
+app.get('/getFlightDetails', async (req, res)=>{
+    try{
+    let sql = `select* from flights`
+    let [result] = await pool.query(sql)
+    console.log(result)
+    res.json(result)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+app.get('/getUserDetails', async (req, res)=>{
+    try{
+    let sql = `select* from userinfo`
+    let [result] = await pool.query(sql)
+    console.log(result)
+    res.json(result)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+app.post('/getUserDetailsByUserid',async (req, res)=>{
+    //console.log(req)
+    try{
+    console.log(req)
+    let uid = req.body.uid
+    let sql = `select* from userinfo where user_id = '${uid}'`
+    console.log(sql)
+    let [result] = await pool.query(sql)
+    console.log(result)
+    res.json(result)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+
+app.get('/getPassengerDetails', async (req, res)=>{
+    try{
+    let sql = `select* from passengers order by paspnr`
+    let [result] = await pool.query(sql)
+    console.log(result)
+    res.json(result)
+    } catch(err){
+        console.log(err)
+    }
+})
+
+app.post('/getPassengerDetailsByPnr',async (req, res)=>{
+    //console.log(req)
+    try{
+    console.log(req)
+    let pnr = req.body.pnr
+    let sql = `select* from passengers where paspnr = '${pnr}'`
+    let [result] = await pool.query(sql)
+    console.log(result)
+    res.json(result)
+    } catch(err){
+        console.log(err)
+    }
+})
 
 
 
