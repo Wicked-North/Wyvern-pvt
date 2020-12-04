@@ -4,6 +4,9 @@ var from="", dest="";
 var flightArr=[]; 
 var totalFlights; 
 var dirflights;
+var startPlace="Bangalore"
+var endPlace="Kolkata"
+var viaPlace="Jaipur"
 var compFlightInfo=[
     {
         "place":"Ahmedabad",
@@ -79,6 +82,92 @@ $(".subtract").click(()=>{
         $(".passenger-inp").val(valuePas);
     }
 });
+
+//button on click
+
+$(".home-page .btn").click(()=>{
+    $(".btn").addClass("animateButton");
+    setTimeout(()=>{
+        $(".btn").removeClass("animateButton");
+
+    },500)
+
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if((!$("#start").val())){
+            console.log("invalid")
+            $(".source-error").css("transform","scale(1)")
+        }
+        else{
+            $(".source-error").css("transform","scale(0)")
+        }
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#end").val())){
+            $(".dest-error").css("transform","scale(1)")
+        }
+        else{
+            $(".dest-error").css("transform","scale(0)")
+        }
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#date").val())){
+            $(".date-error").css("transform","scale(1)")
+        }
+        else{
+            $(".date-error").css("transform","scale(0)")
+        }
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#passenger").val())){
+            $(".pass-error").css("transform","scale(1)")
+        }
+        else{
+            $(".pass-error").css("transform","scale(0)")
+        }
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#tier").val())){
+            $(".class-error").css("transform","scale(1)")
+        }
+        else{
+            $(".class-error").css("transform","scale(0)")
+        }
+    }
+
+    /* if(($("#start").val())){
+        console.log("invalid")
+        $(".source-error").css("transform","scale(0)")
+    }
+    if(($("#end").val())){
+        $(".dest-error").css("transform","scale(0)")
+    }
+    if(($("#date").val())){
+        $(".date-error").css("transform","scale(0)")
+    }
+    if(($("#passenger").val())){
+        $(".pass-error").css("transform","scale(0)")
+    }
+    if(($("#tier").val())){
+        $(".class-error").css("transform","scale(0)")
+    } */
+
+    else{
+        console.log("valid")
+        //storing the values of input field to session storage to pass the values to next page(static-card)
+        sessionStorage.setItem("source",$("#start").val())
+        sessionStorage.setItem("destination",$("#end").val())
+        sessionStorage.setItem("numPass",$("#passenger").val())
+        sessionStorage.setItem("deptDate",$("#date").val())
+        sessionStorage.setItem("class",$("#tier").val())
+
+        $(".error").css("transform","scale(0)")
+        $(".overlay").css("transform","translateX(0%)")
+        $(".overlay").css("opacity","1")
+    }
+    
+    
+})
+
 
 //form selection options
 
@@ -250,83 +339,6 @@ function selectOpt(evt){
 
 
     
-//button on click
-
-$(".home-page .btn").click(()=>{
-    $(".btn").addClass("animateButton");
-    setTimeout(()=>{
-        $(".btn").removeClass("animateButton");
-
-    },500)
-
-    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
-        if((!$("#start").val())){
-            console.log("invalid")
-            $(".source-error").css("transform","scale(1)")
-        }
-        else{
-            $(".source-error").css("transform","scale(0)")
-        }
-    }
-    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
-        if(!($("#end").val())){
-            $(".dest-error").css("transform","scale(1)")
-        }
-        else{
-            $(".dest-error").css("transform","scale(0)")
-        }
-    }
-    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
-        if(!($("#date").val())){
-            $(".date-error").css("transform","scale(1)")
-        }
-        else{
-            $(".date-error").css("transform","scale(0)")
-        }
-    }
-    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
-        if(!($("#passenger").val())){
-            $(".pass-error").css("transform","scale(1)")
-        }
-        else{
-            $(".pass-error").css("transform","scale(0)")
-        }
-    }
-    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
-        if(!($("#tier").val())){
-            $(".class-error").css("transform","scale(1)")
-        }
-        else{
-            $(".class-error").css("transform","scale(0)")
-        }
-    }
-
-    /* if(($("#start").val())){
-        console.log("invalid")
-        $(".source-error").css("transform","scale(0)")
-    }
-    if(($("#end").val())){
-        $(".dest-error").css("transform","scale(0)")
-    }
-    if(($("#date").val())){
-        $(".date-error").css("transform","scale(0)")
-    }
-    if(($("#passenger").val())){
-        $(".pass-error").css("transform","scale(0)")
-    }
-    if(($("#tier").val())){
-        $(".class-error").css("transform","scale(0)")
-    } */
-
-    else{
-        console.log("valid")
-        $(".error").css("transform","scale(0)")
-        $(".overlay").css("transform","translateX(0%)")
-        $(".overlay").css("opacity","1")
-    }
-    
-    
-})
 
 
 //getting random numbers to fill values of direct flights
@@ -525,15 +537,16 @@ $(".via-flights-o").on('click', '.card-8', function(){
 });
 
 
+//adding the gradient border to the card and white border to optimised card 
 function animatingCard(evt){
 
-    var countAnimate=0;
     var className=$(evt.target).attr('class').split(" ")
     className=className.shift();
     
-    classArray=["card-1","card-2","card-3","card-4","card-5","card-6","card-7","card-8"]
+    classArray=["card-1","card-2","card-3","card-5","card-6","card-7","card-8"]
     classArrayNew=[]
     var j=0;
+    //making a new array with the cards apart from the selected one and card-4
     for(let i=0;i<classArray.length;i++){
 
         if(classArray[i]==className){
@@ -542,81 +555,170 @@ function animatingCard(evt){
         classArrayNew[j]=classArray[i];
         j++;
     }
+ 
+    //console.log("new",classArrayNew)
+    //console.log("card-4",$(evt.target).hasClass("card-4"))
 
-    console.log("new",classArrayNew)
-     for(let k=0;k<classArrayNew.length;k++){
+    //checking if the clicked card is card-4 and making border white
+    if($(evt.target).hasClass("card-4")){
+        $(evt.target).addClass("animateCard");
+        $(evt.target).css("border","4px solid transparent")
+        $(evt.target).css("border-image","linear-gradient(45deg,rgb(255, 239, 299),rgb(240, 247, 238))")
+        $(evt.target).css("border-image-slice","1")
 
-        
-        if( $("."+classArrayNew[k]).hasClass("animateCard") && k!=3){
-            console.log("if"+k)
-            console.log(classArrayNew[k])
-            $("."+classArrayNew[k]).removeClass("animateCard");
-            $("."+classArrayNew[k]).css("border-image","none")
-            $("."+classArrayNew[k]).css("background","rgba(8, 8, 8, 0.3)")      
-            
+
+        //this for loop removes gradient border from other cards 
+        for(let k=0;k<classArrayNew.length;k++){
+                $("."+classArrayNew[k]).removeClass("animateCard");
+                $("."+classArrayNew[k]).css("border-image","none")
+                $("."+classArrayNew[k]).css("background","rgba(8, 8, 8, 0.3)")
         }
+    }
+    else{
 
-        else if($("."+classArrayNew[k]).hasClass("animateCard") && k==3){
-            console.log("else if"+k)
+        for(let k=0;k<classArrayNew.length;k++){
+        
+            //removing the animatecard class and the white border from the card-4
             $(".card-4").removeClass("animateCard");
             $(".card-4").css("border-image","none")
             $(".card-4").css("border","none")
             $(".card-4").css("background-image","linear-gradient(45deg,rgb(219, 39, 99),rgb(255, 154, 139))")
-        }
-        else{
-           //console.log("else part 1")
-             if($(evt.target).hasClass("card-4")){
-                //$(evt.target).css("border-image","none")
-                console.log("if inside else")
-                $(evt.target).addClass("animateCard");
-                $(evt.target).css("border","4px solid transparent")
-                $(evt.target).css("border-image","linear-gradient(45deg,rgb(255, 239, 299),rgb(240, 247, 238))")
-                $(evt.target).css("border-image-slice","1")
-                continue;
+
+            //checks if the other cards have a border and removes it
+            if( $("."+classArrayNew[k]).hasClass("animateCard") ){
+                //console.log("if"+k)
+                //console.log(classArrayNew[k])
+                $("."+classArrayNew[k]).removeClass("animateCard");
+                $("."+classArrayNew[k]).css("border-image","none")
+                $("."+classArrayNew[k]).css("background","rgba(8, 8, 8, 0.3)")    
+                
             }
 
-            //console.log("else part 1")
-            //$(evt.target).css("border-image","linear-gradient(45deg,#FF9A8B,#DB2763)");
-            $(evt.target).css("background","rgba(60, 60, 61,0.4)");
-            $(evt.target).addClass("animateCard");
-            $(evt.target).css("border-image","linear-gradient(45deg,rgb(219, 39, 99),rgb(255, 154, 139))")
-            $(evt.target).css("border-image-slice","1")
+            //changes the border of selected card to gradient
+            else{
+                $(evt.target).css("background","rgba(60, 60, 61,0.4)");
+                $(evt.target).addClass("animateCard");
+                $(evt.target).css("border-image","linear-gradient(45deg,rgb(219, 39, 99),rgb(255, 154, 139))")
+                $(evt.target).css("border-image-slice","1")
+            }
         }
     }
-
     
-    /*
-    console.log("animation count",countAnimate)
-    if(countAnimate>0){
-        $(classArrayNew[k]).removeClass("animateCard");
-        $(classArrayNew[k]).css("border-image","none");
+}
+
+$(".overlay .search-btn").click((event)=>{
+    var countSelection=0
+    var cardClass=''
+    var cardArray=["card-1","card-2","card-3","card-4","card-5","card-6","card-7","card-8"]
+    var cardElem
+    for(let i=0;i<cardArray.length;i++){
+        console.log("border-image"+$("."+cardArray[i]).css("border-image"))
+        if($("."+cardArray[i]).css("border-image")!="none"){
+            cardElem=$("."+cardArray[i]).clone()
+            cardClass=$(cardElem).attr('class')
+            cardClass=cardClass.split(' ')
+            cardClass=cardClass[0]
+            viaPlace=$("."+cardClass+" .via-overlay").text()
+            sessionStorage.setItem("via",viaPlace)
+            sessionStorage.setItem("Flight-Name",$("."+cardClass+" .flight-name").text())
+            //console.log("card class"+cardClass)
+            countSelection++;
+        }
+    }
+    
+    if(countSelection==0){
+        for(let p=0;p<cardArray.length;p++){
+            $("."+cardArray[p]).addClass("shakeCard")
+            setTimeout(()=>{
+                $("."+cardArray[p]).removeClass("shakeCard")
+            },1000)
+        }
+        setTimeout(()=>{
+            window.alert("Select a Flight to Proceed")
+        },500)
+        
+        event.preventDefault()
     }
     else{
         
         
-    } */
+    }
     
-    
-}
+})
 
 
-//sortPrice();
+
 
 //script for the static-card page
-//default values in case of any error
-var startPlace="Bangalore"
-var endPlace="Kolkata"
-startPlace=$("#start").val()
-endPlace=$("#end").val()
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+const weekDays=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+//updating values of static-card
+$(".static-container").ready(()=>{
+    //getting these values on button click of homepage 
+    var src=sessionStorage.getItem("source")
+    var dest=sessionStorage.getItem("destination")
+    var departureDate=sessionStorage.getItem("deptDate")
+    var numPassenger=sessionStorage.getItem("numPass")
+    var tier=sessionStorage.getItem("class")
+    var connecting=sessionStorage.getItem("via")
+    var flightname=sessionStorage.getItem("Flight-Name")
+    var airportNameSrc,abbvNameSrc,airportNameDest,abbvNameDest='',airportNameVia, abbvNameVia
+    //console.log("objectdsdsds",compFlightInfo[src])
+    console.log("values",src,dest,departureDate,numPassenger,tier,connecting,flightname)
+    
+    $(".static-container .title-from").text(src)
+    $(".static-container .title-to").text(dest)
+    $(".static-container .passNum").text(numPassenger)
+    $(".static-container .coachClass").text(tier)
 
-const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
+    //getting values from overlay 
+    $(".static-container .title-via").text(connecting)
 
-const d = new Date("1/10/1999"); //date is in mm/dd/yyyy format
-console.log("month",d.getMonth())
-console.log("The current month is " + monthNames[d.getMonth()]);
-console.log("date"+d.getDate())
+    const d = new Date(departureDate); //converting date to string format
+
+    $(".static-container .date").text(d.getDate())
+    $(".static-container .month").text(monthNames[d.getMonth()])
+    $(".static-container .day").text(weekDays[d.getDay()])
+     
+    //getting abbrevations of places and airport names of source
+    console.log("object",compFlightInfo[0]['place'])
+    for(let r=0;r<compFlightInfo.length;r++){
+        if(compFlightInfo[r]['place']==src){
+            airportNameSrc=compFlightInfo[r]['airportName']
+            abbvNameSrc=compFlightInfo[r]['abbName']
+        }
+    }
+
+
+    for(let s=0;s<compFlightInfo.length;s++){
+        if(compFlightInfo[s]['place']==dest){
+            airportNameDest=compFlightInfo[s]['airportName']
+            abbvNameDest=compFlightInfo[s]['abbName']
+        }
+    }
+
+    for(let t=0;t<compFlightInfo.length;t++){
+        if(compFlightInfo[t]['place']==connecting){
+            airportNameVia=compFlightInfo[t]['airportName']
+            abbvNameVia=compFlightInfo[t]['abbName']
+        }
+    }
+
+    $(".static-container .deptAirport").text(airportNameSrc+' ('+abbvNameSrc+')')
+    $(".static-container .arrivalAirport").text(airportNameDest+' ('+abbvNameDest+')')
+    $(".static-container .viaAirport").text(airportNameVia+' ('+abbvNameVia+')')
+    $(".abbvFrom").text(abbvNameSrc)
+    $(".abbvTo").text(abbvNameDest)
+    $(".abbvVia").text(abbvNameVia)
+
+})
+
+
+
+
+
+
 
 
 //time difference
@@ -669,7 +771,7 @@ $(".btn-confirm").click((evt)=>{
 $(".dropdown-btn").on('click',cardOpen)
 $(".selected-card").on('click',cardOpen)
 function cardOpen(evt){
-    console.log("margin",$(".dropdown-btn i").css("margin"))
+    
     if($(".dropdown-btn i").css("margin-top")=="15px"){
         $(".dropdown-btn i").css("margin","12px 15px")
         $(".dropdown-btn i").css("transform","rotate(180deg)")
@@ -693,5 +795,6 @@ function cardOpen(evt){
         },365)
     }
 }
+
 
 

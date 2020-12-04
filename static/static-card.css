@@ -306,7 +306,7 @@ body {
   margin-top: 0.55em;
 }
 
-.deptAirport {
+.deptAirport, .arrivalAirport, .viaAirport {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
