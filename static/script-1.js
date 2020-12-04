@@ -692,9 +692,23 @@ $(".static-container").ready(()=>{
     var deptTime=sessionStorage.getItem("departureTime")
     var time, hrs, mins
     var airportNameSrc,abbvNameSrc,airportNameDest,abbvNameDest='',airportNameVia, abbvNameVia
-    //console.log("objectdsdsds",compFlightInfo[src])
+
     console.log("values",src,dest,departureDate,numPassenger,tier,connecting,flightname,arrTime,deptTime)
     
+    if(!(connecting)){
+        console.log("empty")
+        $(".static-container .row-2-2").css("display","none")
+        $(".static-container .viaDot").css("display","none")
+        $(".static-container .icon-via").css("display","none")
+        $(".static-container .via-dash").css("display","none")
+        $(".static-container .abbvVia").css("display","none")
+    }
+    else{
+        $(".static-container .row-2-2").css("display","flex")
+        $(".static-container .viaDot").css("display","flex")
+        $(".static-container .via-dash").css("display","flex")
+        $(".static-container .abbvVia").css("display","flex")
+    }
     $(".static-container .title-from").text(src)
     $(".static-container .title-to").text(dest)
     $(".static-container .passNum").text(numPassenger)
@@ -712,14 +726,13 @@ $(".static-container").ready(()=>{
     console.log("time diff"+time)
     $(".static-container .hours").text(hrs)
     $(".static-container .minutes").text(mins)
-    const d = new Date(departureDate); //converting date to string format
 
+    const d = new Date(departureDate); //converting date to string format
     $(".static-container .date").text(d.getDate())
     $(".static-container .month").text(monthNames[d.getMonth()])
     $(".static-container .day").text(weekDays[d.getDay()])
      
     //getting abbrevations of places and airport names of source
-    console.log("object",compFlightInfo[0]['place'])
     for(let r=0;r<compFlightInfo.length;r++){
         if(compFlightInfo[r]['place']==src){
             airportNameSrc=compFlightInfo[r]['airportName']
