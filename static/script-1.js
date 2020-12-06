@@ -471,7 +471,7 @@ function updateViaCard(arr){
                         <div class="fromTime from-time-${countViaCard}">${viaflights[i].departure}</div>&nbsp;-&nbsp;<div class="toTime to-time-${countViaCard}">${viaflights[i].arrival}</div>
                       </div>
                       <div class="price-details">
-                        Price: &#8377; <div class="price-${countViaCard}">${priceVia}</div>
+                        Price: &#8377; <div class="base-price price-${countViaCard}">${priceVia}</div>
                       </div>
                     </div>
                   </div>
@@ -623,6 +623,7 @@ $(".overlay .search-btn").click((event)=>{
             sessionStorage.setItem("Flight-Name",$("."+cardClass+" .flight-name").text())
             sessionStorage.setItem("departureTime",$("."+cardClass+" .fromTime").text())
             sessionStorage.setItem("arrivalTime",$("."+cardClass+" .toTime").text())
+            sessionStorage.setItem("basePrice",$("."+cardClass+" .base-price").text())
             //console.log("card class"+cardClass)
             countSelection++;
         }
@@ -679,7 +680,11 @@ function diff(start, end) {
 
 
 //updating values of static-card
+
+
+
 $(".static-container").ready(()=>{
+    
     //getting these values on button click of homepage 
     var src=sessionStorage.getItem("source")
     var dest=sessionStorage.getItem("destination")
@@ -690,6 +695,11 @@ $(".static-container").ready(()=>{
     var flightname=sessionStorage.getItem("Flight-Name")
     var arrTime=sessionStorage.getItem("arrivalTime")
     var deptTime=sessionStorage.getItem("departureTime")
+    var singPrice=sessionStorage.getItem("basePrice")
+    singPrice=singPrice.split(",").join('')
+    console.log("cost",singPrice)
+    var totalPrice=Number(numPassenger) * Number(singPrice)
+    totalPrice=numberWithCommas(totalPrice)
     var time, hrs, mins
     var airportNameSrc,abbvNameSrc,airportNameDest,abbvNameDest='',airportNameVia, abbvNameVia
 
@@ -726,6 +736,7 @@ $(".static-container").ready(()=>{
     console.log("time diff"+time)
     $(".static-container .hours").text(hrs)
     $(".static-container .minutes").text(mins)
+    $(".static-container .price").text(totalPrice)
 
     const d = new Date(departureDate); //converting date to string format
     $(".static-container .date").text(d.getDate())
