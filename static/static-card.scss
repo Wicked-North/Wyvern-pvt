@@ -73,6 +73,15 @@ body {
     }
     
 }
+.sub-title{
+    justify-content: space-between;
+    width: 98%;
+}
+
+.sub-title-part-1, .title-part-1, .title-part-2{
+    display:flex;
+    align-items: center;
+}
 
 
 .sub-title-2{
@@ -85,17 +94,17 @@ body {
 .title{
     display: flex;
     font-size: 48px;
-    align-items: center;
     font-family: 'Overlock', cursive;
     font-weight: 700;
     background-clip: text;
+    justify-content: space-between;
+    width: 98.5%;
     div, i{
         color: transparent;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: linear-gradient(45deg, $grad-pink, $grad-red);
     }
-    width: fit-content;
     i{
         display: block;
         font-size: 50%;
@@ -441,6 +450,4 @@ body {
     display:inline-block;
     transform:scale(0);
 }
-
-
 

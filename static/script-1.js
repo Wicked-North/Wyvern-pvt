@@ -1,5 +1,6 @@
 //const e = require("express");
-var from="", dest=""; 
+
+var from="", dest="";
 var flightArr=[]; 
 var totalFlights; 
 var dirflights;
@@ -49,7 +50,7 @@ var compFlightInfo=[
 function numberWithCommas(number) {
     var parts = number.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join("."); 
+    return parts.join(".");
 }
 
 //adding and subtracting passengers
@@ -82,16 +83,16 @@ $(".subtract").click(()=>{
     }
 });
 
-
 //button on click
+
 $(".home-page .btn").click(()=>{
-    $(".home-page .btn").addClass("animateButton");
+    $(".btn").addClass("animateButton");
     setTimeout(()=>{
-        $(".home-page .btn").removeClass("animateButton");
+        $(".btn").removeClass("animateButton");
 
     },500)
 
-   if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
         if((!$("#start").val())){
             console.log("invalid")
             $(".source-error").css("transform","scale(1)")
@@ -99,32 +100,32 @@ $(".home-page .btn").click(()=>{
         else{
             $(".source-error").css("transform","scale(0)")
         }
-    //}
-    // if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
         if(!($("#end").val())){
             $(".dest-error").css("transform","scale(1)")
         }
         else{
             $(".dest-error").css("transform","scale(0)")
         }
-  //  }
-    // if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
         if(!($("#date").val())){
             $(".date-error").css("transform","scale(1)")
         }
         else{
             $(".date-error").css("transform","scale(0)")
         }
-   // }
-    // if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
         if(!($("#passenger").val())){
             $(".pass-error").css("transform","scale(1)")
         }
         else{
             $(".pass-error").css("transform","scale(0)")
         }
-   // }
-    // if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+    }
+    if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
         if(!($("#tier").val())){
             $(".class-error").css("transform","scale(1)")
         }
@@ -151,7 +152,6 @@ $(".home-page .btn").click(()=>{
     } */
 
     else{
-        
         console.log("valid")
         //storing the values of input field to session storage to pass the values to next page(static-card)
         sessionStorage.setItem("source",$("#start").val())
@@ -274,9 +274,10 @@ function selectOpt(evt){
         if($(evt.target).parents().hasClass("dropdown-from") /* && $(evt.target).text()!=$(".to input").val() */){
             
             $(".from input").val($(evt.target).text())
-            if($(".from input").val()!=""){
+            if($("input").val()!=""){
                 console.log("adding element")
-                console.log(fromPlaceElem)
+                console.log(fromPlaceElem[0])
+
                 $(".dropdown").append(fromPlaceElem[0])
                 //$(".dropdown-from").append(fromPlaceElem[0])
                 $(".from .label-name .content-name").css(
@@ -328,10 +329,9 @@ function selectOpt(evt){
     }
 
     setTimeout(()=>{
-        $(".dropdown").css("height","0");
+        $(".dropdown").css("display","none");
         setTimeout(()=>{
-            $(".dropdown").css("display","none");
-
+            $(".dropdown").css("height","0");
         },200)
     },200)
     
@@ -471,7 +471,7 @@ function updateViaCard(arr){
                         <div class="fromTime from-time-${countViaCard}">${viaflights[i].departure}</div>&nbsp;-&nbsp;<div class="toTime to-time-${countViaCard}">${viaflights[i].arrival}</div>
                       </div>
                       <div class="price-details">
-                        Price: &#8377; <div class="price-${countViaCard}">${priceVia}</div>
+                        Price: &#8377; <div class="base-price price-${countViaCard}">${priceVia}</div>
                       </div>
                     </div>
                   </div>
@@ -572,7 +572,7 @@ function animatingCard(evt){
                 $("."+classArrayNew[k]).removeClass("animateCard");
                 $("."+classArrayNew[k]).css("border-image","none")
                 $("."+classArrayNew[k]).css("background","rgba(8, 8, 8, 0.3)")
-        } 
+        }
     }
     else{
 
@@ -623,6 +623,7 @@ $(".overlay .search-btn").click((event)=>{
             sessionStorage.setItem("Flight-Name",$("."+cardClass+" .flight-name").text())
             sessionStorage.setItem("departureTime",$("."+cardClass+" .fromTime").text())
             sessionStorage.setItem("arrivalTime",$("."+cardClass+" .toTime").text())
+            sessionStorage.setItem("basePrice",$("."+cardClass+" .base-price").text())
             //console.log("card class"+cardClass)
             countSelection++;
         }
@@ -641,7 +642,10 @@ $(".overlay .search-btn").click((event)=>{
         
         event.preventDefault()
     }
-    
+    else{
+        
+        
+    }
     
 })
 
@@ -660,9 +664,9 @@ function diff(start, end) {
     var startDate = new Date(0, 0, 0, start[0], start[1], 0);
     var endDate = new Date(0, 0, 0, end[0], end[1], 0);
     var diff = endDate.getTime() - startDate.getTime();
-    console.log(diff)
+    // console.log(diff)
     var hours = Math.floor(diff / 1000 / 60 / 60); //diff is in MILLISECONDS converting it into hours
-    console.log(hours)
+    // console.log(hours)
     diff -= hours * 1000 * 60 * 60; //subtracting the number of ms in hours to get the no. of minutes
     var minutes = Math.floor(diff / 1000 / 60);
 
@@ -676,7 +680,11 @@ function diff(start, end) {
 
 
 //updating values of static-card
+
+
+
 $(".static-container").ready(()=>{
+    
     //getting these values on button click of homepage 
     var src=sessionStorage.getItem("source")
     var dest=sessionStorage.getItem("destination")
@@ -687,10 +695,16 @@ $(".static-container").ready(()=>{
     var flightname=sessionStorage.getItem("Flight-Name")
     var arrTime=sessionStorage.getItem("arrivalTime")
     var deptTime=sessionStorage.getItem("departureTime")
+    var singPrice=sessionStorage.getItem("basePrice")
+    singPrice=singPrice.split(",").join('')
+    console.log("cost",singPrice)
+    var totalPrice=Number(numPassenger) * Number(singPrice)
+    totalPrice=numberWithCommas(totalPrice)
+    sessionStorage.setItem('totalPrice', totalPrice)
     var time, hrs, mins
     var airportNameSrc,abbvNameSrc,airportNameDest,abbvNameDest='',airportNameVia, abbvNameVia
 
-    console.log("values",src,dest,departureDate,numPassenger,tier,connecting,flightname,arrTime,deptTime)
+    // console.log("values",src,dest,departureDate,numPassenger,tier,connecting,flightname,arrTime,deptTime)
     
     if(!(connecting)){
         console.log("empty")
@@ -723,6 +737,7 @@ $(".static-container").ready(()=>{
     console.log("time diff"+time)
     $(".static-container .hours").text(hrs)
     $(".static-container .minutes").text(mins)
+    $(".static-container .price").text(totalPrice)
 
     const d = new Date(departureDate); //converting date to string format
     $(".static-container .date").text(d.getDate())
@@ -807,9 +822,8 @@ function cardOpen(evt){
 }
 
 
-
-
-
 function payment(){
     window.location.assign('app.html')
 }
+
+

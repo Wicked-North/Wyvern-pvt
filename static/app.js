@@ -4,7 +4,7 @@ let paymentDetails = false
 let details
 let passengerForm
 var slideDown = ``;
-let n = 3
+let n = sessionStorage.getItem('numPass')
 let passengerSeat = ''
 let seatHTML = ''
 let seatDetails
@@ -143,7 +143,7 @@ bring it with you on the day of departure.</p>
     info.
     </small>
 <div align="right">
-<input type="submit" class="btn btn-primary" id="savebutton" value="Save"/>
+<input type="submit" class="btn btn-primary" onclick='flightSearch()' id="savebutton" value="Save"/>
 </div>
 `;
 
@@ -828,9 +828,14 @@ function continueToPayment() {
         var phone = document.getElementsByTagName('h6')[j + 4].innerHTML
         console.log(phone)
 
+        
+
+
+
+
+
         passengers.push({
-            paspnr: '909',
-            flight: 'ai-443',
+          
             name: name,
             id: iD,
             dob: dob,

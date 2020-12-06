@@ -262,7 +262,7 @@ app.post("/getViaDetails", (req, res) => {
 });
 
 app.post("/getDirectDetails", (req, res) => {
-   // console.log(req)
+    // console.log(req)
     var nodeObj = req.body
     console.log(nodeObj)
     var searchSql = `select * from flights where start = '${nodeObj.start}' && end = '${nodeObj.end}' and via is NULL`
@@ -275,7 +275,7 @@ app.post("/getDirectDetails", (req, res) => {
 });
 
 app.post("/optimisedVia", (req, res) => {
-   // console.log(req)
+    // console.log(req)
     var nodeObj = req.body
     console.log(nodeObj)
     var searchSql = `select * from flights where start = '${nodeObj.start}' && end = '${nodeObj.end}' && via = '${nodeObj.via}'`
@@ -296,19 +296,21 @@ app.post("/bookSeats", (req, res) => {
     var flight_num = req.body[0].ticket.flight_num
     var price = req.body[0].ticket.price
     var userid = req.body[0].ticket.userid
+    let boarding = req.body[0].ticket.boarding
+    let totalPrice = req.body[0].ticket.totalPrice
 
     console.log(type, flight_num, price, userid)
 
 
 
-    var searchSql = `update seats set ${days}='${seatString}' where flight_num='${fnums}'`
+    var searchSql = 'update seats set `' + days + '`' + `='${seatString}' where flight_num='${fnums}'`
     con.query(searchSql, (err, result) => {
         if (err) throw err;
         else
             console.log("Updated into Seats")
     })
 
-    var insertTicket = `insert into tickets (class,flight_num,userid) values('${type}','${flight_num}','${userid}')`
+    var insertTicket = `insert into tickets (class,flight_num,userid,total_price,boarding) values('${type}','${flight_num}','${userid}','${totalPrice}','${boarding}')`
     var getPNR = `select PNR from tickets where userid = '${userid}' order by PNR desc LIMIT 1`
 
     con.query(insertTicket, (err, result) => {
@@ -327,13 +329,15 @@ app.post("/bookSeats", (req, res) => {
                         var email = req.body[0].pass[i].email
                         var phone = req.body[0].pass[i].phone
                         var flight = req.body[0].pass[i].flight
+                        var boarding = req.body[0].board
+
                         var pid = req.body[0].pass[i].id
                         var PNRpas = pnr
                         var seatNo = req.body[0].pass[i].seats
                         var pasGen = req.body[0].pass[i].gender.slice(0, 1)
 
 
-                        var searchSql = `insert into passengers (paspnr,pname,pid,pemail,pmobile,seat_no,gender,dob)values(${PNRpas},'${name}',${pid},'${email}','${phone}','${seatNo}','${pasGen}','${dob}')`
+                        var searchSql = `insert into passengers (paspnr,pname,pid,pemail,pmobile,seat_no,gender,dob,pas_boarding)values(${PNRpas},'${name}',${pid},'${email}','${phone}','${seatNo}','${pasGen}','${dob}','${boarding}')`
                         con.query(searchSql, (err, result) => {
                             if (err) throw err;
                             else
@@ -362,7 +366,7 @@ app.post("/getSeatDets", (req, res) => {
     var days = req.body.day
     var fnums = req.body.fnum
     console.log(req.body)
-    var searchSql = `select ${days} as 'day' from seats where flight_num='${fnums}'`
+    var searchSql = 'select `' + days + '`' + ` as 'day' from seats where flight_num='${fnums}'`
     con.query(searchSql, (err, result) => {
         if (err) throw err;
         res.json(result)
@@ -487,14 +491,14 @@ function abcd() {
 //insertViaPath()
 
 app.post("/getCurrentTicketsPassengers", (req, resp) => {
-   
+
     var userID = req.body.userId
     let pnrWiseTickets = []
     var distinctPnrSql = `select distinct pnr from tickets where userid = ${userID}`
-    con.query(distinctPnrSql, (err,res) =>{
+    con.query(distinctPnrSql, (err, res) => {
         if (err) throw err
         console.log(res)
-        for(let i = 0; i<res.length; i++){
+        for (let i = 0; i < res.length; i++) {
             let curTicketsPassengers = `
             select t.pnr, t.class, t.flight_num, t.userID, t.total_price, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name from flights f, tickets t, passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
 
@@ -504,27 +508,27 @@ app.post("/getCurrentTicketsPassengers", (req, resp) => {
                     console.log(result)
                     pnrWiseTickets.push(result)
                 }
-        
+
             })
         }
-        setTimeout(()=>{
+        setTimeout(() => {
             console.log(pnrWiseTickets)
             resp.json(pnrWiseTickets)
         }, 1000)
-       
+
     })
 
 });
 
 app.post("/getPastTicketsPassengers", (req, resp) => {
-   
+
     var userID = req.body.userId
     let pnrWiseTickets = []
     var distinctPnrSql = `select distinct pnr from completed_tickets where userid = ${userID}`
-    con.query(distinctPnrSql, (err,res) =>{
+    con.query(distinctPnrSql, (err, res) => {
         if (err) throw err
         console.log(res)
-        for(let i = 0; i<res.length; i++){
+        for (let i = 0; i < res.length; i++) {
             let curTicketsPassengers = `
             select t.pnr, t.class, t.flight_num, t.userID, t.total_price, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name from flights f, completed_tickets t, completed_passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
 
@@ -534,14 +538,14 @@ app.post("/getPastTicketsPassengers", (req, resp) => {
                     console.log(result)
                     pnrWiseTickets.push(result)
                 }
-        
+
             })
         }
-        setTimeout(()=>{
+        setTimeout(() => {
             console.log(pnrWiseTickets)
             resp.json(pnrWiseTickets)
         }, 1000)
-       
+
     })
 
 });
@@ -549,136 +553,136 @@ app.post("/getPastTicketsPassengers", (req, resp) => {
 
 //===============================================  ADMIN SECTION===============================================================================
 
-app.get('/getCurrentTicketDetails', async (req, res)=>{
-    try{
-    let sql = `select* from tickets`
-    let [result] = await pool.query(sql)
-    console.log(result)
-    res.json(result)
-    } catch(err){
+app.get('/getCurrentTicketDetails', async (req, res) => {
+    try {
+        let sql = `select* from tickets`
+        let [result] = await pool.query(sql)
+        console.log(result)
+        res.json(result)
+    } catch (err) {
         console.log(err)
     }
 })
 
-app.get('/getPreviousTicketDetails', async (req, res)=>{
-    try{
-    let sql = `select* from completed_tickets where status = 'completed'`
-    let [result] = await pool.query(sql)
-    console.log(result)
-    res.json(result)
-    } catch(err){
+app.get('/getPreviousTicketDetails', async (req, res) => {
+    try {
+        let sql = `select* from completed_tickets where status = 'completed'`
+        let [result] = await pool.query(sql)
+        console.log(result)
+        res.json(result)
+    } catch (err) {
         console.log(err)
     }
 })
 
-app.get('/getCancelledTicketDetails', async (req, res)=>{
-    try{
-    let sql = `select* from completed_tickets where status = 'cancelled'`
-    let [result] = await pool.query(sql)
-    console.log(result)
-    res.json(result)
-    } catch(err){
+app.get('/getCancelledTicketDetails', async (req, res) => {
+    try {
+        let sql = `select* from completed_tickets where status = 'cancelled'`
+        let [result] = await pool.query(sql)
+        console.log(result)
+        res.json(result)
+    } catch (err) {
         console.log(err)
     }
 })
 
-app.post('/getTicketDetailsByPnr',async (req, res)=>{
+app.post('/getTicketDetailsByPnr', async (req, res) => {
     //console.log(req)
-    try{
-    console.log(req)
-    let pnr = req.body.pnr
-    let sql = `select* from tickets where pnr = '${pnr}'`
-    let [result] = await pool.query(sql)
-    console.log(result)
-    res.json(result)
-    } catch(err){
+    try {
+        console.log(req)
+        let pnr = req.body.pnr
+        let sql = `select* from tickets where pnr = '${pnr}'`
+        let [result] = await pool.query(sql)
+        console.log(result)
+        res.json(result)
+    } catch (err) {
         console.log(err)
     }
 })
 
-app.post('/getTicketDetailsByUserid',async (req, res)=>{
+app.post('/getTicketDetailsByUserid', async (req, res) => {
     let userTickDets = []
     //console.log(req)
-    try{
-    console.log(req)
-    let uid = req.body.uid
-    let sqlCur = `select* from tickets where userid = '${uid}'`
-    let sqlPrev = `select* from completed_tickets where userid = '${uid}' and status = 'completed'`
-    let sqlCanc = `select* from completed_tickets where userid = '${uid}' and status = 'cancelled'`
-    //console.log(sql)
-    let [resultCur] = await pool.query(sqlCur)
-    //console.log(resultCur)
-    userTickDets.push(resultCur)
-    let [resultPrev] = await pool.query(sqlPrev)
-    userTickDets.push(resultPrev)
-    let [resultCanc] = await pool.query(sqlCanc)
-    userTickDets.push(resultCanc)
-    res.json(userTickDets)
-    } catch(err){
+    try {
+        console.log(req)
+        let uid = req.body.uid
+        let sqlCur = `select* from tickets where userid = '${uid}'`
+        let sqlPrev = `select* from completed_tickets where userid = '${uid}' and status = 'completed'`
+        let sqlCanc = `select* from completed_tickets where userid = '${uid}' and status = 'cancelled'`
+        //console.log(sql)
+        let [resultCur] = await pool.query(sqlCur)
+        //console.log(resultCur)
+        userTickDets.push(resultCur)
+        let [resultPrev] = await pool.query(sqlPrev)
+        userTickDets.push(resultPrev)
+        let [resultCanc] = await pool.query(sqlCanc)
+        userTickDets.push(resultCanc)
+        res.json(userTickDets)
+    } catch (err) {
         console.log(err)
     }
 })
 
 
-app.get('/getFlightDetails', async (req, res)=>{
-    try{
-    let sql = `select* from flights`
-    let [result] = await pool.query(sql)
-    console.log(result)
-    res.json(result)
-    } catch(err){
+app.get('/getFlightDetails', async (req, res) => {
+    try {
+        let sql = `select* from flights`
+        let [result] = await pool.query(sql)
+        console.log(result)
+        res.json(result)
+    } catch (err) {
         console.log(err)
     }
 })
 
-app.get('/getUserDetails', async (req, res)=>{
-    try{
-    let sql = `select* from userinfo`
-    let [result] = await pool.query(sql)
-    console.log(result)
-    res.json(result)
-    } catch(err){
+app.get('/getUserDetails', async (req, res) => {
+    try {
+        let sql = `select* from userinfo`
+        let [result] = await pool.query(sql)
+        console.log(result)
+        res.json(result)
+    } catch (err) {
         console.log(err)
     }
 })
 
-app.post('/getUserDetailsByUserid',async (req, res)=>{
+app.post('/getUserDetailsByUserid', async (req, res) => {
     //console.log(req)
-    try{
-    console.log(req)
-    let uid = req.body.uid
-    let sql = `select* from userinfo where user_id = '${uid}'`
-    console.log(sql)
-    let [result] = await pool.query(sql)
-    console.log(result)
-    res.json(result)
-    } catch(err){
+    try {
+        console.log(req)
+        let uid = req.body.uid
+        let sql = `select* from userinfo where user_id = '${uid}'`
+        console.log(sql)
+        let [result] = await pool.query(sql)
+        console.log(result)
+        res.json(result)
+    } catch (err) {
         console.log(err)
     }
 })
 
 
-app.get('/getPassengerDetails', async (req, res)=>{
-    try{
-    let sql = `select* from passengers order by paspnr`
-    let [result] = await pool.query(sql)
-    console.log(result)
-    res.json(result)
-    } catch(err){
+app.get('/getPassengerDetails', async (req, res) => {
+    try {
+        let sql = `select* from passengers order by paspnr`
+        let [result] = await pool.query(sql)
+        console.log(result)
+        res.json(result)
+    } catch (err) {
         console.log(err)
     }
 })
 
-app.post('/getPassengerDetailsByPnr',async (req, res)=>{
+app.post('/getPassengerDetailsByPnr', async (req, res) => {
     //console.log(req)
-    try{
-    console.log(req)
-    let pnr = req.body.pnr
-    let sql = `select* from passengers where paspnr = '${pnr}'`
-    let [result] = await pool.query(sql)
-    console.log(result)
-    res.json(result)
-    } catch(err){
+    try {
+        console.log(req)
+        let pnr = req.body.pnr
+        let sql = `select* from passengers where paspnr = '${pnr}'`
+        let [result] = await pool.query(sql)
+        console.log(result)
+        res.json(result)
+    } catch (err) {
         console.log(err)
     }
 })

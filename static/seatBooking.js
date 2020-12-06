@@ -1,20 +1,24 @@
 let seats = []
 let allDetails = []
 let userId = sessionStorage.getItem('user_id')
-let flightno = 'ai-443'
-let getDetails = {
-    fnum: 'ai-443',
-    day: 'day1' //filled according to the param in fn
-}
+let day = sessionStorage.getItem("deptDate")
+let deptTime = sessionStorage.getItem('departureTime')
+let totalPrice = sessionStorage.getItem('totalPrice')
 let selectedPassengerIndex
+// flightSearch()
 
 //ONCLICKS
-function flightSearch() { //date according to day1,day2,day3.....day6
 
+function flightSearch() { //date according to day1,day2,day3.....day6
+    var fnum = sessionStorage.getItem("Flight-Name")
+    var result = fnum.match(/\((.*)\)/);
+    var regex = / /gi
     let getDetails = {
-        fnum: 'ai-443',
-        day: 'day1' //filled according to the param in fn
+        fnum: result[1].replace(regex, ''),
+        day: day,
+        //filled according to the param in fn
     }
+    console.log(getDetails)
     const options = {
         method: "POST",
         headers: {
@@ -72,24 +76,31 @@ function flightSearch() { //date according to day1,day2,day3.....day6
 
 //ON FINAL CONFIRMATION
 function bookSeats() {
+    var fnum = sessionStorage.getItem("Flight-Name")
+    var result = fnum.match(/\((.*)\)/);
+    var regex = / /gi
 
     let ticketInfo = {
-        type: "economic",
-        flight_num: 'ai-443',
-        price: 5000,
-        userid: userId
+        type: sessionStorage.getItem("class"),
+        flight_num: result[1].replace(regex, ''),
+        price: sessionStorage.getItem("basePrice"),
+        userid: userId,
+        boarding: `${day} ${deptTime}`,
+        totalPrice: totalPrice
+
     }
 
 
     let seatDets = {
-        fnum: 'ai-443',
+        fnum: result[1].replace(/ /gi, ''),
         seat: seats.join(''), //string
-        day: 'day1'
+        day: day
     }
     allDetails.push({
         pass: passengers,
         seats: seatDets,
-        ticket: ticketInfo
+        ticket: ticketInfo,
+        board: day + ' ' + deptTime
     })
 
     const pasOptions = {

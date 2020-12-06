@@ -72,6 +72,22 @@ body {
   margin-right: 0.5em;
 }
 
+.sub-title {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 98%;
+}
+
+.sub-title-part-1, .title-part-1, .title-part-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .sub-title-2 {
   font-size: 24px;
   letter-spacing: 0.05rem;
@@ -84,15 +100,13 @@ body {
   display: -ms-flexbox;
   display: flex;
   font-size: 48px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   font-family: 'Overlock', cursive;
   font-weight: 700;
   background-clip: text;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 98.5%;
 }
 
 .title div, .title i {
