@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script> <!--ICONS-->
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script> <!--ANIME for path-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.js"></script> <!--TWEEN for plane-->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script> <!--VALIDATION PLUGIN-->
     <link href="./homepageStyle.css" rel="stylesheet" type="text/css" /> 
     <link href="map.css" rel="stylesheet" type="text/css"/>
     <title>Document</title>
@@ -20,24 +21,23 @@
               <div class="main-content-1">
                 <div class="title-1">
                   <div class="line-1">Search</div>
-                  <div class="line-2">For Flights.
-
-                  </div>
+                  <div class="line-2">For Flights.</div>
                 </div>
-                <div class="form-content">
+                <form name="searchFlights" class="form-content">
                   <div class="formi from">
-                    <input type="text" name="start" required autocomplete="off" id="start" readonly>
+                    <input type="text" name="start" required autocomplete="off" id="start" readonly required>
                     <label name="from" class="label-name">
                         <span class="content-name">
                            From:
                         </span>
                        </label>
-                    
+                       
                       <div class="arrow">
                         <i class="fas fa-angle-down"></i>
                       </div>
                     
-                 </div>
+                 </div> 
+                 <div class="error source-error">Please enter a valid Source.</div>
                  <div class="dropdown dropdown-from">
                    <div class="place-1">Ahmedabad</div>
                    <div class="place-2">Bangalore</div>
@@ -48,7 +48,7 @@
                    <div class="place-7">Mumbai</div>
                  </div>
                  <div class="formi to">
-                  <input type="text" name="end" required autocomplete="off" id="end" readonly>
+                  <input type="text" name="end" required autocomplete="off" id="end" readonly required>
                   <label name="whereto" class="label-name">
                       <span class="content-name">
                          Where To? 
@@ -60,6 +60,7 @@
                     </div>
                   
                  </div>
+                 <div class="error dest-error" >Please enter a valid Destination.</div>
                  <div class="dropdown dropdown-to">
                   <div class="place-1">Ahmedabad</div>
                   <div class="place-2">Bangalore</div>
@@ -70,7 +71,7 @@
                   <div class="place-7">Mumbai</div>
                 </div>
                  <div class="formi date">
-                  <input type="text" name="deptdate" required autocomplete="off" id="today" onfocus="(this.type='date') (this.value=new Date().toISOString().substr(0, 10))" onblur="if(!this.value)this.type='text'">
+                  <input type="text" name="deptdate" required autocomplete="off" id="date" required onfocus="(this.type='date') (this.value=new Date().toISOString().substr(0, 10))" onblur="if(!this.value)this.type='text'">
                   <label name="deptdate" class="label-name">
                       <span class="content-name">
                          Departure Date:
@@ -78,8 +79,9 @@
                   </label>
                   <i class="fas fa-calendar-day"></i>
                  </div>
+                 <div class="error date-error">Please enter a valid Departure Date.</div>
                  <div class="formi passenger">
-                  <input type="number" name="passenger" class="passenger-inp" required autocomplete="off" min="1" max="99" >
+                  <input type="number" name="passenger" id="passenger" class="passenger-inp" required autocomplete="off" min="1" max="99" >
                   <label name="passenger" class="label-name">
                       <span class="content-name">
                          Passengers:
@@ -90,6 +92,7 @@
                       <button class="subtract"><i class="fas fa-minus"></i></button>
                   </div>
                  </div>
+                 <div class="error pass-error">Please enter valid number of passengers.</div>
                  <div class="formi tier">
                   <input type="text" name="tier" required autocomplete="off" id="tier" readonly>
                   <label name="tier" class="label-name">
@@ -103,6 +106,7 @@
                     </div>
                   
                  </div>
+                 <div class="error class-error">Please enter a valid Class</div>
                  <div class="dropdown dropdown-tier">
                   <div class="tier-1">Economy</div>
                   <div class="tier-2">Premium Economy</div>
@@ -121,15 +125,13 @@
                   </svg>
                     <span>Search</span>
                 </a>
-                </div>
+                </form name="searchFlights">
   
                 
               </div>
             </div>
             <div class="overlay">
               <div class="sortby">
-                <button id='nextPage'>NEXT</button>
-
                 Sort By :<button class="sort">Price <i class="fas fa-angle-down"></i></button>
               </div>
               <div class="overlay-title">
@@ -141,13 +143,13 @@
                 </div>
                 <div class="card-1 card">
                   <div class="card-content">
-                    <div class="flight-name-1">Air India (AI-265)</div>
+                    <div class="flight-name flight-name-1">Air India (AI-265)</div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-1 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="to-1 to-overlay">Bangalore</div>
                       </div>
                       <div class="time">
-                        <div class="from-time-1">20:25:00</div>&nbsp;-&nbsp;<div class="to-time-1">22:00:25</div>
+                        <div class="fromTime from-time-1">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-1">22:00:25</div>
                       </div>
                       <div class="price-details">
                         Price: &#8377; <div class="price-1">7,000</div>
@@ -157,13 +159,13 @@
                 </div>
                 <div class="card-2 card">
                   <div class="card-content">
-                    <div class="flight-name-2">Air India (AI-265)</div>
+                    <div class="flight-name flight-name-2">Air India (AI-265)</div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-2 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="to-2 to-overlay">Bangalore</div>
                       </div>
                       <div class="time">
-                        <div class="from-time-2">20:25:00</div>&nbsp;-&nbsp;<div class="to-time-2">22:00:25</div>
+                        <div class="fromTime from-time-2">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-2">22:00:25</div>
                       </div>
                       <div class="price-details">
                         Price: &#8377; <div class="price-2">7,000</div>
@@ -173,13 +175,13 @@
                 </div>
                 <div class="card-3 card">
                   <div class="card-content">
-                    <div class="flight-name-3">Air India (AI-265)</div>
+                    <div class="flight-name flight-name-3">Air India (AI-265)</div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-3 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="to-3 to-overlay">Bangalore</div>
                       </div>
                       <div class="time">
-                        <div class="from-time-3">20:25:00</div>&nbsp;-&nbsp;<div class="to-time-3">22:00:25</div>
+                        <div class="fromTime from-time-3">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-3">22:00:25</div>
                       </div>
                       <div class="price-details">
                         Price: &#8377; <div class="price-3">7,000</div>
@@ -195,14 +197,14 @@
                 <div class="card-4 card">
                   <div class="card-content">
                     <div class="optimised">
-                      <div class="flight-name-4">Air India (AI-265)</div><span>&nbsp;&nbsp;<div class="dot-opt"></div>&nbsp;Optimised Flight</span>
+                      <div class="flight-name flight-name-4">Air India (AI-265)</div><span>&nbsp;&nbsp;<div class="dot-opt"></div>&nbsp;Optimised Flight</span>
                     </div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-4 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-4 via-overlay">Mumbai</div>&nbsp;-&nbsp;<div class="to-4 to-overlay">Bangalore</div>
                       </div>
                       <div class="time">
-                        <div class="from-time-4">20:25:00</div>&nbsp;-&nbsp;<div class="to-time-4">22:00:25</div>
+                        <div class="fromTime from-time-4">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-4">22:00:25</div>
                       </div>
                       <div class="price-details">
                         Price: &#8377; <div class="price-4">7,000</div>
@@ -212,13 +214,13 @@
                 </div>
                 <div class="card-5 card">
                   <div class="card-content">
-                    <div class="flight-name-5">Air India (AI-265)</div>
+                    <div class="flight-name flight-name-5">Air India (AI-265)</div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-5 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-5 via-overlay">Mumbai</div>&nbsp;-&nbsp;<div class="to-5 to-overlay">Bangalore</div>
                       </div>
                       <div class="time">
-                        <div class="from-time-5">20:25:00</div>&nbsp;-&nbsp;<div class="to-time-5">22:00:25</div>
+                        <div class="fromTime from-time-5">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-5">22:00:25</div>
                       </div>
                       <div class="price-details">
                         Price: &#8377; <div class="price-5">7,000</div>
@@ -228,13 +230,13 @@
                 </div>
                 <div class="card-6 card">
                   <div class="card-content">
-                    <div class="flight-name-6">Air India (AI-265)</div>
+                    <div class="flight-name flight-name-6">Air India (AI-265)</div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-6 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-6 via-overlay">Mumbai</div>&nbsp;-&nbsp;<div class="to-6 to-overlay">Bangalore</div>
                       </div>
                       <div class="time">
-                        <div class="from-time-6">20:25:00</div>&nbsp;-&nbsp;<div class="to-time-6">22:00:25</div>
+                        <div class="fromTime from-time-6">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-6">22:00:25</div>
                       </div>
                       <div class="price-details">
                         Price: &#8377; <div class="price-6">7,000</div>
@@ -244,13 +246,13 @@
                 </div>
                 <div class="card-7 card">
                   <div class="card-content">
-                    <div class="flight-name-7">Air India (AI-265)</div>
+                    <div class="flight-name flight-name-7">Air India (AI-265)</div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-7 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-7 via-overlay">Mumbai</div>&nbsp;-&nbsp;<div class="to-7 to-overlay">Bangalore</div>
                       </div>
                       <div class="time">
-                        <div class="from-time-7">20:25:00</div>&nbsp;-&nbsp;<div class="to-time-7">22:00:25</div>
+                        <div class="fromTime from-time-7">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-7">22:00:25</div>
                       </div>
                       <div class="price-details">
                         Price: &#8377; <div class="price-7">7,000</div>
@@ -260,13 +262,13 @@
                 </div>
                 <div class="card-8 card">
                   <div class="card-content">
-                    <div class="flight-name-8">Air India (AI-265)</div>
+                    <div class="flight-name flight-name-8">Air India (AI-265)</div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-8 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-8 via-overlay">Mumbai</div>&nbsp;-&nbsp;<div class="to-8 to-overlay">Bangalore</div>
                       </div>
                       <div class="time">
-                        <div class="from-time-8">20:25:00</div>&nbsp;-&nbsp;<div class="to-time-8">22:00:25</div>
+                        <div class="fromTime from-time-8">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-8">22:00:25</div>
                       </div>
                       <div class="price-details">
                         Price: &#8377; <div class="price-8">7,000</div>
@@ -274,19 +276,22 @@
                     </div>
                   </div>
                 </div>
-
-
-
+                
               </div>
-             
-
-
+              <a href="./static-card.html" class="btn search-btn">
+                <svg width="277" height="62">
+                  <defs>
+                      <linearGradient id="grad2">
+                          <stop offset="0%" stop-color="rgb(255, 30, 105)"/>
+                          <stop offset="100%" stop-color="rgba(82, 6, 148,1)" />
+                      </linearGradient>
+                  </defs>
+                   <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+                </svg>
+                  <span>Select Flight</span>
+              </a>
             </div>
-
-            
-
             <div class="col-2">
-              
                 <div class="lines">
   
                     <svg fill="#050003" id="route" height="695.70178" width="611.85999">
@@ -353,6 +358,5 @@
     <script src="./script-1.js"></script>
     <script src="homepage.js"></script>
     <script src="seatBooking.js"></script>
-    
 </body>
 </html>

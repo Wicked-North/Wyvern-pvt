@@ -1,15 +1,55 @@
 //const e = require("express");
-
-var from="", dest="";
+var from="", dest=""; 
 var flightArr=[]; 
 var totalFlights; 
 var dirflights;
+var startPlace="Bangalore"
+var endPlace="Kolkata"
+var viaPlace="Jaipur"
+var compFlightInfo=[
+    {
+        "place":"Ahmedabad",
+        "airportName":"Sardar Vallabhai Patel International Airport",
+        "abbName":"AMD"
+    },
+    {
+        "place":"Bangalore",
+        "airportName":"Kempegowda International Airport",
+        "abbName":"BLR"
+    },
+    {
+        "place":"Delhi",
+        "airportName":"Indira Gandhi International Airport",
+        "abbName":"DEL"
+    },
+    {
+        "place":"Hyderabad",
+        "airportName":"Rajiv Gandhi International Airport",
+        "abbName":"HYD"
+    },
+    {
+        "place":"Jaipur",
+        "airportName":"Jaipur International Airport",
+        "abbName":"JAI"
+    },
+    {
+        "place":"Kolkata",
+        "airportName":"Netaji Subhash Chandra Bose International Airport",
+        "abbName":"CCU"
+    },
+    {
+        "place":"Mumbai",
+        "airportName":"Chhatrapati Shivaji Maharaj International Airport",
+        "abbName":"BOM"
+    }
+
+]
 
 //adding commas to numbers
 function numberWithCommas(number) {
     var parts = number.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join(".");
+    return parts.join("."); 
 }
 
 //adding and subtracting passengers
@@ -41,6 +81,93 @@ $(".subtract").click(()=>{
         $(".passenger-inp").val(valuePas);
     }
 });
+
+
+//button on click
+$(".home-page .btn").click(()=>{
+    $(".home-page .btn").addClass("animateButton");
+    setTimeout(()=>{
+        $(".home-page .btn").removeClass("animateButton");
+
+    },500)
+
+   if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if((!$("#start").val())){
+            console.log("invalid")
+            $(".source-error").css("transform","scale(1)")
+        }
+        else{
+            $(".source-error").css("transform","scale(0)")
+        }
+    //}
+    // if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#end").val())){
+            $(".dest-error").css("transform","scale(1)")
+        }
+        else{
+            $(".dest-error").css("transform","scale(0)")
+        }
+  //  }
+    // if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#date").val())){
+            $(".date-error").css("transform","scale(1)")
+        }
+        else{
+            $(".date-error").css("transform","scale(0)")
+        }
+   // }
+    // if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#passenger").val())){
+            $(".pass-error").css("transform","scale(1)")
+        }
+        else{
+            $(".pass-error").css("transform","scale(0)")
+        }
+   // }
+    // if((!$("#start").val()) || !($("#end").val()) || !($("#date").val()) || !($("#passenger").val()) || !($("#tier").val())){
+        if(!($("#tier").val())){
+            $(".class-error").css("transform","scale(1)")
+        }
+        else{
+            $(".class-error").css("transform","scale(0)")
+        }
+    }
+
+    /* if(($("#start").val())){
+        console.log("invalid")
+        $(".source-error").css("transform","scale(0)")
+    }
+    if(($("#end").val())){
+        $(".dest-error").css("transform","scale(0)")
+    }
+    if(($("#date").val())){
+        $(".date-error").css("transform","scale(0)")
+    }
+    if(($("#passenger").val())){
+        $(".pass-error").css("transform","scale(0)")
+    }
+    if(($("#tier").val())){
+        $(".class-error").css("transform","scale(0)")
+    } */
+
+    else{
+        
+        console.log("valid")
+        //storing the values of input field to session storage to pass the values to next page(static-card)
+        sessionStorage.setItem("source",$("#start").val())
+        sessionStorage.setItem("destination",$("#end").val())
+        sessionStorage.setItem("numPass",$("#passenger").val())
+        sessionStorage.setItem("deptDate",$("#date").val())
+        sessionStorage.setItem("class",$("#tier").val())
+
+        $(".error").css("transform","scale(0)")
+        $(".overlay").css("transform","translateX(0%)")
+        $(".overlay").css("opacity","1")
+    }
+    
+    
+})
+
 
 //form selection options
 
@@ -144,13 +271,12 @@ function selectOpt(evt){
 
     if($(evt.target).parents().hasClass("dropdown")){
         //console.log("inside")
-        if($(evt.target).parents().hasClass("dropdown-from") && $(evt.target).text()!=$(".to input").val()){
+        if($(evt.target).parents().hasClass("dropdown-from") /* && $(evt.target).text()!=$(".to input").val() */){
             
             $(".from input").val($(evt.target).text())
-            if($("input").val()!=""){
+            if($(".from input").val()!=""){
                 console.log("adding element")
-                console.log(fromPlaceElem[0])
-
+                console.log(fromPlaceElem)
                 $(".dropdown").append(fromPlaceElem[0])
                 //$(".dropdown-from").append(fromPlaceElem[0])
                 $(".from .label-name .content-name").css(
@@ -202,9 +328,10 @@ function selectOpt(evt){
     }
 
     setTimeout(()=>{
-        $(".dropdown").css("display","none");
+        $(".dropdown").css("height","0");
         setTimeout(()=>{
-            $(".dropdown").css("height","0");
+            $(".dropdown").css("display","none");
+
         },200)
     },200)
     
@@ -212,19 +339,6 @@ function selectOpt(evt){
 
 
     
-//button on click
-
-$(".btn").click(()=>{
-    $(".btn").addClass("animateButton");
-    setTimeout(()=>{
-        $(".btn").removeClass("animateButton");
-
-    },500)
-
-    $(".overlay").css("transform","translateX(0%)")
-    $(".overlay").css("opacity","1")
-    
-})
 
 
 //getting random numbers to fill values of direct flights
@@ -348,13 +462,13 @@ function updateViaCard(arr){
         $(`.price-${countViaCard}`).text(priceVia)
         var elem=` <div class="card-${countViaCard} card">
                   <div class="card-content">
-                    <div class="flight-name-${countViaCard}">${viaFlightsName}</div>
+                    <div class="flight-name-${countViaCard} flight-name">${viaFlightsName}</div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-${countViaCard} from-overlay">${viaflights[i].start.charAt(0).toUpperCase() + viaflights[i].start.slice(1) }</div>&nbsp;-&nbsp;<div class="via-${countViaCard} via-overlay">${viaflights[i].via.charAt(0).toUpperCase() + viaflights[i].via.slice(1) }</div>&nbsp;-&nbsp;<div class="to-${countViaCard} to-overlay">${viaflights[i].end.charAt(0).toUpperCase() + viaflights[i].end.slice(1) }</div>
                       </div>
                       <div class="time">
-                        <div class="from-time-${countViaCard}">${viaflights[i].departure}</div>&nbsp;-&nbsp;<div class="to-time-${countViaCard}">${viaflights[i].arrival}</div>
+                        <div class="fromTime from-time-${countViaCard}">${viaflights[i].departure}</div>&nbsp;-&nbsp;<div class="toTime to-time-${countViaCard}">${viaflights[i].arrival}</div>
                       </div>
                       <div class="price-details">
                         Price: &#8377; <div class="price-${countViaCard}">${priceVia}</div>
@@ -401,11 +515,7 @@ $(".via-flights-o .card-8").click(animatingCard) */
 //changing map of via flights
 
 $(".via-flights-o").on('click', '.card-4', function(){
-    let x = $(".from-4").text().toLowerCase()
-    let y = $(".via-4").text().toLowerCase()
-    let z = $(".to-4").text().toLowerCase()
     showPath($(".from-4").text().toLowerCase(),$(".via-4").text().toLowerCase(),$(".to-4").text().toLowerCase())
-    console.log(x, y, z)
 });
 
 $(".via-flights-o").on('click', '.card-5', function(){
@@ -427,15 +537,16 @@ $(".via-flights-o").on('click', '.card-8', function(){
 });
 
 
+//adding the gradient border to the card and white border to optimised card 
 function animatingCard(evt){
 
-    var countAnimate=0;
     var className=$(evt.target).attr('class').split(" ")
     className=className.shift();
     
-    classArray=["card-1","card-2","card-3","card-4","card-5","card-6","card-7","card-8"]
+    classArray=["card-1","card-2","card-3","card-5","card-6","card-7","card-8"]
     classArrayNew=[]
     var j=0;
+    //making a new array with the cards apart from the selected one and card-4
     for(let i=0;i<classArray.length;i++){
 
         if(classArray[i]==className){
@@ -444,73 +555,261 @@ function animatingCard(evt){
         classArrayNew[j]=classArray[i];
         j++;
     }
+ 
+    //console.log("new",classArrayNew)
+    //console.log("card-4",$(evt.target).hasClass("card-4"))
 
-    console.log("new",classArrayNew)
-     for(let k=0;k<classArrayNew.length;k++){
+    //checking if the clicked card is card-4 and making border white
+    if($(evt.target).hasClass("card-4")){
+        $(evt.target).addClass("animateCard");
+        $(evt.target).css("border","4px solid transparent")
+        $(evt.target).css("border-image","linear-gradient(45deg,rgb(255, 239, 299),rgb(240, 247, 238))")
+        $(evt.target).css("border-image-slice","1")
 
+
+        //this for loop removes gradient border from other cards 
+        for(let k=0;k<classArrayNew.length;k++){
+                $("."+classArrayNew[k]).removeClass("animateCard");
+                $("."+classArrayNew[k]).css("border-image","none")
+                $("."+classArrayNew[k]).css("background","rgba(8, 8, 8, 0.3)")
+        } 
+    }
+    else{
+
+        for(let k=0;k<classArrayNew.length;k++){
         
-        if( $("."+classArrayNew[k]).hasClass("animateCard") && k!=3){
-            console.log("if"+k)
-            console.log(classArrayNew[k])
-            $("."+classArrayNew[k]).removeClass("animateCard");
-            $("."+classArrayNew[k]).css("border-image","none")
-            $("."+classArrayNew[k]).css("background","rgba(8, 8, 8, 0.3)")      
-            
-        }
-
-        else if($("."+classArrayNew[k]).hasClass("animateCard") && k==3){
-            console.log("else if"+k)
+            //removing the animatecard class and the white border from the card-4
             $(".card-4").removeClass("animateCard");
             $(".card-4").css("border-image","none")
             $(".card-4").css("border","none")
             $(".card-4").css("background-image","linear-gradient(45deg,rgb(219, 39, 99),rgb(255, 154, 139))")
-        }
-        else{
-           //console.log("else part 1")
-             if($(evt.target).hasClass("card-4")){
-                //$(evt.target).css("border-image","none")
-                console.log("if inside else")
-                $(evt.target).addClass("animateCard");
-                $(evt.target).css("border","4px solid transparent")
-                $(evt.target).css("border-image","linear-gradient(45deg,rgb(255, 239, 299),rgb(240, 247, 238))")
-                $(evt.target).css("border-image-slice","1")
-                continue;
+
+            //checks if the other cards have a border and removes it
+            if( $("."+classArrayNew[k]).hasClass("animateCard") ){
+                //console.log("if"+k)
+                //console.log(classArrayNew[k])
+                $("."+classArrayNew[k]).removeClass("animateCard");
+                $("."+classArrayNew[k]).css("border-image","none")
+                $("."+classArrayNew[k]).css("background","rgba(8, 8, 8, 0.3)")    
+                
             }
 
-            //console.log("else part 1")
-            //$(evt.target).css("border-image","linear-gradient(45deg,#FF9A8B,#DB2763)");
-            $(evt.target).css("background","rgba(60, 60, 61,0.4)");
-            $(evt.target).addClass("animateCard");
-            $(evt.target).css("border-image","linear-gradient(45deg,rgb(219, 39, 99),rgb(255, 154, 139))")
-            $(evt.target).css("border-image-slice","1")
+            //changes the border of selected card to gradient
+            else{
+                $(evt.target).css("background","rgba(60, 60, 61,0.4)");
+                $(evt.target).addClass("animateCard");
+                $(evt.target).css("border-image","linear-gradient(45deg,rgb(219, 39, 99),rgb(255, 154, 139))")
+                $(evt.target).css("border-image-slice","1")
+            }
         }
     }
-
-    
-    /*
-    console.log("animation count",countAnimate)
-    if(countAnimate>0){
-        $(classArrayNew[k]).removeClass("animateCard");
-        $(classArrayNew[k]).css("border-image","none");
-    }
-    else{
-        
-        
-    } */
-    
     
 }
 
+$(".overlay .search-btn").click((event)=>{
+    var countSelection=0
+    var cardClass=''
+    var cardArray=["card-1","card-2","card-3","card-4","card-5","card-6","card-7","card-8"]
+    var cardElem
+    for(let i=0;i<cardArray.length;i++){
+        console.log("border-image"+$("."+cardArray[i]).css("border-image"))
+        if($("."+cardArray[i]).css("border-image")!="none"){
+            cardElem=$("."+cardArray[i]).clone()
+            cardClass=$(cardElem).attr('class')
+            cardClass=cardClass.split(' ')
+            cardClass=cardClass[0]
+            viaPlace=$("."+cardClass+" .via-overlay").text()
+            sessionStorage.setItem("via",viaPlace)
+            sessionStorage.setItem("Flight-Name",$("."+cardClass+" .flight-name").text())
+            sessionStorage.setItem("departureTime",$("."+cardClass+" .fromTime").text())
+            sessionStorage.setItem("arrivalTime",$("."+cardClass+" .toTime").text())
+            //console.log("card class"+cardClass)
+            countSelection++;
+        }
+    }
+    
+    if(countSelection==0){
+        for(let p=0;p<cardArray.length;p++){
+            $("."+cardArray[p]).addClass("shakeCard")
+            setTimeout(()=>{
+                $("."+cardArray[p]).removeClass("shakeCard")
+            },1000)
+        }
+        setTimeout(()=>{
+            window.alert("Select a Flight to Proceed")
+        },500)
+        
+        event.preventDefault()
+    }
+    
+    
+})
 
-//sortPrice();
-const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
-
-const d = new Date("1/10/1999"); //date is in mm/dd/yyyy format
-console.log("month",d.getMonth())
-console.log("The current month is " + monthNames[d.getMonth()]);
-console.log("date"+d.getDate())
 
 
 
+//script for the static-card page
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+const weekDays=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+//time difference
+function diff(start, end) {
+    start = start.split(":");
+    end = end.split(":");
+    var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+    var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+    var diff = endDate.getTime() - startDate.getTime();
+    console.log(diff)
+    var hours = Math.floor(diff / 1000 / 60 / 60); //diff is in MILLISECONDS converting it into hours
+    console.log(hours)
+    diff -= hours * 1000 * 60 * 60; //subtracting the number of ms in hours to get the no. of minutes
+    var minutes = Math.floor(diff / 1000 / 60);
+
+    // If using time pickers with 24 hours format, add the below line get exact hours
+    if (hours < 0)
+       hours = hours + 24;
+
+    return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+}
+
+
+
+//updating values of static-card
+$(".static-container").ready(()=>{
+    //getting these values on button click of homepage 
+    var src=sessionStorage.getItem("source")
+    var dest=sessionStorage.getItem("destination")
+    var departureDate=sessionStorage.getItem("deptDate")
+    var numPassenger=sessionStorage.getItem("numPass")
+    var tier=sessionStorage.getItem("class")
+    var connecting=sessionStorage.getItem("via")
+    var flightname=sessionStorage.getItem("Flight-Name")
+    var arrTime=sessionStorage.getItem("arrivalTime")
+    var deptTime=sessionStorage.getItem("departureTime")
+    var time, hrs, mins
+    var airportNameSrc,abbvNameSrc,airportNameDest,abbvNameDest='',airportNameVia, abbvNameVia
+
+    console.log("values",src,dest,departureDate,numPassenger,tier,connecting,flightname,arrTime,deptTime)
+    
+    if(!(connecting)){
+        console.log("empty")
+        $(".static-container .row-2-2").css("display","none")
+        $(".static-container .viaDot").css("display","none")
+        $(".static-container .icon-via").css("display","none")
+        $(".static-container .via-dash").css("display","none")
+        $(".static-container .abbvVia").css("display","none")
+    }
+    else{
+        $(".static-container .row-2-2").css("display","flex")
+        $(".static-container .viaDot").css("display","flex")
+        $(".static-container .via-dash").css("display","flex")
+        $(".static-container .abbvVia").css("display","flex")
+    }
+    $(".static-container .title-from").text(src)
+    $(".static-container .title-to").text(dest)
+    $(".static-container .passNum").text(numPassenger)
+    $(".static-container .coachClass").text(tier)
+
+    //getting values from overlay 
+    $(".static-container .title-via").text(connecting)
+    $(".static-container .flightName").text(flightname)
+    $(".static-container .deptTime").text(deptTime)
+    $(".static-container .arrivalTime").text(arrTime)
+    time=diff(deptTime,arrTime)
+    time=time.split(":")
+    hrs=time[0]
+    mins=time[1]
+    console.log("time diff"+time)
+    $(".static-container .hours").text(hrs)
+    $(".static-container .minutes").text(mins)
+
+    const d = new Date(departureDate); //converting date to string format
+    $(".static-container .date").text(d.getDate())
+    $(".static-container .month").text(monthNames[d.getMonth()])
+    $(".static-container .day").text(weekDays[d.getDay()])
+     
+    //getting abbrevations of places and airport names of source
+    for(let r=0;r<compFlightInfo.length;r++){
+        if(compFlightInfo[r]['place']==src){
+            airportNameSrc=compFlightInfo[r]['airportName']
+            abbvNameSrc=compFlightInfo[r]['abbName']
+        }
+    }
+
+
+    for(let s=0;s<compFlightInfo.length;s++){
+        if(compFlightInfo[s]['place']==dest){
+            airportNameDest=compFlightInfo[s]['airportName']
+            abbvNameDest=compFlightInfo[s]['abbName']
+        }
+    }
+
+    for(let t=0;t<compFlightInfo.length;t++){
+        if(compFlightInfo[t]['place']==connecting){
+            airportNameVia=compFlightInfo[t]['airportName']
+            abbvNameVia=compFlightInfo[t]['abbName']
+        }
+    }
+
+    $(".static-container .deptAirport").text(airportNameSrc+' ('+abbvNameSrc+')')
+    $(".static-container .arrivalAirport").text(airportNameDest+' ('+abbvNameDest+')')
+    $(".static-container .viaAirport").text(airportNameVia+' ('+abbvNameVia+')')
+    $(".abbvFrom").text(abbvNameSrc)
+    $(".abbvTo").text(abbvNameDest)
+    $(".abbvVia").text(abbvNameVia)
+
+})
+
+//button on click for the static-page
+$(".btn-change-flight").click((evt)=>{
+    $(".btn-change-flight").addClass("animateButton");
+    setTimeout(()=>{
+        $(".btn-change-flight").removeClass("animateButton");
+
+    },500)
+})
+
+$(".btn-confirm").click((evt)=>{
+    $(".btn-confirm").addClass("animateButton");
+    setTimeout(()=>{
+        $(".btn-confirm").removeClass("animateButton");
+
+    },500)
+})
+
+$(".dropdown-btn").on('click',cardOpen)
+$(".selected-card").on('click',cardOpen)
+function cardOpen(evt){
+    
+    if($(".dropdown-btn i").css("margin-top")=="15px"){
+        $(".dropdown-btn i").css("margin","12px 15px")
+        $(".dropdown-btn i").css("transform","rotate(180deg)")
+        $(".long-content").css("display","block")
+        $(".short-content").css("display","none")
+        $(".selected-card").css("height","12em")
+        $(".short-content").css("opacity","0")
+        setTimeout(()=>{
+            $(".long-content").css("opacity","1")
+        },365)
+    }
+    else{
+        $(".dropdown-btn i").css("margin","15px")
+        $(".dropdown-btn i").css("transform","rotate(0deg)")
+        $(".short-content").css("display","flex")
+        $(".long-content").css("display","none")
+        $(".selected-card").css("height","5em")
+        $(".long-content").css("opacity","0")
+        setTimeout(()=>{
+            $(".short-content").css("opacity","1")
+        },365)
+    }
+}
+
+
+
+
+
+function payment(){
+    window.location.assign('app.html')
+}

@@ -6,7 +6,7 @@ getCurrentTicketsPassengers()
 function getCurrentTicketsPassengers() {
 
     var data = {
-        userId: sessionStorage.getItem('user_id')
+        userId: 2
     }
 
     const options = {
