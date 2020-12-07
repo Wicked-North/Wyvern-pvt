@@ -91,25 +91,27 @@ body {
     line-height:36px;
 }
 
-.title{
-    display: flex;
-    font-size: 48px;
-    font-family: 'Overlock', cursive;
-    font-weight: 700;
-    background-clip: text;
-    justify-content: space-between;
-    width: 98.5%;
-    div, i{
-        color: transparent;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(45deg, $grad-pink, $grad-red);
-    }
-    i{
-        display: block;
-        font-size: 50%;
-        margin: auto 0.5em;
-        opacity: 0.8;
+.static-container{
+    .title{
+        display: flex;
+        font-size: 48px;
+        font-family: 'Overlock', cursive;
+        font-weight: 700;
+        background-clip: text;
+        justify-content: space-between;
+        width: 98.5%;
+        div, i{
+            color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(45deg, $grad-pink, $grad-red);
+        }
+        i{
+            display: block;
+            font-size: 50%;
+            margin: auto 0.5em;
+            opacity: 0.8;
+        }
     }
 }
 
