@@ -1,7 +1,7 @@
 $darkest-grey:rgb(42, 42, 48);
 $black:rgb(16, 16, 17);
 $medium-grey:rgb(78, 78, 80);
-$transparent-grey:rgba(78, 78, 80,0.4);
+$transparent-grey:rgba(78, 78, 80, 0.4);
 $black-lighter:rgba(8, 8, 8, 0.3);
 $font-light:rgb(240, 247, 238);
 $height-field: 3.5rem;
@@ -11,185 +11,204 @@ $after-color:rgb(240, 247, 238);
 $grad-pink:rgb(255, 154, 139);
 $grad-red:rgb(219, 39, 99);
 $light-pink:rgb(255, 189, 179);
+$after-color-login:rgb(219, 39, 99);
+$before-color-login:rgb(240, 247, 238);
+$height-field-login:3rem;
+$font-size-custom-login:1em;
 
-@mixin removeStyle(){
-    outline:none;
+@mixin removeStyle() {
+    outline: none;
     background: transparent;
-    text-decoration:none;
-    border:none;
+    text-decoration: none;
+    border: none;
 }
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     user-select: none;
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
         display: none;
     }
+
     scrollbar-width: none;
-    
+
 }
 
 
 
-body{
+body {
     height: 100vh;
     width: 100vw;
-    overflow:hidden;
+    overflow: hidden;
     font-family: 'Average Sans', sans-serif;
-    
+
 }
 
-//icons styling
-.fas{
-    background-image: linear-gradient(50deg, $grad-pink, $grad-red);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    opacity: 0.9;
-    display: block;
+.row-1 {
+
+    //icons styling
+    .fas {
+        background-image: linear-gradient(50deg, $grad-pink, $grad-red);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0.9;
+        display: block;
+    }
 }
 
-.home-page{
+.home-page {
     height: 100%;
     width: 100%;
-    color:$font-light;
+    color: $font-light;
 }
 
-.row-1{
+.row-1 {
     height: 100%;
     width: 100%;
     display: grid;
     grid-template-columns: 51% 49%;
-    
+
 }
 
-.col-1, .col-2{
+.col-1,
+.col-2 {
 
     height: 100%;
 }
 
-.col-1{
+.col-1 {
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(45deg,$darkest-grey,$black);
+    background-image: linear-gradient(45deg, $darkest-grey, $black);
 }
 
-.col-2{
+.col-2 {
     background-color: $medium-grey;
-    padding:3em 4em;
+    padding: 3em 4em;
 }
 
 //form content styling
-.main-content-1{
-    display:flex;
-    flex-direction:column;
+.main-content-1 {
+    display: flex;
+    flex-direction: column;
     height: 70%;
-    width:70%;
+    width: 70%;
 }
 
-.title-1{
+.title-1 {
     font-family: 'Overlock', cursive;
-    font-size:2.5rem;
-    font-weight:900;
+    font-size: 2.5rem;
+    font-weight: 900;
     margin-top: 2em;
 }
 
 
 
 //text-field animation
-.formi{
+.formi {
     display: flex;
     position: relative;
     flex-direction: column;
-    width:90%;
-    height:$height-field;
+    width: 90%;
+    height: $height-field;
     overflow: hidden;
     margin-top: 1.2em;
     //background-color:rgba(240, 240, 240, 0.1);
     //backdrop-filter: blur(10px);
 
 }
-.formi input{
+
+.formi input {
     @include removeStyle();
     color: $after-color;
     cursor: pointer;
     height: 100%;
-    width:100%;
+    width: 100%;
     font-size: 1.1rem;
     padding-top: $height-field - 1.5rem;
-        &:focus + .label-name .content-name, &:valid + .label-name .content-name{
-            /* :valid ensures that when input text is added and the focus is shifted somwehere else
+    caret-color: transparent;
+
+    &:focus + .label-name .content-name,
+    &:valid + .label-name .content-name {
+        /* :valid ensures that when input text is added and the focus is shifted somwehere else
             the label doesn't come back to its initial position*/
-            color:$after-color;
-            font-size:$font-size-custom - $font-size-custom/10;           
-            transform: translateY(-140%);
-        }
-    
-    
+        color: $after-color;
+        font-size: $font-size-custom - $font-size-custom/10;
+        transform: translateY(-140%);
+    }
+
+
 }
 
-.formi label{
+
+
+.formi label {
     @include removeStyle();
     position: absolute;
     pointer-events: none;
-    width:100%;
-    height:100%;
-    bottom:0;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
     border-bottom: 2px solid $before-color;
-    color:$before-color;
-        &::after{
-            content: "";
-            position: absolute;
-            width:100%;
-            height: 100%;
-            border-bottom: 2px solid $after-color;
-            left:0;
-            transform: translateX(-100%);
-            
-            /*Moving the blue line out of frame initially also, 
+    color: $before-color;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-bottom: 2px solid $after-color;
+        left: 0;
+        transform: translateX(-100%);
+
+        /*Moving the blue line out of frame initially also, 
             since overflow is not hidden it is visible on the frame when overflow:hidden; 
             not applied to parent*/
-            transition: transform 500ms ease;
-        }
+        transition: transform 500ms ease;
+    }
 
 }
 
-.content-name{
+.formi .content-name {
     position: absolute;
     top: $height-field - 1.5rem;
     transition: all 500ms ease;
     font-size: $font-size-custom;
 }
 
-.formi input:focus + .label-name::after, .formi:valid  + label::after{
-    transform:translateX(0%);
+.formi input:focus+.formi .label-name::after,
+.formi input:valid+ .formi label::after {
+    transform: translateX(0%);
     border-color: $after-color;
-    
-    
+
+
 }
 
 
 //passenger buttons
-.buttons{
+.buttons {
     position: absolute;
     top: 50%;
     left: 90%;
 }
 
-.add, .subtract{
+.add,
+.subtract {
     @include removeStyle();
     cursor: pointer;
     color: $before-color;
     font-size: 1rem;
 
-    .fas{
+    .fas {
         pointer-events: none;
     }
-    
+
 }
 
-.add{
+.add {
     margin-right: 0.5em;
 }
 
@@ -197,18 +216,18 @@ body{
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 
 //departure date-field 
-.fa-calendar-day{
+.fa-calendar-day {
     color: $before-color;
     opacity: 0.8;
     position: absolute;
@@ -219,6 +238,7 @@ input[type=number] {
     cursor: pointer;
 
 }
+
 ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
 ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
 ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
@@ -229,12 +249,12 @@ input[type=number] {
     background-image: url("../images/calendar.png");
     margin-bottom: 0.5em;
     cursor: pointer;
-  }
-  
+}
 
-#today{
+
+#today {
     user-select: none; //not working
-    
+
 }
 
 
@@ -243,33 +263,34 @@ input[type=number] {
 //dropdown
 
 //arrow downs for dropdown
-.arrow{
+.arrow {
     color: $before-color;
     position: absolute;
     top: 50%;
     left: 95%;
     font-size: 1.4rem;
-    font-weight:lighter;
+    font-weight: lighter;
 }
 
-.fa-angle-down{
-    transform:rotate(0deg);
+.fa-angle-down {
+    transform: rotate(0deg);
 }
 
 
-.dropdown{
+.dropdown {
     position: absolute;
-    background-color: rgba(26, 26, 29,1);
+    background-color: rgba(26, 26, 29, 1);
     z-index: 100000;
     width: 32%;
     overflow: scroll;
     border-bottom: 3px solid $grad-pink;
-    box-shadow: 0 1px 40px rgba(255,255,255,0.1);
+    box-shadow: 0 1px 40px rgba(255, 255, 255, 0.1);
 
     display: none;
-    height:0;
+    height: 0;
     transition: all 400ms ease-in;
-    div{
+
+    div {
         padding-left: 1em;
         height: 3em;
         border: 3px solid $grad-pink;
@@ -277,30 +298,32 @@ input[type=number] {
         align-items: center;
         cursor: pointer;
         transition: all 200ms ease-in;
-        
-        &:hover{
+
+        &:hover {
             color: $darkest-grey;
             background-color: rgb(255, 154, 139);
-            
+
         }
     }
 }
 
-@supports not (backdrop-filter: blur(10px)){
-    .dropdown{
+@supports not (backdrop-filter: blur(10px)) {
+    .dropdown {
         background-color: $darkest-grey;
     }
 }
 
 
-@keyframes onclick{
-    0%{
-        transform:scale(1);
+@keyframes onclick {
+    0% {
+        transform: scale(1);
     }
-    50%{
-        transform:scale(0.95);
+
+    50% {
+        transform: scale(0.95);
     }
-    100%{
+
+    100% {
         transform: scale(1);
     }
 }
@@ -309,7 +332,7 @@ input[type=number] {
 .btn {
     position: relative;
     display: inline-block;
-    outline:none;
+    outline: none;
     width: 277px;
     height: 50px;
     font-weight: 700;
@@ -317,15 +340,15 @@ input[type=number] {
     text-align: center;
     background-color: transparent;
     cursor: pointer;
-    text-decoration:none;
-    font-weight:900;
-    font-size:1.4rem;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 1.4rem;
     letter-spacing: 0.045em;
     margin: 1.5em 36%;
-    
+
 }
 
-.animateButton{
+.animateButton {
     animation-name: onclick;
     animation-duration: 500ms;
     animation-timing-function: ease-in;
@@ -349,15 +372,15 @@ input[type=number] {
     transition: all 600ms ease;
 }
 
-.btn span{
-  background: rgb(255,130,130);
-  background: -moz-linear-gradient(left,  $grad-pink 0%, $grad-red 100%);
-  background: -webkit-linear-gradient(left,  $grad-pink 0%,$grad-red 100%);
-  background: linear-gradient(to right,  $grad-pink 0%,$grad-red 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8282', endColorstr='#e178ed',GradientType=1 );
-  
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.btn span {
+    background: rgb(255, 130, 130);
+    background: -moz-linear-gradient(left, $grad-pink 0%, $grad-red 100%);
+    background: -webkit-linear-gradient(left, $grad-pink 0%, $grad-red 100%);
+    background: linear-gradient(to right, $grad-pink 0%, $grad-red 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8282', endColorstr='#e178ed', GradientType=1);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .btn:hover svg rect {
@@ -366,19 +389,20 @@ input[type=number] {
     stroke-dashoffset: 437;
 }
 
-.overlay{
-    background-image: linear-gradient(45deg,$darkest-grey,$black);
+.overlay {
+    background-image: linear-gradient(45deg, $darkest-grey, $black);
     height: 100%;
-    width:51%;
+    width: 51%;
     position: absolute;
     overflow: scroll;
     opacity: 0;
     transform: translateX(-150%);
     transition: all 400ms ease-in;
-    
+
 }
 
-.direct-flights-o , .via-flights-o{
+.direct-flights-o,
+.via-flights-o {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -386,7 +410,7 @@ input[type=number] {
 }
 
 
-.card{
+.card {
     border: 4px solid transparent;
     border-image-slice: 1;
     width: 85%;
@@ -395,60 +419,63 @@ input[type=number] {
     cursor: pointer;
     transition: all 250ms ease-in;
     background: $black-lighter;
-    
+
     &:hover {
         color: $light-pink;
-        transform:scale(1.05);
-        
+        transform: scale(1.05);
+
     }
 }
 
-.card-8{
-    margin-bottom:0;
+.card-8 {
+    margin-bottom: 0;
 }
 
-.overlay-title{
+.overlay-title {
     font-family: 'Overlock', cursive;
-    font-size:2.3rem;
-    font-weight:900;
-    display:block;
+    font-size: 2.3rem;
+    font-weight: 900;
+    display: block;
     margin-left: auto;
     width: 90%;
     margin-top: 1.5em;
 }
 
-.overlay-title-2{
-    font-size:2.1rem;
+.overlay-title-2 {
+    font-size: 2.1rem;
 
-    span{
+    span {
         //font-size: 2rem;
         font-family: 'Overlock', cursive;
     }
 }
 
-.direct-flights-title, .via-flights-title{
+.direct-flights-title,
+.via-flights-title {
     width: 80%;
     margin: 0.5em 0;
     font-size: 1.4rem;
 }
 
-.via-flights-title{
-    margin-left:10% ;
+.via-flights-title {
+    margin-left: 10%;
 }
 
-@keyframes onclickCard{
-    0%{
-        transform:scale(1);
+@keyframes onclickCard {
+    0% {
+        transform: scale(1);
     }
-    50%{
-        transform:scale(0.95);
+
+    50% {
+        transform: scale(0.95);
     }
-    100%{
+
+    100% {
         transform: scale(1);
     }
 }
 
-.animateCard{
+.animateCard {
     animation-name: onclickCard;
     animation-duration: 400ms;
     animation-timing-function: ease-in;
@@ -456,93 +483,100 @@ input[type=number] {
 
 }
 
-.card-content{
+.card-content {
     margin: 1em 0 0 1em;
-    font-size:1.1rem;
+    font-size: 1.1rem;
     pointer-events: none;
     width: 100%;
 
 }
 
 
-.places , .time, .price-details{
+.places,
+.time,
+.price-details {
     display: flex;
 }
 
-.content-details{
+.content-details {
     display: flex;
     justify-content: space-between;
     margin-top: 0.5em;
 }
 
 
-.places, .time{
+.places,
+.time {
     border-right: 2px solid transparent;
-    border-image: linear-gradient($grad-pink,$grad-red);
+    border-image: linear-gradient($grad-pink, $grad-red);
     border-image-slice: 1;
 }
 
 
-.via-flights-o{
-    .places{
+.via-flights-o {
+    .places {
         width: 48%;
     }
-    
-    .time, .price-details{
+
+    .time,
+    .price-details {
         margin-left: 0.5em;
-        width:26%;
+        width: 26%;
     }
-    
+
 }
 
-.direct-flights-o{
-    .places{
+.direct-flights-o {
+    .places {
         width: 35%;
     }
 
-    .time, .price-details{
+    .time,
+    .price-details {
         width: 30%;
         margin-left: 0.5em;
     }
 }
 
-.via-flights-o .card-4{
-    background-image: linear-gradient(45deg,$grad-pink,$grad-red);
+.via-flights-o .card-4 {
+    background-image: linear-gradient(45deg, $grad-pink, $grad-red);
     color: $darkest-grey;
-    border:none;
+    border: none;
     font-weight: 700;
 
-    .places , .time{
+    .places,
+    .time {
         border-image: none;
         border-right: 2px solid $darkest-grey;
     }
 
 }
 
-.optimised{
+.optimised {
     display: flex;
-    span{
-        opacity:0.9;
-        font-weight:500;
+
+    span {
+        opacity: 0.9;
+        font-weight: 500;
         display: flex;
         color: $darkest-grey;
-       
-        .dot-opt{
+
+        .dot-opt {
             height: 0.3em;
             width: 0.3em;
-            border-radius:50%;
+            border-radius: 50%;
             background: $darkest-grey;
             margin: auto 0;
         }
     }
 }
 
-.sortby{
-    display:flex;
+.sortby {
+    display: flex;
     font-size: 1.2rem;
     color: $font-light;
 
-    button{
+    button {
         @include removeStyle();
         color: $font-light;
         font-size: 1.15rem;
@@ -552,18 +586,18 @@ input[type=number] {
     }
 }
 
-.search-btn{
-    left:5.8em;
+.search-btn {
+    left: 5.8em;
 }
 
 
 //animation of card when neither is selected and button is clicked
-.shakeCard{
+.shakeCard {
     animation-name: shake;
     animation-duration: 400ms;
     animation-timing-function: ease-in;
     animation-iteration-count: 1;
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000px;
@@ -571,20 +605,26 @@ input[type=number] {
 }
 
 @keyframes shake {
-    10%, 90% {
-      transform: translate3d(-2px, 0, 0);
+
+    10%,
+    90% {
+        transform: translate3d(-2px, 0, 0);
     }
-    
-    20%, 80% {
-      transform: translate3d(4px, 0, 0);
+
+    20%,
+    80% {
+        transform: translate3d(4px, 0, 0);
     }
-  
-    30%, 50%, 70% {
-      transform: translate3d(-16px, 0, 0);
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-16px, 0, 0);
     }
-  
-    40%, 60% {
-      transform: translate3d(16px, 0, 0);
+
+    40%,
+    60% {
+        transform: translate3d(16px, 0, 0);
     }
 }
 
@@ -592,12 +632,236 @@ input[type=number] {
 //error
 //validating form page-1
 
-.error{
-    color:$grad-red;
+.error {
+    color: $grad-red;
     margin-top: 0.1em;
-    position:absolute;
-    font-size:0.8rem; 
-    transition:all 265ms ease-out;
-    display:inline-block;
-    transform:scale(0);
+    position: absolute;
+    font-size: 0.8rem;
+    transition: all 265ms ease-out;
+    display: inline-block;
+    transform: scale(0);
+}
+
+
+.login-container {
+    position: absolute;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(31, 30, 30, 0.1);
+    backdrop-filter: blur(5px);
+    //opacity: 1;
+    transition: all 400ms ease-in;
+    color: $font-light;
+
+    //display:none;
+
+}
+
+.login {
+
+    background-color: $black;
+    backdrop-filter: blur(400px);
+    //backdrop-filter: blur(40px);
+    height: 28em;
+    width: 40em;
+    border: 4px solid $grad-red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+//text-field animation
+.formi-login {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 90%;
+    height: $height-field;
+    overflow: hidden;
+    margin-top: 1em;
+    //background-color:rgba(240, 240, 240, 0.1);
+    //backdrop-filter: blur(10px);
+
+}
+
+.formi-login input {
+    @include removeStyle();
+    color: $grad-pink;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    font-size: 1.1rem;
+    padding-top: $height-field-login - 1.5rem;
+
+
+    &:focus+.label-name .content-name,
+    &:valid+.label-name .content-name {
+        /* :valid ensures that when input text is added and the focus is shifted somwehere else
+            the label doesn't come back to its initial position*/
+        color: $after-color-login;
+        font-size: $font-size-custom-login - $font-size-custom-login/10;
+        transform: translateY(-140%);
+    }
+
+
+
+}
+
+.formi-login label {
+    @include removeStyle();
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    border-bottom: 2px solid $before-color-login;
+    color: $before-color-login;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-bottom: 2px solid $after-color-login;
+        left: 0;
+        transform: translateX(-100%);
+
+        /*Moving the blue line out of frame initially also, 
+            since overflow is not hidden it is visible on the frame when overflow:hidden; 
+            not applied to parent*/
+        transition: transform 500ms ease;
+    }
+
+    .content-name {
+        position: absolute;
+        top: $height-field-login - 0.8rem;
+        transition: all 500ms ease;
+        font-size: $font-size-custom-login;
+        color: $before-color-login;
+    }
+
+
+}
+
+.formi-login input:focus+.label-name::after,
+.formi-login input:valid+label::after {
+    transform: translateX(0%);
+    border-color: $after-color-login;
+}
+
+.login-container {
+    .title {
+        font-family: 'Overlock', cursive;
+        width: fit-content;
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: 0.05rem;
+        background-image: linear-gradient(45deg, $grad-red, $grad-pink);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    a,
+    a:link {
+        color: $grad-pink;
+    }
+}
+
+.login-content {
+    width: 28em;
+}
+
+.register-link {
+    margin-top: 0.5em;
+    cursor: pointer;
+
+    a {
+        display: inline-block;
+        transform: scale(1);
+        transition: transform 200ms linear;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+
+//gradient button animation on login button
+.login-btn {
+    position: relative;
+    display: inline-block;
+    outline: none;
+    width: 244px;
+    height: 50px;
+    font-weight: 700;
+    line-height: 60px;
+    text-align: center;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 1.4rem;
+    letter-spacing: 0.045em;
+    margin: 1.5em 36%;
+
+}
+
+.login-btn svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.login-btn svg rect {
+    /*stroke: #EC0033;*/
+    stroke-width: 3;
+    stroke-dasharray: 353, 0;
+    stroke-dashoffset: 0;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+}
+
+.login-btn span {
+    background: rgb(255, 130, 130);
+    background: -moz-linear-gradient(left, $grad-pink 0%, $grad-red 100%);
+    background: -webkit-linear-gradient(left, $grad-pink 0%, $grad-red 100%);
+    background: linear-gradient(to right, $grad-pink 0%, $grad-red 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8282', endColorstr='#e178ed', GradientType=1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+.login-btn:hover svg rect {
+    stroke-width: 4;
+    stroke-dasharray: 170, 543;
+    stroke-dashoffset: 437;
+}
+
+.cross-login {
+    @include removeStyle();
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: all 120ms linear;
+    transform: scale(1);
+    color: $grad-red;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    i {
+        font-size: 2rem;
+        pointer-events: none;
+    }
 }
