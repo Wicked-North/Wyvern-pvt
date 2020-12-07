@@ -664,9 +664,9 @@ function diff(start, end) {
     var startDate = new Date(0, 0, 0, start[0], start[1], 0);
     var endDate = new Date(0, 0, 0, end[0], end[1], 0);
     var diff = endDate.getTime() - startDate.getTime();
-    console.log(diff)
+    // console.log(diff)
     var hours = Math.floor(diff / 1000 / 60 / 60); //diff is in MILLISECONDS converting it into hours
-    console.log(hours)
+    // console.log(hours)
     diff -= hours * 1000 * 60 * 60; //subtracting the number of ms in hours to get the no. of minutes
     var minutes = Math.floor(diff / 1000 / 60);
 
@@ -700,10 +700,11 @@ $(".static-container").ready(()=>{
     console.log("cost",singPrice)
     var totalPrice=Number(numPassenger) * Number(singPrice)
     totalPrice=numberWithCommas(totalPrice)
+    sessionStorage.setItem('totalPrice', totalPrice)
     var time, hrs, mins
     var airportNameSrc,abbvNameSrc,airportNameDest,abbvNameDest='',airportNameVia, abbvNameVia
 
-    console.log("values",src,dest,departureDate,numPassenger,tier,connecting,flightname,arrTime,deptTime)
+    // console.log("values",src,dest,departureDate,numPassenger,tier,connecting,flightname,arrTime,deptTime)
     
     if(!(connecting)){
         console.log("empty")
@@ -820,5 +821,9 @@ function cardOpen(evt){
     }
 }
 
+
+function payment(){
+    window.location.assign('app.html')
+}
 
 

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link href='seatBooking.css' rel='stylesheet' type='text/css'>
+
+
+	<title>Card page</title>
+
+	<link rel="stylesheet" type="text/css" href="app.css">
+</head>
+
+<body>
+	<script src="https://kit.fontawesome.com/528142d28e.js" crossorigin="anonymous"></script>
+
+	<body>
+		<div class="container" >
+
+			<div class="card" id="card1">
+				<div class="cardimg" style="width: 18rem;">
+					<img src="https://theshillongtimes.com/wp-content/uploads/2019/05/spice-jet-logo.png"
+						class="card-img-top" alt="...">
+				</div>
+				<div class="card-body">
+					<strong id="caps">You're booking with <span>SpiceJet</span>.</strong> Google will securely pass your
+					traveller and payment details to SpiceJet. Once your booking has been confirmed, SpiceJet will
+					handle customer support.
+					<a href="https://www.spicejet.com/contactus.aspx" class="card-link">Learn more</a>
+				</div>
+			</div>
+
+			<div class="card" id="card2">
+				<div class="card-body">
+					<p><strong>
+							<h3 id="iternary">One Way To Bangalore</h3>
+						</strong></p>
+					<button type="button" class="btn btn-link">Show Iternary</button>
+				</div>
+			</div>
+
+			<div class="card" id="card3">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<p><i class="fa fa-exclamation-triangle" aria-hidden="true" id="yellowexclamation"></i> SpiceJet
+							charges a fee for use of some payment methods</p>
+					</li>
+					<li class="list-group-item">
+						<p>
+						<h5><i class="fa fa-exclamation-circle" aria-hidden="true" id="grayexclamation"></i> Masks
+							required</h5>
+						</p>
+						<p id="grayexclamationtext"><span id="space"></span>You'll need to wear a mask on board this
+							flight.
+							<a href="https://www.spicejet.com/COVID19.aspx">Learn More</a>
+
+					</li>
+					<li class="list-group-item">
+						<p><i class="fa fa-line-chart" aria-hidden="true" id="redgraph"></i><span id="redtext">
+								Unfortunately,</span> the fare went up by INR ₹50.00 since we last checked</p>
+					</li>
+				</ul>
+			</div>
+
+			<div class="card" id="card4">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<span>Who's travelling?</span>
+						<button id="detailsButton1" onclick="slideUpDown()" style="display: none;"><i class="fa fa-pencil"
+								aria-hidden="true"></i></Button>
+					</li>
+					<li id="customerDetails" class="list-group-item">
+						<form id="passform" onsubmit="continueToPayment()" >
+
+
+							<!-- form required -->
+						</form>	
+					</li>
+
+				</ul>
+			</div>
+
+			<div class="card" id="card5">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item"><strong>
+							<h3>Payments</h3>
+						</strong>
+						<button type='button' id="detailsButton2" onclick="paymentsSlideUpDown()" style = "display: none"><i class="fa fa-pencil"
+								aria-hidden="true"></i></Button>
+					</li>
+					<li class="list-group-item">
+						<form id='payForm' onsubmit="showSB()">
+
+							<div id="paymentDetails">
+							</div>
+
+						</form>
+						
+					</li>
+				</ul>
+			</div>
+
+
+			<div class="card" id="card6">
+				<div class="card-body">
+					<h3 class="card1sttext">Select Seats</h3>
+					<div id='passengerSeat'></div>
+
+					<button id="detailsButton3" onclick="seatUpDown()" style="display: none;"><i class="fa fa-pencil"
+						aria-hidden="true"></i></button>
+
+					<div id="seatSelection">
+
+					</div>
+						
+				</li>
+
+					</div>
+					<div alignment = "right">
+						<button type="button" class="btn btn-primary"
+							onclick="continueToRev()" style='display:none' id='continueToRev'><span>Continue</span></button>
+					</div>
+					
+				</div>
+			</div>
+
+			<div class="card" ext id="card7">
+				<div class="card-body">
+					<h3 class="card1sttext">Review Booking</h3>	
+				</div>
+
+				<div id=revBooking></div>
+
+				<div alignment = "right">
+					<button type="button" class="btn btn-primary"
+						onclick="bookSeats();" id='finalBook' style='display: none;'><span>BOOK</span></button>
+				</div>
+			</div>
+
+
+			<div class="card" id="card8">
+				<div class="card-body">
+					<div class="text">
+						<p><strong>Change fee warning</strong></p>
+						SpiceJet may charge fees for itinerary changes or cancellations. Please see here for more
+						information.
+					</div>
+
+					<div class="text">
+						<p><strong>Change fee warning</strong></p>
+						Notice: Overbooking of Flights – Airline flights may be overbooked, and there is a slight chance
+						that a seat will not be available on a flight for which a person has a confirmed reservation. If
+						the flight is overbooked, no one will be denied a seat until airline personnel first ask for
+						volunteers willing to give up their reservation in exchange for compensation of the airline's
+						choosing. If there are not enough volunteers, the airline will deny boarding to other persons in
+						accordance with its particular boarding priority. With few exceptions, including failure to
+						comply with the carrier's check-in deadline (which are available upon request from the air
+						carrier), persons denied boarding involuntarily are entitled to compensation. The complete rules
+						for the payment of compensation and each airline's boarding priorities are available at all
+						airport ticket counters and boarding locations. Some airlines do not apply these consumer
+						protections to travel from some foreign countries, although other consumer protections may be
+						available. Check with your airline or your travel agent.
+					</div>
+
+					<div class="text">
+						<p><strong>Baggage liability</strong></p>
+						For flights within the US, federal rules require any limit on an airline's baggage liability to
+						be at least $3,500 per passenger. For international travel (including domestic portions of
+						international journeys) different liability limitations apply to the loss of, delay or damage to
+						baggage. If the Montreal Convention applies, the limit is 1,288 Special Drawing Rights
+						(approximately $1,780 per passenger) unless a higher value is declared in advance and additional
+						charges are paid. If the Warsaw Convention applies, the limit is approximately $20.00 per
+						kilogram ($9.07 per pound) for checked baggage and $400 per passenger for unchecked baggage,
+						unless a higher value is declared in advance and additional charges are paid. Excess valuation
+						may not be declared on certain types of valuable articles. Airlines may assume no liability for
+						fragile or perishable articles. Check with your airline.
+					</div>
+
+					<div class="text">
+						<p><strong>TSA data collection</strong></p>
+						The Transportation Security Administration of the U.S. Department of Homeland Security requires
+						us to collect information from you for purposes of watch list screening, under the authority of
+						49 U.S.C. section 114,
+						and the Intelligence Reform and Terrorism Prevention Act of 2004. Providing this information is
+						voluntary; however, if it is not provided, you may be subject to additional screening or denied
+						transport or
+						authorisation to enter a sterile area. TSA may share information you provide with law
+						enforcement or intelligence
+						agencies or others under its published system of records notice. For more on TSA Privacy
+						policies, or to view the
+						system of records notice and the privacy impact assessment, please see
+						TSA's Web site at <a href="https://www.tsa.gov/" class="card-link">www.tsa.com</a>
+					</div>
+
+					<div class="text">
+						<p><strong>Disinsection</strong></p>
+						Some foreign countries require disinsection of aircraft;
+						a list of those countries can be found on the US Department of
+						Transportation's website <a href="https://www.transportation.gov/airconsumer/spray"
+							class="card-link">here.</a>
+					</div>
+
+					<div class="text">
+						<p><strong>Hazardous materials</strong></p>
+						Some everyday products, like aerosol spray starch, can be dangerous when transported on the
+						aircraft in carry-on and/or checked baggage. Changes in
+						temperature or pressure can cause some items to leak, generate toxic fumes or start a fire.
+						Carriage of prohibited items may result in fines or in
+						certain cases imprisonment. Please ensure that there are no forbidden
+						hazardous materials in your baggage like:
+
+						<ul>
+							<li>Some lithium batteries (e.g. spares in checked baggage, batteries over a certain size),
+							</li>
+							<li>Explosives/fireworks,</li>
+							<li>Strike anywhere matches/lighter fluid,</li>
+							<li>Compressed gases/aerosols</li>
+							<li>Oxygen bottles/liquid oxygen,</li>
+							<li>Flammable liquids,</li>
+							<li>Pesticides/poison,</li>
+							<li>Corrosive material</li>
+						</ul>
+					</div>
+
+					<div class="text">
+						<p>Please see <a href="https://www.spicejet.com/Tnc.aspx" class="card-link">here</a> for
+							SpiceJet's detailed hazardous materials policy.</p>
+					</div>
+					<div class="text">
+						<p><strong>Packages disclaimer</strong></p>
+						If you book more than one travel service for your trip or holiday
+						using the links on this site, for example both hotel accommodation and flights, you will NOT
+						benefit from rights
+						applying to packages under Directive (EU) 2015/2302. Google will not
+						be responsible for the proper performance of any travel services. In case of problems, please
+						contact the relevant service provider.
+
+					</div>
+
+				</div>
+			</div>
+
+			<hr>
+
+			<div class="footer">
+				<p>Find the cheapest and best flight for you.</p>
+			</div>
+			<p class="links">
+				<a href="" class="footerlinks">About Google</a>
+				<a href="" class="footerlinks">Privacy & Terms</a>
+				<a href="" class="footerlinks">Help Center and Consumer Information</a>
+			</p>
+
+		</div>
+		<script src = 'seatBooking.js'></script>
+
+
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+			integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+			crossorigin="anonymous"></script>
+		<script src="app.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"></script>
+
+
+
+	</body>
+</body>
+
+</html>

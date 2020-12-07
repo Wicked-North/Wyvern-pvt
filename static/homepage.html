@@ -17,7 +17,7 @@
                 <div class="other-links">
                     <ul class="nav-items">
                         <li class="about"><a href="#">About</a></li>
-                        <li class="flights"><a href="#">Meals</a></li>
+                        <li class="flights"><a onclick='showPastBookings()'>LOG</a></li>
                         <li class="login"><a href="#">LogIn</a></li>
                         <li class="signup">
                           <a href="" class="btn">
@@ -200,6 +200,19 @@
                       </svg>
                         <span>Sort by Departure Time</span>
                     </a>
+
+                    <a onclick="selectFlight()" class="btn search-flights">
+                      <svg width="277" height="62">
+                        <defs>
+                            <linearGradient id="grad1">
+                                <stop offset="0%" stop-color="#FF8282"/>
+                                <stop offset="100%" stop-color="#E178ED" />
+                            </linearGradient>
+                        </defs>
+                         <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+                      </svg>
+                        <span>Select Flight</span>
+                    </a>
                 </div>
                 <div class="flight-details">
                   <div class="direct-flights">
@@ -250,6 +263,8 @@
     <script src="./script-1.js"></script>
     <script src="homepage.js"></script>
     <script src="seatBooking.js"></script>
+    <script src="logs.js"></script>
+
 
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 // fetch("/get_sess").then((res) => {
 //     res.text().then((data) => {
 //         // document.getElementsByClassName("navbar-text")[0].innerHTML = data;
@@ -6,27 +7,44 @@
 //         sessionStorage.setItem('sess', data);
 //     }).then((data) => {
 //         if (sessionStorage.getItem("sess") != "1") {
-//                    window.alert("Login to view the page")
+//             window.alert("Login to view the page")
 //             window.location.assign("login.html")
+//         } else {
+//             fetch("/get_userDetails").then((res) => {
+//                 console.log("helloooo")
+//                 res.json().then((data) => {
+//                     console.log(res)
+
+//                     console.log(data)
+$(".btn").click(searchFlights)
+//                     sessionStorage.setItem('user_id', data.user_id)
+//                     sessionStorage.setItem('user_name', data.user_name)
+//                     sessionStorage.setItem('gender', data.gender)
+//                     sessionStorage.setItem('dob', data.dob)
+//                     sessionStorage.setItem('mobile', data.mobile)
+            
+//                 })
+            
+//             });
+            
+           
 //         }
 
-//     });
+//     })
 // });
 
 
 
-console.log("TUM SABH CHUTIYE HO")
-$(".btn").click(searchFlights); 
 
-    fetch("/get_token").then((res) => {
-        res.text().then((data) => {
-            // document.getElementsByClassName("navbar-text")[0].innerHTML = data;
-            //console.log(data);
-            console.log('hi')
-            // document.getElementById("Ne").innerHTML = data
-            sessionStorage.setItem('token', data);
-        })
-    });
+// fetch("/get_token").then((res) => {
+//     res.text().then((data) => {
+//         // document.getElementsByClassName("navbar-text")[0].innerHTML = data;
+//         //console.log(data);
+//         console.log('hi')
+//         // document.getElementById("Ne").innerHTML = data
+//         sessionStorage.setItem('token', data);
+//     })
+// });
 
 
 // ==================================================================================
@@ -125,24 +143,24 @@ function dijkstra(G, n, startnode, endnode) {
             console.log(`Distance from node ${u} to node ${i} = ${distance[i]}`)
             // cout<<"\nPath="<<i;
             let path = []
-          path.push(i)
+            path.push(i)
             j = i;
             do {
                 j = pred[j];
                 // cout<<"<-"<<j;
-               path.push(j)
+                path.push(j)
             } while (j != startnode);
             path.reverse()
             console.log(path)
-        //     path = path.join('->')
-        //   console.log(`shortest path : ${path}`)
-        //   console.log('')
+            //     path = path.join('->')
+            //   console.log(`shortest path : ${path}`)
+            //   console.log('')
             console.log(planeNodes[path[1]])
-          return planeNodes[path[1]]
+            return planeNodes[path[1]]
         }
 }
 
-function searchFlights(){
+function searchFlights() {
 
     var startplace = $('#start').val().toLowerCase();
     var endplace = $('#end').val().toLowerCase();
@@ -162,22 +180,24 @@ function searchFlights(){
         end: endplace,
         via: viaplace
     }
-   // headers: {
-        //   "Authorisation": "Bearer " + sessionStorage.getItem('token')
-        // },
+    // headers: {
+    //   "Authorisation": "Bearer " + sessionStorage.getItem('token')
+    // },
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
-          },
+        },
         body: JSON.stringify(data)
-      }; 
-      console.log(options)
+    };
+    console.log(options)
 
-      fetch("/getViaDetails", options).then((res)  => res.json().then((data) => {
+    fetch("/getViaDetails", options).then((res) => res.json().then((data) => {
         console.log(data)
         //viaFlights=[]
         viaFlights = [...data]
+        //console.log(viaFlights, "abhra")
+
         console.log(viaFlights, "abhra")
         updateViaCard(viaFlights)
         //console.log(viaFlights[1].arrival.slice(0,2), "ghosh")
@@ -219,65 +239,72 @@ function sortPrice(){
 
     let j
     let itemPrice
-    for(let i=0; i<viaFlights.length; i++){
-        j = i-1;
+    for (let i = 0; i < viaFlights.length; i++) {
+        j = i - 1;
         itemPrice = viaFlights[i].price
         itemObj = viaFlights[i]
-         while(j>=0 && itemPrice < viaFlights[j].price){
-             viaFlights[j+1] = viaFlights[j]
-             j--
-         }
-         viaFlights[j+1] = itemObj
+        while (j >= 0 && itemPrice < viaFlights[j].price) {
+            viaFlights[j + 1] = viaFlights[j]
+            j--
+        }
+        viaFlights[j + 1] = itemObj
     }
     console.log(viaFlights)
     updateViaCard(viaFlights)
 }
 
-function sortArrivalTime(){
-  
+function sortArrivalTime() {
+
     let j
     //let itemTime
-    for(let i=0; i<viaFlights.length; i++){
-        j = i-1;
-        let itemTimeH = viaFlights[i].arrival.slice(0,2)
-        let itemTimeM = viaFlights[i].arrival.slice(2,4)
+    for (let i = 0; i < viaFlights.length; i++) {
+        j = i - 1;
+        let itemTimeH = viaFlights[i].arrival.slice(0, 2)
+        let itemTimeM = viaFlights[i].arrival.slice(2, 4)
         let itemTimeTotal = itemTimeH + itemTimeM
         let itemObj = viaFlights[i]
-         while(j>=0 && itemTimeTotal < viaFlights[j].arrival.slice(0,2) + viaFlights[j].arrival.slice(2,4)){
-             viaFlights[j+1] = viaFlights[j]
-             j--
-         }
-         viaFlights[j+1] = itemObj
+        while (j >= 0 && itemTimeTotal < viaFlights[j].arrival.slice(0, 2) + viaFlights[j].arrival.slice(2, 4)) {
+            viaFlights[j + 1] = viaFlights[j]
+            j--
+        }
+        viaFlights[j + 1] = itemObj
     }
     console.log(viaFlights)
     updateViaCard(viaFlights)
 }
 
-function sortDepartureTime(){
-  
+function sortDepartureTime() {
+
     let j
     //let itemTime
-    for(let i=0; i<viaFlights.length; i++){
-        j = i-1;
-        let itemTimeH = viaFlights[i].departure.slice(0,2)
-        let itemTimeM = viaFlights[i].departure.slice(2,4)
+    for (let i = 0; i < viaFlights.length; i++) {
+        j = i - 1;
+        let itemTimeH = viaFlights[i].departure.slice(0, 2)
+        let itemTimeM = viaFlights[i].departure.slice(2, 4)
         let itemTimeTotal = itemTimeH + itemTimeM
         let itemObj = viaFlights[i]
-         while(j>=0 && itemTimeTotal < viaFlights[j].departure.slice(0,2) + viaFlights[j].departure.slice(2,4)){
-             viaFlights[j+1] = viaFlights[j]
-             j--
-         }
-         viaFlights[j+1] = itemObj
+        while (j >= 0 && itemTimeTotal < viaFlights[j].departure.slice(0, 2) + viaFlights[j].departure.slice(2, 4)) {
+            viaFlights[j + 1] = viaFlights[j]
+            j--
+        }
+        viaFlights[j + 1] = itemObj
     }
     console.log(viaFlights)
     updateViaCard(viaFlights)
 }
 
+function selectFlight() {
+    window.location.assign("app.html")
+}
+
+function showPastBookings(){
+
+}
 
 
 
 // function createpost(){
-   
+
 //     const options = {
 //         method: "GET",
 //         headers: {

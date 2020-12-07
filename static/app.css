@@ -1,0 +1,161 @@
+.allPass{
+    width:100px;
+    background-color: aqua;
+
+}
+.card{
+    margin-bottom: 15px;
+    width: 60%;
+    margin-left: 18%;
+    border-radius: 10px;
+    border-color:light gray;
+    
+}
+#card1{
+    margin-top: 60px;
+}
+.cardimg{
+   
+    margin-left: 165px;
+    margin-top: 30px;
+}
+.card-body{
+    color:gray;
+}
+#caps{
+    color: black;
+}
+.card2{
+    width: 60%;
+    margin-left: 18%;
+    border-radius: 10px;
+    border-color:light gray;
+}
+.text{
+    margin-bottom: 20px;
+}
+.footer{
+    text-align: center;
+}
+.links{
+    text-align: center;
+}
+.footerlinks{
+    margin-left: 30px;
+}
+#iternary{
+    color: black;
+}
+#redtext{
+    color: red;
+}
+#redgraph{
+    color:red;
+    margin-right: 15px;
+}
+#yellowexclamation{
+    color:#EEDE21;
+    margin-right: 15px;
+}
+#grayexclamation{
+    color:gray;
+    margin-right: 15px;
+}
+#grayexclamationtext{
+    margin-right: 20px;
+}
+#space{
+    padding-right: 30px;
+}
+#card4pd{
+    margin-top: 20px;
+}
+#usericon{
+    padding-right: 15px;
+    margin-right: 10px;
+}
+#card4buttons{
+    margin-top: 60px;
+    margin-left: 40px;
+}
+input[type=radio]{
+    transform:scale(1.5);
+  }
+  #inlineradio2{
+      margin-right: 20px;
+  }
+  #femalespace{
+      margin-right: 80px;
+      margin-left: 20px;
+  }
+  #malespace{
+      margin-left: 20px;
+      padding-right: 20px;
+  }
+  #dob{
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+    margin: .4rem 0;
+  }
+  #start{
+    margin: .4rem 0;
+    
+  }
+#card4dob{
+    margin-top: 40px;
+    
+}
+#card4phone{
+    margin-top: 40px;
+}
+#card4email{
+    margin-top: 40px;
+}
+#card5text{
+    text-align: left;
+}
+#card5text2{
+    margin-left: 40px;
+}
+#gpayicon{
+    transform:scale(3);
+    margin-left: 50%;
+}
+#creditcard{
+    margin-right: 40px;
+    transform:scale(1.5);
+}
+#cardnumber{
+    margin-top: 40px;
+}
+#cddetails{
+    margin-top: 40px;
+}
+#cv{
+    margin-left: 30px;
+}
+#namecard{
+    margin-top: 40px;
+}
+#card5add{
+    margin-top: 40px;
+}
+#card5city{
+    margin-top: 40px;
+}
+#card5state{
+    margin-top: 40px;
+}
+#card5zip{
+    margin-top: 40px;
+}
+#card5bottomtext{
+    margin-top: 40px;
+}
+#savebutton{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.card1sttext{
+    color: black;
+}

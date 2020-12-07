@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<script src='admin.js'></script>
+<body>
+    <div>
+        <label for="pnr">Search Tickets with PNR</label><br>
+        <input type="text" id="pnr" name="pnr" placeholder="Enter PNR">&nbsp;
+        <input type="submit" value="Search" onclick="getTicketDetailsByPnr()">
+    </div>
+    <br>
+
+
+
+    <div>
+        <label for="uid">Search Tickets with User ID</label><br>
+        <input type="text" id="uid" name="uid" placeholder="Enter UserID">&nbsp;
+        <input type="submit" value="Search" onclick="getTicketDetailsByUserid()">
+
+    </div>
+    <br>
+
+
+    <div>
+        <!-- <label for="pnr">All Flight Details</label><br>
+        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
+        <input type="submit" value="Current Ticket Details" onclick="getCurrentTicketDetails()">
+
+    </div>
+    <br>
+
+    <div>
+        <!-- <label for="pnr">All Flight Details</label><br>
+        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
+        <input type="submit" value="Previous Ticket Details" onclick="getPreviousTicketDetails()">
+
+    </div>
+    <br>
+
+    <div>
+        <!-- <label for="pnr">All Flight Details</label><br>
+        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
+        <input type="submit" value="Cancelled Ticket Details" onclick="getCancelledTicketDetails()">
+
+    </div>
+    <br>
+
+    <div>
+        <!-- <label for="pnr">All Flight Details</label><br>
+        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
+        <input type="submit" value="Ticket Details" onclick="getCurrentTicketDetails()">
+
+    </div>
+    <br>
+    <div>
+        <!-- <label for="pnr">All Flight Details</label><br>
+        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
+        <input type="submit" value="Flight Details" onclick="getFlightDetails()">
+
+    </div>
+    <br>
+    <div>
+        <label for="udets">Search Users with ID</label><br>
+        <input type="text" id="udets" name="udets" placeholder="Enter UserID">&nbsp;
+        <input type="submit" value="Search" onclick="getUserDetailsByUserid()">
+
+    </div>
+    <br>
+    <div>
+        <!-- <label for="pnr">All Flight Details</label><br>
+        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
+        <input type="submit" value="User Details" onclick="getUserDetails()">
+
+    </div>
+    <br>
+    <div>
+        <label for="paspnr">Search Passengers with PNR</label><br>
+        <input type="text" id="paspnr" name="paspnr" placeholder="Enter PNR">&nbsp;
+        <input type="submit" value="Search" onclick="getPassengerDetailsByPnr()">
+
+    </div>
+    <br>
+    <div>
+        <!-- <label for="pnr">All Flight Details</label><br>
+        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
+        <input type="submit" value="Passenger Details" onclick="getPassengerDetails()">
+
+    </div>
+</body>
+
+</html>
