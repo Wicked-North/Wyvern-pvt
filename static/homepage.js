@@ -1,3 +1,22 @@
+document.getElementById('pathSet-1').style.display = 'none'
+document.getElementById('plane2').style.display = "none"
+document.getElementById('pathSet-2').style.display = 'none'
+document.getElementById('plane1').style.display = "none"
+
+function displayPath() {
+
+    setTimeout(()=>{
+
+        document.getElementById('pathSet-1').style.display = 'block'
+        // document.getElementById('plane2').style.display = "block"
+        // document.getElementById('pathSet-2').style.display ='block'
+        document.getElementById('plane1').style.display = "block"
+
+    },300)
+    
+
+}
+
 
 // fetch("/get_sess").then((res) => {
 //     res.text().then((data) => {

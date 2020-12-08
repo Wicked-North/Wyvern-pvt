@@ -6,7 +6,7 @@ getCurrentTicketsPassengers()
 function getCurrentTicketsPassengers() {
 
     var data = {
-        userId: 2
+        userId: sessionStorage.getItem('user_id')
     }
 
     const options = {
@@ -54,6 +54,8 @@ function getPastTicketsPassengers() {
             past = [...data]
             console.log(past)
 
+        }).then(data => {
+            displayTickets()
         });
 }
 
@@ -65,12 +67,16 @@ let currBooking = ``
 
 let toggleCurrent = []
 let togglePast = []
+// setTimeout(() => {
+
+// }, 1000)
+
 function displayTickets() {
-    for(let i=0; i< current.length; i++){
+    for (let i = 0; i < current.length; i++) {
         toggleCurrent[i] = 1
     }
 
-    for(let i=0; i< past.length; i++){
+    for (let i = 0; i < past.length; i++) {
         togglePast[i] = 1
     }
 
@@ -137,7 +143,7 @@ function displayTickets() {
     }
 
 
-    
+
     // document.getElementById('prevBookings').innerHTML = prevBooking;
     // document.getElementById('cancelledBookings').innerHTML=cancBooking;
 
