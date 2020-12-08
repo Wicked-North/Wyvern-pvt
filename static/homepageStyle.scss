@@ -129,10 +129,10 @@ body {
     width: 100%;
     font-size: 1.1rem;
     padding-top: $height-field - 1.5rem;
-    caret-color: transparent;
 
-    &:focus + .label-name .content-name,
-    &:valid + .label-name .content-name {
+
+    &:focus+.label-name .content-name,
+    &:valid+.label-name .content-name {
         /* :valid ensures that when input text is added and the focus is shifted somwehere else
             the label doesn't come back to its initial position*/
         color: $after-color;
@@ -142,6 +142,7 @@ body {
 
 
 }
+
 
 
 
@@ -180,13 +181,18 @@ body {
 }
 
 .formi input:focus+.formi .label-name::after,
-.formi input:valid+ .formi label::after {
+.formi input:valid+.formi label::after {
     transform: translateX(0%);
     border-color: $after-color;
 
 
 }
 
+#start,
+#end,
+#tier {
+    caret-color: transparent;
+}
 
 //passenger buttons
 .buttons {
@@ -653,11 +659,11 @@ input[type=number] {
     width: 100%;
     background-color: rgba(31, 30, 30, 0.1);
     backdrop-filter: blur(5px);
-    //opacity: 1;
-    transition: all 400ms ease-in;
+    opacity: 0; 
+    transition: all 250ms ease-in;
     color: $font-light;
 
-    //display:none;
+    display: none;
 
 }
 
@@ -864,4 +870,57 @@ input[type=number] {
         font-size: 2rem;
         pointer-events: none;
     }
+}
+
+.nav {
+    display: flex;
+    position: absolute;
+    z-index:200;
+    top:0;
+    right:0;
+    //background-color:$darkest-grey;
+    background-image:linear-gradient(45deg,$darkest-grey,$black);
+    box-shadow: 4px 0 40px rgba(0,0,0,0.7);
+    //left:0;
+    //right:50%;
+    //width:49%;
+    justify-content: space-between; 
+    //border:2px solid $grad-red;
+    //margin: 1em 1em;
+    .left-nav, .right-nav{
+        display:flex;
+        margin:1em;
+        justify-content:space-between;
+    }
+    a{
+        @include removeStyle();
+        font-size: 1.2rem;
+        font-family: 'Overlock', cursive;
+        font-weight: 700;
+        //display:block;
+        color:$grad-pink;
+        overflow:hidden;
+        transition:all 300ms ease;
+        margin-left: 0.8em;
+
+        /* &::after{
+            content: "";
+            display:block;
+            border:1px solid $grad-red;
+            transform:translateX(-100%);
+            opacity:0;
+            width: inherit;
+            position: relative;
+            margin-top:0.2em;
+            transition: transform 400ms ease-in;
+            transform: opacity 100ms ease;
+        } */
+
+        &:hover{
+            box-shadow:0 3px 0px $grad-red;
+        }
+
+       
+    }
+
 }

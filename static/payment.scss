@@ -1,0 +1,112 @@
+$darkest-grey:rgb(42, 42, 48);
+$black:rgb(16, 16, 17);
+$medium-grey:rgb(78, 78, 80);
+$transparent-grey:rgba(78, 78, 80, 0.4);
+$black-lighter:rgba(8, 8, 8, 0.3);
+$font-light:rgb(240, 247, 238);
+$height-field: 3.5rem;
+$font-size-custom: 1.2em;
+$before-color: rgb(255, 154, 139);
+$after-color:rgb(240, 247, 238);
+$grad-pink:rgb(255, 154, 139);
+$grad-red:rgb(219, 39, 99);
+$grad-red-warning:rgb(243, 9, 60);
+$light-pink:rgb(253, 212, 206);
+$after-color-login:rgb(219, 39, 99);
+
+$before-color-login:rgb(240, 247, 238);
+$height-field-login:3rem;
+$font-size-custom-login:1em;
+
+*{
+    padding:0;
+    box-sizing: border-box;
+    margin:0;
+    user-select: none;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+
+a{
+    text-decoration: none;
+    color: $grad-pink;
+}
+
+ol, ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+ }
+
+body{
+    background-image: linear-gradient(45deg, $darkest-grey, $black);
+    color: $light-pink;
+    font-family: 'Average Sans', sans-serif;
+    
+}
+
+//footer links
+.footer{
+    text-align: center;
+    color:$grad-red;
+}
+.links{
+    text-align: center;
+    color:$grad-red;
+}
+.footerlinks{
+    margin-left: 1em;
+    color:$grad-red;
+}
+
+.card{
+    background-color: $black;
+    padding:2em;
+    width: 60%;
+    margin-left: 18%;
+    border: 3px solid transparent;
+    border-image: linear-gradient(45deg, $grad-red, $grad-pink);
+    border-image-slice: 1;
+    border-radius: 4px;
+    margin-bottom:1.5em;
+}
+
+
+//all titles go here
+.payment-details{
+    .main-title, .title-masks, .title-travel{
+        
+        background-image: linear-gradient(45deg, $grad-pink, $grad-red);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        width: fit-content;
+        font-family: 'Overlock', cursive;
+        
+    }
+
+    .main-title{
+        font-weight: 800;
+        letter-spacing: 0.05rem;
+        font-size:2.8rem;
+    }
+
+    .title-masks, .title-travel{
+        font-weight: 700;
+        letter-spacing: 0.05rem;
+        font-size:2rem;
+        margin-bottom: 0.2em;
+    }
+
+}
+
+
+#redtext, #redgraph{
+    color: $grad-red-warning;
+}
+
+.payment-details {
+    li{
+        margin-top: 0.2em;
+    }
+}

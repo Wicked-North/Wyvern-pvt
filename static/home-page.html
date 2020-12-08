@@ -8,6 +8,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
     rel="stylesheet">
+    
+    
   <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script>
   <!--ICONS-->
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
@@ -24,7 +26,7 @@
 <body>
   <!--Airplane Icon made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
   <div class="home-page">
-    <div class="login-container" id = "login-container">
+    <div class="login-container" id="login-container">
       <div class="login">
         <div class="login-content">
           <button class="cross-login" onclick='closeDiv()'><i class="fas fa-times"></i></button>
@@ -47,7 +49,7 @@
           </div>
           <div class="register-link">New User? <a href="#">Register</a></div>
 
-          <a href="#" class="login-btn">
+          <a href="#" class="login-btn" onclick="landingPage()">
             <svg width="277" height="62">
               <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="240" height="50"></rect>
             </svg>
@@ -60,11 +62,8 @@
 
     <div class="row-1">
       <div class="col-1">
-
-
-
-
         <div class="main-content-1">
+
           <div class="title-1">
             <div class="line-1">Search</div>
             <div class="line-2">For Flights.</div>
@@ -162,7 +161,7 @@
               <div class="tier-3">Business Class</div>
               <div class="tier-4">First Class</div>
             </div>
-            <a href="#" class="btn">
+            <a href="#" class="btn" onclick="displayPath()">
               <svg width="277" height="62">
                 <defs>
                   <linearGradient id="grad2">
@@ -345,7 +344,7 @@
           </div>
 
         </div>
-        <a href="./static-card.html" class="btn search-btn">
+        <a href="#" class="btn search-btn">
           <svg width="277" height="62">
             <defs>
               <linearGradient id="grad2">
@@ -359,6 +358,19 @@
         </a>
       </div>
       <div class="col-2">
+        <div class="nav">
+          <div class="left-nav">
+            <div class="nav-elem-1" id='uname'><a href="#" class="login-nav" id='login-nav'></a></div>
+            <div class="nav-elem-2"><a href="#" class="prev-nav" onclick="showBookings()">Bookings</a></div>
+            <div class="nav-elem-0" id='lin'><a href="#" class="prev-nav" onclick='openDiv();'>Log In</a></div>
+            <div class="nav-elem-0" id='lout' style='display:none'><a href="#" class="prev-nav" onclick='logOut();'>Log
+                Out</a></div>
+          </div>
+          <div class="right-nav">
+
+          </div>
+
+        </div>
         <div class="lines">
 
           <svg fill="#050003" id="route" height="695.70178" width="611.85999">
@@ -394,28 +406,43 @@
 
         </div>
 
+        <div class="nameOverlay">
+
+          <div style="position:relative;left:198px;top:194px;z-index:10">DEL</div>
+          <div style="position:relative;left:170px;top:215px;z-index:10">JAI</div>
+          <div style="position:relative;left:098px;top:287px;z-index:10">AMD</div>
+          <div style="position:relative;left:105px;top:355px;z-index:10">BOM</div>
+          <div style="position:relative;left:195px;top:466px;z-index:10">BLR</div>
+          <div style="position:relative;left:217px;top:355px;z-index:10">HYD</div>
+          <div style="position:relative;left:385px;top:220px;z-index:10">CCU</div>
+
+
+
+        </div>
+
 
         <world-map class="map" id="map">
           <div class='hidePlane'></div>
 
-          <world-map-location style="opacity:0" left="186px" top="209px" label="delhi" id="delhi"></world-map-location>
-
-          <world-map-location style="opacity:0" left="160px" top="250px" label="jaipur" id="jaipur">
+          <world-map-location style="opacity:1;" left="186px" top="209px" label="delhi" id="delhi">
           </world-map-location>
 
-          <world-map-location style="opacity:0" left="094px" top="340px" label="ahmedabad" id="ahmedabad">
+          <world-map-location style="opacity:1" left="160px" top="250px" label="jaipur" id="jaipur">
           </world-map-location>
 
-          <world-map-location style="opacity:0" left="105px" top="425px" label="mumbai" id="mumbai">
+          <world-map-location style="opacity:1" left="094px" top="340px" label="ahmedabad" id="ahmedabad">
           </world-map-location>
 
-          <world-map-location style="opacity:0" left="190px" top="560px" label="bangalore" id="bangalore">
+          <world-map-location style="opacity:1" left="105px" top="425px" label="mumbai" id="mumbai">
           </world-map-location>
 
-          <world-map-location style="opacity:0" left="215px" top="467px" label="hyderabad" id="hyderabad">
+          <world-map-location style="opacity:1" left="190px" top="560px" label="bangalore" id="bangalore">
           </world-map-location>
 
-          <world-map-location style="opacity:0" left="420px" top="350px" label="kolkata" id="kolkata">
+          <world-map-location style="opacity:1" left="215px" top="467px" label="hyderabad" id="hyderabad">
+          </world-map-location>
+
+          <world-map-location style="opacity:1" left="420px" top="350px" label="kolkata" id="kolkata">
           </world-map-location>
 
 
