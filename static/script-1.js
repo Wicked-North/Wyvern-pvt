@@ -826,4 +826,24 @@ function payment(){
     window.location.assign('app.html')
 }
 
+//login button
+
+$(".login-btn").click(()=>{
+    $(".login-btn").addClass("animateButton");
+    setTimeout(()=>{
+        $(".login-btn").removeClass("animateButton");
+
+    },500)
+})
+
+function closeDiv(){
+    $(".login-container").css("opacity","0")
+    
+    setTimeout(()=>{
+        document.getElementById('login-container').style.display = "none";
+    },500) 
+    
+}
+
+
 

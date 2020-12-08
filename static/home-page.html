@@ -1,377 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script> <!--ICONS-->
-    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script> <!--ANIME for path-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.js"></script> <!--TWEEN for plane-->
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script> <!--VALIDATION PLUGIN-->
-    <link href="./homepageStyle.css" rel="stylesheet" type="text/css" /> 
-    <link href="map.css" rel="stylesheet" type="text/css"/>
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script>
+  <!--ICONS-->
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+  <!--ANIME for path-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.js"></script>
+  <!--TWEEN for plane-->
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <!--VALIDATION PLUGIN-->
+  <link href="./homepageStyle.css" rel="stylesheet" type="text/css" />
+  <link href="map.css" rel="stylesheet" type="text/css" />
+  <title>Document</title>
 </head>
+
 <body>
   <!--Airplane Icon made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>-->
-    <div class="home-page">
+  <div class="home-page">
+    <div class="login-container" id = "login-container">
+      <div class="login">
+        <div class="login-content">
+          <button class="cross-login" onclick='closeDiv()'><i class="fas fa-times"></i></button>
+          <div class="title">Log In</div>
+          <div class="formi-login email-id">
+            <input type="text" name="start" required autocomplete="off" id="email-id" required>
+            <label name="email" class="label-name">
+              <span class="content-name">
+                Email:
+              </span>
+            </label>
+          </div>
+          <div class="formi-login">
+            <input type="password" name="start" required autocomplete="off" id="pwd" required>
+            <label name="pwd" class="label-name">
+              <span class="content-name">
+                Password:
+              </span>
+            </label>
+          </div>
+          <div class="register-link">New User? <a href="#">Register</a></div>
 
-
-
-        <div class="row-1">
-
-            <div class="col-1">
-           
-              
-
-
-              <div class="main-content-1">
-                <div class="title-1">
-                  <div class="line-1">Search</div>
-                  <div class="line-2">For Flights.</div>
-                </div>
-                <form name="searchFlights" class="form-content">
-                  <div class="formi from">
-                    <input type="text" name="start" required autocomplete="off" id="start" readonly required>
-                    <label name="from" class="label-name">
-                        <span class="content-name">
-                           From:
-                        </span>
-                       </label>
-                       
-                      <div class="arrow">
-                        <i class="fas fa-angle-down"></i>
-                      </div>
-                    
-                 </div> 
-                 <div class="error source-error">Please enter a valid Source.</div>
-                 <div class="dropdown dropdown-from">
-                   <div class="place-1">Ahmedabad</div>
-                   <div class="place-2">Bangalore</div>
-                   <div class="place-3">Delhi</div>
-                   <div class="place-4">Hyderabad</div>
-                   <div class="place-5">Jaipur</div>
-                   <div class="place-6">Kolkata</div>
-                   <div class="place-7">Mumbai</div>
-                 </div>
-                 <div class="formi to">
-                  <input type="text" name="end" required autocomplete="off" id="end" readonly required>
-                  <label name="whereto" class="label-name">
-                      <span class="content-name">
-                         Where To? 
-                      </span>
-                  </label>
-                  
-                    <div class="arrow">
-                      <i class="fas fa-angle-down"></i>
-                    </div>
-                  
-                 </div>
-                 <div class="error dest-error" >Please enter a valid Destination.</div>
-                 <div class="dropdown dropdown-to">
-                  <div class="place-1">Ahmedabad</div>
-                  <div class="place-2">Bangalore</div>
-                  <div class="place-3">Delhi</div>
-                  <div class="place-4">Hyderabad</div>
-                  <div class="place-5">Jaipur</div>
-                  <div class="place-6">Kolkata</div>
-                  <div class="place-7">Mumbai</div>
-                </div>
-                 <div class="formi date">
-                  <input type="text" name="deptdate" required autocomplete="off" id="date" required onfocus="(this.type='date') (this.value=new Date().toISOString().substr(0, 10))" onblur="if(!this.value)this.type='text'">
-                  <label name="deptdate" class="label-name">
-                      <span class="content-name">
-                         Departure Date:
-                      </span>
-                  </label>
-                  <i class="fas fa-calendar-day"></i>
-                 </div>
-                 <div class="error date-error">Please enter a valid Departure Date.</div>
-                 <div class="formi passenger">
-                  <input type="number" name="passenger" id="passenger" class="passenger-inp" required autocomplete="off" min="1" max="99" >
-                  <label name="passenger" class="label-name">
-                      <span class="content-name">
-                         Passengers:
-                      </span>
-                  </label>
-                  <div class="buttons">
-                      <button class="add"><i class="fas fa-plus"></i></button>
-                      <button class="subtract"><i class="fas fa-minus"></i></button>
-                  </div>
-                 </div>
-                 <div class="error pass-error">Please enter valid number of passengers.</div>
-                 <div class="formi tier">
-                  <input type="text" name="tier" required autocomplete="off" id="tier" readonly>
-                  <label name="tier" class="label-name">
-                      <span class="content-name">
-                         Tier
-                      </span>
-                  </label>
-                  
-                    <div class="arrow">
-                      <i class="fas fa-angle-down"></i>
-                    </div>
-                  
-                 </div>
-                 <div class="error class-error">Please enter a valid Class</div>
-                 <div class="dropdown dropdown-tier">
-                  <div class="tier-1">Economy</div>
-                  <div class="tier-2">Premium Economy</div>
-                  <div class="tier-3">Business Class</div>
-                  <div class="tier-4">First Class</div>
-                </div>
-                 <a href="#" class="btn">
-                  <svg width="277" height="62">
-                    <defs>
-                        <linearGradient id="grad2">
-                            <stop offset="0%" stop-color="rgb(255, 30, 105)"/>
-                            <stop offset="100%" stop-color="rgba(82, 6, 148,1)" />
-                        </linearGradient>
-                    </defs>
-                     <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
-                  </svg>
-                    <span>Search</span>
-                </a>
-                </form name="searchFlights">
-  
-                
-              </div>
-            </div>
-            <div class="overlay">
-              
-              <div class="sortby">
-                Sort By :<button class="sort">Price <i class="fas fa-angle-down"></i></button>
-              </div>
-              <div class="overlay-title">
-                Flights From <div class="overlay-title-2"><span class="src-overlay">Kolkata</span> To <span class="dest-overlay"> Bangalore </span></div>
-              </div>
-              <div class="direct-flights-o">
-                <div class="direct-flights-title">
-                  Direct Flights.
-                </div>
-                <div class="card-1 card">
-                  <div class="card-content">
-                    <div class="flight-name flight-name-1">Air India (AI-265)</div>
-                    <div class="content-details">
-                      <div class="places">
-                        <div class="from-1 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="to-1 to-overlay">Bangalore</div>
-                      </div>
-                      <div class="time">
-                        <div class="fromTime from-time-1">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-1">22:00:25</div>
-                      </div>
-                      <div class="price-details">
-                        Price: &#8377; <div class="base-price price-1">7,000</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-2 card">
-                  <div class="card-content">
-                    <div class="flight-name flight-name-2">Air India (AI-265)</div>
-                    <div class="content-details">
-                      <div class="places">
-                        <div class="from-2 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="to-2 to-overlay">Bangalore</div>
-                      </div>
-                      <div class="time">
-                        <div class="fromTime from-time-2">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-2">22:00:25</div>
-                      </div>
-                      <div class="price-details">
-                        Price: &#8377; <div class="base-price price-2">7,000</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-3 card">
-                  <div class="card-content">
-                    <div class="flight-name flight-name-3">Air India (AI-265)</div>
-                    <div class="content-details">
-                      <div class="places">
-                        <div class="from-3 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="to-3 to-overlay">Bangalore</div>
-                      </div>
-                      <div class="time">
-                        <div class="fromTime from-time-3">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-3">22:00:25</div>
-                      </div>
-                      <div class="price-details">
-                        Price: &#8377; <div class="base-price price-3">7,000</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="via-flights-title">
-                Connecting Flights.
-              </div>
-              <div class="via-flights-o">
-                <div class="card-4 card">
-                  <div class="card-content">
-                    <div class="optimised">
-                      <div class="flight-name flight-name-4">Air India (AI-265)</div><span>&nbsp;&nbsp;<div class="dot-opt"></div>&nbsp;Optimised Flight</span>
-                    </div>
-                    <div class="content-details">
-                      <div class="places">
-                        <div class="from-4 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-4 via-overlay">Mumbai</div>&nbsp;-&nbsp;<div class="to-4 to-overlay">Bangalore</div>
-                      </div>
-                      <div class="time">
-                        <div class="fromTime from-time-4">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-4">22:00:25</div>
-                      </div>
-                      <div class="price-details">
-                        Price: &#8377; <div class="base-price price-4">7,000</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-5 card">
-                  <div class="card-content">
-                    <div class="flight-name flight-name-5">Air India (AI-265)</div>
-                    <div class="content-details">
-                      <div class="places">
-                        <div class="from-5 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-5 via-overlay">Mumbai</div>&nbsp;-&nbsp;<div class="to-5 to-overlay">Bangalore</div>
-                      </div>
-                      <div class="time">
-                        <div class="fromTime from-time-5">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-5">22:00:25</div>
-                      </div>
-                      <div class="price-details">
-                        Price: &#8377; <div class="base-price price-5">7,000</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-6 card">
-                  <div class="card-content">
-                    <div class="flight-name flight-name-6">Air India (AI-265)</div>
-                    <div class="content-details">
-                      <div class="places">
-                        <div class="from-6 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-6 via-overlay">Mumbai</div>&nbsp;-&nbsp;<div class="to-6 to-overlay">Bangalore</div>
-                      </div>
-                      <div class="time">
-                        <div class="fromTime from-time-6">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-6">22:00:25</div>
-                      </div>
-                      <div class="price-details">
-                        Price: &#8377; <div class="base-price price-6">7,000</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-7 card">
-                  <div class="card-content">
-                    <div class="flight-name flight-name-7">Air India (AI-265)</div>
-                    <div class="content-details">
-                      <div class="places">
-                        <div class="from-7 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-7 via-overlay">Mumbai</div>&nbsp;-&nbsp;<div class="to-7 to-overlay">Bangalore</div>
-                      </div>
-                      <div class="time">
-                        <div class="fromTime from-time-7">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-7">22:00:25</div>
-                      </div>
-                      <div class="price-details">
-                        Price: &#8377; <div class="base-price price-7">7,000</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-8 card">
-                  <div class="card-content">
-                    <div class="flight-name flight-name-8">Air India (AI-265)</div>
-                    <div class="content-details">
-                      <div class="places">
-                        <div class="from-8 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-8 via-overlay">Mumbai</div>&nbsp;-&nbsp;<div class="to-8 to-overlay">Bangalore</div>
-                      </div>
-                      <div class="time">
-                        <div class="fromTime from-time-8">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-8">22:00:25</div>
-                      </div>
-                      <div class="price-details">
-                        Price: &#8377; <div class="base-price price-8">7,000</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
-              <a href="./static-card.html" class="btn search-btn">
-                <svg width="277" height="62">
-                  <defs>
-                      <linearGradient id="grad2">
-                          <stop offset="0%" stop-color="rgb(255, 30, 105)"/>
-                          <stop offset="100%" stop-color="rgba(82, 6, 148,1)" />
-                      </linearGradient>
-                  </defs>
-                   <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
-                </svg>
-                  <span>Select Flight</span>
-              </a>
-            </div>
-            <div class="col-2">
-                <div class="lines">
-  
-                    <svg fill="#050003" id="route" height="695.70178" width="611.85999">
-                      <defs>
-                        <linearGradient id="grad1">
-                            <stop offset="0%" stop-color="#FF9A8B" />
-                            <stop offset="10%" stop-color="#FF6A88" />
-                            <stop offset="100%" stop-color="#DB2763" />
-                        </linearGradient>
-                      </defs>
-                      
-                      <path 
-                      id="pathSet-1"
-                      stroke="url(#grad1)" 
-                      fill="transparent" 
-                      class="flight" stroke-width="3" d="M 186 209 Q 150 100 160 250 " />
-                
-                      <path id="pathSet-2" style="display:block"
-                      stroke="url(#grad1)" 
-                      fill="transparent" 
-                      class="flight" stroke-width="3" d="M 186 209 Q 150 100 160 250 " />
-                  
-                      <image xlink:href="aeroplane.png" id="plane1" x="-25" y="-25" width="50" height="50" >
-                        <animateMotion class="svg-anim" id="planemotion" dur="1.5s"  rotate="auto" begin="0s;planemotion1.end" calcMode="spline" keySplines="0.833333 0.02 0.5 1" >
-                             <mpath xlink:href="#pathSet-1"></mpath>
-                        </animateMotion>
-                    </image>
-                
-                    <image xlink:href="aeroplane.png" id="plane2" x="-25" y="-25" width="50" height="50" >
-                      <animateMotion class="svg-anim" id="planemotion1" dur="1s" rotate="auto"  begin="planemotion.end" calcMode="spline" keySplines="0.833333 0.02 0.5 1" >
-                           <mpath xlink:href="#pathSet-2"></mpath>
-                      </animateMotion>
-                  </image>
-                    </svg>
-
-                    
-                  </div>
-              
-              
-              <world-map class="map" id="map">
-      
-                <world-map-location style="opacity:0" left="186px" top="209px" label="delhi" id="delhi"></world-map-location>
-            
-                <world-map-location style="opacity:0" left="160px" top="250px" label="jaipur" id="jaipur"></world-map-location>
-            
-                <world-map-location style="opacity:0" left="094px" top="340px" label="ahmedabad" id="ahmedabad"></world-map-location>
-            
-                <world-map-location style="opacity:0" left="105px" top="425px" label="mumbai" id="mumbai" ></world-map-location>
-            
-                <world-map-location style="opacity:0" left="190px" top="560px" label="bangalore" id="bangalore"></world-map-location>
-            
-                <world-map-location style="opacity:0" left="215px" top="467px" label="hyderabad" id="hyderabad"></world-map-location>
-            
-                <world-map-location style="opacity:0" left="420px" top="350px" label="kolkata" id="kolkata"></world-map-location>
-                    
-               
-              </world-map>
-                <script src="./map.js"></script>
-                
-            </div>
+          <a href="#" class="login-btn">
+            <svg width="277" height="62">
+              <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="240" height="50"></rect>
+            </svg>
+            <span>Log In</span>
+          </a>
         </div>
+      </div>
     </div>
-    
-    <script src="./script-1.js"></script>
-    <script src="homepage.js"></script>
-    <script src="seatBooking.js"></script>
+
+
+    <div class="row-1">
+      <div class="col-1">
+
+
+
+
+        <div class="main-content-1">
+          <div class="title-1">
+            <div class="line-1">Search</div>
+            <div class="line-2">For Flights.</div>
+          </div>
+          <form name="searchFlights" class="form-content">
+            <div class="formi from">
+              <input type="text" name="start" required autocomplete="off" id="start" required>
+              <label name="from" class="label-name">
+                <span class="content-name">
+                  From:
+                </span>
+              </label>
+
+              <div class="arrow">
+                <i class="fas fa-angle-down"></i>
+              </div>
+
+            </div>
+            <div class="error source-error">Please enter a valid Source.</div>
+            <div class="dropdown dropdown-from">
+              <div class="place-1">Ahmedabad</div>
+              <div class="place-2">Bangalore</div>
+              <div class="place-3">Delhi</div>
+              <div class="place-4">Hyderabad</div>
+              <div class="place-5">Jaipur</div>
+              <div class="place-6">Kolkata</div>
+              <div class="place-7">Mumbai</div>
+            </div>
+            <div class="formi to">
+              <input type="text" name="end" required autocomplete="off" id="end" required>
+              <label name="whereto" class="label-name">
+                <span class="content-name">
+                  Where To?
+                </span>
+              </label>
+
+              <div class="arrow">
+                <i class="fas fa-angle-down"></i>
+              </div>
+
+            </div>
+            <div class="error dest-error">Please enter a valid Destination.</div>
+            <div class="dropdown dropdown-to">
+              <div class="place-1">Ahmedabad</div>
+              <div class="place-2">Bangalore</div>
+              <div class="place-3">Delhi</div>
+              <div class="place-4">Hyderabad</div>
+              <div class="place-5">Jaipur</div>
+              <div class="place-6">Kolkata</div>
+              <div class="place-7">Mumbai</div>
+            </div>
+            <div class="formi date">
+              <input type="text" name="deptdate" required autocomplete="off" id="date" required
+                onfocus="(this.type='date') (this.value=new Date().toISOString().substr(0, 10))"
+                onblur="if(!this.value)this.type='text'">
+              <label name="deptdate" class="label-name">
+                <span class="content-name">
+                  Departure Date:
+                </span>
+              </label>
+              <i class="fas fa-calendar-day"></i>
+            </div>
+            <div class="error date-error">Please enter a valid Departure Date.</div>
+            <div class="formi passenger">
+              <input type="number" name="passenger" id="passenger" class="passenger-inp" required autocomplete="off"
+                min="1" max="99">
+              <label name="passenger" class="label-name">
+                <span class="content-name">
+                  Passengers:
+                </span>
+              </label>
+              <div class="buttons">
+                <button class="add"><i class="fas fa-plus"></i></button>
+                <button class="subtract"><i class="fas fa-minus"></i></button>
+              </div>
+            </div>
+            <div class="error pass-error">Please enter valid number of passengers.</div>
+            <div class="formi tier">
+              <input type="text" name="tier" required autocomplete="off" id="tier">
+              <label name="tier" class="label-name">
+                <span class="content-name">
+                  Tier
+                </span>
+              </label>
+
+              <div class="arrow">
+                <i class="fas fa-angle-down"></i>
+              </div>
+
+            </div>
+            <div class="error class-error">Please enter a valid Class</div>
+            <div class="dropdown dropdown-tier">
+              <div class="tier-1">Economy</div>
+              <div class="tier-2">Premium Economy</div>
+              <div class="tier-3">Business Class</div>
+              <div class="tier-4">First Class</div>
+            </div>
+            <a href="#" class="btn">
+              <svg width="277" height="62">
+                <defs>
+                  <linearGradient id="grad2">
+                    <stop offset="0%" stop-color="rgb(255, 30, 105)" />
+                    <stop offset="100%" stop-color="rgba(82, 6, 148,1)" />
+                  </linearGradient>
+                </defs>
+                <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+              </svg>
+              <span>Search</span>
+            </a>
+          </form name="searchFlights">
+
+
+        </div>
+      </div>
+      <div class="overlay">
+        <div class="sortby">
+          Sort By :<button class="sort">Price <i class="fas fa-angle-down"></i></button>
+        </div>
+        <div class="overlay-title">
+          Flights From <div class="overlay-title-2"><span class="src-overlay">Kolkata</span> To <span
+              class="dest-overlay"> Bangalore </span></div>
+        </div>
+        <div class="direct-flights-o">
+          <div class="direct-flights-title">
+            Direct Flights.
+          </div>
+          <div class="card-1 card">
+            <div class="card-content">
+              <div class="flight-name flight-name-1">Air India (AI-265)</div>
+              <div class="content-details">
+                <div class="places">
+                  <div class="from-1 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="to-1 to-overlay">Bangalore
+                  </div>
+                </div>
+                <div class="time">
+                  <div class="fromTime from-time-1">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-1">22:00:25
+                  </div>
+                </div>
+                <div class="price-details">
+                  Price: &#8377; <div class="base-price price-1">7,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-2 card">
+            <div class="card-content">
+              <div class="flight-name flight-name-2">Air India (AI-265)</div>
+              <div class="content-details">
+                <div class="places">
+                  <div class="from-2 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="to-2 to-overlay">Bangalore
+                  </div>
+                </div>
+                <div class="time">
+                  <div class="fromTime from-time-2">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-2">22:00:25
+                  </div>
+                </div>
+                <div class="price-details">
+                  Price: &#8377; <div class="base-price price-2">7,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-3 card">
+            <div class="card-content">
+              <div class="flight-name flight-name-3">Air India (AI-265)</div>
+              <div class="content-details">
+                <div class="places">
+                  <div class="from-3 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="to-3 to-overlay">Bangalore
+                  </div>
+                </div>
+                <div class="time">
+                  <div class="fromTime from-time-3">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-3">22:00:25
+                  </div>
+                </div>
+                <div class="price-details">
+                  Price: &#8377; <div class="base-price price-3">7,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="via-flights-title">
+          Connecting Flights.
+        </div>
+        <div class="via-flights-o">
+          <div class="card-4 card">
+            <div class="card-content">
+              <div class="optimised">
+                <div class="flight-name flight-name-4">Air India (AI-265)</div><span>&nbsp;&nbsp;<div class="dot-opt">
+                  </div>&nbsp;Optimised Flight</span>
+              </div>
+              <div class="content-details">
+                <div class="places">
+                  <div class="from-4 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-4 via-overlay">Mumbai</div>
+                  &nbsp;-&nbsp;<div class="to-4 to-overlay">Bangalore</div>
+                </div>
+                <div class="time">
+                  <div class="fromTime from-time-4">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-4">22:00:25
+                  </div>
+                </div>
+                <div class="price-details">
+                  Price: &#8377; <div class="base-price price-4">7,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-5 card">
+            <div class="card-content">
+              <div class="flight-name flight-name-5">Air India (AI-265)</div>
+              <div class="content-details">
+                <div class="places">
+                  <div class="from-5 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-5 via-overlay">Mumbai</div>
+                  &nbsp;-&nbsp;<div class="to-5 to-overlay">Bangalore</div>
+                </div>
+                <div class="time">
+                  <div class="fromTime from-time-5">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-5">22:00:25
+                  </div>
+                </div>
+                <div class="price-details">
+                  Price: &#8377; <div class="base-price price-5">7,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-6 card">
+            <div class="card-content">
+              <div class="flight-name flight-name-6">Air India (AI-265)</div>
+              <div class="content-details">
+                <div class="places">
+                  <div class="from-6 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-6 via-overlay">Mumbai</div>
+                  &nbsp;-&nbsp;<div class="to-6 to-overlay">Bangalore</div>
+                </div>
+                <div class="time">
+                  <div class="fromTime from-time-6">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-6">22:00:25
+                  </div>
+                </div>
+                <div class="price-details">
+                  Price: &#8377; <div class="base-price price-6">7,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-7 card">
+            <div class="card-content">
+              <div class="flight-name flight-name-7">Air India (AI-265)</div>
+              <div class="content-details">
+                <div class="places">
+                  <div class="from-7 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-7 via-overlay">Mumbai</div>
+                  &nbsp;-&nbsp;<div class="to-7 to-overlay">Bangalore</div>
+                </div>
+                <div class="time">
+                  <div class="fromTime from-time-7">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-7">22:00:25
+                  </div>
+                </div>
+                <div class="price-details">
+                  Price: &#8377; <div class="base-price price-7">7,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-8 card">
+            <div class="card-content">
+              <div class="flight-name flight-name-8">Air India (AI-265)</div>
+              <div class="content-details">
+                <div class="places">
+                  <div class="from-8 from-overlay">Kolkata</div>&nbsp;-&nbsp;<div class="via-8 via-overlay">Mumbai</div>
+                  &nbsp;-&nbsp;<div class="to-8 to-overlay">Bangalore</div>
+                </div>
+                <div class="time">
+                  <div class="fromTime from-time-8">20:25:00</div>&nbsp;-&nbsp;<div class="toTime to-time-8">22:00:25
+                  </div>
+                </div>
+                <div class="price-details">
+                  Price: &#8377; <div class="base-price price-8">7,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <a href="./static-card.html" class="btn search-btn">
+          <svg width="277" height="62">
+            <defs>
+              <linearGradient id="grad2">
+                <stop offset="0%" stop-color="rgb(255, 30, 105)" />
+                <stop offset="100%" stop-color="rgba(82, 6, 148,1)" />
+              </linearGradient>
+            </defs>
+            <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+          </svg>
+          <span>Select Flight</span>
+        </a>
+      </div>
+      <div class="col-2">
+        <div class="lines">
+
+          <svg fill="#050003" id="route" height="695.70178" width="611.85999">
+            <defs>
+              <linearGradient id="grad1">
+                <stop offset="0%" stop-color="#FF9A8B" />
+                <stop offset="10%" stop-color="#FF6A88" />
+                <stop offset="100%" stop-color="#DB2763" />
+              </linearGradient>
+            </defs>
+
+            <path id="pathSet-1" stroke="url(#grad1)" fill="transparent" class="flight" stroke-width="3"
+              d="M 186 209 Q 150 100 160 250 " />
+
+            <path id="pathSet-2" style="display:block" stroke="url(#grad1)" fill="transparent" class="flight"
+              stroke-width="3" d="M 186 209 Q 150 100 160 250 " />
+
+            <image xlink:href="aeroplane.png" id="plane1" x="-25" y="-25" width="50" height="50">
+              <animateMotion class="svg-anim" id="planemotion" dur="1.5s" rotate="auto" begin="0s;planemotion1.end"
+                calcMode="spline" keySplines="0.833333 0.02 0.5 1">
+                <mpath xlink:href="#pathSet-1"></mpath>
+              </animateMotion>
+            </image>
+
+            <image xlink:href="aeroplane.png" id="plane2" x="-25" y="-25" width="50" height="50">
+              <animateMotion class="svg-anim" id="planemotion1" dur="1s" rotate="auto" begin="planemotion.end"
+                calcMode="spline" keySplines="0.833333 0.02 0.5 1">
+                <mpath xlink:href="#pathSet-2"></mpath>
+              </animateMotion>
+            </image>
+          </svg>
+
+
+        </div>
+
+
+        <world-map class="map" id="map">
+          <div class='hidePlane'></div>
+
+          <world-map-location style="opacity:0" left="186px" top="209px" label="delhi" id="delhi"></world-map-location>
+
+          <world-map-location style="opacity:0" left="160px" top="250px" label="jaipur" id="jaipur">
+          </world-map-location>
+
+          <world-map-location style="opacity:0" left="094px" top="340px" label="ahmedabad" id="ahmedabad">
+          </world-map-location>
+
+          <world-map-location style="opacity:0" left="105px" top="425px" label="mumbai" id="mumbai">
+          </world-map-location>
+
+          <world-map-location style="opacity:0" left="190px" top="560px" label="bangalore" id="bangalore">
+          </world-map-location>
+
+          <world-map-location style="opacity:0" left="215px" top="467px" label="hyderabad" id="hyderabad">
+          </world-map-location>
+
+          <world-map-location style="opacity:0" left="420px" top="350px" label="kolkata" id="kolkata">
+          </world-map-location>
+
+
+        </world-map>
+        <script src="./map.js"></script>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="./script-1.js"></script>
+  <script src="homepage.js"></script>
+  <script src="seatBooking.js"></script>
 </body>
+
 </html>
-
-
-
-
-
-

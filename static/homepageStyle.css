@@ -21,7 +21,7 @@ body {
   font-family: 'Average Sans', sans-serif;
 }
 
-.fas {
+.row-1 .fas {
   background-image: linear-gradient(50deg, #ff9a8b, #db2763);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -44,7 +44,8 @@ body {
       grid-template-columns: 51% 49%;
 }
 
-.col-1, .col-2 {
+.col-1,
+.col-2 {
   height: 100%;
 }
 
@@ -108,9 +109,11 @@ body {
   width: 100%;
   font-size: 1.1rem;
   padding-top: 2rem;
+  caret-color: transparent;
 }
 
-.formi input:focus + .label-name .content-name, .formi input:valid + .label-name .content-name {
+.formi input:focus + .label-name .content-name,
+.formi input:valid + .label-name .content-name {
   /* :valid ensures that when input text is added and the focus is shifted somwehere else
             the label doesn't come back to its initial position*/
   color: #f0f7ee;
@@ -151,7 +154,7 @@ body {
   transition: transform 500ms ease, -webkit-transform 500ms ease;
 }
 
-.content-name {
+.formi .content-name {
   position: absolute;
   top: 2rem;
   -webkit-transition: all 500ms ease;
@@ -159,7 +162,8 @@ body {
   font-size: 1.2em;
 }
 
-.formi input:focus + .label-name::after, .formi:valid + label::after {
+.formi input:focus + .formi .label-name::after,
+.formi input:valid + .formi label::after {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
   border-color: #f0f7ee;
@@ -171,7 +175,8 @@ body {
   left: 90%;
 }
 
-.add, .subtract {
+.add,
+.subtract {
   outline: none;
   background: transparent;
   text-decoration: none;
@@ -181,7 +186,8 @@ body {
   font-size: 1rem;
 }
 
-.add .fas, .subtract .fas {
+.add .fas,
+.subtract .fas {
   pointer-events: none;
 }
 
@@ -364,7 +370,7 @@ input[type=number] {
   background: #ff8282;
   background: -webkit-gradient(linear, left top, right top, from(#ff9a8b), to(#db2763));
   background: linear-gradient(to right, #ff9a8b 0%, #db2763 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8282', endColorstr='#e178ed',GradientType=1 );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8282', endColorstr='#e178ed', GradientType=1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -388,7 +394,8 @@ input[type=number] {
   transition: all 400ms ease-in;
 }
 
-.direct-flights-o, .via-flights-o {
+.direct-flights-o,
+.via-flights-o {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -444,7 +451,8 @@ input[type=number] {
   font-family: 'Overlock', cursive;
 }
 
-.direct-flights-title, .via-flights-title {
+.direct-flights-title,
+.via-flights-title {
   width: 80%;
   margin: 0.5em 0;
   font-size: 1.4rem;
@@ -502,7 +510,9 @@ input[type=number] {
   width: 100%;
 }
 
-.places, .time, .price-details {
+.places,
+.time,
+.price-details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -518,7 +528,8 @@ input[type=number] {
   margin-top: 0.5em;
 }
 
-.places, .time {
+.places,
+.time {
   border-right: 2px solid transparent;
   -o-border-image: linear-gradient(#ff9a8b, #db2763);
      border-image: -webkit-gradient(linear, left top, left bottom, from(#ff9a8b), to(#db2763));
@@ -530,7 +541,8 @@ input[type=number] {
   width: 48%;
 }
 
-.via-flights-o .time, .via-flights-o .price-details {
+.via-flights-o .time,
+.via-flights-o .price-details {
   margin-left: 0.5em;
   width: 26%;
 }
@@ -539,7 +551,8 @@ input[type=number] {
   width: 35%;
 }
 
-.direct-flights-o .time, .direct-flights-o .price-details {
+.direct-flights-o .time,
+.direct-flights-o .price-details {
   width: 30%;
   margin-left: 0.5em;
 }
@@ -551,7 +564,8 @@ input[type=number] {
   font-weight: 700;
 }
 
-.via-flights-o .card-4 .places, .via-flights-o .card-4 .time {
+.via-flights-o .card-4 .places,
+.via-flights-o .card-4 .time {
   -o-border-image: none;
      border-image: none;
   border-right: 2px solid #2a2a30;
@@ -630,38 +644,48 @@ input[type=number] {
 }
 
 @-webkit-keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     -webkit-transform: translate3d(-2px, 0, 0);
             transform: translate3d(-2px, 0, 0);
   }
-  20%, 80% {
+  20%,
+  80% {
     -webkit-transform: translate3d(4px, 0, 0);
             transform: translate3d(4px, 0, 0);
   }
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     -webkit-transform: translate3d(-16px, 0, 0);
             transform: translate3d(-16px, 0, 0);
   }
-  40%, 60% {
+  40%,
+  60% {
     -webkit-transform: translate3d(16px, 0, 0);
             transform: translate3d(16px, 0, 0);
   }
 }
 
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     -webkit-transform: translate3d(-2px, 0, 0);
             transform: translate3d(-2px, 0, 0);
   }
-  20%, 80% {
+  20%,
+  80% {
     -webkit-transform: translate3d(4px, 0, 0);
             transform: translate3d(4px, 0, 0);
   }
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     -webkit-transform: translate3d(-16px, 0, 0);
             transform: translate3d(-16px, 0, 0);
   }
-  40%, 60% {
+  40%,
+  60% {
     -webkit-transform: translate3d(16px, 0, 0);
             transform: translate3d(16px, 0, 0);
   }
@@ -677,5 +701,248 @@ input[type=number] {
   display: inline-block;
   -webkit-transform: scale(0);
           transform: scale(0);
+}
+
+.login-container {
+  position: absolute;
+  z-index: 10000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(31, 30, 30, 0.1);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  -webkit-transition: all 400ms ease-in;
+  transition: all 400ms ease-in;
+  color: #f0f7ee;
+}
+
+.login {
+  background-color: #101011;
+  -webkit-backdrop-filter: blur(400px);
+          backdrop-filter: blur(400px);
+  height: 28em;
+  width: 40em;
+  border: 4px solid #db2763;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.formi-login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 90%;
+  height: 3.5rem;
+  overflow: hidden;
+  margin-top: 1em;
+}
+
+.formi-login input {
+  outline: none;
+  background: transparent;
+  text-decoration: none;
+  border: none;
+  color: #ff9a8b;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  font-size: 1.1rem;
+  padding-top: 1.5rem;
+}
+
+.formi-login input:focus + .label-name .content-name,
+.formi-login input:valid + .label-name .content-name {
+  /* :valid ensures that when input text is added and the focus is shifted somwehere else
+            the label doesn't come back to its initial position*/
+  color: #db2763;
+  font-size: 0.9em;
+  -webkit-transform: translateY(-140%);
+          transform: translateY(-140%);
+}
+
+.formi-login label {
+  outline: none;
+  background: transparent;
+  text-decoration: none;
+  border: none;
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  border-bottom: 2px solid #f0f7ee;
+  color: #f0f7ee;
+}
+
+.formi-login label::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px solid #db2763;
+  left: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  /*Moving the blue line out of frame initially also, 
+            since overflow is not hidden it is visible on the frame when overflow:hidden; 
+            not applied to parent*/
+  -webkit-transition: -webkit-transform 500ms ease;
+  transition: -webkit-transform 500ms ease;
+  transition: transform 500ms ease;
+  transition: transform 500ms ease, -webkit-transform 500ms ease;
+}
+
+.formi-login label .content-name {
+  position: absolute;
+  top: 2.2rem;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+  font-size: 1em;
+  color: #f0f7ee;
+}
+
+.formi-login input:focus + .label-name::after,
+.formi-login input:valid + label::after {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+  border-color: #db2763;
+}
+
+.login-container .title {
+  font-family: 'Overlock', cursive;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  background-image: linear-gradient(45deg, #db2763, #ff9a8b);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-container a,
+.login-container a:link {
+  color: #ff9a8b;
+}
+
+.login-content {
+  width: 28em;
+}
+
+.register-link {
+  margin-top: 0.5em;
+  cursor: pointer;
+}
+
+.register-link a {
+  display: inline-block;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: -webkit-transform 200ms linear;
+  transition: -webkit-transform 200ms linear;
+  transition: transform 200ms linear;
+  transition: transform 200ms linear, -webkit-transform 200ms linear;
+}
+
+.register-link a:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.login-btn {
+  position: relative;
+  display: inline-block;
+  outline: none;
+  width: 244px;
+  height: 50px;
+  font-weight: 700;
+  line-height: 60px;
+  text-align: center;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: 0.045em;
+  margin: 1.5em 36%;
+}
+
+.login-btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.login-btn svg rect {
+  /*stroke: #EC0033;*/
+  stroke-width: 3;
+  stroke-dasharray: 353, 0;
+  stroke-dashoffset: 0;
+  -webkit-transition: all 600ms ease;
+  transition: all 600ms ease;
+}
+
+.login-btn span {
+  background: #ff8282;
+  background: -webkit-gradient(linear, left top, right top, from(#ff9a8b), to(#db2763));
+  background: linear-gradient(to right, #ff9a8b 0%, #db2763 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8282', endColorstr='#e178ed', GradientType=1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-btn:hover svg rect {
+  stroke-width: 4;
+  stroke-dasharray: 170, 543;
+  stroke-dashoffset: 437;
+}
+
+.cross-login {
+  outline: none;
+  background: transparent;
+  text-decoration: none;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  -webkit-transition: all 120ms linear;
+  transition: all 120ms linear;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  color: #db2763;
+}
+
+.cross-login:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.cross-login i {
+  font-size: 2rem;
+  pointer-events: none;
 }
 /*# sourceMappingURL=homepageStyle.css.map */

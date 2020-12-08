@@ -38,3 +38,15 @@ world-map, .lines {
   z-index: 10;
 }
 /*# sourceMappingURL=map.css.map */
+
+.hidePlane{
+  position:fixed;
+
+  background-color: rgb(78, 78, 80);;
+  height:60px;
+  width:60px;
+  top:-2%;
+  left:54%;
+  z-index:10; 
+
+}
