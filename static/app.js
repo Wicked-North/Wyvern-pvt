@@ -17,14 +17,24 @@ function passDetailsDisplay() {
     for (let i = 0; i < n; i++) {
         slideDown += `
         <div id = ${i+1}>
-        <small>Your name should match how it appears on the ID that you will use at the airport</small>\
+        Your name should match how it appears on the ID that you will use at the airport
         <p id="card4pd"><strong>Personal Details </strong></p>
         <div class="control-group">
         <div class="controls">
             <i class="fa fa-user" aria-hidden="true" id="usericon"></i>
-            <input class="input-small" id="FirstName+${i+1}" name="FirstName" placeholder="First name" type="text"   />
-            <input class="input-small" id="MiddleName+${i+1}" name="MiddleName" placeholder="Middle name" type="text"    />
-            <input class="input-small" id="LastName+${i+1}" name="LastName" placeholder="Last name" type="text"     />
+            <div class="formi">
+              <input type="text" name="" required autocomplete="off" id="" required>
+              <label name="from" class="label-name">
+                <span class="content-name">
+                  From:
+                </span>
+              </label>
+
+
+            </div>
+            <input class="input-small" class="formi" id="FirstName+${i+1}" name="FirstName" placeholder="First name" type="text"   />
+            <input class="input-small" class="formi" id="MiddleName+${i+1}" name="MiddleName" placeholder="Middle name" type="text"    />
+            <input class="input-small" class="formi" id="LastName+${i+1}" name="LastName" placeholder="Last name" type="text"     />
         </div>
         </div>
         <div id="card4buttons">
@@ -39,8 +49,7 @@ function passDetailsDisplay() {
         </div>
         <div id="card4dob">
         <label for="start" id="dob">Date Of Birth:
-            <input type="date" id="start+${i+1}" name="trip-start" value="2018-07-22" min="2018-01-01"
-                max="2018-12-31"   >
+            <input type="date" id="start+${i+1}" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
         </label>
         </div>
         <div id="card4phone">
