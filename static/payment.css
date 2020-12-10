@@ -63,6 +63,10 @@ body {
   margin-top: 60px;
 }
 
+#card4 {
+  padding: 2em 2em 0 2em;
+}
+
 .payment-details .main-title, .payment-details .title-masks, .payment-details .title-travel {
   background-image: linear-gradient(45deg, #ff9a8b, #db2763);
   -webkit-text-fill-color: transparent;
@@ -105,7 +109,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 90%;
-  height: 3.5rem;
+  height: 3rem;
   overflow: hidden;
   margin-top: 1.2em;
 }
@@ -120,14 +124,14 @@ body {
   height: 100%;
   width: 100%;
   font-size: 1.1rem;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
 
 .formi input:focus + .label-name .content-name, .formi input:valid + .label-name .content-name {
   /* :valid ensures that when input text is added and the focus is shifted somwehere else
             the label doesn't come back to its initial position*/
   color: #f0f7ee;
-  font-size: 1.08em;
+  font-size: 0.9em;
   -webkit-transform: translateY(-140%);
           transform: translateY(-140%);
 }
@@ -166,16 +170,231 @@ body {
 
 .content-name {
   position: absolute;
-  top: 2rem;
+  top: 1.5rem;
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .formi input:focus + .label-name::after, .formi:valid + label::after {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
   border-color: #f0f7ee;
+}
+
+.gender-radio-button {
+  color: #ff9a8b;
+  margin-top: 1.8em;
+}
+
+.gender-radio-button label {
+  position: relative;
+  margin: 0.675rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.gender-radio-button .check {
+  margin-right: 7px;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.gender-radio-button .check #border {
+  fill: none;
+  stroke: #ff9a8b;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.gender-radio-button .check #dot {
+  fill: url(#gradient);
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+}
+
+.gender-radio-button input {
+  display: none;
+}
+
+.gender-radio-button input:checked + label {
+  font-weight: 600;
+  background-color: #ff9a8b;
+  /*background: linear-gradient(180deg, $light-blue-grad, $grad-pink);*/
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gender-radio-button input:checked + label svg #border {
+  stroke: url(#gradient);
+  stroke-dasharray: 145;
+  stroke-dashoffset: 145;
+  -webkit-animation: checked 500ms ease forwards;
+          animation: checked 500ms ease forwards;
+}
+
+.gender-radio-button input:checked + label svg #dot {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: -webkit-transform 500ms cubic-bezier(0.57, 0.21, 0.69, 3.25);
+  transition: -webkit-transform 500ms cubic-bezier(0.57, 0.21, 0.69, 3.25);
+  transition: transform 500ms cubic-bezier(0.57, 0.21, 0.69, 3.25);
+  transition: transform 500ms cubic-bezier(0.57, 0.21, 0.69, 3.25), -webkit-transform 500ms cubic-bezier(0.57, 0.21, 0.69, 3.25);
+}
+
+@-webkit-keyframes checked {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes checked {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.gender-radio-button .female {
+  margin-left: 1rem;
+}
+
+.personal-details-title, .personal-details-sub-title {
+  font-family: 'Overlock', cursive;
+  font-size: 1.5rem;
+}
+
+.personal-details-title {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  color: #f0f7ee;
+  font-weight: 600;
+}
+
+.personal-details-sub-title {
+  color: #db2763;
+}
+
+.passenger-name, .passenger-name-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.passenger-name {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.passenger-name-1 {
+  width: 49%;
+}
+
+.passenger-name-2 {
+  width: 90%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.middle-name, .last-name {
+  width: 80%;
+}
+
+.middle-name {
+  margin-right: 1em;
+}
+
+.gender-radio-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.dob {
+  width: 44%;
+}
+
+.contacts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90%;
+}
+
+.contact-details {
+  margin-left: 1em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #db2763;
+  margin-top: 2em;
+}
+
+.login-btn {
+  position: relative;
+  display: inline-block;
+  outline: none;
+  width: 244px;
+  height: 50px;
+  font-weight: 700;
+  line-height: 60px;
+  text-align: center;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.4rem;
+  letter-spacing: 0.045em;
+  margin: 1.5em 36%;
+}
+
+.login-btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.login-btn svg rect {
+  /*stroke: #EC0033;*/
+  stroke-width: 3;
+  stroke-dasharray: 353, 0;
+  stroke-dashoffset: 0;
+  -webkit-transition: all 600ms ease;
+  transition: all 600ms ease;
+}
+
+.login-btn span {
+  background: #ff8282;
+  background: -webkit-gradient(linear, left top, right top, from(#ff9a8b), to(#db2763));
+  background: linear-gradient(to right, #ff9a8b 0%, #db2763 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8282', endColorstr='#e178ed', GradientType=1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-btn:hover svg rect {
+  stroke-width: 4;
+  stroke-dasharray: 170, 543;
+  stroke-dashoffset: 437;
+}
+
+.login-btn-invisible {
+  outline: none;
+  background: transparent;
+  text-decoration: none;
+  border: none;
+  margin-left: 58%;
 }
 
 .nav {

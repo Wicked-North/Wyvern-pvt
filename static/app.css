@@ -14,15 +14,6 @@
     border-color:light gray;
 }
 
-
-
-#card4pd{
-    margin-top: 20px;
-}
-#usericon{
-    padding-right: 15px;
-    margin-right: 10px;
-}
 #card4buttons{
     margin-top: 60px;
     margin-left: 40px;
@@ -33,14 +24,6 @@ input[type=radio]{
   #inlineradio2{
       margin-right: 20px;
   }
-  #femalespace{
-      margin-right: 80px;
-      margin-left: 20px;
-  }
-  #malespace{
-      margin-left: 20px;
-      padding-right: 20px;
-  }
   #dob{
     display: block;
     font: 1rem 'Fira Sans', sans-serif;
@@ -50,16 +33,6 @@ input[type=radio]{
     margin: .4rem 0;
     
   }
-#card4dob{
-    margin-top: 40px;
-    
-}
-#card4phone{
-    margin-top: 40px;
-}
-#card4email{
-    margin-top: 40px;
-}
 #card5text{
     text-align: left;
 }

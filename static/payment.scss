@@ -4,8 +4,8 @@ $medium-grey:rgb(78, 78, 80);
 $transparent-grey:rgba(78, 78, 80, 0.4);
 $black-lighter:rgba(8, 8, 8, 0.3);
 $font-light:rgb(240, 247, 238);
-$height-field: 3.5rem;
-$font-size-custom: 1.2em;
+$height-field: 3rem;
+$font-size-custom: 1em;
 $before-color: rgb(255, 154, 139);
 $after-color:rgb(240, 247, 238);
 $grad-pink:rgb(255, 154, 139);
@@ -83,8 +83,11 @@ body{
 
 #card1{
     margin-top: 60px;
-  }
+}
 
+#card4{
+    padding: 2em 2em 0 2em;
+}
 
 //all titles go here
 .payment-details{
@@ -125,9 +128,9 @@ body{
     }
 }
 
+
+//form styling
 //text-field animation
-
-
 .formi{
     display: flex;
     position: relative;
@@ -199,6 +202,193 @@ body{
     
 }
 
+
+//gradient radio buttons
+.gender-radio-button{
+    color:$grad-pink;
+    margin-top:1.8em;
+    label {
+        position: relative;
+        margin: 0.675rem 0;
+        display: flex;
+        width: auto;
+        align-items: center;
+        cursor: pointer;
+      }
+      
+      .check {
+        margin-right: 7px;
+        width: 1.35rem;
+        height: 1.35rem;
+      }
+      .check #border {
+        fill: none;
+        stroke: $grad-pink;
+        stroke-width: 3;
+        stroke-linecap: round;
+      }
+      .check #dot {
+        fill: url(#gradient);
+        transform: scale(0);
+        transform-origin: 50% 50%;
+      }
+      
+      input {
+        display: none;
+      }
+      input:checked + label {
+        font-weight:600;
+        background-color: $grad-pink;
+        /*background: linear-gradient(180deg, $light-blue-grad, $grad-pink);*/
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      input:checked + label svg #border {
+        stroke: url(#gradient);
+        stroke-dasharray: 145;
+        stroke-dashoffset: 145;
+        animation: checked 500ms ease forwards;
+      }
+      input:checked + label svg #dot {
+        transform: scale(1);
+        transition: transform 500ms cubic-bezier(0.57, 0.21, 0.69, 3.25);
+      }
+      
+      @keyframes checked {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .female{
+          margin-left: 1rem;
+      }
+}
+
+.personal-details-title, .personal-details-sub-title{
+    font-family: 'Overlock', cursive;
+    font-size: 1.5rem;
+}
+
+.personal-details-title{
+    margin-top:1em;
+    margin-bottom: 0.5em;
+    color:$font-light;
+    font-weight: 600;
+}
+
+.personal-details-sub-title{
+    color:$grad-red;
+}
+
+.passenger-name, .passenger-name-2{
+    display:flex;
+}
+
+.passenger-name{
+    flex-direction: column;
+}
+
+.passenger-name-1{
+    width: 49%;
+}
+
+.passenger-name-2{
+    width: 90%;
+    justify-content: space-between;
+}
+
+.middle-name, .last-name{
+    width: 80%;
+}
+
+.middle-name{
+    margin-right: 1em;
+}
+
+.gender-radio-button{
+    display: flex;
+}
+
+.dob{
+    width: 44%;
+}
+
+.contacts{
+    display: flex;
+    width: 90%;
+}
+
+.contact-details{
+    margin-left: 1em;
+}
+
+
+hr{
+    border:none;
+    border-top: 1px solid $grad-red;
+    margin-top:2em;
+}
+
+
+
+//gradient button animation 
+.login-btn {
+    position: relative;
+    display: inline-block;
+    outline: none;
+    width: 244px;
+    height: 50px;
+    font-weight: 700;
+    line-height: 60px;
+    text-align: center;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: 0.045em;
+    margin: 1.5em 36%;
+
+}
+
+.login-btn svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.login-btn svg rect {
+    /*stroke: #EC0033;*/
+    stroke-width: 3;
+    stroke-dasharray: 353, 0;
+    stroke-dashoffset: 0;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+}
+
+.login-btn span {
+    background: rgb(255, 130, 130);
+    background: -moz-linear-gradient(left, $grad-pink 0%, $grad-red 100%);
+    background: -webkit-linear-gradient(left, $grad-pink 0%, $grad-red 100%);
+    background: linear-gradient(to right, $grad-pink 0%, $grad-red 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8282', endColorstr='#e178ed', GradientType=1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+.login-btn:hover svg rect {
+    stroke-width: 4;
+    stroke-dasharray: 170, 543;
+    stroke-dashoffset: 437;
+}
+
+.login-btn-invisible{
+    @include removeStyle();
+    margin-left:58%;
+}
 .nav {
     display: flex;
     position: absolute;

@@ -17,87 +17,122 @@ function passDetailsDisplay() {
     for (let i = 0; i < n; i++) {
         slideDown += `
         <div id=${i+1}>
-							Your name should match how it appears on the ID that you will use at the airport
-							<p id="card4pd"><strong>Personal Details </strong></p>
-							<div class="control-group">
-								<div class="controls">
-									<!--i class="fa fa-user" aria-hidden="true" id="usericon"></i-->
-									<div class="formi from">
-										<input type="text" name="start" required autocomplete="off"
-											id="FirstName+${i+1}" required>
-										<label name="from" class="label-name">
-											<span class="content-name">
-												First Name:
-											</span>
-										</label>
-									</div>
-									<div class="formi from">
-										<input type="text" name="start" required autocomplete="off" id="MiddleName+${i+1}" required>
-										<label name="from" class="label-name">
-											<span class="content-name">
-												Middle Name:
-											</span>
-										</label>
-									</div>
-									<div class="formi from">
-										<input type="text" name="start" required autocomplete="off" id="LastName+${i+1}" required>
-										<label name="from" class="label-name">
-											<span class="content-name">
-												Last Name:
-											</span>
-										</label>
-									</div>
-									<!--input class="input-small" class="formi" id="FirstName+${i+1}" name="FirstName"
-										placeholder="First name" type="text" />
-									<input class="input-small" class="formi" id="MiddleName+${i+1}" name="MiddleName"
-										placeholder="Middle name" type="text" />
-									<input class="input-small" class="formi" id="LastName+${i+1}" name="LastName"
-										placeholder="Last name" type="text" /-->
-								</div>
-							</div>
-							<div id="card4buttons">
-								<div class="form-check form-check-inline">
-									<input class="form-check-input-${i+1}" type="radio" name="inlineRadioOptions-${i+1}"
-										id="inlineRadio1+${i+1}" value="option1">
-									<label class="form-check-label" for="inlineRadio1+${i+1}"><span
-											id="femalespace">Female</span></label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input-${i+1}" type="radio" name="inlineRadioOptions-${i+1}"
-										id="inlineRadio2+${i+1}" value="option2">
-									<label class="form-check-label" for="inlineRadio2+${i+1}"><span
-											id="malespace">Male</span></label>
-								</div>
-							</div>
-							<div id="card4dob">
-								<label for="start" id="dob">Date Of Birth:
-									<input type="date" id="start+${i+1}" name="trip-start" value="2018-07-22"
-										min="2018-01-01" max="2018-12-31">
-								</label>
-							</div>
-							<div id="card4phone">
-								<label for="phone">Contact Details:</label>
-								<input type="tel" id="phone+${i+1}" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
-							</div>
-							<div class="form-group" id="card4email">
-								<label for="exampleInputEmail1">Email address</label>
-								<input type="email" class="form-control" id="exampleInputEmail1+${i+1}"
-									aria-describedby="emailHelp">
-								<small id="emailHelp" class="form-text text-muted">We will never share your email
-									with
-									anyone
-									else.</small>
-							</div>
+    <div class="personal-details-title">Passenger ${i+1}</div>
+    <div class="personal-details-sub-title">Personal Details </div>
+    <div class="personal-details-disclaimer">Your name should match how it appears on the ID
+        that you will use at the airport</div>
+    <div class="control-group">
 
-						</div>
-		</div>
-		<hr>
+        <!--i class="fa fa-user" aria-hidden="true" id="usericon"></i-->
+        <div class="passenger-name">
+            <div class="passenger-name-1">
+                <div class="formi first-name">
+                    <input type="text" name="start"  autocomplete="off"
+                        id="FirstName+${i+1}" >
+                    <label name="from" class="label-name">
+                        <span class="content-name">
+                            First Name
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="passenger-name-2">
+                <div class="formi middle-name">
+                    <input type="text" name="start"  autocomplete="off"
+                        id="MiddleName+${i+1}" >
+                    <label name="from" class="label-name">
+                        <span class="content-name">
+                            Middle Name
+                        </span>
+                    </label>
+                </div>
+                <div class="formi last-name">
+                    <input type="text" name="start"  autocomplete="off"
+                        id="LastName+${i+1}" >
+                    <label name="from" class="label-name">
+                        <span class="content-name">
+                            Last Name
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="gender-radio-button">
+        <input type="radio" name="field" id="inlineRadio2+${i+1}" value="option2" />
+        <label class="male" for="inlineRadio2+${i+1}">
+            <svg class="check" viewbox="0 0 40 40">
+                <circle id="border" r="18px" cx="20px" cy="20px"></circle>
+                <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
+            </svg>Male
+        </label>
+        <input type="radio" name="field" id="inlineRadio1+${i+1}" checked value="option2" />
+        <label class="female" for="inlineRadio1+${i+1}">
+            <svg class="check" viewbox="0 0 40 40">
+                <defs>
+                    <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+                        <stop offset="0%" stop-color="rgb(219, 39, 99)"></stop>
+                        <stop offset="50%" stop-color="rgb(219, 39, 99)"></stop>
+                        <stop offset="100%" stop-color="rgb(255, 154, 139)"></stop>
+                    </linearGradient>
+                </defs>
+                <circle id="border" r="18px" cx="20px" cy="20px"></circle>
+                <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
+            </svg>Female
+        </label>
+        
+
+    </div>
+    <div class="formi dob">
+        <input type="text" name="start" required autocomplete="off" id="start+${i+1}" required
+            onfocus="(this.type='date') (this.value=new Date().toISOString().substr(0, 10))"
+            onblur="if(!this.value)this.type='text'">
+        <label name="from" class="label-name">
+            <span class="content-name">
+                Date Of Birth
+            </span>
+        </label>
+    </div>
+
+    <div class="contacts">
+        
+        <div class="formi email">
+            <input type="email" name="start" required autocomplete="off"
+                id="exampleInputEmail1+${i+1}">
+            <label name="from" class="label-name">
+                <span class="content-name">
+                    E-Mail
+                </span>
+            </label>
+        </div>
+        <div class="formi contact-details">
+            <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
+                autocomplete="off" id="phone+${i+1}">
+            <label name="from" class="label-name">
+                <span class="content-name">
+                    Contact Details
+                </span>
+            </label>
+        </div>
+    </div>
+    <div class="email-disclaimer">We will never share your email with anyone else.</div>
+
+</div>
+<hr class="personal-details-line" noshade>
         `
     }
 
-    slideDown += `<div align="right">
-    <input type="submit" class="btn btn-primary" value="Continue">
-    </div>`
+    // slideDown += `<div align="right">
+    // <button class="btn btn-primary">Continue</button>
+    // </div>`
+    slideDown += `<button class="login-btn-invisible"><a class="login-btn">
+    <svg width="277" height="62">
+      <rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50"></rect>
+    </svg>
+    <span>Continue</span>
+  </a></button>`
+    
 
     document.getElementById('passform').innerHTML = slideDown
 }

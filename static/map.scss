@@ -5,29 +5,45 @@ body {
   background-color: $darkest-blue;
 }
 
-world-map, .lines{
+world-map,
+.lines {
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
+  top: 5%;
   left: 50;
 }
+
 .flight {
-stroke-dasharray: 10;
+  stroke-dasharray: 10;
 
-animation: dash 10s linear infinite;
+  animation: dash 10s linear infinite;
 }
+
 @keyframes dash {
-from {
-stroke-dashoffset: 500;
-}
-to{
-stroke-dashoffset: 0;
+  from {
+    stroke-dashoffset: 500;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+
+  }
 
 }
 
+.lines {
+  z-index: 10;
 }
 
-.lines{
-z-index: 10;
+.hidePlane {
+  position: fixed;
+  background-color: rgb(78, 78, 80);
+  ;
+  height: 60px;
+  width: 60px;
+  top: 2%;
+  left: 54%;
+  z-index: 10;
+
 }
