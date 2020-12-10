@@ -77,6 +77,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.05rem;
   font-size: 2.8rem;
+  margin-bottom: 0.1em;
 }
 
 .payment-details .title-masks, .payment-details .title-travel {
@@ -122,8 +123,7 @@ body {
   padding-top: 2rem;
 }
 
-.formi input:focus + .label-name .content-name,
-.formi input:valid + .label-name .content-name {
+.formi input:focus + .label-name .content-name, .formi input:valid + .label-name .content-name {
   /* :valid ensures that when input text is added and the focus is shifted somwehere else
             the label doesn't come back to its initial position*/
   color: #f0f7ee;
@@ -164,7 +164,7 @@ body {
   transition: transform 500ms ease, -webkit-transform 500ms ease;
 }
 
-.formi .content-name {
+.content-name {
   position: absolute;
   top: 2rem;
   -webkit-transition: all 500ms ease;
@@ -172,8 +172,7 @@ body {
   font-size: 1.2em;
 }
 
-.formi input:focus + .formi .label-name::after,
-.formi input:valid + .formi label::after {
+.formi input:focus + .label-name::after, .formi:valid + label::after {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
   border-color: #f0f7ee;

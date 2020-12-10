@@ -16,58 +16,82 @@ let prevSeatName = []
 function passDetailsDisplay() {
     for (let i = 0; i < n; i++) {
         slideDown += `
-        <div id = ${i+1}>
-        Your name should match how it appears on the ID that you will use at the airport
-        <p id="card4pd"><strong>Personal Details </strong></p>
-        <div class="control-group">
-        <div class="controls">
-            <i class="fa fa-user" aria-hidden="true" id="usericon"></i>
-            <div class="formi">
-              <input type="text" name="" required autocomplete="off" id="" required>
-              <label name="from" class="label-name">
-                <span class="content-name">
-                  From:
-                </span>
-              </label>
+        <div id=${i+1}>
+							Your name should match how it appears on the ID that you will use at the airport
+							<p id="card4pd"><strong>Personal Details </strong></p>
+							<div class="control-group">
+								<div class="controls">
+									<!--i class="fa fa-user" aria-hidden="true" id="usericon"></i-->
+									<div class="formi from">
+										<input type="text" name="start" required autocomplete="off"
+											id="FirstName+${i+1}" required>
+										<label name="from" class="label-name">
+											<span class="content-name">
+												First Name:
+											</span>
+										</label>
+									</div>
+									<div class="formi from">
+										<input type="text" name="start" required autocomplete="off" id="MiddleName+${i+1}" required>
+										<label name="from" class="label-name">
+											<span class="content-name">
+												Middle Name:
+											</span>
+										</label>
+									</div>
+									<div class="formi from">
+										<input type="text" name="start" required autocomplete="off" id="LastName+${i+1}" required>
+										<label name="from" class="label-name">
+											<span class="content-name">
+												Last Name:
+											</span>
+										</label>
+									</div>
+									<!--input class="input-small" class="formi" id="FirstName+${i+1}" name="FirstName"
+										placeholder="First name" type="text" />
+									<input class="input-small" class="formi" id="MiddleName+${i+1}" name="MiddleName"
+										placeholder="Middle name" type="text" />
+									<input class="input-small" class="formi" id="LastName+${i+1}" name="LastName"
+										placeholder="Last name" type="text" /-->
+								</div>
+							</div>
+							<div id="card4buttons">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input-${i+1}" type="radio" name="inlineRadioOptions-${i+1}"
+										id="inlineRadio1+${i+1}" value="option1">
+									<label class="form-check-label" for="inlineRadio1+${i+1}"><span
+											id="femalespace">Female</span></label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input-${i+1}" type="radio" name="inlineRadioOptions-${i+1}"
+										id="inlineRadio2+${i+1}" value="option2">
+									<label class="form-check-label" for="inlineRadio2+${i+1}"><span
+											id="malespace">Male</span></label>
+								</div>
+							</div>
+							<div id="card4dob">
+								<label for="start" id="dob">Date Of Birth:
+									<input type="date" id="start+${i+1}" name="trip-start" value="2018-07-22"
+										min="2018-01-01" max="2018-12-31">
+								</label>
+							</div>
+							<div id="card4phone">
+								<label for="phone">Contact Details:</label>
+								<input type="tel" id="phone+${i+1}" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+							</div>
+							<div class="form-group" id="card4email">
+								<label for="exampleInputEmail1">Email address</label>
+								<input type="email" class="form-control" id="exampleInputEmail1+${i+1}"
+									aria-describedby="emailHelp">
+								<small id="emailHelp" class="form-text text-muted">We will never share your email
+									with
+									anyone
+									else.</small>
+							</div>
 
-
-            </div>
-            <input class="input-small" class="formi" id="FirstName+${i+1}" name="FirstName" placeholder="First name" type="text"   />
-            <input class="input-small" class="formi" id="MiddleName+${i+1}" name="MiddleName" placeholder="Middle name" type="text"    />
-            <input class="input-small" class="formi" id="LastName+${i+1}" name="LastName" placeholder="Last name" type="text"     />
-        </div>
-        </div>
-        <div id="card4buttons">
-        <div class="form-check form-check-inline">
-            <input class="form-check-input-${i+1}" type="radio" name="inlineRadioOptions-${i+1}" id="inlineRadio1+${i+1}" value="option1"    >
-            <label class="form-check-label" for="inlineRadio1+${i+1}"><span id="femalespace">Female</span></label>
-        </div>
-        <div class="form-check form-check-inline"> 
-            <input class="form-check-input-${i+1}" type="radio" name="inlineRadioOptions-${i+1}" id="inlineRadio2+${i+1}" value="option2"   >
-            <label class="form-check-label" for="inlineRadio2+${i+1}"><span id="malespace">Male</span></label>
-        </div>
-        </div>
-        <div id="card4dob">
-        <label for="start" id="dob">Date Of Birth:
-            <input type="date" id="start+${i+1}" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
-        </label>
-        </div>
-        <div id="card4phone">
-        <label for="phone">Contact Details:</label>
-        <input type="tel" id="phone+${i+1}" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"   >
-        </div>
-        <div class="form-group" id="card4email">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1+${i+1}"
-            aria-describedby="emailHelp"   >
-        <small id="emailHelp" class="form-text text-muted">We will never share your email with
-            anyone
-            else.</small>
-        </div>
-        
-        </div>
-        </div>
-        <hr>
+						</div>
+		</div>
+		<hr>
         `
     }
 
