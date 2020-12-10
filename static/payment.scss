@@ -13,10 +13,17 @@ $grad-red:rgb(219, 39, 99);
 $grad-red-warning:rgb(243, 9, 60);
 $light-pink:rgb(253, 212, 206);
 $after-color-login:rgb(219, 39, 99);
-
 $before-color-login:rgb(240, 247, 238);
 $height-field-login:3rem;
 $font-size-custom-login:1em;
+
+
+@mixin removeStyle() {
+    outline: none;
+    background: transparent;
+    text-decoration: none;
+    border: none;
+}
 
 *{
     padding:0;
@@ -65,12 +72,17 @@ body{
     padding:2em;
     width: 60%;
     margin-left: 18%;
-    border: 3px solid transparent;
+    border: 4px solid transparent;
     border-image: linear-gradient(45deg, $grad-red, $grad-pink);
     border-image-slice: 1;
     border-radius: 4px;
     margin-bottom:1.5em;
+    font-size:1rem;
 }
+
+#card1{
+    margin-top: 60px;
+  }
 
 
 //all titles go here
@@ -89,6 +101,7 @@ body{
         font-weight: 800;
         letter-spacing: 0.05rem;
         font-size:2.8rem;
+        margin-bottom: 0.1em;
     }
 
     .title-masks, .title-travel{
@@ -109,4 +122,78 @@ body{
     li{
         margin-top: 0.2em;
     }
+}
+
+//text-field animation
+
+
+.formi{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width:90%;
+    height:$height-field;
+    overflow: hidden;
+    margin-top: 1.2em;
+    //background-color:rgba(240, 240, 240, 0.1);
+    //backdrop-filter: blur(10px);
+
+}
+.formi input{
+    @include removeStyle();
+    color: $after-color;
+    cursor: pointer;
+    height: 100%;
+    width:100%;
+    font-size: 1.1rem;
+    padding-top: $height-field - 1.5rem;
+        &:focus + .label-name .content-name, &:valid + .label-name .content-name{
+            /* :valid ensures that when input text is added and the focus is shifted somwehere else
+            the label doesn't come back to its initial position*/
+            color:$after-color;
+            font-size:$font-size-custom - $font-size-custom/10;           
+            transform: translateY(-140%);
+        }
+    
+    
+}
+
+.formi label{
+    @include removeStyle();
+    position: absolute;
+    pointer-events: none;
+    width:100%;
+    height:100%;
+    bottom:0;
+    border-bottom: 2px solid $before-color;
+    color:$before-color;
+        &::after{
+            content: "";
+            position: absolute;
+            width:100%;
+            height: 100%;
+            border-bottom: 2px solid $after-color;
+            left:0;
+            transform: translateX(-100%);
+            
+            /*Moving the blue line out of frame initially also, 
+            since overflow is not hidden it is visible on the frame when overflow:hidden; 
+            not applied to parent*/
+            transition: transform 500ms ease;
+        }
+
+}
+
+.content-name{
+    position: absolute;
+    top: $height-field - 1.5rem;
+    transition: all 500ms ease;
+    font-size: $font-size-custom;
+}
+
+.formi input:focus + .label-name::after, .formi:valid  + label::after{
+    transform:translateX(0%);
+    border-color: $after-color;
+    
+    
 }
