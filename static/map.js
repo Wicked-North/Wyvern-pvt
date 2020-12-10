@@ -2,8 +2,8 @@
 //SHADOW DOM START-----------------
 
 class WorldMap extends HTMLElement {
-  static get TEMPLATE () {
-    return `
+   static get TEMPLATE() {
+      return `
        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
        
 <svg fill="rgb(26, 26, 29)"
@@ -197,33 +197,33 @@ class WorldMap extends HTMLElement {
 
         <slot></slot>
     `;
-  }
+   }
 
-  constructor () {
-    super();
-    this._locationCounter = 0;
-    const shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.innerHTML = WorldMap.TEMPLATE;
-  }
+   constructor() {
+      super();
+      this._locationCounter = 0;
+      const shadowRoot = this.attachShadow({
+         mode: 'open'
+      });
+      shadowRoot.innerHTML = WorldMap.TEMPLATE;
+   }
 
-  createdCallback() {
-  }
+   createdCallback() {}
 
-  attachedCallback() {
-  }
+   attachedCallback() {}
 
-  get locationCounter() {
-    return this._locationCounter;
-  }
+   get locationCounter() {
+      return this._locationCounter;
+   }
 
-  registerLocation(){
-    this._locationCounter++;
-  }
+   registerLocation() {
+      this._locationCounter++;
+   }
 }
 
 class WorldMapLocation extends HTMLElement {
-  static get TEMPLATE () {
-    return `
+   static get TEMPLATE() {
+      return `
       <style>
       .pin{
         position:absolute;
@@ -338,54 +338,56 @@ class WorldMapLocation extends HTMLElement {
       <span class='title anim'>
       </span>
     `;
-  }
+   }
 
-  constructor () {
-    super();
+   constructor() {
+      super();
 
-    const shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.innerHTML = WorldMapLocation.TEMPLATE;
+      const shadowRoot = this.attachShadow({
+         mode: 'open'
+      });
+      shadowRoot.innerHTML = WorldMapLocation.TEMPLATE;
 
-    this.pin = this.shadowRoot.querySelector('.pin');
-    this.dot = this.shadowRoot.querySelector('.dot');
-    this.spread = this.shadowRoot.querySelector('.spread');
-    this.label = this.shadowRoot.querySelector('.title');
+      this.pin = this.shadowRoot.querySelector('.pin');
+      this.dot = this.shadowRoot.querySelector('.dot');
+      this.spread = this.shadowRoot.querySelector('.spread');
+      this.label = this.shadowRoot.querySelector('.title');
 
-  }
+   }
 
-  connectedCallback() {
-    const animationDelay = `${this.parentElement.locationCounter + 0.5}s`;
+   connectedCallback() {
+      const animationDelay = `${this.parentElement.locationCounter + 0.5}s`;
 
-    this.pin.style.top = this.getAttribute('top');
-    this.pin.style.left = this.getAttribute('left');
-    this.label.innerHTML = this.getAttribute('label');
+      this.pin.style.top = this.getAttribute('top');
+      this.pin.style.left = this.getAttribute('left');
+      this.label.innerHTML = this.getAttribute('label');
 
-    this.dot.style.animationDelay = animationDelay;
-    this.spread.style.animationDelay = animationDelay;
-    this.label.style.animationDelay = animationDelay;
+      this.dot.style.animationDelay = animationDelay;
+      this.spread.style.animationDelay = animationDelay;
+      this.label.style.animationDelay = animationDelay;
 
-    this.dot.addEventListener('mouseover', e => {
-      this.stopAnimation(this.dot);
-      this.stopAnimation(this.spread);
-      this.stopAnimation(this.label);
-      void this.offsetWidth;
-      this.startAnimation(this.dot);
-      this.startAnimation(this.spread);
-      this.startAnimation(this.label);
+      this.dot.addEventListener('mouseover', e => {
+         this.stopAnimation(this.dot);
+         this.stopAnimation(this.spread);
+         this.stopAnimation(this.label);
+         void this.offsetWidth;
+         this.startAnimation(this.dot);
+         this.startAnimation(this.spread);
+         this.startAnimation(this.label);
 
-    });
+      });
 
-    this.parentElement.registerLocation();
-  }
-  
-  stopAnimation(element) {
-    element.classList.remove('anim');
-    element.style.animationDelay = '';
-  }
+      this.parentElement.registerLocation();
+   }
 
-  startAnimation(element) {
-    element.classList.add('anim');
-  }
+   stopAnimation(element) {
+      element.classList.remove('anim');
+      element.style.animationDelay = '';
+   }
+
+   startAnimation(element) {
+      element.classList.add('anim');
+   }
 }
 
 customElements.define('world-map', WorldMap);
@@ -393,75 +395,106 @@ customElements.define('world-map-location', WorldMapLocation);
 
 //SHADOW DOM END+++++++++++++++++++++
 
-function showPath(start,via,end){
+function showPath(start, via, end) {
 
-if(end){
-   document.getElementById('plane2').style.display='block' 
-
-
-   document.getElementById('planemotion').style.display='none'
-
-   var x1=document.getElementById(start).getAttribute("left").slice(0,3)
-   var y1=document.getElementById(start).getAttribute("top").slice(0,3)
-   var x2=document.getElementById(via).getAttribute("left").slice(0,3)
-   var y2=document.getElementById(via).getAttribute("top").slice(0,3)
-   var x3=document.getElementById(end).getAttribute("left").slice(0,3)
-   var y3=document.getElementById(end).getAttribute("top").slice(0,3)
-   document.getElementById('pathSet-2').style.display="block"
-   document.getElementById('delhi').style.opacity=0
-   document.getElementById('kolkata').style.opacity=0
-
-   document.getElementById('ahmedabad').style.opacity=0
-   document.getElementById('mumbai').style.opacity=0
-
-   document.getElementById('hyderabad').style.opacity=0
-   document.getElementById('jaipur').style.opacity=0
-
-   document.getElementById('bangalore').style.opacity=0
+   //====Names 
+   var startName = start + '-1'
+   var viaName = via + '-1'
+   var endName = end + '-1'
 
 
-   document.getElementById(start).style.opacity=1
-   
-   document.getElementById(via).style.opacity=1
-   document.getElementById(end).style.opacity=1
-   
-   document.getElementById('pathSet-1').setAttribute("d",`M ${x1} ${y1} Q 150 100 ${x2} ${y2} `)
-
-   document.getElementById('pathSet-2').setAttribute("d",`M ${x2} ${y2} Q 150 100 ${x3} ${y3} `)
-
-   }
-   
-   if(!end){
-      
-   document.getElementById('planemotion1').style.display='none'
-   document.getElementById('plane2').style.display='none' 
-   
-   var x1=document.getElementById(start).getAttribute("left").slice(0,3)
-   var y1=document.getElementById(start).getAttribute("top").slice(0,3)
-   var x2=document.getElementById(via).getAttribute("left").slice(0,3)
-   var y2=document.getElementById(via).getAttribute("top").slice(0,3)
-  
-   document.getElementById('pathSet-2').style.display="none"
-   document.getElementById('delhi').style.opacity=0
-   document.getElementById('kolkata').style.opacity=0
-
-   document.getElementById('ahmedabad').style.opacity=0
-   document.getElementById('mumbai').style.opacity=0
-
-   document.getElementById('hyderabad').style.opacity=0
-   document.getElementById('jaipur').style.opacity=0
-
-   document.getElementById('bangalore').style.opacity=0
+   if (end) {
+      document.getElementById('plane2').style.display = 'block'
 
 
-   document.getElementById(start).style.opacity=1
-   
-   document.getElementById(via).style.opacity=1
-   
-   document.getElementById('pathSet-1').setAttribute("d",`M ${x1} ${y1} Q 150 100 ${x2} ${y2} `)
+      document.getElementById('planemotion').style.display = 'none'
+
+      var x1 = document.getElementById(start).getAttribute("left").slice(0, 3)
+      var y1 = document.getElementById(start).getAttribute("top").slice(0, 3)
+      var x2 = document.getElementById(via).getAttribute("left").slice(0, 3)
+      var y2 = document.getElementById(via).getAttribute("top").slice(0, 3)
+      var x3 = document.getElementById(end).getAttribute("left").slice(0, 3)
+      var y3 = document.getElementById(end).getAttribute("top").slice(0, 3)
+      document.getElementById('pathSet-2').style.display = "block"
+
+
+      //---------------DOTS------------------------
+      document.getElementById('delhi').style.opacity = 0
+      document.getElementById('kolkata').style.opacity = 0
+      document.getElementById('ahmedabad').style.opacity = 0
+      document.getElementById('mumbai').style.opacity = 0
+      document.getElementById('hyderabad').style.opacity = 0
+      document.getElementById('jaipur').style.opacity = 0
+      document.getElementById('bangalore').style.opacity = 0
+      //-----------------NAMES-----------------------
+      document.getElementById('delhi-1').style.opacity = 0
+      document.getElementById('kolkata-1').style.opacity = 0
+      document.getElementById('ahmedabad-1').style.opacity = 0
+      document.getElementById('mumbai-1').style.opacity = 0
+      document.getElementById('hyderabad-1').style.opacity = 0
+      document.getElementById('jaipur-1').style.opacity = 0
+      document.getElementById('bangalore-1').style.opacity = 0
+
+
+      //---------------DOTS------------------------
+
+      document.getElementById(start).style.opacity = 1
+      document.getElementById(via).style.opacity = 1
+      document.getElementById(end).style.opacity = 1
+
+      //-----------------NAMES-----------------------
+
+      document.getElementById(startName).style.opacity = 1
+      document.getElementById(viaName).style.opacity = 1
+      document.getElementById(endName).style.opacity = 1
+
+      document.getElementById('pathSet-1').setAttribute("d", `M ${x1} ${y1} Q 150 100 ${x2} ${y2} `)
+
+      document.getElementById('pathSet-2').setAttribute("d", `M ${x2} ${y2} Q 150 100 ${x3} ${y3} `)
 
    }
-   
+
+   if (!end) {
+
+      document.getElementById('planemotion1').style.display = 'none'
+      document.getElementById('plane2').style.display = 'none'
+
+      var x1 = document.getElementById(start).getAttribute("left").slice(0, 3)
+      var y1 = document.getElementById(start).getAttribute("top").slice(0, 3)
+      var x2 = document.getElementById(via).getAttribute("left").slice(0, 3)
+      var y2 = document.getElementById(via).getAttribute("top").slice(0, 3)
+
+      document.getElementById('pathSet-2').style.display = "none"
+
+      //---------------DOTS------------------------
+      document.getElementById('delhi').style.opacity = 0
+      document.getElementById('kolkata').style.opacity = 0
+      document.getElementById('ahmedabad').style.opacity = 0
+      document.getElementById('mumbai').style.opacity = 0
+      document.getElementById('hyderabad').style.opacity = 0
+      document.getElementById('jaipur').style.opacity = 0
+      document.getElementById('bangalore').style.opacity = 0
+      //-----------------NAMES-----------------------
+      document.getElementById('delhi-1').style.opacity = 0
+      document.getElementById('kolkata-1').style.opacity = 0
+      document.getElementById('ahmedabad-1').style.opacity = 0
+      document.getElementById('mumbai-1').style.opacity = 0
+      document.getElementById('hyderabad-1').style.opacity = 0
+      document.getElementById('jaipur-1').style.opacity = 0
+      document.getElementById('bangalore-1').style.opacity = 0
+
+      //---------------DOTS------------------------
+      document.getElementById(start).style.opacity = 1
+      document.getElementById(via).style.opacity = 1
+      //-----------------NAMES-----------------------
+      document.getElementById(startName).style.opacity = 1
+      document.getElementById(viaName).style.opacity = 1
+
+
+      document.getElementById('pathSet-1').setAttribute("d", `M ${x1} ${y1} Q 150 100 ${x2} ${y2} `)
+
+   }
+
 
 }
 
@@ -485,4 +518,3 @@ for (var i = 0; i < pathEls.length; i++) {
     autoplay: true
   });
 }*/
-
