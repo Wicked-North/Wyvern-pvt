@@ -612,7 +612,7 @@ $(".overlay .search-btn").click((event) => {
     var cardElem
     for (let i = 0; i < cardArray.length; i++) {
         console.log("border-image" + $("." + cardArray[i]).css("border-image"))
-        if ($("." + cardArray[i]).css("border-image") != "none") {
+        if ($("." + cardArray[i]).css("border-image") != "none" && sessionStorage.getItem('sess')) {
             cardElem = $("." + cardArray[i]).clone()
             cardClass = $(cardElem).attr('class')
             cardClass = cardClass.split(' ')
@@ -624,6 +624,13 @@ $(".overlay .search-btn").click((event) => {
             sessionStorage.setItem("arrivalTime", $("." + cardClass + " .toTime").text())
             sessionStorage.setItem("basePrice", $("." + cardClass + " .base-price").text())
             //console.log("card class"+cardClass)
+            //countSelection++;
+        }
+    }
+
+    for (let i = 0; i < cardArray.length; i++) {
+        console.log("border-image" + $("." + cardArray[i]).css("border-image"))
+        if ($("." + cardArray[i]).css("border-image") != "none") {
             countSelection++;
         }
     }
@@ -640,8 +647,7 @@ $(".overlay .search-btn").click((event) => {
         }, 500)
 
         event.preventDefault()
-    } 
-    else {
+    } else {
         if (sessionStorage.getItem('sess')) {
             window.location.assign('static-card.html')
         } else {
@@ -915,11 +921,14 @@ function landingPage() {
 }
 
 if (sessionStorage.getItem('user_name')) {
-    console.log("thereeeee!!")
+    //console.log("thereeeee!!")
     document.getElementById('login-nav').innerHTML = sessionStorage.getItem('user_name')
     document.getElementById('lin').style.display = 'none'
     document.getElementById('lout').style.display = 'block'
 }
+
+
+
 
 function logOut() {
     sessionStorage.clear()

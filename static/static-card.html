@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> <!--MATERIAL UI ICONS-->
-    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="static-card.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <!--MATERIAL UI ICONS-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="static-card.css" rel="stylesheet" type="text/css" />
     <title>Document</title>
 </head>
+
 <body>
     <div class="static-container">
+        <div class="nav">
+            <div class="left-nav">
+                <div class="nav-elem-1" id='uname'><a href="#" class="login-nav" id='login-nav'></a></div>
+                <div class="nav-elem-2"><a href="#" class="prev-nav" onclick="showBookings()">Bookings</a></div>
+                <div class="nav-elem-0" id='lin'><a href="#" class="prev-nav" onclick='openDiv();'>Log In</a></div>
+                <div class="nav-elem-0" id='lout' style='display:none'><a href="#" class="prev-nav"
+                        onclick='logOut();'>Log
+                        Out</a></div>
+            </div>
+            <div class="right-nav">
+
+            </div>
+        </div>
         <div class="sub-title">
             <div class="sub-title-part-1">
-                <div class="tripType">One-Way Trip</div> <i class="fas fa-circle"></i> <i class="fas fa-user"></i> <div class="passNum">1</div> <i class="fas fa-circle"></i> <div class="coachClass">Economy</div>
-            </div> 
+                <div class="tripType">One-Way Trip</div> <i class="fas fa-circle"></i> <i class="fas fa-user"></i>
+                <div class="passNum">1</div> <i class="fas fa-circle"></i>
+                <div class="coachClass">Economy</div>
+            </div>
             <div class="sub-title-part-2">
-                Total price from 
-            </div>     
+                Total price from
+            </div>
         </div>
         <div class="title">
             <div class="title-part-1">
-                <div class="title-from">Kolkata</div><div class="icon-arrow"><i class="fas fa-arrow-right icon-via"></i></div><div class="title-via">Bangalore</div><div class="icon-arrow"><i class="fas fa-arrow-right"></i></div><div class="title-to">Jaipur</div>
+                <div class="title-from">Kolkata</div>
+                <div class="icon-arrow"><i class="fas fa-arrow-right icon-via"></i></div>
+                <div class="title-via">Bangalore</div>
+                <div class="icon-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="title-to">Jaipur</div>
             </div>
             <div class="title-part-2">
                 &#8377; <div class="price">7,890</div>
@@ -32,41 +56,45 @@
             Selected Flights
         </div>
         <div class="selected-card">
-           <div class="visible-content">
-               <div class="short-content">
-                <div class="col-1">
-                    <div class="dateMain">
-                        <div class="date">12</div>&nbsp;<div class="month">December</div>,&nbsp;<div class="day">Monday</div>
-                        <i class="fas fa-circle"></i> 
-                        <div class="timeMain">
-                            <div class="deptTime">13:50:00</div>&nbsp;-&nbsp; <div class="arrivalTime">18:10:00</div>
-                        </div>
-                       </div>
-                       <div class="flightName">
-                           Spice Jet
-                       </div>
-                   </div>
-                   <div class="col-2">
-                    <div class="timeDiff">
-                        <div class="hours">2</div>hr&nbsp;
-                        <div class="minutes">30</div>min
-                    </div>
-                    <div class="abvPlaceName">
-                        <div class="abbvFrom">CCU</div>&nbsp;-&nbsp;
-                        <div class="abbvVia">BLR</div><div class="via-dash">&nbsp;-&nbsp;</div>
-                        <div class="abbvTo">JAI</div>
-                    </div>
-                   </div>
-                   <div class="col-3">
-                       Nonstop
-                   </div>
-               </div>
-               <div class="long-content">
-                    <div class="title-long-content">
-                        Departing Flight 
-                        <i class="fas fa-circle"></i> 
+            <div class="visible-content">
+                <div class="short-content">
+                    <div class="col-1">
                         <div class="dateMain">
-                            <div class="date">12</div>&nbsp;<div class="month">December</div>,&nbsp;<div class="day">Monday</div>
+                            <div class="date">12</div>&nbsp;<div class="month">December</div>,&nbsp;<div class="day">
+                                Monday</div>
+                            <i class="fas fa-circle"></i>
+                            <div class="timeMain">
+                                <div class="deptTime">13:50:00</div>&nbsp;-&nbsp; <div class="arrivalTime">18:10:00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flightName">
+                            Spice Jet
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="timeDiff">
+                            <div class="hours">2</div>hr&nbsp;
+                            <div class="minutes">30</div>min
+                        </div>
+                        <div class="abvPlaceName">
+                            <div class="abbvFrom">CCU</div>&nbsp;-&nbsp;
+                            <div class="abbvVia">BLR</div>
+                            <div class="via-dash">&nbsp;-&nbsp;</div>
+                            <div class="abbvTo">JAI</div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        Nonstop
+                    </div>
+                </div>
+                <div class="long-content">
+                    <div class="title-long-content">
+                        Departing Flight
+                        <i class="fas fa-circle"></i>
+                        <div class="dateMain">
+                            <div class="date">12</div>&nbsp;<div class="month">December</div>,&nbsp;<div class="day">
+                                Monday</div>
                         </div>
                     </div>
                     <div class="main-long-content">
@@ -84,17 +112,18 @@
                         <div class="col-2">
                             <div class="row-2-1">
                                 <div class="deptTime">18:30:00</div>
-                                <i class="fas fa-circle"></i> 
+                                <i class="fas fa-circle"></i>
                                 <div class="deptAirport">Netaji Subhash Chandra Bose International Airport ( CCU )</div>
                             </div>
                             <div class="row-2-2">
                                 <div class="viaTime">Via</div>
                                 <i class="fas fa-circle"></i>
-                                <div class="viaAirport">Kempegowda International Airport (<div class="viaAbbv">BLR</div>)</div>
+                                <div class="viaAirport">Kempegowda International Airport (<div class="viaAbbv">BLR</div>
+                                    )</div>
                             </div>
                             <div class="row-2-3">
                                 <div class="arrivalTime">22:30:00</div>
-                                <i class="fas fa-circle"></i> 
+                                <i class="fas fa-circle"></i>
                                 <div class="arrivalAirport">Jaipur International Airport (JAI)</div>
                             </div>
 
@@ -102,40 +131,48 @@
                                 Travel Time:&nbsp;
                                 <div class="hours">2</div>hr&nbsp;
                                 <div class="minutes">30</div>min
-                                <i class="fas fa-circle"></i> 
+                                <i class="fas fa-circle"></i>
                                 <div class="flightName">Spice Jet</div>
-                                <i class="fas fa-circle"></i> 
+                                <i class="fas fa-circle"></i>
                                 <div class="coachClass">Economy</div>
                             </div>
                         </div>
                         <div class="col-3">
                             <a href="./home-page.html" class="btn btn-change-flight">
                                 <svg width="277" height="62">
-                                  <defs>
-                                    <linearGradient id="grad1">
-                                        <stop offset="0%" stop-color="#FF9A8B" />
-                                        <stop offset="10%" stop-color="#FF6A88" />
-                                        <stop offset="100%" stop-color="#DB2763" />
-                                    </linearGradient>
-                                  </defs>
-                                   <rect x="5" y="5" rx="2" fill="none" stroke="url(#grad1)" width="235" height="47"></rect>
+                                    <defs>
+                                        <linearGradient id="grad1">
+                                            <stop offset="0%" stop-color="#FF9A8B" />
+                                            <stop offset="10%" stop-color="#FF6A88" />
+                                            <stop offset="100%" stop-color="#DB2763" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="5" y="5" rx="2" fill="none" stroke="url(#grad1)" width="235" height="47">
+                                    </rect>
                                 </svg>
-                                  <span>Change Flight</span>
-                              </a>
+                                <span>Change Flight</span>
+                            </a>
 
-                            <div class="legRoom"><div class="addFuncIcon"><i class="far fa-paper-plane"></i></div> Average legroom (29 in)</div>
-                            <div class="usbOutlet"><div class="addFuncIcon"><i class="fab fa-usb"></i></div>In-seat USB outlet</div>
-                            <div class="streamMedia"><div class="addFuncIcon"><i class="fas fa-wifi"></i></div>Stream media to your device</div>
+                            <div class="legRoom">
+                                <div class="addFuncIcon"><i class="far fa-paper-plane"></i></div> Average legroom (29
+                                in)
+                            </div>
+                            <div class="usbOutlet">
+                                <div class="addFuncIcon"><i class="fab fa-usb"></i></div>In-seat USB outlet
+                            </div>
+                            <div class="streamMedia">
+                                <div class="addFuncIcon"><i class="fas fa-wifi"></i></div>Stream media to your device
+                            </div>
                         </div>
                     </div>
-               </div>
-               <div class="col-4">
-                <div class="dropdown-btn">
-                    <a href="#"><i class="fas fa-angle-down"></i></a>
                 </div>
-               </div>
+                <div class="col-4">
+                    <div class="dropdown-btn">
+                        <a href="#"><i class="fas fa-angle-down"></i></a>
+                    </div>
+                </div>
 
-           </div>
+            </div>
         </div>
         <div class="additional-info-card">
             <div class="row-3-1">
@@ -154,7 +191,7 @@
             Baggage conditions apply to your entire trip. Bag fees may be higher at the airport.
         </div>
         <a onclick="payment()" class="btn btn-confirm">
-            
+
             <svg width="277" height="62">
                 <defs>
                     <linearGradient id="grad2">
@@ -163,12 +200,26 @@
                         <stop offset="100%" stop-color="#DB2763" />
                     </linearGradient>
                 </defs>
-               <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad2)" width="240" height="50"></rect>
+                <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad2)" width="240" height="50"></rect>
             </svg>
-              <span>Proceed</span>
-          </a>
+            <span>Proceed</span>
+        </a>
     </div>
+    <script>
+        let x = 1
+        if (!sessionStorage.getItem('sess')) {
+            window.alert('Please login and select a flight to view this page')
+            window.location.replace('home-page.html')
+            x = 0
+        }
+
+        if (!sessionStorage.getItem('Flight-Name') && x) {
+            window.alert('Please select a flight to view this page')
+            window.location.replace('home-page.html')
+        }
+    </script>
     <script src="script-1.js"></script>
-    
+
 </body>
+
 </html>
