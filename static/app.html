@@ -20,7 +20,18 @@
 
 <body>
 	<script src="https://kit.fontawesome.com/528142d28e.js" crossorigin="anonymous"></script>
+	<div class="nav">
+		<div class="left-nav">
+			<div class="nav-elem-1" id='uname'><a href="#" class="login-nav" id='login-nav'></a></div>
+			<div class="nav-elem-2"><a href="#" class="prev-nav" onclick="showBookings()">Bookings</a></div>
+			<div class="nav-elem-0" id='lin'><a href="#" class="prev-nav" onclick='openDiv();'>Log In</a></div>
+			<div class="nav-elem-0" id='lout' style='display:none'><a href="#" class="prev-nav" onclick='logOut();'>Log
+					Out</a></div>
+		</div>
+		<div class="right-nav">
 
+		</div>
+	</div>
 
 	<div class="container payment-details">
 
@@ -85,51 +96,51 @@
 		</form>
 		</li>
 
-		</ul>
-	</div>
+			</ul>
+		</div>
 
-	<div class="card" id="card5">
-		<ul class="list-group list-group-flush">
-			<li class="list-group-item">
-				<h3>Payments</h3>
+		<div class="card" id="card5">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<h3>Payments</h3>
 
-				<button type='button' id="detailsButton2" onclick="paymentsSlideUpDown()" style="display: none"><i
-						class="fa fa-pencil" aria-hidden="true"></i></Button>
-			</li>
-			<li class="list-group-item">
-				<form id='payForm' onsubmit="showSB()">
+					<button type='button' id="detailsButton2" onclick="paymentsSlideUpDown()" style="display: none"><i
+							class="fa fa-pencil" aria-hidden="true"></i></Button>
+				</li>
+				<li class="list-group-item">
+					<form id='payForm' onsubmit="showSB()">
 
-					<div id="paymentDetails">
-					</div>
+						<div id="paymentDetails">
+						</div>
 
-				</form>
+					</form>
 
-			</li>
-		</ul>
-	</div>
+				</li>
+			</ul>
+		</div>
 
 
-	<div class="card" id="card6">
-		<div class="card-body">
-			<h3 class="card1sttext">Select Seats</h3>
-			<div id='passengerSeat'></div>
+		<div class="card" id="card6">
+			<div class="card-body">
+				<h3 class="card1sttext">Select Seats</h3>
+				<div id='passengerSeat'></div>
 
-			<button id="detailsButton3" onclick="seatUpDown()" style="display: none;"><i class="fa fa-pencil"
-					aria-hidden="true"></i></button>
+				<button id="detailsButton3" onclick="seatUpDown()" style="display: none;"><i class="fa fa-pencil"
+						aria-hidden="true"></i></button>
 
-			<div id="seatSelection">
+				<div id="seatSelection">
+
+				</div>
+
+				</li>
 
 			</div>
-
-			</li>
+			<div alignment="right">
+				<button type="button" class="btn btn-primary" onclick="continueToRev()" style='display:none'
+					id='continueToRev'><span>Continue</span></button>
+			</div>
 
 		</div>
-		<div alignment="right">
-			<button type="button" class="btn btn-primary" onclick="continueToRev()" style='display:none'
-				id='continueToRev'><span>Continue</span></button>
-		</div>
-
-	</div>
 	</div>
 
 	<div class="card" ext id="card7">
@@ -260,8 +271,37 @@
 	</p>
 
 	</div>
-	<script src='seatBooking.js'></script>
 
+	<script>
+		let x = 1
+		if (!sessionStorage.getItem('sess')) {
+			window.alert('Please login and select a flight to view this flight')
+			window.location.replace('home-page.html')
+			x = 0
+		}
+
+		if (!sessionStorage.getItem('Flight-Name') && x) {
+			window.alert('Please select a flight to view this page')
+			window.location.replace('home-page.html')
+		}
+
+		if (sessionStorage.getItem('user_name')) {
+			//console.log("thereeeee!!")
+			document.getElementById('login-nav').innerHTML = sessionStorage.getItem('user_name')
+			document.getElementById('lin').style.display = 'none'
+			document.getElementById('lout').style.display = 'block'
+		}
+
+
+		function logOut() {
+			sessionStorage.clear()
+			window.location.replace('home-page.html')
+			document.getElementById('login-nav').innerHTML = ''
+			document.getElementById('lin').style.display = 'block'
+			document.getElementById('lout').style.display = 'none'
+		}
+	</script>
+	<script src='seatBooking.js'></script>
 
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

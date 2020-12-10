@@ -960,8 +960,8 @@ input[type=number] {
   top: 0;
   right: 0;
   background-image: linear-gradient(45deg, #2a2a30, #101011);
-  -webkit-box-shadow: 4px 0 40px rgba(0, 0, 0, 0.7);
-          box-shadow: 4px 0 40px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
+          box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;

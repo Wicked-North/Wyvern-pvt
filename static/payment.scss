@@ -25,6 +25,7 @@ $font-size-custom-login:1em;
     border: none;
 }
 
+
 *{
     padding:0;
     box-sizing: border-box;
@@ -387,4 +388,56 @@ hr{
 .login-btn-invisible{
     @include removeStyle();
     margin-left:58%;
+}
+.nav {
+    display: flex;
+    position: absolute;
+    z-index:200;
+    top:0;
+    right:0;
+    //background-color:$darkest-grey;
+    background-image:linear-gradient(45deg,$darkest-grey,$black);
+    box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
+    //left:0;
+    //right:50%;
+    //width:49%;
+    justify-content: space-between; 
+    //border:2px solid $grad-red;
+    //margin: 1em 1em;
+    .left-nav, .right-nav{
+        display:flex;
+        margin:1em;
+        justify-content:space-between;
+    }
+    a{
+        @include removeStyle();
+        font-size: 1.2rem;
+        font-family: 'Overlock', cursive;
+        font-weight: 700;
+        //display:block;
+        color:$grad-pink;
+        overflow:hidden;
+        transition:all 300ms ease;
+        margin-left: 0.8em;
+
+        /* &::after{
+            content: "";
+            display:block;
+            border:1px solid $grad-red;
+            transform:translateX(-100%);
+            opacity:0;
+            width: inherit;
+            position: relative;
+            margin-top:0.2em;
+            transition: transform 400ms ease-in;
+            transform: opacity 100ms ease;
+        } */
+
+        &:hover{
+            box-shadow:0 3px 0px $grad-red;
+        }
+
+       
+    }
+
 }
