@@ -55,7 +55,7 @@ const app = express();
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "abhra", //change password 
+    password: "", //change password 
     database: "wyvern",
     multipleStatements: true
 })

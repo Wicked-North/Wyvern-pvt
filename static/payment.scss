@@ -91,7 +91,7 @@ body{
 
 //all titles go here
 .payment-details{
-    .main-title, .title-masks, .title-travel{
+    .main-title, .title-masks, .title-travel, .payments-title{
         
         background-image: linear-gradient(45deg, $grad-pink, $grad-red);
         -webkit-text-fill-color: transparent;
@@ -108,7 +108,7 @@ body{
         margin-bottom: 0.1em;
     }
 
-    .title-masks, .title-travel{
+    .title-masks, .title-travel, .payments-title{
         font-weight: 700;
         letter-spacing: 0.05rem;
         font-size:2rem;
@@ -135,7 +135,7 @@ body{
     display: flex;
     position: relative;
     flex-direction: column;
-    width:90%;
+    
     height:$height-field;
     overflow: hidden;
     margin-top: 1.2em;
@@ -281,7 +281,7 @@ body{
     color:$grad-red;
 }
 
-.passenger-name, .passenger-name-2{
+.passenger-name, .passenger-name-2, .personal-details-card, .imp-details, .address-details{
     display:flex;
 }
 
@@ -289,39 +289,33 @@ body{
     flex-direction: column;
 }
 
-.passenger-name-1{
-    width: 49%;
+.passenger-name-1, .dob{
+    width: 47%;
 }
 
 .passenger-name-2{
-    width: 90%;
+   
     justify-content: space-between;
 }
 
-.middle-name, .last-name{
+.middle-name, .last-name, .email , .contact-details, .card-name, .card-number, .card-cvv, .card-exp, .card-city, .card-state{
     width: 80%;
 }
 
-.middle-name{
-    margin-right: 1em;
+.middle-name, .card-number, .card-cvv, .card-city, .email{
+    margin-right: 3em;
 }
 
 .gender-radio-button{
     display: flex;
 }
 
-.dob{
-    width: 44%;
-}
 
 .contacts{
     display: flex;
-    width: 90%;
+    
 }
 
-.contact-details{
-    margin-left: 1em;
-}
 
 
 hr{
@@ -440,4 +434,9 @@ hr{
        
     }
 
+}
+
+.termsnservices{
+    margin-top:1em;
+    opacity:0.8;
 }
