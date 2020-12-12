@@ -62,61 +62,62 @@
 
 		<div class="card" id="card3">
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<div class="title-masks">Masks Required!</div>
-					<p>You'll need to wear a mask to board this flight.
-						<a href="https://www.spicejet.com/COVID19.aspx" target="_blank">Learn More</a>
-				</li>
-				<li class="list-group-item">
+
+				<div class="title-masks">Masks Required!</div>
+				<p>You'll need to wear a mask to board this flight.
+					<a href="https://www.spicejet.com/COVID19.aspx" target="_blank">Learn More</a>
+
+
 					<p><i class="fa fa-exclamation-triangle"></i> SpiceJet
 						charges a fee for use of some payment methods</p>
-				</li>
 
-				<li class="list-group-item">
+
+
 					<p><i class="fa fa-line-chart" aria-hidden="true" id="redgraph"></i>
 						<span id="redtext">Unfortunately,</span> the fare went up by INR ₹500.00 since we last
 						checked</p>
-				</li>
+
 			</ul>
 		</div>
 
 		<div class="card" id="card4">
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<div class="title-travel">Who's travelling?</div>
-					<button id="detailsButton1" onclick="slideUpDown()" style="display: none;">
-						<i class="fa fa-pencil" aria-hidden="true"></i></Button>
 
-				</li>
+				<div class="title-travel">Who's travelling?</div>
+				<button id="detailsButton1" onclick="slideUpDown()" style="display: none;">
+					<i class="fa fa-pencil" aria-hidden="true"></i></Button>
+
+
 				<li id="customerDetails" class="list-group-item">
 					<form id="passform" onsubmit="continueToPayment()">
 						<!--Paste here to style-->
-						
-		<!-- form required -->
-		</form>
-		</li>
+
+						<!-- form required -->
+					</form>
+
 
 			</ul>
 		</div>
 
 		<div class="card" id="card5">
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<h3>Payments</h3>
 
-					<button type='button' id="detailsButton2" onclick="paymentsSlideUpDown()" style="display: none"><i
-							class="fa fa-pencil" aria-hidden="true"></i></Button>
-				</li>
-				<li class="list-group-item">
-					<form id='payForm' onsubmit="showSB()">
+			<div class="payments-title">Payments</div>
 
-						<div id="paymentDetails">
-						</div>
+			<button type='button' id="detailsButton2" onclick="paymentsSlideUpDown()" style="display: none"><i
+					class="fa fa-pencil" aria-hidden="true"></i></Button>
 
-					</form>
 
-				</li>
-			</ul>
+			<form id='payForm' onsubmit="showSB(); flightSearch()">
+				<!--Paste here to style-->
+				
+
+				<div id="paymentDetails">
+				</div>
+
+			</form>
+
+
+
 		</div>
 
 
@@ -132,7 +133,7 @@
 
 				</div>
 
-				</li>
+
 
 			</div>
 			<div alignment="right">
@@ -230,14 +231,14 @@
 
 				<ul>
 					<li>Some lithium batteries (e.g. spares in checked baggage, batteries over a certain size),
-					</li>
-					<li>Explosives/fireworks,</li>
-					<li>Strike anywhere matches/lighter fluid,</li>
-					<li>Compressed gases/aerosols</li>
-					<li>Oxygen bottles/liquid oxygen,</li>
-					<li>Flammable liquids,</li>
-					<li>Pesticides/poison,</li>
-					<li>Corrosive material</li>
+
+					<li>Explosives/fireworks,
+					<li>Strike anywhere matches/lighter fluid,
+					<li>Compressed gases/aerosols
+					<li>Oxygen bottles/liquid oxygen,
+					<li>Flammable liquids,
+					<li>Pesticides/poison,
+					<li>Corrosive material
 				</ul>
 			</div>
 
@@ -272,6 +273,15 @@
 
 	</div>
 
+	<svg>
+		<defs>
+			<linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+				<stop offset="0%" stop-color="rgb(219, 39, 99)"></stop>
+				<stop offset="50%" stop-color="rgb(219, 39, 99)"></stop>
+				<stop offset="100%" stop-color="rgb(255, 154, 139)"></stop>
+			</linearGradient>
+		</defs>
+	</svg>
 	<script>
 		let x = 1
 		if (!sessionStorage.getItem('sess')) {

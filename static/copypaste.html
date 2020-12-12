@@ -9,8 +9,7 @@
         <div class="passenger-name">
             <div class="passenger-name-1">
                 <div class="formi first-name">
-                    <input type="text" name="start" required autocomplete="off"
-                        id="FirstName+${i+1}" required>
+                    <input type="text" name="start" autocomplete="off" id="FirstName+${i+1}">
                     <label name="from" class="label-name">
                         <span class="content-name">
                             First Name
@@ -20,8 +19,7 @@
             </div>
             <div class="passenger-name-2">
                 <div class="formi middle-name">
-                    <input type="text" name="start" required autocomplete="off"
-                        id="MiddleName+${i+1}" required>
+                    <input type="text" name="start" autocomplete="off" id="MiddleName+${i+1}">
                     <label name="from" class="label-name">
                         <span class="content-name">
                             Middle Name
@@ -29,8 +27,7 @@
                     </label>
                 </div>
                 <div class="formi last-name">
-                    <input type="text" name="start" required autocomplete="off"
-                        id="LastName+${i+1}" required>
+                    <input type="text" name="start" autocomplete="off" id="LastName+${i+1}">
                     <label name="from" class="label-name">
                         <span class="content-name">
                             Last Name
@@ -63,11 +60,11 @@
                 <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
             </svg>Female
         </label>
-        
+
 
     </div>
     <div class="formi dob">
-        <input type="text" name="start" required autocomplete="off" id="start+${i+1}" required
+        <input type="text" name="start" autocomplete="off" id="start+${i+1}"
             onfocus="(this.type='date') (this.value=new Date().toISOString().substr(0, 10))"
             onblur="if(!this.value)this.type='text'">
         <label name="from" class="label-name">
@@ -78,10 +75,9 @@
     </div>
 
     <div class="contacts">
-        
+
         <div class="formi email">
-            <input type="email" name="start" required autocomplete="off"
-                id="exampleInputEmail1+${i+1}">
+            <input type="email" name="start" autocomplete="off" id="exampleInputEmail1+${i+1}">
             <label name="from" class="label-name">
                 <span class="content-name">
                     E-Mail
@@ -89,8 +85,7 @@
             </label>
         </div>
         <div class="formi contact-details">
-            <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
-                autocomplete="off" id="phone+${i+1}">
+            <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" autocomplete="off" id="phone+${i+1}">
             <label name="from" class="label-name">
                 <span class="content-name">
                     Contact Details
@@ -111,3 +106,106 @@ slideDown += `<a class="login-btn" onclick="landingPage()">
     </svg>
     <span>Continue</span>
 </a>`
+
+
+<!--div class="form-group" id="cardnumber">
+    <label for="cardNumber">CARD NUMBER</label>
+
+    <div class="input-group">
+            <input type="tel" class="form-control" name="cardNumber" id='cardNo'
+                placeholder="Valid Card Number" autocomplete="cc-number" autofocus   />
+        </div>
+</div-->
+
+
+<!-- <div id="cddetails">
+    <label for="expyear">Exp Year :</label>
+    <input type="text" id="expyear" name="expyear" placeholder="2018">
+    <label for="cvv" id="cv">CVV :</label>
+    <input type="text" id="cvv" name="cvv" placeholder="352">
+</div>  
+<div id="namecard">
+    <label for="cname">Name on Card :</label>
+    <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+</div>
+-->
+
+Wyvern charges a fee for use of some payment methods. If the fee applies, you will see the amount after selecting your
+payment method.
+You may need to present the card that you use below when you check in at the airport, so
+bring it with you on the day of departure.
+
+
+
+<div class="formi card-number">
+    <input type="text" name="start" autocomplete="off" id="expYear" required>
+    <label name="from" class="label-name">
+        <span class="content-name">
+            Card Number:
+        </span>
+    </label>
+</div>
+<div class="formi card-name">
+    <input type="text" name="start" autocomplete="off" id="nameOnCard" required>
+    <label name="from" class="label-name">
+        <span class="content-name">
+            Name On Card:
+        </span>
+    </label>
+</div>
+<div class="formi card-cvv">
+    <input type="text" name="start" autocomplete="off" id="cvv" required>
+    <label name="from" class="label-name">
+        <span class="content-name">
+            CVV:
+        </span>
+    </label>
+</div>
+
+<div class="formi card-exp">
+    <input type="text" name="exp" autocomplete="off" id="expYear" required>
+    <label name="exp" class="label-name" for="exp">
+        <span class="content-name">
+            Expiry Year:
+        </span>
+    </label>
+</div>
+<div class="formi card-number">
+    <input type="text" name="start" autocomplete="off" id="FirstName+${i+1}" required>
+    <label name="from" class="label-name">
+        <span class="content-name">
+            Card Number:
+        </span>
+    </label>
+</div>
+<div class="formi card-number">
+    <input type="text" name="start" autocomplete="off" id="FirstName+${i+1}" required> 
+    <label name="from" class="label-name">
+        <span class="content-name">
+            Card Number:
+        </span>
+    </label>
+</div>
+
+
+<div id="card5add">
+    <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+    <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+</div>
+<div id="card5city">
+    <label for="city"><i class="fa fa-institution"></i> City</label>
+    <input type="text" id="city" name="city" placeholder="New York">
+</div>
+<div id="card5state">
+    <label for="state">State</label>
+    <input type="text" id="state" name="state" placeholder="NY">
+</div>
+<small id="card5bottomtext">By continuing,you agree to the google Payments <a href="">terms
+        and
+        services.</a>
+    The Google payments <a href="">privacy Notice</a> describes how google handles payments
+    info.
+</small>
+<div align="right">
+    <input type="submit" class="btn btn-primary" onclick='flightSearch()' id="savebutton" value="Save" />
+</div>

@@ -27,7 +27,7 @@ function passDetailsDisplay() {
         <div class="passenger-name">
             <div class="passenger-name-1">
                 <div class="formi first-name">
-                    <input type="text" name="start"  autocomplete="off"
+                    <input type="text" name="start"  required autocomplete="off"
                         id="FirstName+${i+1}" >
                     <label name="from" class="label-name">
                         <span class="content-name">
@@ -38,16 +38,16 @@ function passDetailsDisplay() {
             </div>
             <div class="passenger-name-2">
                 <div class="formi middle-name">
-                    <input type="text" name="start"  autocomplete="off"
+                    <input type="text" name="start" required autocomplete="off"
                         id="MiddleName+${i+1}" >
                     <label name="from" class="label-name">
                         <span class="content-name">
                             Middle Name
                         </span>
                     </label>
-                </div>
+                </div> 
                 <div class="formi last-name">
-                    <input type="text" name="start"  autocomplete="off"
+                    <input type="text" name="start"  required autocomplete="off"
                         id="LastName+${i+1}" >
                     <label name="from" class="label-name">
                         <span class="content-name">
@@ -67,7 +67,7 @@ function passDetailsDisplay() {
                 <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
             </svg>Male
         </label>
-        <input type="radio" name="field" id="inlineRadio1+${i+1}" checked value="option2" />
+        <input type="radio" name="field" id="inlineRadio1+${i+1}" value="option2" />
         <label class="female" for="inlineRadio1+${i+1}">
             <svg class="check" viewbox="0 0 40 40">
                 <defs>
@@ -85,7 +85,7 @@ function passDetailsDisplay() {
 
     </div>
     <div class="formi dob">
-        <input type="text" name="start" required autocomplete="off" id="start+${i+1}" required
+        <input type="text" name="start" required autocomplete="off" id="start+${i+1}"
             onfocus="(this.type='date') (this.value=new Date().toISOString().substr(0, 10))"
             onblur="if(!this.value)this.type='text'">
         <label name="from" class="label-name">
@@ -98,7 +98,7 @@ function passDetailsDisplay() {
     <div class="contacts">
         
         <div class="formi email">
-            <input type="email" name="start" required autocomplete="off"
+            <input type="text" name="start"  autocomplete="off" required
                 id="exampleInputEmail1+${i+1}">
             <label name="from" class="label-name">
                 <span class="content-name">
@@ -107,7 +107,7 @@ function passDetailsDisplay() {
             </label>
         </div>
         <div class="formi contact-details">
-            <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
+            <input type="text" name="phone"  required
                 autocomplete="off" id="phone+${i+1}">
             <label name="from" class="label-name">
                 <span class="content-name">
@@ -144,6 +144,8 @@ $("#passform").submit(function (e) {
 });
 
 
+//pattern pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+
 
 
 
@@ -151,68 +153,99 @@ var paymentSlideUpDetails = ""
 
 var paymentSlideDownDetails = `
 
+<div class="payment-desc">
+					Wyvern charges a fee for use of some payment methods. If the fee applies, you will see the amount
+					after
+					selecting your
+					payment method.
+					You may need to present the card that you use below when you check in at the airport, so
+					bring it with you on the day of departure.
+				</div>
 
-<p><i class="fa fa-exclamation-triangle" aria-hidden="true" id="yellowexclamation"></i>
-SpiceJet charges a fee for use of some payment methods. If the fee applies, you will <span id="card5text2">see the amount after selecting yourpayment method.</span>
-<p id="card5text2">
-You may need to present the card that you use below when you check in at the airport, so
-bring it with you on the day of departure.</p>
-</p>
-<!-- </li>
-<li class="list-group-item"> -->
-<i class="fab fa-google-pay" id="gpayicon"></i>
-<!-- </li>
-<li class="list-group-item"> -->
-<div class="dropdown" id="card5dropbox"><i class="fa fa-credit-card-alt" aria-hidden="true"
-    id="creditcard"></i>
-<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-</button>
-<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-</div>
-</div>
-<div class="form-group" id="cardnumber">
-    <label for="cardNumber">CARD NUMBER</label>
-    <div class="input-group">
-        <input type="tel" class="form-control" name="cardNumber" id='cardNo'
-            placeholder="Valid Card Number" autocomplete="cc-number" autofocus required/>
-    </div>
-    </div>
-    <div id="cddetails">
-    <label for="expyear">Exp Year :</label>
-    <input type="text" id="expyear" name="expyear" placeholder="2018" required>
-    <label for="cvv" id="cv">CVV :</label>
-    <input type="text" id="cvv" name="cvv" placeholder="352" required>
-    </div>
-    <div id="namecard">
-    <label for="cname">Name on Card :</label>
-    <input type="text" id="cname" name="cardname" placeholder="John More Doe" required>
-    </div>
-    <div id="card5add">
-    <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-    <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" required>
-    </div>
-    <div id="card5city">
-    <label for="city"><i class="fa fa-institution"></i> City</label>
-    <input type="text" id="city" name="city" placeholder="New York" required>
-    </div>
-    <div id="card5state">
-    <label for="state">State</label>
-    <input type="text" id="state" name="state" placeholder="NY" required>
-    </div>
-    <small id="card5bottomtext">By continuing,you agree to the google Payments <a href="">terms
-        and
-        services.</a>
-    The Google payments <a href="">privacy Notice</a> describes how google handles payments
-    info.
-    </small>
-<div align="right">
-<input type="submit" class="btn btn-primary" onclick='flightSearch()' id="savebutton" value="Save"/>
-</div>
+
+
+				<div class="personal-details-card">
+					<div class="formi card-number">
+						<input type="text" name="start" autocomplete="off" id="cardNum" required>
+						<label name="from" class="label-name">
+							<span class="content-name">
+								Card Number:
+							</span>
+						</label>
+					</div>
+					<div class="formi card-name">
+						<input type="text" name="start" autocomplete="off" id="nameOnCard" required>
+						<label name="from" class="label-name">
+							<span class="content-name">
+								Name On Card:
+							</span>
+						</label>
+					</div>
+				</div>
+				<div class="imp-details">
+					<div class="formi card-cvv">
+						<input type="text" name="start" autocomplete="off" id="cvv" required>
+						<label name="from" class="label-name">
+							<span class="content-name">
+								CVV:
+							</span>
+						</label>
+					</div>
+
+					<div class="formi card-exp">
+						<input type="text" name="exp" autocomplete="off" id="expYear" required>
+						<label name="exp" class="label-name" for="exp">
+							<span class="content-name">
+								Expiry Year:
+							</span>
+						</label>
+					</div>
+				</div>
+				<div class="formi card-address">
+					<input type="text" name="start" autocomplete="off" id="address" required>
+					<label name="from" class="label-name">
+						<span class="content-name">
+							Address:
+						</span>
+					</label>
+				</div>
+				<div class="address-details">
+					<div class="formi card-city">
+						<input type="text" name="start" autocomplete="off" id="city" required>
+						<label name="from" class="label-name">
+							<span class="content-name">
+								City:
+							</span>
+						</label>
+					</div>
+					<div class="formi card-state">
+						<input type="text" name="start" autocomplete="off" id="state" required>
+						<label name="from" class="label-name">
+							<span class="content-name">
+								State:
+							</span>
+						</label>
+					</div>
+				</div>
+
+				<div class="termsnservices">
+					<div class="line-1">
+						By continuing,you agree to the Wyvern Payments terms and services.
+					</div>
+					<div class="line-2">
+						The Wyvern payments privacy notice describes how Wyvern handles payments info.
+					</div>
+
+				</div>
+
+				<button class="login-btn-invisible" id="savebutton"><a class="login-btn">
+						<svg width="277" height="62">
+							<rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50">
+							</rect>
+						</svg>
+						<span>Save</span>
+					</a>
+				</button>
 `;
 
 
@@ -709,20 +742,20 @@ paymentUp = ``
 
 function showSB() {
 
-    var cardno = document.getElementById('cardNo').value
-    document.getElementById('cardNo').setAttribute('value', cardno)
+    var cardno = document.getElementById('cardNum').value
+    document.getElementById('cardNum').setAttribute('value', cardno)
 
-    var expyear = document.getElementById('expyear').value
-    document.getElementById('expyear').setAttribute('value', expyear)
+    var expyear = document.getElementById('expYear').value
+    document.getElementById('expYear').setAttribute('value', expyear)
 
     var cvv = document.getElementById('cvv').value
     document.getElementById('cvv').setAttribute('value', cvv)
 
-    var cname = document.getElementById('cname').value
-    document.getElementById('cname').setAttribute('value', cname)
+    var cname = document.getElementById('nameOnCard').value
+    document.getElementById('nameOnCard').setAttribute('value', cname)
 
-    var adr = document.getElementById('adr').value
-    document.getElementById('adr').setAttribute('value', adr)
+    var adr = document.getElementById('address').value
+    document.getElementById('address').setAttribute('value', adr)
 
     var city = document.getElementById('city').value
     document.getElementById('city').setAttribute('value', city)
