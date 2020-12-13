@@ -332,7 +332,8 @@ function getRndInteger(min, max) {
 
 
 function updateDirectCard(arr) {
-
+    $(".direct-flights-o").empty();
+    console.log("updircard", arr)
     totalFlights = [{
             "flightName": "Air India",
             "flightNum": `(AI - ${getRndInteger(100,999)})`
@@ -358,68 +359,62 @@ function updateDirectCard(arr) {
     dest = $("#end").val();
     console.log("direct", arr)
     var possibleDirFlights = [];
-    var countDirCard = 2;
+    var countDirCard = 1;
     var dirFLightsName, dirFlightsNum;
-    console.log("direct flights", dirflights)
+
+
     dirflights = arr;
+    console.log("direct flights", dirflights)
 
-    /* var possibleDirFlights={
-        flight_name:"",
-        arrival:"",
-        departure:"",
-        flight_num:"",
-        price:"",
-        start:"",
-    }; */
 
+    for (let i = 0; i < dirflights.length; i++) {
+        dirFlightsNum = dirflights[i].flight_num.split('-')
+        dirFlightsNum = dirFlightsNum[0].toUpperCase() + " - " + dirFlightsNum[1];
+
+        dirFlightsName = dirflights[i].flight_name.split(" ");
+        for (let j = 0; j < dirFlightsName.length; j++) {
+            dirFlightsName[j] = dirFlightsName[j].charAt(0).toUpperCase() + dirFlightsName[j].slice(1)
+
+        }
+
+        dirFlightsName = dirFlightsName.join(" ")
+        dirFlightsName = dirFlightsName + " (" + dirFlightsNum + ")"
+
+        /* $(`.flight-name-${countViaCard}`).text(dirFlightsName)
+        $(`.from-${countViaCard}`).text(dirflights[i].start.charAt(0).toUpperCase() + dirflights[i].start.slice(1) )
+        $(`.to-${countViaCard}`).text(dirflights[i].end.charAt(0).toUpperCase() + dirflights[i].end.slice(1) )
+        $(`.via-${countViaCard}`).text(dirflights[i].via.charAt(0).toUpperCase() + dirflights[i].via.slice(1) )
+        $(`.from-time-${countViaCard}`).text(dirflights[i].departure)
+        $(`.to-time-${countViaCard}`).text(dirflights[i].arrival) */
+
+        var priceDir = dirflights[i].price
+        priceDir = numberWithCommas(priceDir)
+        $(`.price-${countDirCard}`).text(priceDir)
+        var elem = ` <div class="card-${countDirCard} card">
+              <div class="card-content">
+                <div class="flight-name-${countDirCard} flight-name">${dirFlightsName}</div>
+                <div class="content-details">
+                  <div class="places">
+                    <div class="from-${countDirCard} from-overlay">${dirflights[i].start.charAt(0).toUpperCase() + dirflights[i].start.slice(1) }</div>&nbsp;-&nbsp;<div class="to-${countDirCard} to-overlay">${dirflights[i].end.charAt(0).toUpperCase() + dirflights[i].end.slice(1) }</div>
+                  </div>
+                  <div class="time">
+                    <div class="fromTime from-time-${countDirCard}">${dirflights[i].departure}</div>&nbsp;-&nbsp;<div class="toTime to-time-${countDirCard}">${dirflights[i].arrival}</div>
+                  </div>
+                  <div class="price-details">
+                    Price: &#8377; <div class="base-price price-${countDirCard}">${priceDir}</div>
+                  </div>
+                </div>
+              </div>
+            </div>`
+        countDirCard++;
+        $(".direct-flights-o").append(elem)
+    }
 
     //changing title
     $(".src-overlay").text(from)
     $(".dest-overlay").text(dest)
-
-    //making 3 objects of direct flights
-    for (let i = 0; i < totalFlights.length; i++) {
-
-        if (dirflights[0].flight_name == totalFlights[i].flightName.toLowerCase()) {
-            continue;
-        }
-
-        possibleDirFlights.push(totalFlights[i])
-    }
-
-    dirFlightsNum = dirflights[0].flight_num.split('-')
-    dirFlightsNum = dirFlightsNum[0].toUpperCase() + " - " + dirFlightsNum[1];
-    dirFlightsName = dirflights[0].flight_name.split(" ");
-    for (let j = 0; j < dirFlightsName.length; j++) {
-        dirFlightsName[j] = dirFlightsName[j].charAt(0).toUpperCase() + dirFlightsName[j].slice(1)
-
-    }
-
-    dirFlightsName = dirFlightsName.join(" ")
-    dirFlightsName = dirFlightsName + " (" + dirFlightsNum + ")"
-    $(`.flight-name-1`).text(dirFlightsName)
-    $(`.from-1`).text(dirflights[0].start.charAt(0).toUpperCase() + dirflights[0].start.slice(1))
-    $(`.to-1`).text(dirflights[0].end.charAt(0).toUpperCase() + dirflights[0].end.slice(1))
-    $(`.from-time-1`).text(dirflights[0].departure)
-    $(`.to-time-1`).text(dirflights[0].arrival)
-    var pricedir = dirflights[0].price
-    pricedir = numberWithCommas(pricedir)
-    $(`.price-1`).text(pricedir)
-
     //changing map
     showPath(dirflights[0].start, dirflights[0].end)
-
-    //entering values into rest 2 cards
-    var priceNew = Number(dirflights[0].price);
-
-    for (let count = 2; count <= 3; count++) {
-        var randIndex = getRndInteger(0, 4)
-        priceNew = priceNew + 222;
-        $(`.flight-name-${count}`).text(possibleDirFlights[randIndex].flightName + " " + possibleDirFlights[randIndex].flightNum)
-        $(`.from-${count}`).text(dirflights[0].start.charAt(0).toUpperCase() + dirflights[0].start.slice(1))
-        $(`.to-${count}`).text(dirflights[0].end.charAt(0).toUpperCase() + dirflights[0].end.slice(1))
-        $(`.price-${count}`).text(numberWithCommas(priceNew))
-    }
 
     //console.log("pos",possibleDirFlights)
 
@@ -438,6 +433,7 @@ function updateViaCard(arr) {
     console.log("via", viaflights)
 
     for (let i = 0; i < viaflights.length; i++) {
+
         viaFlightsNum = viaflights[i].flight_num.split('-')
         viaFlightsNum = viaFlightsNum[0].toUpperCase() + " - " + viaFlightsNum[1];
 
@@ -460,7 +456,29 @@ function updateViaCard(arr) {
         priceVia = viaflights[i].price
         priceVia = numberWithCommas(priceVia)
         $(`.price-${countViaCard}`).text(priceVia)
-        var elem = ` <div class="card-${countViaCard} card">
+        if (i == 0) {
+            var elem = ` <div class="card-${countViaCard} card">
+            <div class="card-content">
+            <div class="optimised">
+                <div class="flight-name flight-name-${countViaCard} ">${viaFlightsName}</div><span>&nbsp;&nbsp;<div class="dot-opt">
+                  </div>&nbsp;Optimised Flight</span>
+              </div>
+              <div class="content-details">
+                <div class="places">
+                  <div class="from-${countViaCard} from-overlay">${viaflights[i].start.charAt(0).toUpperCase() + viaflights[i].start.slice(1) }</div>&nbsp;-&nbsp;<div class="via-${countViaCard} via-overlay">${viaflights[i].via.charAt(0).toUpperCase() + viaflights[i].via.slice(1) }</div>&nbsp;-&nbsp;<div class="to-${countViaCard} to-overlay">${viaflights[i].end.charAt(0).toUpperCase() + viaflights[i].end.slice(1) }</div>
+                </div>
+                <div class="time">
+                  <div class="fromTime from-time-${countViaCard}">${viaflights[i].departure}</div>&nbsp;-&nbsp;<div class="toTime to-time-${countViaCard}">${viaflights[i].arrival}</div>
+                </div>
+                <div class="price-details">
+                  Price: &#8377; <div class="base-price price-${countViaCard}">${priceVia}</div>
+                </div>
+              </div>
+            </div>
+          </div>`
+        } else {
+
+            elem = ` <div class="card-${countViaCard} card">
                   <div class="card-content">
                     <div class="flight-name-${countViaCard} flight-name">${viaFlightsName}</div>
                     <div class="content-details">
@@ -476,6 +494,8 @@ function updateViaCard(arr) {
                     </div>
                   </div>
                 </div>`
+        }
+
         countViaCard++;
         $(".via-flights-o").append(elem)
     }
@@ -483,9 +503,9 @@ function updateViaCard(arr) {
 }
 
 //cards ( overlay ) animating on click
-$(".direct-flights-o .card-1").click(animatingCard)
-$(".direct-flights-o .card-2").click(animatingCard)
-$(".direct-flights-o .card-3").click(animatingCard)
+$(".direct-flights-o").on('click', '.card-1', animatingCard)
+$(".direct-flights-o").on('click', '.card-2', animatingCard)
+$(".direct-flights-o").on('click', '.card-3', animatingCard)
 
 //changing map on click
 $(".direct-flights-o .card-1").click(() => {

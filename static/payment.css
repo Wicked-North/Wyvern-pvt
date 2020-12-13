@@ -18,7 +18,8 @@ a {
   color: #ff9a8b;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -67,7 +68,11 @@ body {
   padding: 2em 2em 0 2em;
 }
 
-.payment-details .main-title, .payment-details .title-masks, .payment-details .title-travel, .payment-details .payments-title {
+.payment-details .main-title,
+.payment-details .title-masks,
+.payment-details .title-travel,
+.payment-details .payments-title,
+.payment-details .select-seats-title {
   background-image: linear-gradient(45deg, #ff9a8b, #db2763);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -84,14 +89,18 @@ body {
   margin-bottom: 0.1em;
 }
 
-.payment-details .title-masks, .payment-details .title-travel, .payment-details .payments-title {
+.payment-details .title-masks,
+.payment-details .title-travel,
+.payment-details .payments-title,
+.payment-details .select-seats-title {
   font-weight: 700;
   letter-spacing: 0.05rem;
   font-size: 2rem;
   margin-bottom: 0.2em;
 }
 
-#redtext, #redgraph {
+#redtext,
+#redgraph {
   color: #f3093c;
 }
 
@@ -126,7 +135,8 @@ body {
   padding-top: 1.5rem;
 }
 
-.formi input:focus + .label-name .content-name, .formi input:valid + .label-name .content-name {
+.formi input:focus + .label-name .content-name,
+.formi input:valid + .label-name .content-name {
   /* :valid ensures that when input text is added and the focus is shifted somwehere else
             the label doesn't come back to its initial position*/
   color: #f0f7ee;
@@ -175,18 +185,28 @@ body {
   font-size: 1em;
 }
 
-.formi input:focus + .label-name::after, .formi:valid + label::after {
+.formi input:focus + .label-name::after,
+.formi:valid + label::after {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
   border-color: #f0f7ee;
 }
 
-.gender-radio-button {
+.gender-radio-button,
+.select-radio-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.gender-radio-button,
+.select-radio-button {
   color: #ff9a8b;
   margin-top: 1.8em;
 }
 
-.gender-radio-button label {
+.gender-radio-button label,
+.select-radio-button label {
   position: relative;
   margin: 0.675rem 0;
   display: -webkit-box;
@@ -199,20 +219,23 @@ body {
   cursor: pointer;
 }
 
-.gender-radio-button .check {
+.gender-radio-button .check,
+.select-radio-button .check {
   margin-right: 7px;
   width: 1.35rem;
   height: 1.35rem;
 }
 
-.gender-radio-button .check #border {
+.gender-radio-button .check #border,
+.select-radio-button .check #border {
   fill: none;
   stroke: #ff9a8b;
   stroke-width: 3;
   stroke-linecap: round;
 }
 
-.gender-radio-button .check #dot {
+.gender-radio-button .check #dot,
+.select-radio-button .check #dot {
   fill: url(#gradient);
   -webkit-transform: scale(0);
           transform: scale(0);
@@ -220,19 +243,13 @@ body {
           transform-origin: 50% 50%;
 }
 
-.gender-radio-button input {
+.gender-radio-button input,
+.select-radio-button input {
   display: none;
 }
 
-.gender-radio-button input:checked + label {
-  font-weight: 600;
-  background-color: #ff9a8b;
-  /*background: linear-gradient(180deg, $light-blue-grad, $grad-pink);*/
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gender-radio-button input:checked + label svg #border {
+.gender-radio-button input:checked + label svg #border,
+.select-radio-button input:checked + label svg #border {
   stroke: url(#gradient);
   stroke-dasharray: 145;
   stroke-dashoffset: 145;
@@ -240,7 +257,8 @@ body {
           animation: checked 500ms ease forwards;
 }
 
-.gender-radio-button input:checked + label svg #dot {
+.gender-radio-button input:checked + label svg #dot,
+.select-radio-button input:checked + label svg #dot {
   -webkit-transform: scale(1);
           transform: scale(1);
   -webkit-transition: -webkit-transform 500ms cubic-bezier(0.57, 0.21, 0.69, 3.25);
@@ -261,11 +279,37 @@ body {
   }
 }
 
-.gender-radio-button .female {
+.gender-radio-button .female,
+.select-radio-button .female {
   margin-left: 1rem;
 }
 
-.personal-details-title, .personal-details-sub-title {
+.select-radio-button {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 0;
+  width: 10em;
+}
+
+.select-radio-button label {
+  margin: 0;
+}
+
+.select-radio-button input:checked + label {
+  -webkit-text-fill-color: transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#db2763), to(#db2763));
+  background: linear-gradient(180deg, #db2763, #db2763);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.personal-details-title,
+.personal-details-sub-title,
+.seat-passenger-title {
   font-family: 'Overlock', cursive;
   font-size: 1.5rem;
 }
@@ -281,7 +325,11 @@ body {
   color: #db2763;
 }
 
-.passenger-name, .passenger-name-2, .personal-details-card, .imp-details, .address-details {
+.passenger-name,
+.passenger-name-2,
+.personal-details-card,
+.imp-details,
+.address-details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -294,7 +342,8 @@ body {
           flex-direction: column;
 }
 
-.passenger-name-1, .dob {
+.passenger-name-1,
+.dob {
   width: 47%;
 }
 
@@ -304,18 +353,25 @@ body {
           justify-content: space-between;
 }
 
-.middle-name, .last-name, .email, .contact-details, .card-name, .card-number, .card-cvv, .card-exp, .card-city, .card-state {
+.middle-name,
+.last-name,
+.email,
+.contact-details,
+.card-name,
+.card-number,
+.card-cvv,
+.card-exp,
+.card-city,
+.card-state {
   width: 80%;
 }
 
-.middle-name, .card-number, .card-cvv, .card-city, .email {
+.middle-name,
+.card-number,
+.card-cvv,
+.card-city,
+.email {
   margin-right: 3em;
-}
-
-.gender-radio-button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .contacts {
@@ -402,7 +458,8 @@ hr {
           justify-content: space-between;
 }
 
-.nav .left-nav, .nav .right-nav {
+.nav .left-nav,
+.nav .right-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -445,7 +502,349 @@ hr {
 }
 
 .termsnservices {
-  margin-top: 1em;
-  opacity: 0.8;
+  margin-top: 3em;
+  opacity: 0.7;
+  border-top: 1px solid #db2763;
+  padding-top: 0.7em;
+}
+
+.email-disclaimer {
+  margin-top: 0.3em;
+  opacity: 0.7;
+}
+
+ol {
+  margin: 0;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+  -webkit-margin-start: 0px;
+          margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+          margin-inline-end: 0px;
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
+}
+
+#seatSelection {
+  width: 68%;
+}
+
+.seats-parent,
+.seat-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.seat-passenger-content {
+  color: #ff9a8b;
+  font-size: 1.1rem;
+  padding-left: 2.1em;
+}
+
+.seat-name {
+  letter-spacing: 0.05em;
+}
+
+.seat-id {
+  white-space: pre;
+}
+
+.allPass {
+  border: 4px solid transparent;
+  -o-border-image: linear-gradient(45deg, #db2763, #ff9a8b);
+     border-image: linear-gradient(45deg, #db2763, #ff9a8b);
+  border-image-slice: 1;
+  padding: 0.5em;
+  width: 15em;
+  margin-bottom: 1em;
+}
+
+.right-seats {
+  margin-left: 1.5em;
+  margin-top: 0.8em;
+  overflow-y: scroll;
+  height: 22em;
+}
+
+#cross-btn {
+  outline: none;
+  background: transparent;
+  text-decoration: none;
+  border: none;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #db2763;
+  margin-left: 1em;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
+}
+
+#cross-btn i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0.2em;
+}
+
+#cross-btn:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.pass-name-seats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.middle-name-seats {
+  white-space: pre-line;
+}
+
+/*========================================SEAT BOOKING=====================================================================*/
+::-moz-selection {
+  background-color: #eee;
+}
+::selection {
+  background-color: #eee;
+}
+
+::-moz-selection {
+  background-color: #eee;
+}
+
+/* body {
+    font-size: 16px;
+    background-color: #269686;
+  } */
+.theatre {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 20px 10px;
+  -webkit-box-shadow: 0px 0px 17px -4px #000;
+          box-shadow: 0px 0px 17px -4px #000;
+}
+
+.screen-side {
+  text-align: center;
+}
+
+.screen-side .screen {
+  height: 25px;
+  margin: 0 20px;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px -3px 0px 1px #ccc;
+          box-shadow: 0px -3px 0px 1px #ccc;
+  color: #ccc;
+}
+
+.screen-side .select-text {
+  color: #969696;
+}
+
+.exit {
+  position: relative;
+  height: 50px;
+}
+
+.exit:before,
+.exit:after {
+  content: "EXIT";
+  font-size: 14px;
+  line-height: 18px;
+  padding: 0px 5px;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  display: block;
+  position: absolute;
+  background: #81c784;
+  color: white;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.exit:before {
+  left: 0;
+}
+
+.exit:after {
+  right: 0;
+}
+
+.seats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.seat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 55px;
+          flex: 0 0 55px;
+  padding-right: 20px;
+  padding-top: 3px;
+  position: relative;
+}
+
+.seat input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.seat input[type="checkbox"]:checked + label {
+  background-image: linear-gradient(35deg, #db2763, #ff9a8b);
+  color: #2a2a30;
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.seat input[type="checkbox"]:disabled + label {
+  background: #ddd;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+
+.seat input[type="checkbox"]:disabled + label:after {
+  content: "X";
+  text-indent: 0;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+  color: #2a2a30;
+}
+
+.seat input[type="checkbox"]:disabled + label:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: not-allowed;
+}
+
+.seat label {
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.5rem;
+  padding: 4px 0;
+  color: #fff;
+  background-image: linear-gradient(35deg, #db2763, #101011);
+  border-radius: 50%;
+  -webkit-animation-duration: 300ms;
+          animation-duration: 300ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-transition-duration: 300ms;
+          transition-duration: 300ms;
+}
+
+.seat label:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0 7px 3px #ff9a8b;
+          box-shadow: 0px 0 7px 3px #ff9a8b;
+}
+
+@-webkit-keyframes rubberBand {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes rubberBand {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.rubberBand {
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
 }
 /*# sourceMappingURL=payment.css.map */

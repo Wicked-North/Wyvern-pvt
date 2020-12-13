@@ -26,104 +26,117 @@ $font-size-custom-login:1em;
 }
 
 
-*{
-    padding:0;
+* {
+    padding: 0;
     box-sizing: border-box;
-    margin:0;
+    margin: 0;
     user-select: none;
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
         display: none;
     }
 }
 
-a{
+a {
     text-decoration: none;
     color: $grad-pink;
 }
 
-ol, ul{
+ol,
+ul {
     list-style: none;
     padding: 0;
     margin: 0;
- }
+}
 
-body{
+body {
     background-image: linear-gradient(45deg, $darkest-grey, $black);
     color: $light-pink;
     font-family: 'Average Sans', sans-serif;
-    
+
 }
 
 //footer links
-.footer{
+.footer {
     text-align: center;
-    color:$grad-red;
-}
-.links{
-    text-align: center;
-    color:$grad-red;
-}
-.footerlinks{
-    margin-left: 1em;
-    color:$grad-red;
+    color: $grad-red;
 }
 
-.card{
+.links {
+    text-align: center;
+    color: $grad-red;
+}
+
+.footerlinks {
+    margin-left: 1em;
+    color: $grad-red;
+}
+
+.card {
     background-color: $black;
-    padding:2em;
+    padding: 2em;
     width: 60%;
     margin-left: 18%;
     border: 4px solid transparent;
     border-image: linear-gradient(45deg, $grad-red, $grad-pink);
     border-image-slice: 1;
     border-radius: 4px;
-    margin-bottom:1.5em;
-    font-size:1rem;
+    margin-bottom: 1.5em;
+    font-size: 1rem;
 }
 
-#card1{
+#card1 {
     margin-top: 60px;
 }
 
-#card4{
+#card4 {
     padding: 2em 2em 0 2em;
 }
 
 //all titles go here
-.payment-details{
-    .main-title, .title-masks, .title-travel, .payments-title{
-        
+.payment-details {
+
+    .main-title,
+    .title-masks,
+    .title-travel,
+    .payments-title,
+    .select-seats-title {
+
         background-image: linear-gradient(45deg, $grad-pink, $grad-red);
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
         width: fit-content;
         font-family: 'Overlock', cursive;
-        
+
     }
 
-    .main-title{
+    .main-title {
         font-weight: 800;
         letter-spacing: 0.05rem;
-        font-size:2.8rem;
+        font-size: 2.8rem;
         margin-bottom: 0.1em;
     }
 
-    .title-masks, .title-travel, .payments-title{
+    .title-masks,
+    .title-travel,
+    .payments-title,
+    .select-seats-title {
         font-weight: 700;
         letter-spacing: 0.05rem;
-        font-size:2rem;
+        font-size: 2rem;
         margin-bottom: 0.2em;
     }
 
 }
 
 
-#redtext, #redgraph{
+#redtext,
+#redgraph {
     color: $grad-red-warning;
 }
 
 .payment-details {
-    li{
+    li {
         margin-top: 0.2em;
     }
 }
@@ -131,82 +144,97 @@ body{
 
 //form styling
 //text-field animation
-.formi{
+.formi {
     display: flex;
     position: relative;
     flex-direction: column;
-    
-    height:$height-field;
+
+    height: $height-field;
     overflow: hidden;
     margin-top: 1.2em;
     //background-color:rgba(240, 240, 240, 0.1);
     //backdrop-filter: blur(10px);
 
 }
-.formi input{
+
+.formi input {
     @include removeStyle();
     color: $after-color;
     cursor: pointer;
     height: 100%;
-    width:100%;
+    width: 100%;
     font-size: 1.1rem;
     padding-top: $height-field - 1.5rem;
-        &:focus + .label-name .content-name, &:valid + .label-name .content-name{
-            /* :valid ensures that when input text is added and the focus is shifted somwehere else
+
+    &:focus+.label-name .content-name,
+    &:valid+.label-name .content-name {
+        /* :valid ensures that when input text is added and the focus is shifted somwehere else
             the label doesn't come back to its initial position*/
-            color:$after-color;
-            font-size:$font-size-custom - $font-size-custom/10;           
-            transform: translateY(-140%);
-        }
-    
-    
+        color: $after-color;
+        font-size: $font-size-custom - $font-size-custom/10;
+        transform: translateY(-140%);
+    }
+
+
 }
 
-.formi label{
+.formi label {
     @include removeStyle();
     position: absolute;
     pointer-events: none;
-    width:100%;
-    height:100%;
-    bottom:0;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
     border-bottom: 2px solid $before-color;
-    color:$before-color;
-        &::after{
-            content: "";
-            position: absolute;
-            width:100%;
-            height: 100%;
-            border-bottom: 2px solid $after-color;
-            left:0;
-            transform: translateX(-100%);
-            
-            /*Moving the blue line out of frame initially also, 
+    color: $before-color;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-bottom: 2px solid $after-color;
+        left: 0;
+        transform: translateX(-100%);
+
+        /*Moving the blue line out of frame initially also, 
             since overflow is not hidden it is visible on the frame when overflow:hidden; 
             not applied to parent*/
-            transition: transform 500ms ease;
-        }
+        transition: transform 500ms ease;
+    }
 
 }
 
-.content-name{
+.content-name {
     position: absolute;
     top: $height-field - 1.5rem;
     transition: all 500ms ease;
     font-size: $font-size-custom;
 }
 
-.formi input:focus + .label-name::after, .formi:valid  + label::after{
-    transform:translateX(0%);
+.formi input:focus+.label-name::after,
+.formi:valid+label::after {
+    transform: translateX(0%);
     border-color: $after-color;
-    
-    
+
+
 }
 
 
+
+
 //gradient radio buttons
-.gender-radio-button{
-    color:$grad-pink;
-    margin-top:1.8em;
+.gender-radio-button,
+.select-radio-button {
+    display: flex;
+}
+
+
+.gender-radio-button,
+.select-radio-button {
+    color: $grad-pink;
+    margin-top: 1.8em;
+
     label {
         position: relative;
         margin: 0.675rem 0;
@@ -214,114 +242,148 @@ body{
         width: auto;
         align-items: center;
         cursor: pointer;
-      }
-      
-      .check {
+    }
+
+    .check {
         margin-right: 7px;
         width: 1.35rem;
         height: 1.35rem;
-      }
-      .check #border {
+    }
+
+    .check #border {
         fill: none;
         stroke: $grad-pink;
         stroke-width: 3;
         stroke-linecap: round;
-      }
-      .check #dot {
+    }
+
+    .check #dot {
         fill: url(#gradient);
         transform: scale(0);
         transform-origin: 50% 50%;
-      }
-      
-      input {
+    }
+
+    input {
         display: none;
-      }
-      input:checked + label {
-        font-weight:600;
-        background-color: $grad-pink;
-        /*background: linear-gradient(180deg, $light-blue-grad, $grad-pink);*/
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      input:checked + label svg #border {
+    }
+
+    input:checked+label svg #border {
         stroke: url(#gradient);
         stroke-dasharray: 145;
         stroke-dashoffset: 145;
         animation: checked 500ms ease forwards;
-      }
-      input:checked + label svg #dot {
+    }
+
+    input:checked+label svg #dot {
         transform: scale(1);
         transition: transform 500ms cubic-bezier(0.57, 0.21, 0.69, 3.25);
-      }
-      
-      @keyframes checked {
-        to {
-          stroke-dashoffset: 0;
-        }
-      }
+    }
 
-      .female{
-          margin-left: 1rem;
-      }
+    @keyframes checked {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    .female {
+        margin-left: 1rem;
+    }
 }
 
-.personal-details-title, .personal-details-sub-title{
+
+.select-radio-button {
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    width: 10em;
+
+    label {
+        margin: 0;
+    }
+
+    input:checked+label {
+        -webkit-text-fill-color: transparent;
+        background: linear-gradient(180deg, $grad-red, $grad-red);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+.personal-details-title,
+.personal-details-sub-title,
+.seat-passenger-title {
     font-family: 'Overlock', cursive;
     font-size: 1.5rem;
 }
 
-.personal-details-title{
-    margin-top:1em;
+.personal-details-title {
+    margin-top: 1em;
     margin-bottom: 0.5em;
-    color:$font-light;
+    color: $font-light;
     font-weight: 600;
 }
 
-.personal-details-sub-title{
-    color:$grad-red;
+.personal-details-sub-title {
+    color: $grad-red;
 }
 
-.passenger-name, .passenger-name-2, .personal-details-card, .imp-details, .address-details{
-    display:flex;
+.passenger-name,
+.passenger-name-2,
+.personal-details-card,
+.imp-details,
+.address-details {
+    display: flex;
 }
 
-.passenger-name{
+.passenger-name {
     flex-direction: column;
 }
 
-.passenger-name-1, .dob{
+.passenger-name-1,
+.dob {
     width: 47%;
 }
 
-.passenger-name-2{
-   
+.passenger-name-2 {
+
     justify-content: space-between;
 }
 
-.middle-name, .last-name, .email , .contact-details, .card-name, .card-number, .card-cvv, .card-exp, .card-city, .card-state{
+.middle-name,
+.last-name,
+.email,
+.contact-details,
+.card-name,
+.card-number,
+.card-cvv,
+.card-exp,
+.card-city,
+.card-state {
     width: 80%;
 }
 
-.middle-name, .card-number, .card-cvv, .card-city, .email{
+.middle-name,
+.card-number,
+.card-cvv,
+.card-city,
+.email {
     margin-right: 3em;
 }
 
-.gender-radio-button{
+
+
+
+.contacts {
     display: flex;
+
 }
 
 
-.contacts{
-    display: flex;
-    
-}
 
-
-
-hr{
-    border:none;
+hr {
+    border: none;
     border-top: 1px solid $grad-red;
-    margin-top:2em;
+    margin-top: 2em;
 }
 
 
@@ -379,39 +441,43 @@ hr{
     stroke-dashoffset: 437;
 }
 
-.login-btn-invisible{
+.login-btn-invisible {
     @include removeStyle();
-    margin-left:58%;
+    margin-left: 58%;
 }
+
 .nav {
     display: flex;
     position: absolute;
-    z-index:200;
-    top:0;
-    right:0;
+    z-index: 200;
+    top: 0;
+    right: 0;
     //background-color:$darkest-grey;
-    background-image:linear-gradient(45deg,$darkest-grey,$black);
+    background-image: linear-gradient(45deg, $darkest-grey, $black);
     box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
     //left:0;
     //right:50%;
     //width:49%;
-    justify-content: space-between; 
+    justify-content: space-between;
+
     //border:2px solid $grad-red;
     //margin: 1em 1em;
-    .left-nav, .right-nav{
-        display:flex;
-        margin:1em;
-        justify-content:space-between;
+    .left-nav,
+    .right-nav {
+        display: flex;
+        margin: 1em;
+        justify-content: space-between;
     }
-    a{
+
+    a {
         @include removeStyle();
         font-size: 1.2rem;
         font-family: 'Overlock', cursive;
         font-weight: 700;
         //display:block;
-        color:$grad-pink;
-        overflow:hidden;
-        transition:all 300ms ease;
+        color: $grad-pink;
+        overflow: hidden;
+        transition: all 300ms ease;
         margin-left: 0.8em;
 
         /* &::after{
@@ -427,16 +493,344 @@ hr{
             transform: opacity 100ms ease;
         } */
 
-        &:hover{
-            box-shadow:0 3px 0px $grad-red;
+        &:hover {
+            box-shadow: 0 3px 0px $grad-red;
         }
 
-       
+
     }
 
 }
 
-.termsnservices{
-    margin-top:1em;
-    opacity:0.8;
+.termsnservices {
+    margin-top: 3em;
+    opacity: 0.7;
+    border-top: 1px solid $grad-red;
+    padding-top: 0.7em;
+}
+
+.email-disclaimer {
+    margin-top: 0.3em;
+    opacity: 0.7;
+}
+
+
+ol {
+    margin: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+}
+
+#seatSelection {
+    width: 68%;
+}
+
+.seats-parent,
+.seat-name {
+    display: flex;
+}
+
+.seat-passenger-content {
+    color: $grad-pink;
+    font-size: 1.1rem;
+    padding-left: 2.1em;
+}
+
+.seat-name {
+    letter-spacing: 0.05em;
+}
+
+.seat-id {
+    white-space: pre;
+}
+
+.allPass {
+    border: 4px solid transparent;
+    border-image: linear-gradient(45deg, $grad-red, $grad-pink);
+    border-image-slice: 1;
+    padding: 0.5em;
+    width: 15em;
+    margin-bottom: 1em;
+
+}
+
+.right-seats {
+    margin-left: 1.5em;
+    margin-top: 0.8em;
+    overflow-y: scroll;
+    height: 22em;
+}
+
+#cross-btn {
+    @include removeStyle();
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: $grad-red;
+    margin-left: 1em;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1);
+    transition: all 300ms ease-in;
+    i{
+        display:flex;
+        margin-top:0.2em;
+
+    }
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.pass-name-seats{
+    display:flex;
+   
+}
+
+.middle-name-seats{
+    white-space: pre-line;
+}
+
+
+
+
+
+
+
+
+
+
+//SEAT SELECTION STYLE
+
+
+
+/*========================================SEAT BOOKING=====================================================================*/
+
+
+::selection {
+    background-color: #eee;
+}
+
+::-moz-selection {
+    background-color: #eee;
+}
+
+/* body {
+    font-size: 16px;
+    background-color: #269686;
+  } */
+
+.theatre {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 20px 10px;
+    box-shadow: 0px 0px 17px -4px #000;
+}
+
+.screen-side {
+    text-align: center;
+}
+
+.screen-side .screen {
+    height: 25px;
+    margin: 0 20px;
+    border-radius: 50%;
+    box-shadow: 0px -3px 0px 1px #ccc;
+    color: #ccc;
+}
+
+.screen-side .select-text {
+    color: #969696;
+}
+
+.exit {
+    position: relative;
+    height: 50px;
+}
+
+.exit:before,
+.exit:after {
+    content: "EXIT";
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0px 5px;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    display: block;
+    position: absolute;
+    background: #81c784;
+    color: white;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.exit:before {
+    left: 0;
+}
+
+.exit:after {
+    right: 0;
+}
+
+
+
+.seats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+.seat {
+    display: flex;
+    flex: 0 0 55px;
+    padding-right: 20px;
+    padding-top: 3px;
+    position: relative;
+
+}
+
+.seat input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.seat input[type="checkbox"]:checked+label {
+    background-image:linear-gradient(35deg, $grad-red,$grad-pink);
+    color:$darkest-grey;
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+}
+
+.seat input[type="checkbox"]:disabled+label {
+    background: #ddd;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+.seat input[type="checkbox"]:disabled+label:after {
+    content: "X";
+    text-indent: 0;
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color:$darkest-grey;
+}
+
+.seat input[type="checkbox"]:disabled+label:hover {
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.seat label {
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.5rem;
+    padding: 4px 0;
+    color: #fff;
+    background-image:linear-gradient(35deg, $grad-red,$black );
+    //background: $black;
+    //border: 2px solid $grad-red;
+    border-radius: 50%;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+    transition-duration: 300ms;
+}
+
+.seat label:hover {
+    cursor: pointer;
+    box-shadow: 0px 0 7px 3px $grad-pink;
+
+}
+
+@-webkit-keyframes rubberBand {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+        transform: scale3d(0.95, 1.05, 1);
+    }
+
+    75% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+        transform: scale3d(1.05, 0.95, 1);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes rubberBand {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+        transform: scale3d(0.95, 1.05, 1);
+    }
+
+    75% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+        transform: scale3d(1.05, 0.95, 1);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.rubberBand {
+    -webkit-animation-name: rubberBand;
+    animation-name: rubberBand;
 }
