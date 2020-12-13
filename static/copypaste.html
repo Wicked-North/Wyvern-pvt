@@ -179,7 +179,7 @@ bring it with you on the day of departure.
     </label>
 </div>
 <div class="formi card-number">
-    <input type="text" name="start" autocomplete="off" id="FirstName+${i+1}" required> 
+    <input type="text" name="start" autocomplete="off" id="FirstName+${i+1}" required>
     <label name="from" class="label-name">
         <span class="content-name">
             Card Number:
@@ -209,3 +209,102 @@ bring it with you on the day of departure.
 <div align="right">
     <input type="submit" class="btn btn-primary" onclick='flightSearch()' id="savebutton" value="Save" />
 </div>
+
+
+<!--SEAT SELECTION-->
+<div class="right-seats">
+    <div id='p-${i}' class='allPass' onclick="passengerSelect(${i})">
+        <div class="seat-passenger-title">Passenger-${i+1}</div>
+        <div class="pass-name-seats">${fname} ${mname} ${lname}</div>
+        <div class="seat-name">Seat: <div id='s-${i}'>B1</div>
+        </div>
+        <button id='cross-btn' onclick="cancelSeats(${i})">x</buton>
+    </div>
+</div>
+
+<!--<div class="pass-name-seats"><div class="first-name-seats">Kumbro</div> <div class="middle-name-seats">Kanto</div> <div class="last-name-seats">Ghosh</div></div>-->
+
+
+<script src="homepage.js">
+    function searchFlights() {
+
+        var startplace = $('#start').val().toLowerCase();
+        var endplace = $('#end').val().toLowerCase();
+        console.log("start", startplace)
+        var start = planeNodes.indexOf(startplace)
+        var end = planeNodes.indexOf(endplace)
+        console.log(start, end)
+        var temp = G[start][end]
+        G[start][end] = 99
+        u = start
+        let viaplace = dijkstra(G, n, u, end);
+        console.log(viaplace)
+        G[start][end] = temp;
+
+        var data = {
+            start: startplace,
+            end: endplace,
+            via: viaplace
+        }
+        // headers: {
+        //   "Authorisation": "Bearer " + sessionStorage.getItem('token')
+        // },
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        };
+        console.log(options)
+
+        fetch("/getViaDetails", options).then((res) => res.json().then((data) => {
+            console.log(data)
+            //viaFlights=[]
+            viaFlights = [...data]
+            //console.log(viaFlights, "abhra")
+
+            console.log(viaFlights, "abhra")
+            updateViaCard(viaFlights)
+            //console.log(viaFlights[1].arrival.slice(0,2), "ghosh")
+            // data.sort((a, b) => {
+            //     return a.price - b.price;
+            // });
+            // console.log(data)
+            //console.log("abhra ghosh")
+            // let message = data;
+            // console.log(data.message) 
+            // document.getElementById('post').innerHTML = data.message;
+        })).catch((err) => console.log(err))
+
+
+
+        fetch("/getDirectDetails", options).then((res) => res.json().then((data) => {
+            console.log("direct flights data" + data)
+            var arr = [...data]
+            console.log(arr) //direct flight
+            updateDirectCard(data)
+            //console.log("abhra ghosh"
+            // let message = data;
+            // console.log(data.message)
+            // document.getElementById('post').innerHTML = data.message;
+        })).catch((err) => console.log(err))
+
+
+        fetch("/optimisedVia", options).then((res) => res.json().then((data) => {
+            console.log("optimised via", data)
+            optimisedFlight = [...data]
+            //console.log("why were chainsaws invented")
+            // let message = data;
+            // console.log(data.message)
+            // document.getElementById('post').innerHTML = data.message;
+        })).catch((err) => console.log(err))
+
+        for (let i = 0; i < viaFlights.length; i++) {
+            if (viaFlights[i].flight_num == optimisedFlight[i].flight_num) {
+                viaFlights.splice(i, 1);
+            }
+        }
+
+    }
+</script>

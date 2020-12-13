@@ -461,38 +461,66 @@ input[type=number] {
   font-size: 1.4rem;
 }
 
-.via-flights-title {
+.via-flights-title, .direct-flights-title {
   margin-left: 10%;
 }
 
 @-webkit-keyframes onclickCard {
-  0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-  50% {
-    -webkit-transform: scale(0.95);
-            transform: scale(0.95);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
+  /*  0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    } */
+  /* 
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    } */
 }
 
 @keyframes onclickCard {
-  0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-  50% {
-    -webkit-transform: scale(0.95);
-            transform: scale(0.95);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
+  /*  0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    } */
+  /* 
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+        transform: scale3d(1.15, 0.85, 1);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    } */
 }
 
 .animateCard {
@@ -507,7 +535,7 @@ input[type=number] {
 }
 
 .card-content {
-  margin: 1em 0 0 1em;
+  margin: 1.5em 0 0 1.5em;
   font-size: 1.1rem;
   pointer-events: none;
   width: 100%;
@@ -587,6 +615,7 @@ input[type=number] {
   display: -ms-flexbox;
   display: flex;
   color: #2a2a30;
+  font-style: oblique;
 }
 
 .optimised span .dot-opt {

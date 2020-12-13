@@ -3,20 +3,25 @@ document.getElementById('plane2').style.display = "none"
 document.getElementById('pathSet-2').style.display = 'none'
 document.getElementById('plane1').style.display = "none"
 
+let viaFlights = []
+let directFlights = []
+let optiFlight = []
+
 function displayPath() {
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         document.getElementById('pathSet-1').style.display = 'block'
         // document.getElementById('plane2').style.display = "block"
         // document.getElementById('pathSet-2').style.display ='block'
         document.getElementById('plane1').style.display = "block"
 
-    },300)
-    
+    }, 300)
+
 
 }
 
+$(".btn").click(searchFlights)
 
 // fetch("/get_sess").then((res) => {
 //     res.text().then((data) => {
@@ -35,18 +40,17 @@ function displayPath() {
 //                     console.log(res)
 
 //                     console.log(data)
-$(".btn").click(searchFlights)
 //                     sessionStorage.setItem('user_id', data.user_id)
 //                     sessionStorage.setItem('user_name', data.user_name)
 //                     sessionStorage.setItem('gender', data.gender)
 //                     sessionStorage.setItem('dob', data.dob)
 //                     sessionStorage.setItem('mobile', data.mobile)
-            
+
 //                 })
-            
+
 //             });
-            
-           
+
+
 //         }
 
 //     })
@@ -77,9 +81,7 @@ $(".btn").click(searchFlights)
 //     kolkata : 5,
 //     bangalore :6
 // }
-let viaFlights = []
-let directFlights=[]
-let optimisedFlight=[]
+
 let planeNodes = ["delhi", "jaipur", "ahmedabad", "mumbai", "hyderabad", "kolkata", "bangalore"]
 
 const INFINITY = 9999
@@ -179,11 +181,13 @@ function dijkstra(G, n, startnode, endnode) {
         }
 }
 
+
+
 function searchFlights() {
 
     var startplace = $('#start').val().toLowerCase();
     var endplace = $('#end').val().toLowerCase();
-    console.log("start",startplace)
+    console.log("start", startplace)
     var start = planeNodes.indexOf(startplace)
     var end = planeNodes.indexOf(endplace)
     console.log(start, end)
@@ -214,11 +218,11 @@ function searchFlights() {
     fetch("/getViaDetails", options).then((res) => res.json().then((data) => {
         console.log(data)
         //viaFlights=[]
-        viaFlights = [...data]
+        viaFlights = data.slice()
         //console.log(viaFlights, "abhra")
 
         console.log(viaFlights, "abhra")
-        updateViaCard(viaFlights)
+        // updateViaCard(viaFlights)
         //console.log(viaFlights[1].arrival.slice(0,2), "ghosh")
         // data.sort((a, b) => {
         //     return a.price - b.price;
@@ -228,33 +232,57 @@ function searchFlights() {
         // let message = data;
         // console.log(data.message) 
         // document.getElementById('post').innerHTML = data.message;
-    })).catch((err) => console.log(err))
-    
+    })).then((data) => {
+        fetch("/getDirectDetails", options).then((res) => res.json().then((data) => {
+            console.log("direct flights data" + data)
+            var arr = [...data]
+            console.log(arr) //direct flight
+            updateDirectCard(data)
+            //console.log("abhra ghosh"
+            // let message = data;
+            // console.log(data.message)
+            // document.getElementById('post').innerHTML = data.message;
+        }))
 
-    
-    fetch("/getDirectDetails", options).then((res)  => res.json().then((data) => {
-        var arr=[...data]
-        console.log("direct flights"+arr) //direct flight
-        updateDirectCard(data)
-        //console.log("abhra ghosh")
-        // let message = data;
-        // console.log(data.message)
-        // document.getElementById('post').innerHTML = data.message;
-    })).catch((err) => console.log(err))
+    }).then((data) => {
 
+        fetch("/optimisedVia", options).then((res) => res.json().then((data) => {
+            console.log("optimised via", data)
+            optiFlight = data.slice()
+            console.log(optiFlight)
+            //console.log("why were chainsaws invented")
+            // let message = data;
+            // console.log(data.message)
+            // document.getElementById('post').innerHTML = data.message;
+            matchViaOpti()
+        }))
+    })
 
-    fetch("/optimisedVia", options).then((res)  => res.json().then((data) => {
-        console.log("optimised via",data)
-        //console.log("abhra ghosh")
-        // let message = data;
-        // console.log(data.message)
-        // document.getElementById('post').innerHTML = data.message;
-    })).catch((err) => console.log(err))
+    function matchViaOpti() {
+        console.log("via")
+        console.log(viaFlights)
+        console.log("opt")
+        console.log(optiFlight)
+        for (let i = 0; i < viaFlights.length; i++) {
+            console.log(viaFlights[i].flight_num,'abcd',optiFlight.flight_num)
+            if (viaFlights[i].flight_num == optiFlight[0].flight_num) {
+                viaFlights.splice(i, 1);
+               
+            }
+
+            // console.log("match")
+        }
+        viaFlights.unshift(optiFlight[0])
+       //viaFlights[4] = optiFlight[0]
+        //viaFlights.reverse()
+        console.log(viaFlights)
+        updateViaCard(viaFlights)
+    }
 
 }
 
 
-function sortPrice(){
+function sortPrice() {
 
     let j
     let itemPrice
@@ -308,6 +336,7 @@ function sortDepartureTime() {
         }
         viaFlights[j + 1] = itemObj
     }
+    
     console.log(viaFlights)
     updateViaCard(viaFlights)
 }
@@ -316,7 +345,7 @@ function selectFlight() {
     window.location.assign("app.html")
 }
 
-function showPastBookings(){
+function showPastBookings() {
 
 }
 
@@ -342,5 +371,3 @@ function showPastBookings(){
 
 // console.log("hello")
 // }
-
-
