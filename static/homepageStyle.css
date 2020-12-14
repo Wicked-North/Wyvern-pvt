@@ -111,7 +111,8 @@ body {
   padding-top: 2rem;
 }
 
-.formi input:focus + .label-name .content-name, .formi input:valid + .label-name .content-name {
+.formi input:focus + .label-name .content-name,
+.formi input:valid + .label-name .content-name {
   /* :valid ensures that when input text is added and the focus is shifted somwehere else
             the label doesn't come back to its initial position*/
   color: #f0f7ee;
@@ -160,7 +161,8 @@ body {
   font-size: 1.2em;
 }
 
-.formi input:focus + .label-name::after, .formi:valid + label::after {
+.formi input:focus + .label-name::after,
+.formi:valid + label::after {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
   border-color: #f0f7ee;
@@ -432,10 +434,6 @@ input[type=number] {
           transform: scale(1.05);
 }
 
-.card-8 {
-  margin-bottom: 0;
-}
-
 .overlay-title {
   font-family: 'Overlock', cursive;
   font-size: 2.3rem;
@@ -461,7 +459,8 @@ input[type=number] {
   font-size: 1.4rem;
 }
 
-.via-flights-title, .direct-flights-title {
+.via-flights-title,
+.direct-flights-title {
   margin-left: 10%;
 }
 
@@ -626,12 +625,37 @@ input[type=number] {
   margin: auto 0;
 }
 
+.via-flights-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .sortby {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   font-size: 1.2rem;
   color: #f0f7ee;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  /* position:absolute;
+    top:85%;
+    left:62%; */
+  z-index: 20000;
+  overflow-y: visible;
+  height: 2em;
 }
 
 .sortby button {
@@ -650,6 +674,40 @@ input[type=number] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  cursor: pointer;
+  width: 12em;
+  height: 2em;
+}
+
+.sortby .sort-main-button {
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  background-color: #2a2a30;
+  line-height: 2em;
+}
+
+.sortby .sort-main-button:hover {
+  background-color: rgba(255, 130, 130, 0.2);
+}
+
+.sortby .sort-buttons {
+  height: 0;
+  display: none;
+  background-color: rgba(16, 16, 17, 0.5);
+  -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
+  -webkit-transition: all 200ms ease-in;
+  transition: all 200ms ease-in;
+}
+
+.sortby .sort-item {
+  opacity: 0;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.sortby .sort-item:hover {
+  background-color: rgba(42, 42, 48, 0.7);
 }
 
 .search-btn {
@@ -996,7 +1054,8 @@ input[type=number] {
           justify-content: space-between;
 }
 
-.nav .left-nav, .nav .right-nav {
+.nav .left-nav,
+.nav .right-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1036,5 +1095,30 @@ input[type=number] {
 .nav a:hover {
   -webkit-box-shadow: 0 3px 0px #db2763;
           box-shadow: 0 3px 0px #db2763;
+}
+
+.back-btn {
+  margin: 0.7em 1em;
+  font-size: 2rem;
+  position: absolute;
+  cursor: pointer;
+  display: block;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.back-btn .fas {
+  background-image: linear-gradient(50deg, #ff9a8b, #db2763);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.9;
+  display: block;
+}
+
+.back-btn:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 /*# sourceMappingURL=homepageStyle.css.map */
