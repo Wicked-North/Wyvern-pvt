@@ -808,8 +808,8 @@ function showSB() {
     // paymentDetails = true;
     // 
     passengerSelect("0")
-    document.getElementById('inlineRadio+0').checked = true
-
+	document.getElementById('inlineRadio+0').checked = true
+			
 
 }
 
@@ -1054,3 +1054,4 @@ function paymentsSlideUpDown() {
 $("#payForm").submit(function (e) {
     e.preventDefault();
 });
+

@@ -50,6 +50,8 @@ function flightSearch() { //date according to day1,day2,day3.....day6
 }
 
 
+
+
 // function savePas(){
 
 //     var firstName=document.getElementById('FirstName').value

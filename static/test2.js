@@ -1,5 +1,10 @@
 function openPage(pageName, elmnt, color) {
     // Hide all elements with class="tabcontent" by default */
+    for(let i = 0; i<4; i++){
+        document.getElementById(`exampleRadios${i+1}`).checked = false
+    }
+    document.getElementById('searchQuery').value = ''
+
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -358,7 +363,7 @@ function checkRadioButton() {
                 udets += `</table>`
                 document.getElementById('mainContent-6').innerHTML = udets
 
-            } else{
+            } else {
                 console.log("No Results Found")
                 document.getElementById('mainContent-6').innerHTML = notFound
             }
@@ -415,7 +420,7 @@ function checkRadioButton() {
                 }
                 pasDetsByPnr += `</table>`
                 document.getElementById('mainContent-6').innerHTML = pasDetsByPnr
-            } else{
+            } else {
                 console.log("No Results Found")
                 document.getElementById('mainContent-6').innerHTML = notFound
             }
@@ -435,7 +440,7 @@ function checkRadioButton() {
             },
             body: JSON.stringify(data)
         }
-     
+
         let tickByUid = ``
         fetch('/getTicketDetailsByUserid', options).then((res) => res.json()).then((data) => {
             if (data[0].length > 0 || data[1].length > 0 || data[2].length > 0) {
@@ -474,11 +479,68 @@ function checkRadioButton() {
                 }
                 tickByUid += `</table>`
                 document.getElementById('mainContent-6').innerHTML = tickByUid
-            } else{
+            } else {
                 console.log("No Results Found")
                 document.getElementById('mainContent-6').innerHTML = notFound
             }
         })
 
     }
+
+    if (document.getElementById('exampleRadios4').checked == true) {
+        let pnr = document.getElementById('searchQuery').value
+        var data = {
+            pnr: pnr
+        }
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }
+        console.log(pnr)
+        let tickByPnr = ``
+        fetch('/getTicketDetailsByPnr', options).then((res) => res.json()).then((data) => {
+            if (data.length > 0) {
+                console.log(data)
+                tickByPnr +=
+                `<table>
+                <td>S. No.</td>
+                <td>Flight Number</td>
+                <td>User ID</td>
+                <td>PNR</td>
+                <td>Class</td>
+                <td>Boarding</td>
+                <td>Total Price</td>
+                <td>Status</td>
+              `
+  
+
+                for (let i = 0; i < data.length; i++) {
+                    tickByPnr +=
+                        `<tr>
+                <td> ${i+1}</td>
+             <td> ${data[i].flight_num}</td>
+             <td> ${data[i].userid} </td>
+              <td> ${data[i].PNR}</td>
+              <td> ${data[i].class} </td>
+              <td> ${data[i].boarding} </td>
+              <td> ${data[i].total_price} </td>
+              <td> ${data[i].status} </td>
+             
+              </tr>
+            `
+                }
+                tickByPnr += `</table>`
+                document.getElementById('mainContent-6').innerHTML = tickByPnr
+            } else {
+                console.log("No Results Found")
+                document.getElementById('mainContent-6').innerHTML = notFound
+            }
+        })
+
+    }
+
+
 }
