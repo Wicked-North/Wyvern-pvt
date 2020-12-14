@@ -310,10 +310,14 @@ body {
 }
 
 .personal-details-title,
-.personal-details-sub-title,
-.seat-passenger-title {
+.personal-details-sub-title{
     font-family: 'Overlock', cursive;
     font-size: 1.5rem;
+}
+
+.seat-passenger-title {
+    font-family: 'Overlock', cursive;
+    font-size: 1.2rem;
 }
 
 .personal-details-title {
@@ -525,7 +529,10 @@ ol {
 }
 
 #seatSelection {
-    width: 68%;
+    width: 66%;
+    border-bottom: 2px solid $grad-pink;
+    padding-bottom: 10px;
+    border-top: 2px solid $grad-pink;
 }
 
 .seats-parent,
@@ -535,7 +542,7 @@ ol {
 
 .seat-passenger-content {
     color: $grad-pink;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     padding-left: 2.1em;
 }
 
@@ -548,7 +555,7 @@ ol {
 }
 
 .allPass {
-    border: 4px solid transparent;
+    border: 2px solid transparent;
     border-image: linear-gradient(45deg, $grad-red, $grad-pink);
     border-image-slice: 1;
     padding: 0.5em;
@@ -558,10 +565,12 @@ ol {
 }
 
 .right-seats {
-    margin-left: 1.5em;
-    margin-top: 0.8em;
     overflow-y: scroll;
     height: 22em;
+}
+
+#seatSelection{
+    margin-left: 2em;
 }
 
 #cross-btn {

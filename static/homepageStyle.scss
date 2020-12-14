@@ -110,75 +110,80 @@ body {
 //text-field animation
 
 
-.formi{
+.formi {
     display: flex;
     position: relative;
     flex-direction: column;
-    width:90%;
-    height:$height-field;
+    width: 90%;
+    height: $height-field;
     overflow: hidden;
     margin-top: 1.2em;
     //background-color:rgba(240, 240, 240, 0.1);
     //backdrop-filter: blur(10px);
 
 }
-.formi input{
+
+.formi input {
     @include removeStyle();
     color: $after-color;
     cursor: pointer;
     height: 100%;
-    width:100%;
+    width: 100%;
     font-size: 1.1rem;
     padding-top: $height-field - 1.5rem;
-        &:focus + .label-name .content-name, &:valid + .label-name .content-name{
-            /* :valid ensures that when input text is added and the focus is shifted somwehere else
+
+    &:focus+.label-name .content-name,
+    &:valid+.label-name .content-name {
+        /* :valid ensures that when input text is added and the focus is shifted somwehere else
             the label doesn't come back to its initial position*/
-            color:$after-color;
-            font-size:$font-size-custom - $font-size-custom/10;           
-            transform: translateY(-140%);
-        }
-    
-    
+        color: $after-color;
+        font-size: $font-size-custom - $font-size-custom/10;
+        transform: translateY(-140%);
+    }
+
+
 }
 
-.formi label{
+.formi label {
     @include removeStyle();
     position: absolute;
     pointer-events: none;
-    width:100%;
-    height:100%;
-    bottom:0;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
     border-bottom: 2px solid $before-color;
-    color:$before-color;
-        &::after{
-            content: "";
-            position: absolute;
-            width:100%;
-            height: 100%;
-            border-bottom: 2px solid $after-color;
-            left:0;
-            transform: translateX(-100%);
-            
-            /*Moving the blue line out of frame initially also, 
+    color: $before-color;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-bottom: 2px solid $after-color;
+        left: 0;
+        transform: translateX(-100%);
+
+        /*Moving the blue line out of frame initially also, 
             since overflow is not hidden it is visible on the frame when overflow:hidden; 
             not applied to parent*/
-            transition: transform 500ms ease;
-        }
+        transition: transform 500ms ease;
+    }
 
 }
 
-.content-name{
+.content-name {
     position: absolute;
     top: $height-field - 1.5rem;
     transition: all 500ms ease;
     font-size: $font-size-custom;
 }
 
-.formi input:focus + .label-name::after, .formi:valid  + label::after{
-    transform:translateX(0%);
+.formi input:focus+.label-name::after,
+.formi:valid+label::after {
+    transform: translateX(0%);
     border-color: $after-color;
-    
-    
+
+
 }
 
 #start,
@@ -426,9 +431,7 @@ input[type=number] {
     }
 }
 
-.card-8 {
-    margin-bottom: 0;
-}
+
 
 .overlay-title {
     font-family: 'Overlock', cursive;
@@ -456,12 +459,13 @@ input[type=number] {
     font-size: 1.4rem;
 }
 
-.via-flights-title, .direct-flights-title {
+.via-flights-title,
+.direct-flights-title {
     margin-left: 10%;
 }
 
 @keyframes onclickCard {
-   /*  0% {
+    /*  0% {
         transform: scale(1);
     }
 
@@ -472,7 +476,7 @@ input[type=number] {
     100% {
         transform: scale(1);
     } */
-/* 
+    /* 
     0% {
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
@@ -574,7 +578,8 @@ input[type=number] {
         font-weight: 500;
         display: flex;
         color: $darkest-grey;
-        font-style:oblique;
+        font-style: oblique;
+
         .dot-opt {
             height: 0.3em;
             width: 0.3em;
@@ -585,10 +590,27 @@ input[type=number] {
     }
 }
 
+.via-flights-title {
+    display: flex;
+    justify-content: space-between;
+}
+
 .sortby {
     display: flex;
+    width: fit-content;
     font-size: 1.2rem;
     color: $font-light;
+    align-items: center;
+    flex-direction: column;
+    /* position:absolute;
+    top:85%;
+    left:62%; */
+    z-index: 20000;
+    overflow-y: visible;
+    height: 2em;
+
+
+
 
     button {
         @include removeStyle();
@@ -597,8 +619,45 @@ input[type=number] {
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
+        width: 12em;
+        height: 2em;
+
+        //border: 2px solid $grad-red;
+    }
+
+    .sort-main-button {
+        transition: all 200ms ease-in-out;
+        background-color: $darkest-grey;
+        line-height: 2em;
+
+        &:hover {
+            background-color: rgba(255, 130, 130, 0.2);
+        }
+    }
+
+    .sort-buttons {
+        //height:6em;
+        height: 0;
+        display: none;
+        background-color: rgba(16, 16, 17, 0.5);
+        backdrop-filter: blur(15px);
+        transition: all 200ms ease-in;
+
+    }
+
+    .sort-item {
+        opacity:0;
+        transition: all 300ms ease-in-out;
+        
+
+        &:hover {
+            background-color: rgba(42, 42, 48,0.7);
+        }
+
     }
 }
+
 
 .search-btn {
     left: 5.8em;
@@ -667,7 +726,7 @@ input[type=number] {
     width: 100%;
     background-color: rgba(31, 30, 30, 0.1);
     backdrop-filter: blur(5px);
-    opacity: 0; 
+    opacity: 0;
     transition: all 250ms ease-in;
     color: $font-light;
 
@@ -883,32 +942,35 @@ input[type=number] {
 .nav {
     display: flex;
     position: absolute;
-    z-index:200;
-    top:0;
-    right:0;
+    z-index: 200;
+    top: 0;
+    right: 0;
     //background-color:$darkest-grey;
-    background-image:linear-gradient(45deg,$darkest-grey,$black);
+    background-image: linear-gradient(45deg, $darkest-grey, $black);
     box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
     //left:0;
     //right:50%;
     //width:49%;
-    justify-content: space-between; 
+    justify-content: space-between;
+
     //border:2px solid $grad-red;
     //margin: 1em 1em;
-    .left-nav, .right-nav{
-        display:flex;
-        margin:1em;
-        justify-content:space-between;
+    .left-nav,
+    .right-nav {
+        display: flex;
+        margin: 1em;
+        justify-content: space-between;
     }
-    a{
+
+    a {
         @include removeStyle();
         font-size: 1.2rem;
         font-family: 'Overlock', cursive;
         font-weight: 700;
         //display:block;
-        color:$grad-pink;
-        overflow:hidden;
-        transition:all 300ms ease;
+        color: $grad-pink;
+        overflow: hidden;
+        transition: all 300ms ease;
         margin-left: 0.8em;
 
         /* &::after{
@@ -924,13 +986,34 @@ input[type=number] {
             transform: opacity 100ms ease;
         } */
 
-        &:hover{
-            box-shadow:0 3px 0px $grad-red;
+        &:hover {
+            box-shadow: 0 3px 0px $grad-red;
         }
 
-       
+
     }
 
 }
 
-    
+.back-btn{
+    margin:0.7em 1em;
+    font-size: 2rem;
+    position:absolute;
+    cursor: pointer;
+    display:block;
+    transform: scale(1);
+    transition: all 200ms ease-out;
+
+    .fas {
+        background-image: linear-gradient(50deg, $grad-pink, $grad-red);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0.9;
+        display: block;
+    }
+
+    &:hover{
+        transform: scale(1.05);
+    }
+
+}

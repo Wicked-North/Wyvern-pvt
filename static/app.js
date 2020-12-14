@@ -14,8 +14,8 @@ let prevSeats = []
 let prevSeatName = []
 
 function passDetailsDisplay() {
-    for (let i = 0; i < n; i++) {
-        slideDown += `
+	for (let i = 0; i < n; i++) {
+		slideDown += `
         <div id=${i+1}>
     <div class="personal-details-title">Passenger ${i+1}</div>
     <div class="personal-details-sub-title">Personal Details </div>
@@ -121,12 +121,12 @@ function passDetailsDisplay() {
 </div>
 <hr class="personal-details-line" noshade>
         `
-    }
+	}
 
-    // slideDown += `<div align="right">
-    // <button class="btn btn-primary">Continue</button>
-    // </div>`
-    slideDown += `<button class="login-btn-invisible"><a class="login-btn">
+	// slideDown += `<div align="right">
+	// <button class="btn btn-primary">Continue</button>
+	// </div>`
+	slideDown += `<button class="login-btn-invisible"><a class="login-btn">
     <svg width="277" height="62">
       <rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50"></rect>
     </svg>
@@ -134,13 +134,13 @@ function passDetailsDisplay() {
   </a></button>`
 
 
-    document.getElementById('passform').innerHTML = slideDown
+	document.getElementById('passform').innerHTML = slideDown
 }
 
 passDetailsDisplay()
 
 $("#passform").submit(function (e) {
-    e.preventDefault();
+	e.preventDefault();
 });
 
 
@@ -662,7 +662,7 @@ var seatBookDown = `
 
 let revUp = ''
 let revDown =
-    `
+	`
 <div>FLT_NO:AI-443</div>
 <div>SRC: DEL</div>
 <div>DEST: CCU</div>
@@ -674,28 +674,28 @@ let revDown =
 
 function continueToRev() {
 
-    flag = 1
+	flag = 1
 
-    document.getElementById("continueToRev").style.display = "none"
+	document.getElementById("continueToRev").style.display = "none"
 
-    document.getElementById("detailsButton1").style.display = "block"
-    document.getElementById('detailsButton2').style.display = 'block'
-    document.getElementById('detailsButton3').style.display = 'block'
+	document.getElementById("detailsButton1").style.display = "block"
+	document.getElementById('detailsButton2').style.display = 'block'
+	document.getElementById('detailsButton3').style.display = 'block'
 
-    document.getElementById('finalBook').style.display = 'block'
+	document.getElementById('finalBook').style.display = 'block'
 
-    seatHTML = document.getElementById('seatSelection').innerHTML
-    document.getElementById('seatSelection').innerHTML = ''
+	seatHTML = document.getElementById('seatSelection').innerHTML
+	document.getElementById('seatSelection').innerHTML = ''
 
-    document.getElementById('revBooking').innerHTML = ''
+	document.getElementById('revBooking').innerHTML = ''
 
-    seatDetails = true
+	seatDetails = true
 
-    document.getElementById('revBooking').innerHTML += revDown
+	document.getElementById('revBooking').innerHTML += revDown
 
-    for (var i = 0; i < n; i++) {
-        document.getElementById('revBooking').innerHTML +=
-            `<div id='pas-${i+1}'>
+	for (var i = 0; i < n; i++) {
+		document.getElementById('revBooking').innerHTML +=
+			`<div id='pas-${i+1}'>
         <div>NAME: ${passengers[i].name}</div>
         <div>DOB: ${passengers[i].dob}</div>
         <div>GENDER: ${passengers[i].gender}</div>
@@ -705,33 +705,33 @@ function continueToRev() {
         <hr>
         
         `
-    }
+	}
 }
 
 function seatUpDown() { //SEAT EDIT
 
-    document.getElementById("detailsButton1").style.display = "none"
-    document.getElementById('detailsButton2').style.display = 'none'
-    document.getElementById('detailsButton3').style.display = 'none'
+	document.getElementById("detailsButton1").style.display = "none"
+	document.getElementById('detailsButton2').style.display = 'none'
+	document.getElementById('detailsButton3').style.display = 'none'
 
-    document.getElementById('continueToRev').style.display = 'block'
-    document.getElementById('revBooking').innerHTML = ''
-    document.getElementById('finalBook').style.display = 'none'
+	document.getElementById('continueToRev').style.display = 'block'
+	document.getElementById('revBooking').innerHTML = ''
+	document.getElementById('finalBook').style.display = 'none'
 
 
-    console.log(seatHTML)
+	console.log(seatHTML)
 
-    document.getElementById('seatSelection').innerHTML = seatHTML
+	document.getElementById('seatSelection').innerHTML = seatHTML
 
-    for (let k = 0; k < n; k++) {
-        document.getElementById(passengers[k].seatId).checked = true
-    }
+	for (let k = 0; k < n; k++) {
+		document.getElementById(passengers[k].seatId).checked = true
+	}
 
-    document.getElementById('revBooking').innerHTML = ''
-    // seatDetails = false;
+	document.getElementById('revBooking').innerHTML = ''
+	// seatDetails = false;
 
-    // document.getElementById('seatSelection').innerHTML = ''
-    // seatDetails = true;
+	// document.getElementById('seatSelection').innerHTML = ''
+	// seatDetails = true;
 
 }
 
@@ -740,28 +740,28 @@ paymentUp = ``
 
 function showSB() {
 
-    var cardno = document.getElementById('cardNum').value
-    document.getElementById('cardNum').setAttribute('value', cardno)
+	var cardno = document.getElementById('cardNum').value
+	document.getElementById('cardNum').setAttribute('value', cardno)
 
-    var expyear = document.getElementById('expYear').value
-    document.getElementById('expYear').setAttribute('value', expyear)
+	var expyear = document.getElementById('expYear').value
+	document.getElementById('expYear').setAttribute('value', expyear)
 
-    var cvv = document.getElementById('cvv').value
-    document.getElementById('cvv').setAttribute('value', cvv)
+	var cvv = document.getElementById('cvv').value
+	document.getElementById('cvv').setAttribute('value', cvv)
 
-    var cname = document.getElementById('nameOnCard').value
-    document.getElementById('nameOnCard').setAttribute('value', cname)
+	var cname = document.getElementById('nameOnCard').value
+	document.getElementById('nameOnCard').setAttribute('value', cname)
 
-    var adr = document.getElementById('address').value
-    document.getElementById('address').setAttribute('value', adr)
+	var adr = document.getElementById('address').value
+	document.getElementById('address').setAttribute('value', adr)
 
-    var city = document.getElementById('city').value
-    document.getElementById('city').setAttribute('value', city)
+	var city = document.getElementById('city').value
+	document.getElementById('city').setAttribute('value', city)
 
-    var state = document.getElementById('state').value
-    document.getElementById('state').setAttribute('value', state)
+	var state = document.getElementById('state').value
+	document.getElementById('state').setAttribute('value', state)
 
-    paymentUp += `<div class='payDetails' id='payUp'>
+	paymentUp += `<div class='payDetails' id='payUp'>
     <h7><b>CardNo: ${cardno}</b></h7>
     <h7><b>Exp:${expyear}</b></h7>
     <h7><b>CVV:${cvv}</b></h7>
@@ -773,58 +773,78 @@ function showSB() {
 
     </div>`
 
-    paymentForm = document.getElementById('paymentDetails').innerHTML
+	paymentForm = document.getElementById('paymentDetails').innerHTML
 
-    document.getElementById('paymentDetails').innerHTML = paymentUp
+	document.getElementById('paymentDetails').innerHTML = paymentUp
 
-    paymentUp = ''
+	paymentUp = ''
 
-    document.getElementById("detailsButton1").style.display = "block"
-    document.getElementById("detailsButton2").style.display = "block"
-    document.getElementById('detailsButton3').style.display = 'none'
+	document.getElementById("detailsButton1").style.display = "block"
+	document.getElementById("detailsButton2").style.display = "block"
+	document.getElementById('detailsButton3').style.display = 'none'
 
-    paymentSlideDownDetails = paymentForm;
+	paymentSlideDownDetails = paymentForm;
 
-    document.getElementById("seatSelection").innerHTML = seatBookDown;
+	document.getElementById("seatSelection").innerHTML = seatBookDown;
 
-    setTimeout(() => {
-        if (passengers[k].seatId == null) {
+	setTimeout(() => {
+		if (passengers[k].seatId == null) {
 
-        } else {
-            for (let k = 0; k < n; k++) {
-                document.getElementById(passengers[k].seatId).checked = true
-            }
-        }
+		} else {
+			for (let k = 0; k < n; k++) {
+				document.getElementById(passengers[k].seatId).checked = true
+			}
+		}
 
-    }, 50)
+	}, 50)
+
+	if (sessionStorage.getItem('class') == 'Economy') {
+
+		for (var i = 0; i < 90; i += 10) {
+			var p = 0
+			for (p = 0; p < 3; p++) {
+				document.getElementById(i+p+1).disabled=true;
+			}
+		}
+	}
+
+	if (sessionStorage.getItem('class') == 'Business') {
+
+		for (var i = 0; i < 90; i += 10) {
+			var p = 0
+			for (p = 3; p < 10; p++) {
+				document.getElementById(i+p+1).disabled=true;
+			}
+		}
+	}
 
 
 
-    document.getElementById("continueToRev").style.display = "block";
+	document.getElementById("continueToRev").style.display = "block";
 
-    //     paymentDetails = false;
-    //  else {
-    //document.getElementById("seatSelection").innerHTML = seatBookUp;
-    // paymentDetails = true;
-    // 
-    passengerSelect("0")
-    document.getElementById('inlineRadio+0').checked = true
+	//     paymentDetails = false;
+	//  else {
+	//document.getElementById("seatSelection").innerHTML = seatBookUp;
+	// paymentDetails = true;
+	// 
+	passengerSelect("0")
+	document.getElementById('inlineRadio+0').checked = true
 
 
 }
 
 //cross button animation 
 $("#cross-btn").on('click', () => {
-    $("#cross-btn").addClass("crossRubberBand");
+	$("#cross-btn").addClass("crossRubberBand");
 
-    $(".crossRubberBand").css({
-        "animation-name": "rubberBand",
-        "animation-duration": "300ms",
-        "animation-fill-mode": "both"
-    })
+	$(".crossRubberBand").css({
+		"animation-name": "rubberBand",
+		"animation-duration": "300ms",
+		"animation-fill-mode": "both"
+	})
 
 
-    $("#cross-btn").removeClass("crossRubberBand")
+	$("#cross-btn").removeClass("crossRubberBand")
 
 
 })
@@ -835,47 +855,47 @@ function continueToPayment() {
 
 
 
-    document.getElementById("right-seats").innerHTML = '';
-    passengerSeat = ''
+	document.getElementById("right-seats").innerHTML = '';
+	passengerSeat = ''
 
 
-    //let n = document.getElementsByClassName('passDetails').length
+	//let n = document.getElementsByClassName('passDetails').length
 
-    // let n = x.length
+	// let n = x.length
 
-    for (let i = 0; i < n; i++) {
-        var gender
-        if (document.getElementById(`inlineRadio1+${i+1}`).checked == true) {
-            document.getElementById(`inlineRadio1+${i+1}`).setAttribute('checked', true)
-            console.log(document.getElementById(`inlineRadio1+${i+1}`))
-            gender = 'Female'
-        } else {
-            document.getElementById(`inlineRadio2+${i+1}`).setAttribute('checked', true)
-            // console.log(document.getElementById(`inlineRadio2+${i+1}`))
-            gender = 'Male'
-        }
+	for (let i = 0; i < n; i++) {
+		var gender
+		if (document.getElementById(`inlineRadio1+${i+1}`).checked == true) {
+			document.getElementById(`inlineRadio1+${i+1}`).setAttribute('checked', true)
+			console.log(document.getElementById(`inlineRadio1+${i+1}`))
+			gender = 'Female'
+		} else {
+			document.getElementById(`inlineRadio2+${i+1}`).setAttribute('checked', true)
+			// console.log(document.getElementById(`inlineRadio2+${i+1}`))
+			gender = 'Male'
+		}
 
-        var chk = $('#inlineRadio1').checked
-        var fname = document.getElementById(`FirstName+${i+1}`).value
-        document.getElementById(`FirstName+${i+1}`).setAttribute('value', fname)
-        //console.log(fname)
-        var mname = document.getElementById(`MiddleName+${i+1}`).value
-        document.getElementById(`MiddleName+${i+1}`).setAttribute('value', mname)
-        var lname = document.getElementById(`LastName+${i+1}`).value
-        document.getElementById(`LastName+${i+1}`).setAttribute('value', lname)
-        // var rbtn1 = $('#inlineRadio1').val();
-        // var rbtn2 = $('#inlineRadio2').val();
-        var dob = document.getElementById(`start+${i+1}`).value
-        document.getElementById(`start+${i+1}`).setAttribute('value', dob)
+		var chk = $('#inlineRadio1').checked
+		var fname = document.getElementById(`FirstName+${i+1}`).value
+		document.getElementById(`FirstName+${i+1}`).setAttribute('value', fname)
+		//console.log(fname)
+		var mname = document.getElementById(`MiddleName+${i+1}`).value
+		document.getElementById(`MiddleName+${i+1}`).setAttribute('value', mname)
+		var lname = document.getElementById(`LastName+${i+1}`).value
+		document.getElementById(`LastName+${i+1}`).setAttribute('value', lname)
+		// var rbtn1 = $('#inlineRadio1').val();
+		// var rbtn2 = $('#inlineRadio2').val();
+		var dob = document.getElementById(`start+${i+1}`).value
+		document.getElementById(`start+${i+1}`).setAttribute('value', dob)
 
-        var phno = document.getElementById(`phone+${i+1}`).value
-        document.getElementById(`phone+${i+1}`).setAttribute('value', phno)
+		var phno = document.getElementById(`phone+${i+1}`).value
+		document.getElementById(`phone+${i+1}`).setAttribute('value', phno)
 
-        var emailid = document.getElementById(`exampleInputEmail1+${i+1}`).value
-        document.getElementById(`exampleInputEmail1+${i+1}`).setAttribute('value', emailid)
-        // console.log(fname, mname, lname, rbtn1, dob, phno, emailid, chk)
+		var emailid = document.getElementById(`exampleInputEmail1+${i+1}`).value
+		document.getElementById(`exampleInputEmail1+${i+1}`).setAttribute('value', emailid)
+		// console.log(fname, mname, lname, rbtn1, dob, phno, emailid, chk)
 
-        slideUp += `<div class='passDetails' id='pass-${i+1}'>
+		slideUp += `<div class='passDetails' id='pass-${i+1}'>
         <h6>${fname} ${mname} ${lname}</h6>
         <h6>${dob}</h6>
         <h6>${gender}</h6>
@@ -885,7 +905,7 @@ function continueToPayment() {
         
         <hr>`
 
-        passengerSeat += `<div id='p-${i}' class='allPass' onclick="passengerSelect(${i})">
+		passengerSeat += `<div id='p-${i}' class='allPass' onclick="passengerSelect(${i})">
         <div class="select-radio-button">
             <input type="radio" name="field" id="inlineRadio+${i}" value="option2" />
             <label class="male" for="inlineRadio+${i}">
@@ -909,90 +929,90 @@ function continueToPayment() {
     </div>`
 
 
-        // let pobj = {
-        //     fname,
-        //     mname,
-        //     lname,
-        //     rbtn1,
-        //     rbtn2,
-        //     dob,
-        //     phno,
-        //     emailid,
-        //     chk
-        // }
-        //passengerForm = ''
-        passengerForm = document.getElementById('passform').innerHTML
-        // console.log(passengerForm)
+		// let pobj = {
+		//     fname,
+		//     mname,
+		//     lname,
+		//     rbtn1,
+		//     rbtn2,
+		//     dob,
+		//     phno,
+		//     emailid,
+		//     chk
+		// }
+		//passengerForm = ''
+		passengerForm = document.getElementById('passform').innerHTML
+		// console.log(passengerForm)
 
-    }
-
-
-    document.getElementById("right-seats").innerHTML = passengerSeat;
-    document.getElementById("passform").innerHTML = slideUp;
-    slideUp = ''
-    //console.log(pobj)
-    //fetch()
-
-    //document.getElementById("detailsButton").style.visibility = "visible";
-    //document.getElementById("detailsButton").disabled = false;
-    document.getElementById("detailsButton1").style.display = "block"
-
-    //document.getElementById("detailsButton3").style.display = "block"
-
-    document.getElementById('paymentDetails').innerHTML = paymentSlideDownDetails
-    // details = false;
-    // paymentsSlideUpDown()
-    // document.forms.submit();
-    // document.getElementById("")
-    var iD = 1
-    for (let j = 0; j < n * 5; j += 5) {
-
-        var name = document.getElementsByTagName('h6')[j].innerHTML
-        console.log(name)
-        var dob = document.getElementsByTagName('h6')[j + 1].innerHTML
-        console.log(dob)
-
-        var gender = document.getElementsByTagName('h6')[j + 2].innerHTML
-        console.log(gender)
-
-        var email = document.getElementsByTagName('h6')[j + 3].innerHTML
-        console.log(email)
-
-        var phone = document.getElementsByTagName('h6')[j + 4].innerHTML
-        console.log(phone)
+	}
 
 
+	document.getElementById("right-seats").innerHTML = passengerSeat;
+	document.getElementById("passform").innerHTML = slideUp;
+	slideUp = ''
+	//console.log(pobj)
+	//fetch()
+
+	//document.getElementById("detailsButton").style.visibility = "visible";
+	//document.getElementById("detailsButton").disabled = false;
+	document.getElementById("detailsButton1").style.display = "block"
+
+	//document.getElementById("detailsButton3").style.display = "block"
+
+	document.getElementById('paymentDetails').innerHTML = paymentSlideDownDetails
+	// details = false;
+	// paymentsSlideUpDown()
+	// document.forms.submit();
+	// document.getElementById("")
+	var iD = 1
+	for (let j = 0; j < n * 5; j += 5) {
+
+		var name = document.getElementsByTagName('h6')[j].innerHTML
+		console.log(name)
+		var dob = document.getElementsByTagName('h6')[j + 1].innerHTML
+		console.log(dob)
+
+		var gender = document.getElementsByTagName('h6')[j + 2].innerHTML
+		console.log(gender)
+
+		var email = document.getElementsByTagName('h6')[j + 3].innerHTML
+		console.log(email)
+
+		var phone = document.getElementsByTagName('h6')[j + 4].innerHTML
+		console.log(phone)
 
 
 
 
 
-        passengers.push({
 
-            name: name,
-            id: iD,
-            dob: dob,
-            phone: phone,
-            email: email,
-            seats: '',
-            gender: gender,
-        })
-        iD = iD + 1
-    }
 
-    for (let i = 0; i < n; i++) {
-        passengers[i].seatId = prevSeats[i]
-        passengers[i].seats = prevSeatName[i]
+		passengers.push({
 
-        if (prevSeatName[i] == null) {
-            document.getElementById(`s-${i}`).innerHTML = 'Not Selected'
+			name: name,
+			id: iD,
+			dob: dob,
+			phone: phone,
+			email: email,
+			seats: '',
+			gender: gender,
+		})
+		iD = iD + 1
+	}
 
-        } else {
-            document.getElementById(`s-${i}`).innerHTML = passengers[i].seats
+	for (let i = 0; i < n; i++) {
+		passengers[i].seatId = prevSeats[i]
+		passengers[i].seats = prevSeatName[i]
 
-        }
+		if (prevSeatName[i] == null) {
+			document.getElementById(`s-${i}`).innerHTML = 'Not Selected'
 
-    }
+		} else {
+			document.getElementById(`s-${i}`).innerHTML = passengers[i].seats
+
+		}
+
+	}
 
 
 }
@@ -1000,57 +1020,57 @@ function continueToPayment() {
 
 function slideUpDown() {
 
-    //document.getElementById("passform").innerHTML = '' 
-    document.getElementById("seatSelection").innerHTML = seatBookUp;
-    document.getElementById('detailsButton3').style.display = 'none'
-    document.getElementById('detailsButton2').style.display = 'none'
+	//document.getElementById("passform").innerHTML = '' 
+	document.getElementById("seatSelection").innerHTML = seatBookUp;
+	document.getElementById('detailsButton3').style.display = 'none'
+	document.getElementById('detailsButton2').style.display = 'none'
 
 
-    document.getElementById('finalBook').style.display = 'none'
+	document.getElementById('finalBook').style.display = 'none'
 
-    document.getElementById('revBooking').innerHTML = ''
-    document.getElementById('paymentDetails').innerHTML = ''
-    document.getElementById('paymentDetails').innerHTML = ''
+	document.getElementById('revBooking').innerHTML = ''
+	document.getElementById('paymentDetails').innerHTML = ''
+	document.getElementById('paymentDetails').innerHTML = ''
 
 
 
-    document.getElementById("passform").innerHTML = passengerForm;
-    // details = true;
-    document.getElementById("detailsButton1").style.display = "none"
-    for (let i = 0; i < n; i++) {
-        prevSeats[i] = passengers[i].seatId
-        prevSeatName[i] = passengers[i].seats
-    }
-    passengers = []
+	document.getElementById("passform").innerHTML = passengerForm;
+	// details = true;
+	document.getElementById("detailsButton1").style.display = "none"
+	for (let i = 0; i < n; i++) {
+		prevSeats[i] = passengers[i].seatId
+		prevSeatName[i] = passengers[i].seats
+	}
+	passengers = []
 
 }
 
 function paymentsSlideUpDown() {
 
-    document.getElementById("detailsButton1").style.display = "none"
-    document.getElementById('detailsButton2').style.display = 'none'
-    document.getElementById('detailsButton3').style.display = 'none'
-    document.getElementById('continueToRev').style.display = 'none'
+	document.getElementById("detailsButton1").style.display = "none"
+	document.getElementById('detailsButton2').style.display = 'none'
+	document.getElementById('detailsButton3').style.display = 'none'
+	document.getElementById('continueToRev').style.display = 'none'
 
-    document.getElementById('revBooking').innerHTML = ''
-    document.getElementById('seatSelection').innerHTML = ''
+	document.getElementById('revBooking').innerHTML = ''
+	document.getElementById('seatSelection').innerHTML = ''
 
-    document.getElementById('finalBook').style.display = 'none'
+	document.getElementById('finalBook').style.display = 'none'
 
-    document.getElementById('paymentDetails').innerHTML = paymentForm
+	document.getElementById('paymentDetails').innerHTML = paymentForm
 
-    // document.getElementById("detailsButton2").style.display = "block"
-    // document.getElementById("seatSelection").innerHTML = seatBookUp;
+	// document.getElementById("detailsButton2").style.display = "block"
+	// document.getElementById("seatSelection").innerHTML = seatBookUp;
 
-    // if (paymentDetails) {
-    //     document.getElementById("paymentDetails").innerHTML = paymentSlideUpDetails;
-    //     paymentDetails = false;
-    // } else {
-    //     document.getElementById("paymentDetails").innerHTML = paymentSlideDownDetails;
-    //     paymentDetails = true;
-    // }
+	// if (paymentDetails) {
+	//     document.getElementById("paymentDetails").innerHTML = paymentSlideUpDetails;
+	//     paymentDetails = false;
+	// } else {
+	//     document.getElementById("paymentDetails").innerHTML = paymentSlideDownDetails;
+	//     paymentDetails = true;
+	// }
 }
 
 $("#payForm").submit(function (e) {
-    e.preventDefault();
+	e.preventDefault();
 });
