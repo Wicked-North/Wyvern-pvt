@@ -28,7 +28,7 @@ body, html {
     cursor: pointer;
     padding: 14px 16px;
     font-size: 1.2rem;
-    width: 15%;
+    width: 16%;
   }
   
   .tablink:hover {
@@ -49,6 +49,8 @@ body, html {
   #Contact {background-color:#323233;}
   #About {background-color: #323233;}
   #cancelled{background-color: #323233;}
+  #radioButtonContent{background-color: #323233;}
+
 
 
 
@@ -140,9 +142,7 @@ body, html {
     margin-bottom: 20px;
   }
 
- #exampleRadios2{
-   width: 15px;
- }
+
  input[type=radio]{
   transform:scale(1.5);
 }
