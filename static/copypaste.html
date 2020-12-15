@@ -308,3 +308,54 @@ bring it with you on the day of departure.
 
     }
 </script>
+
+<div class='passDetails' id='pass-${i+1}'>
+    <h6>${fname} ${mname} ${lname}</h6>
+    <h6>${dob}</h6>
+    <h6>${gender}</h6>
+    <h6>${emailid}</h6>
+    <h6>${phno}</h6>
+</div>
+
+<hr>
+
+<div class='payDetails' id='payUp'>
+    <div class="">CardNo: ${cardno}</div>
+    <div class="">Exp:${expyear}</div>
+    <div class="">CVV:${cvv}</div>
+    <div class="">Name on Card:${cname}</div>
+    <div class="">Address:${adr}</div>
+    <div class="">City:${city}</div>
+    <div class="">State${state}</div>
+
+
+</div>
+
+<script>
+    //line 764
+    paymentUp += `<div class='payDetails' id='payUp'>
+	<div class="pay-up"><div class="pay-div-up-sub-title">Card Number : </div><div> ${cardno}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">Expiry Year :</div><div> ${expyear}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">CVV :</div><div> ${cvv}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">Name on Card :</div><div> ${cname}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">Address :</div><div> ${adr}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">City :</div><div> ${city}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">State :</div><div> ${state}</div></div>
+
+
+</div>`
+
+    //line 898
+    slideUp += `<div class='passDetails slide-up-wt' id='pass-${i+1}'>
+		<div class="pass-name h6">${fname} ${mname} ${lname}</div>
+		<div class="pass-dob h6">${dob}</div>
+		<div class="pass-gender h6">${gender}</div>
+		<div class="pass-email h6">${emailid}</div>
+		<div class="pass-phno h6">${phno}</div>
+
+	</div>
+
+	<hr class="personal-details-slide-up-line" noshade>`
+</script>
+
+<img src="./images/air india.png">

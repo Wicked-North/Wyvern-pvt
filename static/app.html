@@ -83,14 +83,17 @@
 		<div class="card" id="card4">
 			<ul class="list-group list-group-flush">
 
-				<div class="title-travel">Who's travelling?</div>
-				<button id="detailsButton1" onclick="slideUpDown()" style="display: none;">
-					<i class="fa fa-pencil" aria-hidden="true"></i></Button>
+				<div class="whostravelling-main-title">
+					<div class="title-travel">Who's travelling?</div>
+					<button id="detailsButton1" onclick="slideUpDown()" style="display: none;">
+						<i class="fa fa-pencil" aria-hidden="true"></i>
+					</button>
+				</div>
 
 
 				<li id="customerDetails" class="list-group-item">
 					<form id="passform" onsubmit="continueToPayment()">
-						<!--Paste here to style-->
+						<!--Paste code here to style-->
 
 						<!-- form required -->
 					</form>
@@ -101,17 +104,22 @@
 
 		<div class="card" id="card5">
 
-			<div class="payments-title">Payments</div>
+			<div class="payments-main-title">
+				<div class="payments-title">Payments</div>
 
-			<button type='button' id="detailsButton2" onclick="paymentsSlideUpDown()" style="display: none"><i
-					class="fa fa-pencil" aria-hidden="true"></i></Button>
+				<button type='button' id="detailsButton2" onclick="paymentsSlideUpDown()" style="display: none"><i
+						class="fa fa-pencil" aria-hidden="true"></i>
+				</button>
+			</div>
 
 
 			<form id='payForm' onsubmit="showSB(); flightSearch()">
-				<!--Paste here to style-->
+				<!--Paste code here to style-->
 
 
 				<div id="paymentDetails">
+					<!--Paste code here to style-->
+
 				</div>
 
 			</form>
@@ -123,22 +131,24 @@
 
 		<div class="card" id="card6">
 			<div class="card-body">
-				<div class="select-seats-title">Select Seats</div>
-				<!-- <div id='passengerSeat'></div> -->
+				<div class="select-seats-main-title">
+					<div class="select-seats-title">Select Seats</div>
+					<!-- <div id='passengerSeat'></div> -->
 
-				<button id="detailsButton3" onclick="seatUpDown()"><i class="fa fa-pencil"
-						aria-hidden="true"></i></button>
+					<button id="detailsButton3" onclick="seatUpDown()"><i class="fa fa-pencil"
+							aria-hidden="true"></i></button>
+				</div>
 
 				<div class="seats-parent">
 					<div class="right-seats" id='right-seats'>
-						
+
 					</div>
 					<div id="seatSelection">
 
 
 
 					</div>
-					
+
 				</div>
 
 
@@ -148,6 +158,13 @@
 				<button type="button" class="btn btn-primary" onclick="continueToRev()" style='display:none'
 					id='continueToRev'><span>Continue</span></button>
 			</div>
+			<!-- <button class="login-btn-invisible" id='continueToRev' onclick="continueToRev()" style='display:none'><a class="login-btn">
+				<svg width="277" height="62">
+				  <rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50"></rect>
+				</svg>
+				<span>Continue</span>
+			  </a>
+			</button> -->
 
 		</div>
 	</div>
@@ -348,4 +365,4 @@
 
 </body>
 
-</html>
+</html>a

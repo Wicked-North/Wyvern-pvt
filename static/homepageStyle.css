@@ -348,8 +348,8 @@ input[type=number] {
 .animateButton {
   -webkit-animation-name: onclick;
           animation-name: onclick;
-  -webkit-animation-duration: 500ms;
-          animation-duration: 500ms;
+  -webkit-animation-duration: 200ms;
+          animation-duration: 200ms;
   -webkit-animation-timing-function: ease-in;
           animation-timing-function: ease-in;
   -webkit-animation-iteration-count: 1;
@@ -395,8 +395,10 @@ input[type=number] {
   opacity: 0;
   -webkit-transform: translateX(-150%);
           transform: translateX(-150%);
-  -webkit-transition: all 400ms ease-in;
-  transition: all 400ms ease-in;
+  -webkit-transition: opacity, -webkit-transform 300ms ease-out;
+  transition: opacity, -webkit-transform 300ms ease-out;
+  transition: opacity, transform 300ms ease-out;
+  transition: opacity, transform 300ms ease-out, -webkit-transform 300ms ease-out;
 }
 
 .direct-flights-o,
@@ -426,6 +428,9 @@ input[type=number] {
   -webkit-transition: all 250ms ease-in;
   transition: all 250ms ease-in;
   background: rgba(8, 8, 8, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .card:hover {
@@ -465,17 +470,26 @@ input[type=number] {
 }
 
 @-webkit-keyframes onclickCard {
-  /*  0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(0.95);
-    }
-
-    100% {
-        transform: scale(1);
-    } */
+  0% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  25% {
+    -webkit-transform: scale(1.01);
+            transform: scale(1.01);
+  }
+  50% {
+    -webkit-transform: scale(0.99);
+            transform: scale(0.99);
+  }
+  75% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
   /* 
     0% {
         -webkit-transform: scale3d(1, 1, 1);
@@ -494,17 +508,26 @@ input[type=number] {
 }
 
 @keyframes onclickCard {
-  /*  0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(0.95);
-    }
-
-    100% {
-        transform: scale(1);
-    } */
+  0% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  25% {
+    -webkit-transform: scale(1.01);
+            transform: scale(1.01);
+  }
+  50% {
+    -webkit-transform: scale(0.99);
+            transform: scale(0.99);
+  }
+  75% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
   /* 
     0% {
         -webkit-transform: scale3d(1, 1, 1);
@@ -525,8 +548,8 @@ input[type=number] {
 .animateCard {
   -webkit-animation-name: onclickCard;
           animation-name: onclickCard;
-  -webkit-animation-duration: 400ms;
-          animation-duration: 400ms;
+  -webkit-animation-duration: 200ms;
+          animation-duration: 200ms;
   -webkit-animation-timing-function: ease-in;
           animation-timing-function: ease-in;
   -webkit-animation-iteration-count: 1;
@@ -534,8 +557,8 @@ input[type=number] {
 }
 
 .card-content {
-  margin: 1.5em 0 0 1.5em;
-  font-size: 1.1rem;
+  margin: 0.5em;
+  font-size: 1rem;
   pointer-events: none;
   width: 100%;
 }
@@ -568,13 +591,17 @@ input[type=number] {
 }
 
 .via-flights-o .places {
-  width: 48%;
+  width: 50%;
 }
 
-.via-flights-o .time,
+.via-flights-o .time {
+  margin-left: 0.5em;
+  width: 28%;
+}
+
 .via-flights-o .price-details {
   margin-left: 0.5em;
-  width: 26%;
+  width: 23%;
 }
 
 .direct-flights-o .places {
@@ -601,7 +628,34 @@ input[type=number] {
   border-right: 2px solid #2a2a30;
 }
 
+.flight-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.direct-flights-o .flight-name {
+  width: 85%;
+}
+
+.via-flights-o .flight-name {
+  width: 93%;
+}
+
 .optimised {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 93%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.optimised .optimised-child-1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1120,5 +1174,19 @@ input[type=number] {
 .back-btn:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
+}
+
+.img {
+  height: 50px;
+  width: 50px;
+  background-position: center;
+}
+
+.card-content {
+  margin: auto;
+}
+
+.img {
+  margin: auto 0.5em;
 }
 /*# sourceMappingURL=homepageStyle.css.map */
