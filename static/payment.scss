@@ -25,6 +25,13 @@ $font-size-custom-login:1em;
     border: none;
 }
 
+//styling icons
+/* .fas {
+    background-image: linear-gradient(50deg, $grad-pink, $grad-red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+} */
+
 
 * {
     padding: 0;
@@ -83,6 +90,7 @@ body {
     border-radius: 4px;
     margin-bottom: 1.5em;
     font-size: 1rem;
+    
 }
 
 #card1 {
@@ -124,7 +132,7 @@ body {
         font-weight: 700;
         letter-spacing: 0.05rem;
         font-size: 2rem;
-        margin-bottom: 0.2em;
+        margin-bottom: 0.5em;
     }
 
 }
@@ -292,10 +300,10 @@ body {
 
 
 .select-radio-button {
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-top: 0;
-    width: 10em;
+    width: 100%;
 
     label {
         margin: 0;
@@ -310,7 +318,7 @@ body {
 }
 
 .personal-details-title,
-.personal-details-sub-title{
+.personal-details-sub-title {
     font-family: 'Overlock', cursive;
     font-size: 1.5rem;
 }
@@ -384,7 +392,7 @@ body {
 
 
 
-hr {
+.personal-details-line {
     border: none;
     border-top: 1px solid $grad-red;
     margin-top: 2em;
@@ -559,17 +567,17 @@ ol {
     border-image: linear-gradient(45deg, $grad-red, $grad-pink);
     border-image-slice: 1;
     padding: 0.5em;
-    width: 15em;
+    width: 12.5em;
     margin-bottom: 1em;
-
+    background-color: $darkest-grey;
 }
 
 .right-seats {
     overflow-y: scroll;
-    height: 22em;
+    height: 29em;
 }
 
-#seatSelection{
+#seatSelection {
     margin-left: 2em;
 }
 
@@ -578,39 +586,111 @@ ol {
     font-size: 1.3rem;
     font-weight: 800;
     color: $grad-red;
-    margin-left: 1em;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     transform: scale(1);
     transition: all 300ms ease-in;
-    i{
-        display:flex;
-        margin-top:0.2em;
+
+    i {
+        display: flex;
+        margin-top: 0.2em;
 
     }
+
     &:hover {
         transform: scale(1.1);
     }
 }
 
-.pass-name-seats{
-    display:flex;
-   
+.pass-name-seats {
+    display: flex;
+
 }
 
-.middle-name-seats{
+.middle-name-seats {
     white-space: pre-line;
 }
 
 
+.personal-details-slide-up-line {
+    border: none;
+    border-top: 1px solid $grad-red;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+}
+
+#detailsButton1, #detailsButton2, #detailsButton3{
+    @include removeStyle();
+    font-size: 1.5rem;
+    background-image: linear-gradient(50deg, $grad-red, $grad-pink);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 0.7em;
+    cursor: pointer;
+    transform: scale(1);
+    ///border:2px solid $grad-red;
+    &:hover {
+        /* animation: scalePop;
+        animation-name: rubberBand;
+        animation-duration: 300ms; */
+        animation: scalePop 400ms ease-in forwards;
+        transform: scale(1.05);
+    }
+    
+    i{
+        pointer-events: none;
+        margin-bottom:0.5em;
+        
+    }
+}
+
+.whostravelling-main-title , .payments-main-title, .select-seats-main-title{
+    display: flex;
+}
 
 
+@keyframes scalePop {
+    0% {
+        //transform: scale(0.75);
+        background-image: linear-gradient(50deg, $grad-pink, $grad-pink);
+        
+    }
+    25% {
+        //transform: scale(0.75);
+        background-image: linear-gradient(50deg, $grad-pink, $grad-pink);
+        
+    }
+    50% {
+        //transform: scale(0.5);
+        background-image: linear-gradient(50deg, $grad-pink, $grad-red);
+        
+    }
+    75% {
+        //transform: scale(1);
+        background-image: linear-gradient(50deg, $grad-red, $grad-red);
+    }
+
+    100% {
+        //transform: scale(1);
+        background-image: linear-gradient(50deg, $grad-red, $grad-red);
+    }
+}
 
 
-
-
+.pay-up{
+    display: flex;
+    align-items: center;
+    //justify-content: center;
+    .pay-div-up-sub-title{
+        font-size:1.1rem;
+        color:$font-light;
+        font-weight: 600;
+        letter-spacing: 0.05rem;
+    }
+}
 
 
 //SEAT SELECTION STYLE
@@ -711,8 +791,8 @@ ol {
 }
 
 .seat input[type="checkbox"]:checked+label {
-    background-image:linear-gradient(35deg, $grad-red,$grad-pink);
-    color:$darkest-grey;
+    background-image: linear-gradient(35deg, $grad-red, $grad-pink);
+    color: $darkest-grey;
     -webkit-animation-name: rubberBand;
     animation-name: rubberBand;
     animation-duration: 300ms;
@@ -732,7 +812,7 @@ ol {
     top: 4px;
     left: 50%;
     transform: translate(-50%, 0%);
-    color:$darkest-grey;
+    color: $darkest-grey;
 }
 
 .seat input[type="checkbox"]:disabled+label:hover {
@@ -750,7 +830,7 @@ ol {
     line-height: 1.5rem;
     padding: 4px 0;
     color: #fff;
-    background-image:linear-gradient(35deg, $grad-red,$black );
+    background-image: linear-gradient(35deg, $grad-red, $black);
     //background: $black;
     //border: 2px solid $grad-red;
     border-radius: 50%;

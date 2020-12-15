@@ -512,3 +512,24 @@ body {
     }
 
 }
+
+.animateButton {
+    animation-name: onclick;
+    animation-duration: 200ms;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+}
+
+@keyframes onclick {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
