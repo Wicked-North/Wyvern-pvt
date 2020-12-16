@@ -85,7 +85,9 @@ $(".subtract").click(() => {
 
 //button on click
 
-$(".home-page .btn").click(() => {
+$(".home-page .btn").click(overlayOpen)
+
+function overlayOpen() {
     $(".btn").addClass("animateButton");
     setTimeout(() => {
         $(".btn").removeClass("animateButton");
@@ -127,25 +129,7 @@ $(".home-page .btn").click(() => {
         } else {
             $(".class-error").css("transform", "scale(0)")
         }
-    }
-
-    /* if(($("#start").val())){
-        console.log("invalid")
-        $(".source-error").css("transform","scale(0)")
-    }
-    if(($("#end").val())){
-        $(".dest-error").css("transform","scale(0)")
-    }
-    if(($("#date").val())){
-        $(".date-error").css("transform","scale(0)")
-    }
-    if(($("#passenger").val())){
-        $(".pass-error").css("transform","scale(0)")
-    }
-    if(($("#tier").val())){
-        $(".class-error").css("transform","scale(0)")
-    } */
-    else {
+    } else {
         console.log("valid")
         //storing the values of input field to session storage to pass the values to next page(static-card)
         sessionStorage.setItem("source", $("#start").val())
@@ -160,7 +144,14 @@ $(".home-page .btn").click(() => {
     }
 
 
-})
+}
+
+function overlayOnReload() {
+    console.log("valid")
+    $(".error").css("transform", "scale(0)")
+    $(".overlay").css("transform", "translateX(0%)")
+    $(".overlay").css("opacity", "1")
+}
 
 
 //form selection options
@@ -355,8 +346,15 @@ function updateDirectCard(arr) {
             "flightNum": `(IN - ${getRndInteger(100,999)})`
         }
     ]
-    from = $("#start").val();
-    dest = $("#end").val();
+
+    if (sessionStorage.getItem('source')) {
+        from = sessionStorage.getItem('source')
+        dest = sessionStorage.getItem('destination')
+    } else {
+        from = $("#start").val();
+        dest = $("#end").val();
+    }
+
     console.log("direct", arr)
     var possibleDirFlights = [];
     var countDirCard = 1;
@@ -366,6 +364,15 @@ function updateDirectCard(arr) {
     dirflights = arr;
     console.log("direct flights", dirflights)
 
+    //changing title
+    $(".src-overlay").text(from)
+    $(".dest-overlay").text(dest)
+
+
+
+    //changing map
+    console.log("map",dirflights[0].start, dirflights[0].end)
+    showPath(dirflights[0].start, dirflights[0].end)
 
     for (let i = 0; i < dirflights.length; i++) {
         dirFlightsNum = dirflights[i].flight_num.split('-')
@@ -410,11 +417,7 @@ function updateDirectCard(arr) {
         $(".direct-flights-o").append(elem)
     }
 
-    //changing title
-    $(".src-overlay").text(from)
-    $(".dest-overlay").text(dest)
-    //changing map
-    showPath(dirflights[0].start, dirflights[0].end)
+
 
     //console.log("pos",possibleDirFlights)
 
@@ -507,7 +510,7 @@ $(".direct-flights-o").on('click', '.card-1', animatingCard)
 $(".direct-flights-o").on('click', '.card-2', animatingCard)
 $(".direct-flights-o").on('click', '.card-3', animatingCard)
 
-//changing map on click
+/* //changing map on click
 $(".direct-flights-o .card-1").click(() => {
     showPath($(".from-1").text().toLowerCase(), $(".to-1").text().toLowerCase())
 })
@@ -516,7 +519,7 @@ $(".direct-flights-o .card-2").click(() => {
 })
 $(".direct-flights-o .card-3").click(() => {
     showPath($(".from-3").text().toLowerCase(), $(".to-3").text().toLowerCase())
-})
+}) */
 
 //cards ( overlay ) animating on click
 $(".via-flights-o").on('click', '.card-4', animatingCard);
@@ -525,12 +528,21 @@ $(".via-flights-o").on('click', '.card-6', animatingCard);
 $(".via-flights-o").on('click', '.card-7', animatingCard);
 $(".via-flights-o").on('click', '.card-8', animatingCard);
 
-/* $(".via-flights-o .card-4").click(animatingCard)
-$(".via-flights-o .card-5").click(animatingCard)
-$(".via-flights-o .card-6").click(animatingCard)
-$(".via-flights-o .card-7").click(animatingCard)
-$(".via-flights-o .card-8").click(animatingCard) */
 
+//changing map of direct flights
+$(".direct-flights-o").on('click','.card-1',function(){
+    //console.log("parameters",$(".from-1").text().toLowerCase(), $(".to-1").text().toLowerCase())
+    showPath($(".from-1").text().toLowerCase(), $(".to-1").text().toLowerCase())
+
+})
+
+$(".direct-flights-o").on('click','.card-2',function(){
+    showPath($(".from-2").text().toLowerCase(), $(".to-2").text().toLowerCase())
+})
+
+$(".direct-flights-o").on('click','.card-3',function(){
+    showPath($(".from-3").text().toLowerCase(), $(".to-3").text().toLowerCase())
+})
 
 //changing map of via flights
 
@@ -625,15 +637,19 @@ function animatingCard(evt) {
 
 }
 
-$(".overlay .search-btn").click((event) => {
+$(".overlay .search-btn").click(staticCardOpen)
+
+function staticCardOpen(event) {
     var countSelection = 0
     var cardClass = ''
     var cardArray = ["card-1", "card-2", "card-3", "card-4", "card-5", "card-6", "card-7", "card-8"]
     var cardElem
     for (let i = 0; i < cardArray.length; i++) {
+        console.log("card element", $("." + cardArray[i]))
         console.log("border-image" + $("." + cardArray[i]).css("border-image"))
-        if ($("." + cardArray[i]).css("border-image") != "none" && sessionStorage.getItem('sess')) {
-            cardElem = $("." + cardArray[i]).clone()
+        if ($(`.${cardArray[i]}`).css("border-image") != "none" && sessionStorage.getItem('sess')) {
+            cardElem = $(`.${cardArray[i]}`).clone()
+            console.log(cardElem)
             cardClass = $(cardElem).attr('class')
             cardClass = cardClass.split(' ')
             cardClass = cardClass[0]
@@ -676,7 +692,8 @@ $(".overlay .search-btn").click((event) => {
 
     }
 
-})
+}
+
 
 
 
@@ -905,8 +922,9 @@ function landingPage() {
 
     fetch("/getLogin", options).then((res) => res.json().then((data) => {
         console.log(data)
-        if (data.successful == '0') {
+        if (data.message == 'The email is incorrect' || data.message == 'The password is incorrect') {
             console.log('not successful')
+            window.alert(data.message)
         }
         // else if(data.successful == 'incorrect email'){console.log('Email is incorrect')}
         else {
@@ -970,6 +988,112 @@ function showBookings() {
 //     if (sessionStorage.getItem('sess')) {
 //         window.location.assign('static-card.html')
 //     } else {
-//         openDiv()
+//         openDiv()                  
 //     }
 // }
+
+$(".sort-main-button").on('click', sortShow)
+$(".sort-item").on('click', sortShow)
+
+
+function sortShow() {
+    if ($(".sort-buttons").css("display") == "none") {
+        $(".sort-buttons").css("display", "block")
+        setTimeout(() => {
+            $(".sort-item").css("opacity", "1")
+            $(".sort-buttons").css("height", "6em")
+
+        }, 10)
+    } else {
+        $(".sort-buttons").css("display", "none")
+        setTimeout(() => {
+            $(".sort-item").css("opacity", "0")
+            $(".sort-buttons").css("height", "0")
+        }, 10)
+
+    }
+}
+
+function sortAll(viaflights, optimised) {
+    var viaFlightsName = "";
+    var viaFlightsNum = "";
+    var countViaCard = 5;
+    var priceVia;
+    $(".via-flights-o").empty();
+
+    console.log("sorted array", viaflights)
+    console.log("optimised", optimised[0])
+
+    for (let i = 0; i < viaflights.length; i++) {
+
+        viaFlightsNum = viaflights[i].flight_num.split('-')
+        viaFlightsNum = viaFlightsNum[0].toUpperCase() + " - " + viaFlightsNum[1];
+
+        viaFlightsName = viaflights[i].flight_name.split(" ");
+        for (let j = 0; j < viaFlightsName.length; j++) {
+            viaFlightsName[j] = viaFlightsName[j].charAt(0).toUpperCase() + viaFlightsName[j].slice(1)
+
+        }
+
+        viaFlightsName = viaFlightsName.join(" ")
+        viaFlightsName = viaFlightsName + " (" + viaFlightsNum + ")"
+
+
+        priceVia = viaflights[i].price
+        priceVia = numberWithCommas(priceVia)
+        $(`.price-${countViaCard}`).text(priceVia)
+
+        if (viaflights[i].flight_num == optimised[0].flight_num) {
+            var elem = ` <div class="card-4 card">
+            <div class="card-content">
+            <div class="optimised">
+                <div class="flight-name flight-name-4 ">${viaFlightsName}</div><span>&nbsp;&nbsp;<div class="dot-opt">
+                  </div>&nbsp;Optimised Flight</span>
+              </div>
+              <div class="content-details">
+                <div class="places">
+                  <div class="from-4 from-overlay">${viaflights[i].start.charAt(0).toUpperCase() + viaflights[i].start.slice(1) }</div>&nbsp;-&nbsp;<div class="via-4 via-overlay">${viaflights[i].via.charAt(0).toUpperCase() + viaflights[i].via.slice(1) }</div>&nbsp;-&nbsp;<div class="to-4 to-overlay">${viaflights[i].end.charAt(0).toUpperCase() + viaflights[i].end.slice(1) }</div>
+                </div>
+                <div class="time">
+                  <div class="fromTime from-time-4">${viaflights[i].departure}</div>&nbsp;-&nbsp;<div class="toTime to-time-4">${viaflights[i].arrival}</div>
+                </div>
+                <div class="price-details">
+                  Price: &#8377; <div class="base-price price-4">${priceVia}</div>
+                </div>
+              </div>
+            </div>
+          </div>`
+            //i--;
+        } else {
+
+            elem = ` <div class="card-${countViaCard} card">
+                  <div class="card-content">
+                    <div class="flight-name-${countViaCard} flight-name">${viaFlightsName}</div>
+                    <div class="content-details">
+                      <div class="places">
+                        <div class="from-${countViaCard} from-overlay">${viaflights[i].start.charAt(0).toUpperCase() + viaflights[i].start.slice(1) }</div>&nbsp;-&nbsp;<div class="via-${countViaCard} via-overlay">${viaflights[i].via.charAt(0).toUpperCase() + viaflights[i].via.slice(1) }</div>&nbsp;-&nbsp;<div class="to-${countViaCard} to-overlay">${viaflights[i].end.charAt(0).toUpperCase() + viaflights[i].end.slice(1) }</div>
+                      </div>
+                      <div class="time">
+                        <div class="fromTime from-time-${countViaCard}">${viaflights[i].departure}</div>&nbsp;-&nbsp;<div class="toTime to-time-${countViaCard}">${viaflights[i].arrival}</div>
+                      </div>
+                      <div class="price-details">
+                        Price: &#8377; <div class="base-price price-${countViaCard}">${priceVia}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>`
+            console.log("count via card", countViaCard)
+            countViaCard++;
+        }
+
+        $(".via-flights-o").append(elem)
+    }
+}
+
+$(".back-btn").click(returnToHomePage)
+
+function returnToHomePage(){
+    sessionStorage.setItem('source','')
+    sessionStorage.setItem('Flight-Name','')
+    window.location.reload()
+}

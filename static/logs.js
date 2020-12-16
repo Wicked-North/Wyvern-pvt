@@ -1,9 +1,9 @@
 let current = []
 let past = []
 
-getCurrentTicketsPassengers()
+getTicketsPassengers()
 
-function getCurrentTicketsPassengers() {
+function getTicketsPassengers() {
 
     var data = {
         userId: sessionStorage.getItem('user_id')
@@ -19,45 +19,60 @@ function getCurrentTicketsPassengers() {
 
     fetch('/getCurrentTicketsPassengers', options)
         .then(res => res.json())
-        .then(data => {
+        .then((data) => {
             //console.log(data)
             // past=data[1]
             // upcoming=data[0]
             current = [...data]
             console.log(current)
 
-        });
+        })
+        .then((data) => {
+            fetch('/getPastTicketsPassengers', options)
+                .then(res => res.json())
+                .then(data => {
+                    //console.log(data)
+                    // past=data[1]
+                    // upcoming=data[0]
+                    past = [...data]
+                    console.log(past)
+
+                })
+                .then(data => {
+                    displayTickets()
+                });
+        })
 }
 
-getPastTicketsPassengers()
+// getPastTicketsPassengers()
 
-function getPastTicketsPassengers() {
+// function getPastTicketsPassengers() {
 
-    var data = {
-        userId: sessionStorage.getItem('user_id')
-    }
+//     var data = {
+//         userId: sessionStorage.getItem('user_id')
+//     }
 
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    };
+//     const options = {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(data)
+//     };
 
-    fetch('/getPastTicketsPassengers', options)
-        .then(res => res.json())
-        .then(data => {
-            //console.log(data)
-            // past=data[1]
-            // upcoming=data[0]
-            past = [...data]
-            console.log(past)
+//     fetch('/getPastTicketsPassengers', options)
+//         .then(res => res.json())
+//         .then(data => {
+//             //console.log(data)
+//             // past=data[1]
+//             // upcoming=data[0]
+//             past = [...data]
+//             console.log(past)
 
-        }).then(data => {
-            displayTickets()
-        });
-}
+//         }).then(data => {
+//             displayTickets()
+//         });
+// }
 
 
 
@@ -88,8 +103,10 @@ function displayTickets() {
                 <div id='sourceDest'>${passArr[i].start}-${passArr[i].via}-${passArr[i].end}</div>
                 <div id='class'>${passArr[i].class}</div>
                 <div id='price'>${passArr[i].total_price}</div>
+                <div id='crossBtn' onclick='cancelTicket(${passArr[i].pnr})'>x</div>
                 <div id='status'> STATUS: CONFIRMED</div>
                 <div id='pasDet-${i}' style='display:none'></div>
+
                 <hr><hr></div>
                 
                 `
@@ -120,7 +137,8 @@ function displayTickets() {
                 <div id='sourceDest'>${pastPassArr[i].start}-${pastPassArr[i].via}-${pastPassArr[i].end}</div>
                 <div id='class'>${pastPassArr[i].class}</div>
                 <div id='price'>${pastPassArr[i].total_price}</div>
-                <div id='status'> STATUS: COMPLETED</div>
+                
+                <div id='status'>${pastPassArr[i].status}</div>
                 <div id='pastPasDet-${i}' style='display:none'></div>
                 <hr><hr></div>
                 
@@ -172,3 +190,22 @@ function displayPastPass(i) {
     }
 
 }
+
+function cancelTicket(pnr) {
+
+    var data = {
+        pnr:pnr
+    }
+
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    };
+
+    fetch('/cancelTickets', options)
+
+    window.location.reload();
+} 

@@ -277,6 +277,106 @@ function searchFlights() {
         //viaFlights.reverse()
         console.log(viaFlights)
         updateViaCard(viaFlights)
+        
+    }
+
+}
+
+function searchFlightsOnReload() {
+
+    var startplace = sessionStorage.getItem('source').toLowerCase();
+    var endplace = sessionStorage.getItem('destination').toLowerCase();
+    //console.log("start", startplace)
+    var start = planeNodes.indexOf(startplace)
+    var end = planeNodes.indexOf(endplace)
+    console.log(start, end)
+    var temp = G[start][end]
+    G[start][end] = 99
+    u = start
+    let viaplace = dijkstra(G, n, u, end);
+    console.log(viaplace)
+    G[start][end] = temp;
+
+    var data = {
+        start: startplace,
+        end: endplace,
+        via: viaplace
+    }
+    // headers: {
+    //   "Authorisation": "Bearer " + sessionStorage.getItem('token')
+    // },
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    };
+    console.log(options)
+
+    fetch("/getViaDetails", options).then((res) => res.json().then((data) => {
+        console.log(data)
+        //viaFlights=[]
+        viaFlights = data.slice()
+        //console.log(viaFlights, "abhra")
+
+        console.log(viaFlights, "abhra")
+        // updateViaCard(viaFlights)
+        //console.log(viaFlights[1].arrival.slice(0,2), "ghosh")
+        // data.sort((a, b) => {
+        //     return a.price - b.price;
+        // });
+        // console.log(data)
+        //console.log("abhra ghosh")
+        // let message = data;
+        // console.log(data.message) 
+        // document.getElementById('post').innerHTML = data.message;
+    })).then((data) => {
+        fetch("/getDirectDetails", options).then((res) => res.json().then((data) => {
+            console.log("direct flights data" + data)
+            var arr = [...data]
+            console.log(arr) //direct flight
+            updateDirectCard(data)
+            //console.log("abhra ghosh"
+            // let message = data;
+            // console.log(data.message)
+            // document.getElementById('post').innerHTML = data.message;
+        }))
+
+    }).then((data) => {
+
+        fetch("/optimisedVia", options).then((res) => res.json().then((data) => {
+            console.log("optimised via", data)
+            optiFlight = data.slice()
+            console.log(optiFlight)
+            //console.log("why were chainsaws invented")
+            // let message = data;
+            // console.log(data.message)
+            // document.getElementById('post').innerHTML = data.message;
+            matchViaOpti()
+        }))
+    })
+
+    function matchViaOpti() {
+        console.log("via")
+        console.log(viaFlights)
+        console.log("opt")
+        console.log(optiFlight)
+        for (let i = 0; i < viaFlights.length; i++) {
+            console.log(viaFlights[i].flight_num,'abcd',optiFlight.flight_num)
+            if (viaFlights[i].flight_num == optiFlight[0].flight_num) {
+                viaFlights.splice(i, 1);
+               
+            }
+
+            // console.log("match")
+        }
+        viaFlights.unshift(optiFlight[0])
+       //viaFlights[4] = optiFlight[0]
+        //viaFlights.reverse()
+        console.log(viaFlights)
+        updateViaCard(viaFlights)
+        
     }
 
 }
@@ -296,8 +396,8 @@ function sortPrice() {
         }
         viaFlights[j + 1] = itemObj
     }
-    console.log(viaFlights)
-    updateViaCard(viaFlights)
+    console.log("price sorted",viaFlights)
+    sortAll(viaFlights,optiFlight)
 }
 
 function sortArrivalTime() {
@@ -316,8 +416,9 @@ function sortArrivalTime() {
         }
         viaFlights[j + 1] = itemObj
     }
-    console.log(viaFlights)
-    updateViaCard(viaFlights)
+
+    console.log("at sorted",viaFlights)
+    sortAll(viaFlights,optiFlight)
 }
 
 function sortDepartureTime() {
@@ -337,9 +438,14 @@ function sortDepartureTime() {
         viaFlights[j + 1] = itemObj
     }
     
-    console.log(viaFlights)
-    updateViaCard(viaFlights)
+    console.log("dt sorted",viaFlights)
+    sortAll(viaFlights,optiFlight)
+
 }
+
+$(".sort-price").on('click',sortPrice)
+$(".sort-at").on('click',sortArrivalTime)
+$(".sort-dt").on('click',sortDepartureTime)
 
 function selectFlight() {
     window.location.assign("app.html")

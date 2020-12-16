@@ -9,6 +9,8 @@
     href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
     rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--MATERIAL ICONS-->
 
   <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script>
   <!--ICONS-->
@@ -175,13 +177,10 @@
             </a>
           </form name="searchFlights">
 
-
         </div>
       </div>
       <div class="overlay">
-        <div class="sortby">
-          Sort By :<button class="sort">Price <i class="fas fa-angle-down"></i></button>
-        </div>
+        <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
         <div class="overlay-title">
           Flights From <div class="overlay-title-2"><span class="src-overlay">Kolkata</span> To <span
               class="dest-overlay"> Bangalore </span></div>
@@ -247,6 +246,16 @@
         </div>
         <div class="via-flights-title">
           Connecting Flights.
+          <div class="sortby">
+            <button class="sort-main-button">
+              Sort By : <i class="material-icons">swap_vert</i>
+            </button>
+            <div class="sort-buttons">
+              <button class="sort-price sort-item">Price </button>
+              <button class="sort-at sort-item">Arrival Time </button>
+              <button class="sort-dt sort-item">Departure Time</button>
+            </div>
+          </div>
         </div>
         <div class="via-flights-o">
           <div class="card-4 card">
@@ -365,7 +374,7 @@
             <div class="nav-elem-0" id='lin'><a href="#" class="prev-nav" onclick='openDiv();'>Log In</a></div>
             <div class="nav-elem-0" id='lout' style='display:none'><a href="#" class="prev-nav" onclick='logOut();'>Log
                 Out</a></div>
-        </div>
+          </div>
 
         </div>
         <div class="lines">
@@ -405,19 +414,26 @@
 
         <div class="nameOverlay">
 
-          <div style="opacity:0;position:relative;left:198px;top:194px;z-index:1" class='placeNames' id="delhi-1">DEL</div>
+          <div style="opacity:0;position:relative;left:198px;top:194px;z-index:1" class='placeNames' id="delhi-1">DEL
+          </div>
 
-          <div style="opacity:0;position:relative;left:170px;top:215px;z-index:1" class='placeNames' id="jaipur-1">JAI</div>
+          <div style="opacity:0;position:relative;left:170px;top:215px;z-index:1" class='placeNames' id="jaipur-1">JAI
+          </div>
 
-          <div style="opacity:0;position:relative;left:098px;top:287px;z-index:1" class='placeNames' id="ahmedabad-1">AMD</div>
+          <div style="opacity:0;position:relative;left:098px;top:287px;z-index:1" class='placeNames' id="ahmedabad-1">
+            AMD</div>
 
-          <div style="opacity:0;position:relative;left:105px;top:355px;z-index:1" class='placeNames' id="mumbai-1">BOM</div>
+          <div style="opacity:0;position:relative;left:105px;top:355px;z-index:1" class='placeNames' id="mumbai-1">BOM
+          </div>
 
-          <div style="opacity:0;position:relative;left:195px;top:466px;z-index:1" class='placeNames' id="bangalore-1">BLR</div>
+          <div style="opacity:0;position:relative;left:195px;top:466px;z-index:1" class='placeNames' id="bangalore-1">
+            BLR</div>
 
-          <div style="opacity:0;position:relative;left:217px;top:355px;z-index:1" class='placeNames' id="hyderabad-1">HYD</div>
+          <div style="opacity:0;position:relative;left:217px;top:355px;z-index:1" class='placeNames' id="hyderabad-1">
+            HYD</div>
 
-          <div style="opacity:0;position:relative;left:385px;top:220px;z-index:1" class='placeNames' id="kolkata-1">CCU</div>
+          <div style="opacity:0;position:relative;left:385px;top:220px;z-index:1" class='placeNames' id="kolkata-1">CCU
+          </div>
 
 
         </div>
@@ -453,9 +469,22 @@
     </div>
   </div>
 
+
   <script src="./script-1.js"></script>
   <script src="homepage.js"></script>
   <script src="seatBooking.js"></script>
+
+  <script>
+    // $(document).reload(
+    //   () => {
+        if (sessionStorage.getItem('source')) {
+          searchFlightsOnReload()
+          overlayOnReload()
+          displayPath()
+        }
+    //   }
+    // )
+  </script>
 </body>
 
 </html>

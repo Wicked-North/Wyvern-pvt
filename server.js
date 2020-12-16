@@ -139,7 +139,105 @@ app.post('/getSignup', (req, res) => {
 
 })
 
-app.post('/getLogin', (req, res) => {
+// app.post('/getLogin', (req, res) => {
+//     //console.log(req);
+//     let vtoken
+//     let user_id
+//     let user_name
+//     let gender
+//     let dob
+//     let mobile
+//     let loginObject = req.body
+//     let email = loginObject.email
+//     let password = loginObject.password
+//     let userDetails
+//     console.log(loginObject)
+//     //res.json({'msg':'logged in succesfully'})
+//     let dbpassword
+//     let test = {}
+//     var checkSql = `select * from loginInfo where email = '${email}'`
+//     try {
+//         con.query(checkSql, (err, result) => {
+
+//             if (err) throw err
+//             dbpassword = result[0].password
+//             bcrypt.compare(password, dbpassword, (err, result) => {
+
+//                 if (err) throw err;
+//                 if (result) {
+
+//                     var getDataSql = `select* from userinfo where email = '${email}' `
+
+//                     con.query(getDataSql, (err, result) => {
+
+
+
+//                         user_id = result[0].user_id
+//                         user_name = result[0].user_name
+//                         gender = result[0].gender
+//                         dob = result[0].DOB
+//                         mobile = result[0].mobile_1
+
+
+//                         console.log(user_id, user_name, gender, dob, mobile)
+
+//                     })
+
+
+//                     let user = {
+//                         uemail: email
+//                     };
+
+//                     jwt.sign({
+//                             user,
+//                         },
+//                         "secretkey",
+//                         (err, token) => {
+//                             // req.session.token = token ;
+
+//                             vtoken = token
+//                         }
+//                     );
+//                     sess = "1";
+//                     res.setHeader('email', 'abhraghosh9@gmail.com')
+
+
+//                     setTimeout(() => {
+//                         userDetails = {
+//                             token: vtoken,
+//                             sess: sess,
+//                             user_id: user_id,
+//                             user_name: user_name,
+//                             gender: gender,
+//                             dob: dob,
+//                             mobile: mobile
+//                         }
+//                     }, 10)
+//                     //res.json(userDetails)
+//                     console.log(userDetails)
+//                     // res.json(userDetails)
+//                     setTimeout(() => {
+//                         res.json(userDetails)
+//                     }, 10)
+
+//                     // userDetails={}
+
+
+//                     //res.json(token)
+//                 } else {
+//                     console.log("failed")
+//                     res.json({
+//                         'successful': '0'
+//                     })
+//                 }
+//             })
+//         })
+//     } catch (e) {
+//         console.log("wrong email")
+//     }
+// })
+
+app.post('/getLogin', async (req, res) => {
     //console.log(req);
     let vtoken
     let user_id
@@ -157,85 +255,83 @@ app.post('/getLogin', (req, res) => {
     let test = {}
     var checkSql = `select * from loginInfo where email = '${email}'`
     try {
-        con.query(checkSql, (err, result) => {
+        const [row, field] = await pool.query(checkSql)
 
-            if (err) throw err
-            dbpassword = result[0].password
-            bcrypt.compare(password, dbpassword, (err, result) => {
+        if (row.length == 0) {
+            return res.status(500).json({
 
-                if (err) throw err;
-                if (result) {
+                message: "Wrong Email"
 
-                    var getDataSql = `select* from userinfo where email = '${email}' `
+            });
+        }
 
-                    con.query(getDataSql, (err, result) => {
+        dbpassword = row[0].password
+        const validPassword = await bcrypt.compare(password, dbpassword)
 
+        if (!validPassword) {
+            return res.status(500).json({
 
+                message: "Wrong Password"
 
-                        user_id = result[0].user_id
-                        user_name = result[0].user_name
-                        gender = result[0].gender
-                        dob = result[0].DOB
-                        mobile = result[0].mobile_1
-
-
-                        console.log(user_id, user_name, gender, dob, mobile)
-
-                    })
+            });
+        }
 
 
-                    let user = {
-                        uemail: email
-                    };
-
-                    jwt.sign({
-                            user,
-                        },
-                        "secretkey",
-                        (err, token) => {
-                            // req.session.token = token ;
-
-                            vtoken = token
-                        }
-                    );
-                    sess = "1";
-                    res.setHeader('email', 'abhraghosh9@gmail.com')
 
 
-                    setTimeout(() => {
-                        userDetails = {
-                            token: vtoken,
-                            sess: sess,
-                            user_id: user_id,
-                            user_name: user_name,
-                            gender: gender,
-                            dob: dob,
-                            mobile: mobile
-                        }
-                    }, 10)
-                    //res.json(userDetails)
-                    console.log(userDetails)
-                    // res.json(userDetails)
-                    setTimeout(() => {
-                        res.json(userDetails)
-                    }, 10)
+        var getDataSql = `select* from userinfo where email = '${email}' `
 
-                    // userDetails={}
+        const [rows, fields] = await pool.query(getDataSql)
 
 
-                    //res.json(token)
-                } else {
-                    console.log("failed")
-                    res.json({
-                        'successful': '0'
-                    })
+
+        user_id = rows[0].user_id
+        user_name = rows[0].user_name
+        gender = rows[0].gender
+        dob = rows[0].DOB
+        mobile = rows[0].mobile_1
+
+
+        console.log(user_id, user_name, gender, dob, mobile)
+
+
+
+
+        let user = {
+            uemail: email
+        };
+
+        jwt.sign({
+                user,
+            },
+            "secretkey",
+            (err, token) => {
+                // req.session.token = token ;
+                //vtoken = token
+                userDetails = {
+                    token: token,
+                    sess: "1",
+                    user_id: user_id,
+                    user_name: user_name,
+                    gender: gender,
+                    dob: dob,
+                    mobile: mobile
                 }
-            })
-        })
-    } catch (e) {
-        console.log("wrong email")
+                //console.log("2")
+
+                //res.json(userDetails)
+                console.log(userDetails)
+                // res.json(userDetails)
+
+                res.json(userDetails)
+            }
+        );
+
+    } catch (err) {
+        console.log(err)
     }
 })
+
 
 app.get('/get_userDetails', (req, res) => {
     res.setHeader('email', 'abhraghosh9@gmail.com')
@@ -530,7 +626,7 @@ app.post("/getPastTicketsPassengers", (req, resp) => {
         console.log(res)
         for (let i = 0; i < res.length; i++) {
             let curTicketsPassengers = `
-            select t.pnr, t.class, t.flight_num, t.userID, t.total_price, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name from flights f, completed_tickets t, completed_passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
+            select t.pnr, t.class, t.flight_num, t.userID, t.total_price, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name, t.status from flights f, completed_tickets t, completed_passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
 
             con.query(curTicketsPassengers, (err, result) => {
                 if (err) throw err;
@@ -549,6 +645,39 @@ app.post("/getPastTicketsPassengers", (req, resp) => {
     })
 
 });
+
+
+
+app.post('/cancelTickets', async (req, res) => {
+    //console.log(req)
+    try {
+        //console.log(req)
+        let pnr = req.body.pnr
+        console.log(pnr)
+        let delPasSql = `delete from passengers where paspnr = '${pnr}'`
+        await pool.query(delPasSql)
+        let updateToCancelled = `update tickets set status = 'cancelled' where pnr = '${pnr}'`
+        await pool.query(updateToCancelled)
+        let delTickSql = `delete from tickets where pnr = '${pnr}'`
+        await pool.query(delTickSql)
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //===============================================  ADMIN SECTION===============================================================================
@@ -676,17 +805,39 @@ app.get('/getPassengerDetails', async (req, res) => {
 app.post('/getPassengerDetailsByPnr', async (req, res) => {
     //console.log(req)
     try {
-        console.log(req)
+        let all = []
+        //console.log(req)
         let pnr = req.body.pnr
         let sql = `select* from passengers where paspnr = '${pnr}'`
         let [result] = await pool.query(sql)
-        console.log(result)
-        res.json(result)
+        all.push(result)
+        let sql2 = `select* from completed_passengers where paspnr = '${pnr}'`
+        let [resu] = await pool.query(sql2)
+        all.push(resu)
+        //console.log(result)
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+        res.json(all)
     } catch (err) {
         console.log(err)
     }
 })
 
+app.post('/getSeats', async (req, res) => {
+    //console.log(req)
+    try {
+        //let all = []
+        //console.log(req)
+        let fnum = req.body.fnum
+        let date = req.body.date
+        let sql = 'select`'+ `${date}` +'`'+`as 'day'`+'from seats where flight_num ='+"'"+`${fnum}`+"'"
+        console.log(sql)
+        let [result] = await pool.query(sql)
+        res.json(result)
+        //res.json(all)
+    } catch (err) {
+        console.log(err)
+    }
+})
 
 
 app.listen('4000', () => {

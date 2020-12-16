@@ -1,6 +1,6 @@
 function openPage(pageName, elmnt, color) {
     // Hide all elements with class="tabcontent" by default */
-    for(let i = 0; i<4; i++){
+    for (let i = 0; i < 4; i++) {
         document.getElementById(`exampleRadios${i+1}`).checked = false
     }
     document.getElementById('searchQuery').value = ''
@@ -386,7 +386,7 @@ function checkRadioButton() {
         let pasDetsByPnr = ``
         console.log(pnr)
         fetch('/getPassengerDetailsByPnr', options).then((res) => res.json()).then((data) => {
-            if (data.length > 0) {
+            if (data[0].length > 0) {
                 console.log(data)
                 pasDetsByPnr +=
                     ` <table>
@@ -402,28 +402,64 @@ function checkRadioButton() {
 
                 `
 
-                for (let i = 0; i < data.length; i++) {
+                for (let i = 0; i < data[0].length; i++) {
                     pasDetsByPnr +=
                         `<tr>
                 <td> ${i+1}</td>
-             <td> ${data[i].paspnr}</td>
-             <td> ${data[i].pname} </td>
-              <td> ${data[i].pemail}</td>
-              <td> ${data[i].pmobile} </td>
-              <td> ${data[i].seat_no}</td>
-              <td> ${data[i].gender} </td>
-              <td> ${data[i].DOB} </td>
-              <td> ${data[i].pas_boarding} </td>
+             <td> ${data[0][i].paspnr}</td>
+             <td> ${data[0][i].pname} </td>
+              <td> ${data[0][i].pemail}</td>
+              <td> ${data[0][i].pmobile} </td>
+              <td> ${data[0][i].seat_no}</td>
+              <td> ${data[0][i].gender} </td>
+              <td> ${data[0][i].DOB} </td>
+              <td> ${data[0][i].pas_boarding} </td>
              
               </tr>
             `
                 }
                 pasDetsByPnr += `</table>`
                 document.getElementById('mainContent-6').innerHTML = pasDetsByPnr
+            } else if (data[1].length > 0) {
+                console.log(data)
+                pasDetsByPnr +=
+                    ` <table>
+                  <td>S. No.</td>
+                  <td>PNR</td>
+                  <td>Name</td>
+                  <td>Email</td>
+                  <td>Mobile</td>
+                  <td>Seat Number 1</td>
+                  <td>Gender</td>
+                  <td>DOB</td>
+                  <td>Boarding</td>
+
+                `
+
+                for (let i = 0; i < data[1].length; i++) {
+                    pasDetsByPnr +=
+                        `<tr>
+                <td> ${i+1}</td>
+             <td> ${data[1][i].paspnr}</td>
+             <td> ${data[1][i].pname} </td>
+              <td> ${data[1][i].pemail}</td>
+              <td> ${data[1][i].pmobile} </td>
+              <td> ${data[1][i].seat_no}</td>
+              <td> ${data[1][i].gender} </td>
+              <td> ${data[1][i].DOB} </td>
+              <td> ${data[1][i].pas_boarding} </td>
+             
+              </tr>
+            `
+                }
+                pasDetsByPnr += `</table>`
+                document.getElementById('mainContent-6').innerHTML = pasDetsByPnr
+
             } else {
                 console.log("No Results Found")
                 document.getElementById('mainContent-6').innerHTML = notFound
             }
+            console.log(data)
         })
 
     }
@@ -505,7 +541,7 @@ function checkRadioButton() {
             if (data.length > 0) {
                 console.log(data)
                 tickByPnr +=
-                `<table>
+                    `<table>
                 <td>S. No.</td>
                 <td>Flight Number</td>
                 <td>User ID</td>
@@ -515,7 +551,7 @@ function checkRadioButton() {
                 <td>Total Price</td>
                 <td>Status</td>
               `
-  
+
 
                 for (let i = 0; i < data.length; i++) {
                     tickByPnr +=
@@ -541,6 +577,48 @@ function checkRadioButton() {
         })
 
     }
+
+
+}
+
+
+function searchSeats() {
+
+    var flightnum = document.getElementById('search4').value
+    var date = document.getElementById('birthday').value.replace(/\//g, "-");
+    console.log(date)
+
+    var obj = {
+        fnum: flightnum,
+        date: date
+    }
+
+    const seatsObj = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+
+        },
+        body: JSON.stringify(obj)
+    }
+
+        fetch('/getSeats', seatsObj)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            var seats = data[0].day.split('')
+            console.log(seats)
+            // for (let i = 0; i < 100; i++) {
+
+            //     if (seats[i] == 1) {
+            //         console.log(i + 1)
+            //         document.getElementById(i + 1).disabled = true;
+            //     }
+            // }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 
 
 }
