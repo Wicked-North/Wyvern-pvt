@@ -762,16 +762,16 @@ function showSB() {
 	document.getElementById('state').setAttribute('value', state)
 
 	paymentUp += `<div class='payDetails' id='payUp'>
-    <h7><b>CardNo: ${cardno}</b></h7>
-    <h7><b>Exp:${expyear}</b></h7>
-    <h7><b>CVV:${cvv}</b></h7>
-    <h7><b>Name on Card:${cname}</b></h7>
-    <h7><b>Address:${adr}</b></h7>
-    <h7><b>City:${city}</b></h7>
-    <h7><b>State${state}</b></h7>
+	<div class="pay-up"><div class="pay-div-up-sub-title">Card Number : </div><div> ${cardno}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">Expiry Year :</div><div> ${expyear}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">CVV :</div><div> ${cvv}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">Name on Card :</div><div> ${cname}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">Address :</div><div> ${adr}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">City :</div><div> ${city}</div></div>
+	<div class="pay-up"><div class="pay-div-up-sub-title">State :</div><div> ${state}</div></div>
 
 
-    </div>`
+</div>`
 
 	paymentForm = document.getElementById('paymentDetails').innerHTML
 
@@ -803,7 +803,7 @@ function showSB() {
 		for (var i = 0; i < 90; i += 10) {
 			var p = 0
 			for (p = 0; p < 3; p++) {
-				document.getElementById(i+p+1).disabled=true;
+				document.getElementById(i + p + 1).disabled = true;
 			}
 		}
 	}
@@ -813,7 +813,7 @@ function showSB() {
 		for (var i = 0; i < 90; i += 10) {
 			var p = 0
 			for (p = 3; p < 10; p++) {
-				document.getElementById(i+p+1).disabled=true;
+				document.getElementById(i + p + 1).disabled = true;
 			}
 		}
 	}
@@ -895,20 +895,21 @@ function continueToPayment() {
 		document.getElementById(`exampleInputEmail1+${i+1}`).setAttribute('value', emailid)
 		// console.log(fname, mname, lname, rbtn1, dob, phno, emailid, chk)
 
-		slideUp += `<div class='passDetails' id='pass-${i+1}'>
-        <h6>${fname} ${mname} ${lname}</h6>
-        <h6>${dob}</h6>
-        <h6>${gender}</h6>
-        <h6>${emailid}</h6>
-        <h6>${phno}</h6>
-        </div>
-        
-        <hr>`
+		slideUp += `<div class='passDetails slide-up-wt' id='pass-${i+1}'>
+		<div class="pass-name h6">${fname} ${mname} ${lname}</div>
+		<div class="pass-dob h6">${dob}</div>
+		<div class="pass-gender h6">${gender}</div>
+		<div class="pass-email h6">${emailid}</div>
+		<div class="pass-phno h6">${phno}</div>
+
+	</div>
+
+	<hr class="personal-details-slide-up-line" noshade>`
 
 		passengerSeat += `<div id='p-${i}' class='allPass' onclick="passengerSelect(${i})">
         <div class="select-radio-button">
-            <input type="radio" name="field" id="inlineRadio+${i}" value="option2" />
-            <label class="male" for="inlineRadio+${i}">
+            <input type="radio" name="field" id="inlineRadio+${i}" class="allPassRadio" value="option2" />
+            <label class="label-radio" for="inlineRadio+${i}">
                 <svg class="check" viewbox="0 0 40 40">
                     <circle id="border" r="18px" cx="20px" cy="20px"></circle>
                     <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
@@ -967,18 +968,18 @@ function continueToPayment() {
 	var iD = 1
 	for (let j = 0; j < n * 5; j += 5) {
 
-		var name = document.getElementsByTagName('h6')[j].innerHTML
+		var name = document.getElementsByClassName('h6')[j].innerHTML
 		console.log(name)
-		var dob = document.getElementsByTagName('h6')[j + 1].innerHTML
+		var dob = document.getElementsByClassName('h6')[j + 1].innerHTML
 		console.log(dob)
 
-		var gender = document.getElementsByTagName('h6')[j + 2].innerHTML
+		var gender = document.getElementsByClassName('h6')[j + 2].innerHTML
 		console.log(gender)
 
-		var email = document.getElementsByTagName('h6')[j + 3].innerHTML
+		var email = document.getElementsByClassName('h6')[j + 3].innerHTML
 		console.log(email)
 
-		var phone = document.getElementsByTagName('h6')[j + 4].innerHTML
+		var phone = document.getElementsByClassName('h6')[j + 4].innerHTML
 		console.log(phone)
 
 
@@ -1074,3 +1075,15 @@ function paymentsSlideUpDown() {
 $("#payForm").submit(function (e) {
 	e.preventDefault();
 });
+
+//$(".select-radio-button").click(passengerDivSelect)
+$(".select-seats-title").on('click',".label-radio",passengerDivSelect)
+function passengerDivSelect() {
+	console.log("if")
+	if ($('.allPassRadio').is(':checked')) {
+		console.log("parent",$(".allPassRadio").parent())
+	}
+	else{
+
+	}
+}

@@ -46,6 +46,27 @@ var compFlightInfo = [{
 
 ]
 
+
+//time difference
+function diff(start, end) {
+    start = start.split(":");
+    end = end.split(":");
+    var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+    var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+    var diff = endDate.getTime() - startDate.getTime();
+    // console.log(diff)
+    var hours = Math.floor(diff / 1000 / 60 / 60); //diff is in MILLISECONDS converting it into hours
+    // console.log(hours)
+    diff -= hours * 1000 * 60 * 60; //subtracting the number of ms in hours to get the no. of minutes
+    var minutes = Math.floor(diff / 1000 / 60);
+
+    // If using time pickers with 24 hours format, add the below line get exact hours
+    if (hours < 0)
+        hours = hours + 24;
+
+    return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+}
+
 //adding commas to numbers
 function numberWithCommas(number) {
     var parts = number.toString().split(".");
@@ -155,7 +176,6 @@ function overlayOnReload() {
 
 
 //form selection options
-
 var placeSelect = {
     "Ahmedabad": "place-1",
     "Bangalore": "place-2",
@@ -325,6 +345,8 @@ function getRndInteger(min, max) {
 function updateDirectCard(arr) {
     $(".direct-flights-o").empty();
     console.log("updircard", arr)
+    var time
+    var imgFileName = ""
     totalFlights = [{
             "flightName": "Air India",
             "flightNum": `(AI - ${getRndInteger(100,999)})`
@@ -371,11 +393,14 @@ function updateDirectCard(arr) {
 
 
     //changing map
-    console.log("map",dirflights[0].start, dirflights[0].end)
+    console.log("map", dirflights[0].start, dirflights[0].end)
     showPath(dirflights[0].start, dirflights[0].end)
 
     for (let i = 0; i < dirflights.length; i++) {
         dirFlightsNum = dirflights[i].flight_num.split('-')
+        console.log("dir flights num", dirFlightsNum[0])
+        imgFileName = dirFlightsNum[0]
+        console.log("img file name dir", imgFileName)
         dirFlightsNum = dirFlightsNum[0].toUpperCase() + " - " + dirFlightsNum[1];
 
         dirFlightsName = dirflights[i].flight_name.split(" ");
@@ -394,12 +419,17 @@ function updateDirectCard(arr) {
         $(`.from-time-${countViaCard}`).text(dirflights[i].departure)
         $(`.to-time-${countViaCard}`).text(dirflights[i].arrival) */
 
+        time = diff(dirflights[i].departure, dirflights[i].arrival)
+        console.log(time.split(":"))
+        time = time.split(":")
         var priceDir = dirflights[i].price
         priceDir = numberWithCommas(priceDir)
         $(`.price-${countDirCard}`).text(priceDir)
         var elem = ` <div class="card-${countDirCard} card">
+        <div class="img" style="content: url('./images/${imgFileName}.png')"></div>
               <div class="card-content">
-                <div class="flight-name-${countDirCard} flight-name">${dirFlightsName}</div>
+              
+                <div class="flight-name-${countDirCard} flight-name">${dirFlightsName}<div class="time-difference">${time[0]}hr ${time[1]}min</div></div>
                 <div class="content-details">
                   <div class="places">
                     <div class="from-${countDirCard} from-overlay">${dirflights[i].start.charAt(0).toUpperCase() + dirflights[i].start.slice(1) }</div>&nbsp;-&nbsp;<div class="to-${countDirCard} to-overlay">${dirflights[i].end.charAt(0).toUpperCase() + dirflights[i].end.slice(1) }</div>
@@ -432,12 +462,15 @@ function updateViaCard(arr) {
     var viaFlightsNum = "";
     var countViaCard = 4;
     var priceVia;
+    var imgFileName = ""
 
     console.log("via", viaflights)
 
     for (let i = 0; i < viaflights.length; i++) {
 
         viaFlightsNum = viaflights[i].flight_num.split('-')
+        imgFileName = viaFlightsNum[0]
+        console.log("img file name", imgFileName)
         viaFlightsNum = viaFlightsNum[0].toUpperCase() + " - " + viaFlightsNum[1];
 
         viaFlightsName = viaflights[i].flight_name.split(" ");
@@ -449,22 +482,24 @@ function updateViaCard(arr) {
         viaFlightsName = viaFlightsName.join(" ")
         viaFlightsName = viaFlightsName + " (" + viaFlightsNum + ")"
 
-        /* $(`.flight-name-${countViaCard}`).text(viaFlightsName)
-        $(`.from-${countViaCard}`).text(viaflights[i].start.charAt(0).toUpperCase() + viaflights[i].start.slice(1) )
-        $(`.to-${countViaCard}`).text(viaflights[i].end.charAt(0).toUpperCase() + viaflights[i].end.slice(1) )
-        $(`.via-${countViaCard}`).text(viaflights[i].via.charAt(0).toUpperCase() + viaflights[i].via.slice(1) )
-        $(`.from-time-${countViaCard}`).text(viaflights[i].departure)
-        $(`.to-time-${countViaCard}`).text(viaflights[i].arrival) */
+
+        time = diff(viaflights[i].departure, viaflights[i].arrival)
+        console.log(time.split(":"))
+        time = time.split(":")
 
         priceVia = viaflights[i].price
         priceVia = numberWithCommas(priceVia)
         $(`.price-${countViaCard}`).text(priceVia)
         if (i == 0) {
             var elem = ` <div class="card-${countViaCard} card">
+            <div class="img" style="content: url('./images/${imgFileName}.png')"></div>
             <div class="card-content">
             <div class="optimised">
-                <div class="flight-name flight-name-${countViaCard} ">${viaFlightsName}</div><span>&nbsp;&nbsp;<div class="dot-opt">
-                  </div>&nbsp;Optimised Flight</span>
+                <div class="optimised-child-1">
+                    <div class="flight-name-${countViaCard} ">${viaFlightsName}</div><span>&nbsp;&nbsp;<div class="dot-opt">
+                    </div>&nbsp;Optimised Flight</span>
+                </div>
+                <div class="time-difference">${time[0]}hr ${time[1]}min</div>
               </div>
               <div class="content-details">
                 <div class="places">
@@ -482,8 +517,9 @@ function updateViaCard(arr) {
         } else {
 
             elem = ` <div class="card-${countViaCard} card">
+            <div class="img" style="content: url('./images/${imgFileName}.png')"></div>
                   <div class="card-content">
-                    <div class="flight-name-${countViaCard} flight-name">${viaFlightsName}</div>
+                    <div class="flight-name-${countViaCard} flight-name">${viaFlightsName}<div class="time-difference">${time[0]}hr ${time[1]}min</div></div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-${countViaCard} from-overlay">${viaflights[i].start.charAt(0).toUpperCase() + viaflights[i].start.slice(1) }</div>&nbsp;-&nbsp;<div class="via-${countViaCard} via-overlay">${viaflights[i].via.charAt(0).toUpperCase() + viaflights[i].via.slice(1) }</div>&nbsp;-&nbsp;<div class="to-${countViaCard} to-overlay">${viaflights[i].end.charAt(0).toUpperCase() + viaflights[i].end.slice(1) }</div>
@@ -530,17 +566,17 @@ $(".via-flights-o").on('click', '.card-8', animatingCard);
 
 
 //changing map of direct flights
-$(".direct-flights-o").on('click','.card-1',function(){
+$(".direct-flights-o").on('click', '.card-1', function () {
     //console.log("parameters",$(".from-1").text().toLowerCase(), $(".to-1").text().toLowerCase())
     showPath($(".from-1").text().toLowerCase(), $(".to-1").text().toLowerCase())
 
 })
 
-$(".direct-flights-o").on('click','.card-2',function(){
+$(".direct-flights-o").on('click', '.card-2', function () {
     showPath($(".from-2").text().toLowerCase(), $(".to-2").text().toLowerCase())
 })
 
-$(".direct-flights-o").on('click','.card-3',function(){
+$(".direct-flights-o").on('click', '.card-3', function () {
     showPath($(".from-3").text().toLowerCase(), $(".to-3").text().toLowerCase())
 })
 
@@ -925,6 +961,7 @@ function landingPage() {
         if (data.message == 'The email is incorrect' || data.message == 'The password is incorrect') {
             console.log('not successful')
             window.alert(data.message)
+           
         }
         // else if(data.successful == 'incorrect email'){console.log('Email is incorrect')}
         else {
@@ -1027,6 +1064,8 @@ function sortAll(viaflights, optimised) {
     for (let i = 0; i < viaflights.length; i++) {
 
         viaFlightsNum = viaflights[i].flight_num.split('-')
+        var imgFileName = viaFlightsNum[0]
+        console.log("img file name", imgFileName)
         viaFlightsNum = viaFlightsNum[0].toUpperCase() + " - " + viaFlightsNum[1];
 
         viaFlightsName = viaflights[i].flight_name.split(" ");
@@ -1044,11 +1083,15 @@ function sortAll(viaflights, optimised) {
         $(`.price-${countViaCard}`).text(priceVia)
 
         if (viaflights[i].flight_num == optimised[0].flight_num) {
-            var elem = ` <div class="card-4 card">
+            var elem = `  <div class="card-4 card">
+            <div class="img" style="content: url('./images/${imgFileName}.png')"></div>
             <div class="card-content">
             <div class="optimised">
-                <div class="flight-name flight-name-4 ">${viaFlightsName}</div><span>&nbsp;&nbsp;<div class="dot-opt">
-                  </div>&nbsp;Optimised Flight</span>
+                <div class="optimised-child-1">
+                    <div class="flight-name-4 ">${viaFlightsName}</div><span>&nbsp;&nbsp;<div class="dot-opt">
+                    </div>&nbsp;Optimised Flight</span>
+                </div>
+                <div class="time-difference">${time[0]}hr ${time[1]}min</div>
               </div>
               <div class="content-details">
                 <div class="places">
@@ -1067,8 +1110,9 @@ function sortAll(viaflights, optimised) {
         } else {
 
             elem = ` <div class="card-${countViaCard} card">
+            <div class="img" style="content: url('./images/${imgFileName}.png')"></div>
                   <div class="card-content">
-                    <div class="flight-name-${countViaCard} flight-name">${viaFlightsName}</div>
+                    <div class="flight-name-${countViaCard} flight-name">${viaFlightsName}<div class="time-difference">${time[0]}hr ${time[1]}min</div></div>
                     <div class="content-details">
                       <div class="places">
                         <div class="from-${countViaCard} from-overlay">${viaflights[i].start.charAt(0).toUpperCase() + viaflights[i].start.slice(1) }</div>&nbsp;-&nbsp;<div class="via-${countViaCard} via-overlay">${viaflights[i].via.charAt(0).toUpperCase() + viaflights[i].via.slice(1) }</div>&nbsp;-&nbsp;<div class="to-${countViaCard} to-overlay">${viaflights[i].end.charAt(0).toUpperCase() + viaflights[i].end.slice(1) }</div>
@@ -1092,8 +1136,8 @@ function sortAll(viaflights, optimised) {
 
 $(".back-btn").click(returnToHomePage)
 
-function returnToHomePage(){
-    sessionStorage.setItem('source','')
-    sessionStorage.setItem('Flight-Name','')
+function returnToHomePage() {
+    sessionStorage.setItem('source', '')
+    sessionStorage.setItem('Flight-Name', '')
     window.location.reload()
 }

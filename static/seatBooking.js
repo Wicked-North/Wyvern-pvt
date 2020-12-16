@@ -158,6 +158,7 @@ function modifySeats(seatNo) {
 
 function passengerSelect(index) {
     selectedPassengerIndex = index
+    
 }
 
 

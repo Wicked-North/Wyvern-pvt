@@ -354,7 +354,7 @@ input[type=number] {
 
 .animateButton {
     animation-name: onclick;
-    animation-duration: 500ms;
+    animation-duration: 200ms;
     animation-timing-function: ease-in;
     animation-iteration-count: 1;
 }
@@ -401,7 +401,7 @@ input[type=number] {
     overflow: scroll;
     opacity: 0;
     transform: translateX(-150%);
-    transition: all 400ms ease-in;
+    transition: opacity, transform 300ms ease-out;
 
 }
 
@@ -423,6 +423,8 @@ input[type=number] {
     cursor: pointer;
     transition: all 250ms ease-in;
     background: $black-lighter;
+    display:flex;
+    //padding: 1.5em;
 
     &:hover {
         color: $light-pink;
@@ -465,17 +467,23 @@ input[type=number] {
 }
 
 @keyframes onclickCard {
-    /*  0% {
-        transform: scale(1);
+    0% {
+        transform: scale(1.05);
     }
 
+    25%{
+        transform: scale(1.01);
+    }
     50% {
-        transform: scale(0.95);
+        transform: scale(0.99);
     }
 
-    100% {
+    75%{
         transform: scale(1);
-    } */
+    }
+    100% {
+        transform: scale(1.05);
+    } 
     /* 
     0% {
         -webkit-transform: scale3d(1, 1, 1);
@@ -495,15 +503,15 @@ input[type=number] {
 
 .animateCard {
     animation-name: onclickCard;
-    animation-duration: 400ms;
+    animation-duration: 200ms;
     animation-timing-function: ease-in;
     animation-iteration-count: 1;
 
 }
 
 .card-content {
-    margin: 1.5em 0 0 1.5em;
-    font-size: 1.1rem;
+    margin:0.5em;
+    font-size: 1rem;
     pointer-events: none;
     width: 100%;
 
@@ -533,13 +541,16 @@ input[type=number] {
 
 .via-flights-o {
     .places {
-        width: 48%;
+        width: 50%;
     }
 
-    .time,
+    .time{
+        margin-left: 0.5em;
+        width: 28%;
+    }
     .price-details {
         margin-left: 0.5em;
-        width: 26%;
+        width: 23%;
     }
 
 }
@@ -570,9 +581,27 @@ input[type=number] {
 
 }
 
+.flight-name{
+    display:flex;
+    justify-content:space-between;
+    
+}
+
+.direct-flights-o .flight-name{
+    width: 85%;
+}
+
+.via-flights-o .flight-name{
+    width: 93%;
+}
+
 .optimised {
     display: flex;
-
+    width: 93%;
+    .optimised-child-1{
+        display:flex;
+    }
+    justify-content: space-between;
     span {
         opacity: 0.9;
         font-weight: 500;
@@ -1016,4 +1045,19 @@ input[type=number] {
         transform: scale(1.05);
     }
 
+}
+
+.img{
+    height:50px;
+    width:50px;
+    //content: url("./images/air\ india.png");
+    background-position: center;
+}
+
+ .card-content{
+    margin:auto;
+}
+
+.img{
+    margin: auto 0.5em;
 }

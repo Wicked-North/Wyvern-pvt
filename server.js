@@ -260,7 +260,7 @@ app.post('/getLogin', async (req, res) => {
         if (row.length == 0) {
             return res.status(500).json({
 
-                message: "Wrong Email"
+                message: "The email is incorrect"
 
             });
         }
@@ -271,7 +271,7 @@ app.post('/getLogin', async (req, res) => {
         if (!validPassword) {
             return res.status(500).json({
 
-                message: "Wrong Password"
+                message: "The password is incorrect"
 
             });
         }
