@@ -958,8 +958,10 @@ function landingPage() {
 
     fetch("/getLogin", options).then((res) => res.json().then((data) => {
         console.log(data)
-        if (data.successful == '0') {
+        if (data.message == 'The email is incorrect' || data.message == 'The password is incorrect') {
             console.log('not successful')
+            window.alert(data.message)
+           
         }
         // else if(data.successful == 'incorrect email'){console.log('Email is incorrect')}
         else {

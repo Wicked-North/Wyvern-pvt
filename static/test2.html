@@ -50,6 +50,14 @@
 						Search tickets using User ID
 					</label>
 				</div>
+				<div class="form-check" id="radiobtn">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4"
+						value="option1">
+					<label class="form-check-label" for="exampleRadios1" id="texta">
+						Search tickets using PNR
+					</label>
+				</div>
+
 				<button onclick="checkRadioButton()">
 					Search
 				</button>
@@ -74,7 +82,7 @@
 						<input type="date" id="birthday" name="birthday">
 					</form>
 
-					<button type="button" class="btn btn-dark btn-rounded" id="submitbtn">Submit</button>
+					<button type="button" class="btn btn-dark btn-rounded" id="submitbtn" onclick='searchSeats()'>Submit</button>
 
 
 
