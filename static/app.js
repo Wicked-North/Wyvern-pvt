@@ -12,6 +12,7 @@ let paymentForm = ''
 let flag
 let prevSeats = []
 let prevSeatName = []
+var space=" "
 
 function passDetailsDisplay() {
 	for (let i = 0; i < n; i++) {
@@ -663,13 +664,38 @@ var seatBookDown = `
 let revUp = ''
 let revDown =
 	`
-<div>FLT_NO:AI-443</div>
-<div>SRC: DEL</div>
-<div>DEST: CCU</div>
-<div>DEPT:</div>
-<div>ARR:</div>
-<div>PASSENGERS:${n}</div>
-<hr>
+<div class="rev-booking-all-dets">
+	<div class="rev-booking-all-dets-sub-title">Flight Name :</div>
+	<div>${sessionStorage.getItem('Flight-Name')}</div>
+</div>
+<div class="rev-booking-all-dets">
+	<div class="rev-booking-all-dets-sub-title">Source :</div> 
+	<div>${sessionStorage.getItem('source')}</div>
+</div>
+<div class="rev-booking-all-dets">
+	<div class="rev-booking-all-dets-sub-title">Via :</div> 
+	<div>${sessionStorage.getItem('via')}</div></div>
+<div class="rev-booking-all-dets">
+	<div class="rev-booking-all-dets-sub-title">Destination :</div> 
+	<div>${sessionStorage.getItem('destinaton')}</div>
+</div>
+<div class="rev-booking-all-dets">
+	<div class="rev-booking-all-dets-sub-title">Departure Time :</div> 
+	<div>${sessionStorage.getItem('departureTime')}</div>
+</div>
+<div class="rev-booking-all-dets">
+	<div class="rev-booking-all-dets-sub-title">Arrival Time : </div> 
+	<div>${sessionStorage.getItem('arrivalTime')}</div>
+</div>
+<div class="rev-booking-all-dets">
+	<div class="rev-booking-all-dets-sub-title">Total Price : </div> 
+	<div>${sessionStorage.getItem('totalPrice')}</div>
+</div>
+<div class="rev-booking-all-dets">
+	<div class="rev-booking-all-dets-sub-title">Passengers : </div>
+	<div>${n}</div>
+</div>
+<hr class="personal-details-slide-up-line" noshade>
 `
 
 function continueToRev() {
@@ -695,14 +721,29 @@ function continueToRev() {
 
 	for (var i = 0; i < n; i++) {
 		document.getElementById('revBooking').innerHTML +=
-			`<div id='pas-${i+1}'>
-        <div>NAME: ${passengers[i].name}</div>
-        <div>DOB: ${passengers[i].dob}</div>
-        <div>GENDER: ${passengers[i].gender}</div>
-        <div>SEAT: ${passengers[i].seats}</div>
-        <div>PRICE: 4400</div>
+			`<div class="rev-booking" id='pas-${i+1}'>
+		<div class="rev-booking-item">
+			<div class="rev-booking-sub-title">Name :</div>
+			<div>${passengers[i].name}</div>
+		</div>
+		<div class="rev-booking-item">
+			<div class="rev-booking-sub-title">Date Of Birth :</div>
+			<div>${passengers[i].dob}</div>
+		</div>
+		<div class="rev-booking-item">
+			<div class="rev-booking-sub-title">Gender :</div>
+			<div>${passengers[i].gender}</div>
+		</div>
+		<div class="rev-booking-item">
+			<div class="rev-booking-sub-title">Seat :</div>
+			<div>${passengers[i].seats}</div>
+		</div>
+		<div class="rev-booking-item">
+			<div class="rev-booking-sub-title">Price :</div>
+			<div>${sessionStorage.getItem('basePrice')} </div>
+		</div>
         </div>
-        <hr>
+        <hr class="personal-details-slide-up-line" noshade>
         
         `
 	}
@@ -896,11 +937,26 @@ function continueToPayment() {
 		// console.log(fname, mname, lname, rbtn1, dob, phno, emailid, chk)
 
 		slideUp += `<div class='passDetails slide-up-wt' id='pass-${i+1}'>
-		<div class="pass-name h6">${fname} ${mname} ${lname}</div>
-		<div class="pass-dob h6">${dob}</div>
-		<div class="pass-gender h6">${gender}</div>
-		<div class="pass-email h6">${emailid}</div>
-		<div class="pass-phno h6">${phno}</div>
+		<div class="pass-dets">
+			<div class="pass-dets-sub-title">Name : </div>
+			<div class="pass-name h6">${fname} ${mname} ${lname}</div>
+		</div>
+		<div class="pass-dets">
+			<div class="pass-dets-sub-title">Date Of Birth : </div>
+			<div class="pass-dob h6">${dob}</div>
+		</div>
+		<div class="pass-dets">
+			<div class="pass-dets-sub-title">Gender : </div>
+			<div class="pass-gender h6">${gender}</div>
+		</div>
+		<div class="pass-dets">
+			<div class="pass-dets-sub-title">Email : </div>
+			<div class="pass-email h6">${emailid}</div>
+		</div>
+		<div class="pass-dets">
+			<div class="pass-dets-sub-title">Phone Number : </div>
+			<div class="pass-phno h6">${phno}</div>
+		</div>
 
 	</div>
 
@@ -908,7 +964,7 @@ function continueToPayment() {
 
 		passengerSeat += `<div id='p-${i}' class='allPass' onclick="passengerSelect(${i})">
         <div class="select-radio-button">
-            <input type="radio" name="field" id="inlineRadio+${i}" class="allPassRadio" value="option2" />
+            <input type="radio" name="field" id="inlineRadio+${i}" class="allPassRadio" value="option2" onclick="passengerDivSelect()" />
             <label class="label-radio" for="inlineRadio+${i}">
                 <svg class="check" viewbox="0 0 40 40">
                     <circle id="border" r="18px" cx="20px" cy="20px"></circle>
@@ -1077,13 +1133,16 @@ $("#payForm").submit(function (e) {
 });
 
 //$(".select-radio-button").click(passengerDivSelect)
-$(".select-seats-title").on('click',".label-radio",passengerDivSelect)
-function passengerDivSelect() {
-	console.log("if")
-	if ($('.allPassRadio').is(':checked')) {
-		console.log("parent",$(".allPassRadio").parent())
-	}
-	else{
+//$("#radio1").attr('checked', true).trigger('click');
+// $(".select-seats-title").on('click',".allPassRadio",passengerDivSelect)
 
-	}
+function passengerDivSelect() {
+	// console.log("if")
+	// if ($('.allPassRadio').is(':checked')) {
+	// 	console.log("parent",$(".allPassRadio").parent())
+	// }
+	// else{
+
+	// }
+	console.log('clicked')
 }

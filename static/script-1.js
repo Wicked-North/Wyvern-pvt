@@ -496,7 +496,7 @@ function updateViaCard(arr) {
             <div class="card-content">
             <div class="optimised">
                 <div class="optimised-child-1">
-                    <div class="flight-name-${countViaCard} ">${viaFlightsName}</div><span>&nbsp;&nbsp;<div class="dot-opt">
+                    <div class="flight-name-${countViaCard} flight-name">${viaFlightsName}</div><span>&nbsp;&nbsp;<div class="dot-opt">
                     </div>&nbsp;Optimised Flight</span>
                 </div>
                 <div class="time-difference">${time[0]}hr ${time[1]}min</div>
@@ -680,6 +680,7 @@ function staticCardOpen(event) {
     var cardClass = ''
     var cardArray = ["card-1", "card-2", "card-3", "card-4", "card-5", "card-6", "card-7", "card-8"]
     var cardElem
+    console.log("static card open")
     for (let i = 0; i < cardArray.length; i++) {
         console.log("card element", $("." + cardArray[i]))
         console.log("border-image" + $("." + cardArray[i]).css("border-image"))
@@ -689,9 +690,11 @@ function staticCardOpen(event) {
             cardClass = $(cardElem).attr('class')
             cardClass = cardClass.split(' ')
             cardClass = cardClass[0]
+
             viaPlace = $("." + cardClass + " .via-overlay").text()
+
             sessionStorage.setItem("via", viaPlace)
-            sessionStorage.setItem("Flight-Name", $("." + cardClass + " .flight-name").text())
+            sessionStorage.setItem("Flight-Name",$("." + cardClass + " .flight-name").text())
             sessionStorage.setItem("departureTime", $("." + cardClass + " .fromTime").text())
             sessionStorage.setItem("arrivalTime", $("." + cardClass + " .toTime").text())
             sessionStorage.setItem("basePrice", $("." + cardClass + " .base-price").text())
@@ -716,6 +719,7 @@ function staticCardOpen(event) {
         }
         setTimeout(() => {
             window.alert("Select a Flight to Proceed")
+            
         }, 500)
 
         event.preventDefault()
@@ -1088,7 +1092,7 @@ function sortAll(viaflights, optimised) {
             <div class="card-content">
             <div class="optimised">
                 <div class="optimised-child-1">
-                    <div class="flight-name-4 ">${viaFlightsName}</div><span>&nbsp;&nbsp;<div class="dot-opt">
+                    <div class="flight-name-4 flight-name">${viaFlightsName}</div><span>&nbsp;&nbsp;<div class="dot-opt">
                     </div>&nbsp;Optimised Flight</span>
                 </div>
                 <div class="time-difference">${time[0]}hr ${time[1]}min</div>

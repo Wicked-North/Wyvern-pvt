@@ -581,17 +581,17 @@ input[type=number] {
 
 }
 
+
 .flight-name{
     display:flex;
-    justify-content:space-between;
-    
-}
+    justify-content:space-between; // for space between flight-name and time
+} 
 
 .direct-flights-o .flight-name{
     width: 85%;
 }
 
-.via-flights-o .flight-name{
+.via-flights-o .flight-name:not(.flight-name-4){
     width: 93%;
 }
 
