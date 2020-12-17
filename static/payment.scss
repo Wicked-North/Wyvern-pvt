@@ -154,6 +154,20 @@ body {
     margin-bottom: 0.5em;
 }
 
+.change-fee-title {
+    font-family: 'Overlock', cursive;
+    color: $grad-red;
+    font-size: 1.7rem;
+    font-weight:600;
+}
+
+.notice{
+    font-family: 'Overlock', cursive;
+    color: $grad-red;
+    font-size: 1.2rem;
+    font-weight:600;
+}
+
 #redtext,
 #redgraph {
     color: $grad-red-warning;
@@ -485,7 +499,7 @@ body {
     margin-left: 58%;
 }
 .book-btn{
-    margin:0;
+    margin:0 36%;
 }
 .nav {
     display: flex;
@@ -602,13 +616,25 @@ ol {
 }
 
 .allPass {
+    /* border: 2px solid transparent;
+    border-image: linear-gradient(45deg, $grad-red, $grad-pink);
+    border-image-slice: 1; */
+    padding: 0.7em 0.5em;
+    width: 12.5em;
+    height:5.7em;
+    margin-bottom: 1em;
+    background-color: rgba(42, 42, 48,0.4);
+    transition: background-color 200ms ease-in;
+    &:hover{
+        background-color: rgba(42, 42, 48,1);
+    }
+}
+
+//selecting passenger 1 by default
+#p-0{
     border: 2px solid transparent;
     border-image: linear-gradient(45deg, $grad-red, $grad-pink);
     border-image-slice: 1;
-    padding: 0.5em;
-    width: 12.5em;
-    margin-bottom: 1em;
-    background-color: $darkest-grey;
 }
 
 .right-seats {
@@ -726,7 +752,7 @@ ol {
     .pay-div-up-sub-title{
         font-size:1.1rem;
         color:$font-light;
-        font-weight: 600;
+        font-weight: 500;
         letter-spacing: 0.05rem;
     }
 }
@@ -762,11 +788,14 @@ ol {
 .rev-booking-sub-title, .rev-booking-all-dets-sub-title, .pass-dets-sub-title{
     font-size:1.1rem;
     color:$font-light;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.05rem;
 }
 
 
+.formi input:not(.email){
+    text-transform: capitalize;
+}
 //SEAT SELECTION STYLE
 
 

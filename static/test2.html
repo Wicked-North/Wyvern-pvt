@@ -67,22 +67,19 @@
 
 
 				<div class="sidenav" id="sidenavsec">
-					<div class="form-check" id="rd">
-						<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4"
-							value="option1">
-						<label class="form-check-label" for="exampleRadios1" id="texta">
-							Search Seat Of a Flight
-						</label>
-					</div>
 
-					<input type="text" placeholder="Flight Number" id="search4">
+					<!-- <p>Search seats using FlightNo:</p> -->
+					<label id='texta' class="form-check-label flightLabel" for='search4'>Search seats using
+						FlightNo</label>
+					<input type="text" placeholder="Flight Number" id="search4" class='seatText'>
 
 					<form action="/action_page.php">
-						<label for="birthday" id="datea"><strong>Date : </strong></label>
+						<label for="birthday" id="datea"></label>
 						<input type="date" id="birthday" name="birthday">
 					</form>
 
-					<button type="button" class="btn btn-dark btn-rounded" id="submitbtn" onclick='searchSeats()'>Submit</button>
+					<button type="button" class="btn btn-dark btn-rounded" id="submitbtn"
+						onclick='searchSeats()'>Submit</button>
 
 
 
@@ -107,7 +104,7 @@
 
 		<div class="rightsection">
 
-			<button class="tablink" id="tabbtns" onclick="openPage('Home', this, '#323233'); getFlightDetails()">All
+			<button class="tablink" id="flightTab" onclick="openPage('Home', this, '#323233'); getFlightDetails()">All
 				flights</button>
 			<button class="tablink" id="tabbtns" onclick="openPage('News', this, '#323233'); getUserDetails()"
 				id="defaultOpen">All
@@ -136,43 +133,108 @@
 			<div id="Home" class="tabcontent">
 
 
-				<input type="text" placeholder="Search.." id="tabsearch">
+
+				<input type="text" placeholder="Search.." id="searchByFnum">
+				<button onclick="searchByFnum()">Search</button>
+				<span><button id='insButton' onclick="showInsertFlight()" style='background-color: gray;color:rgb(34, 34, 34);'><i class="fas fa-plus-square"></i>&nbsp;ADD FLIGHT</button></span>
+				<span><button id='cancButton' onclick="cancelInsertFlight()" style='background-color: gray;color:rgb(34, 34, 34); display: none;'>CANCEL</button></span>
+
+
+				<!-- INSERT DIV -->
+				<div id='insertFlight' style='padding-bottom: 20px; display: none;'>
+					
+					<span><select name="cars" id="flightName" onchange="fixName(value)" style="height:30px">
+							<option value="air india" >Air India</option>
+							<option value="go air">GO Air</option>
+							<option value="indigo">Indigo</option>
+							<option value="spice jet">Spice Jet</option>
+							<option value="vistara">Vistara</option>
+							<option value="asia airways">Asia Airways</option>
+
+
+						</select></span>
+					<span><input type="text" placeholder="" id="flightInitial" style="width:35px;padding-left:8px;" value='ai' readonly></span>
+					<span>-</span>
+					<span><input type="text" placeholder="Flight Num" id="fnum" style="width:100px"></span>
+
+					<span><select name="cars" id="start" style="height:30px">
+							<option value="Bangalore">Bangalore</option>
+							<option value="Mumbai">Mumbai</option>
+							<option value="Kolkata">Kolkata</option>
+							<option value="Hyderabad">Hyderabad</option>
+							<option value="Delhi">Delhi</option>
+							<option value="Jaipur">Jaipur</option>
+							<option value="Ahmedabad">Ahmedabad</option>
+
+						</select></span>
+					<span><select name="cars" id="via" style="height:30px">
+						<option value="Kolkata">Kolkata</option>
+						<option value="Bangalore">Bangalore</option>
+						<option value="Mumbai">Mumbai</option>
+						
+						<option value="Hyderabad">Hyderabad</option>
+						<option value="Delhi">Delhi</option>
+						<option value="Jaipur">Jaipur</option>
+						<option value="Ahmedabad">Ahmedabad</option>
+
+						</select></span>
+
+					
+					<span><select name="cars" id="end" style="height:30px">
+						<option value="Mumbai">Mumbai</option>
+						<option value="Bangalore">Bangalore</option>
+						
+						<option value="Kolkata">Kolkata</option>
+						<option value="Hyderabad">Hyderabad</option>
+						<option value="Delhi">Delhi</option>
+						<option value="Jaipur">Jaipur</option>
+						<option value="Ahmedabad">Ahmedabad</option>
+
+						</select></span>
+
+					<span><input type="text" placeholder="Departure (hh:mm:ss)" id="dep" style="width:130px"></span>
+					<span><input type="text" placeholder="Arrival (hh:mm:ss)" id="arri" style="width:130px"></span>
+					<span><input type="text" placeholder="Price" id="price" style="width:130px"></span>
+					<button onclick="insertFlight()">Insert</button>
+
+
+					
+
+				</div>
 
 				<div id='mainContent-1'>
-                    
+
 				</div>
-				
+
+
+
 			</div>
 
 			<div id="News" class="tabcontent">
 
-				<input type="text" placeholder="Search.." id="tabsearch">
 				<div id='mainContent-2'>
-                    
+
 				</div>
 			</div>
 
 			<div id="Contact" class="tabcontent">
-				<input type="text" placeholder="Search.." id="tabsearch">
 				<div id='mainContent-3'>
-                    
+
 				</div>
-				
+
 			</div>
 
 			<div id="About" class="tabcontent">
-				<input type="text" placeholder="Search.." id="tabsearch">
 
 				<div id='mainContent-4'>
-                    
+
 				</div>
 			</div>
 
 			<div id="cancelled" class="tabcontent">
-				<input type="text" placeholder="Search.." id="tabsearch">
 
 				<div id='mainContent-5'>
-                    
+
 				</div>
 			</div>
 
@@ -180,7 +242,7 @@
 				<!-- <input type="text" placeholder="Search.." id="tabsearch"> -->
 
 				<div id='mainContent-6'>
-                    
+
 				</div>
 			</div>
 

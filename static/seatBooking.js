@@ -163,10 +163,13 @@ function passengerSelect(index) {
 
 
 function cancelSeats(index) {
+
+    //console.log("helloooooooooooooooooooooooo")
     passengerSelect(index)
     let seatIndex = passengers[index].seatId
+    passengers[index].seatId = null
     document.getElementById(seatIndex).checked = false
-    document.getElementById(`s-${selectedPassengerIndex}`).innerHTML = ''
+    document.getElementById(`s-${selectedPassengerIndex}`).innerHTML = 'Not Selected'
 
     seats[seatIndex - 1] = 0
 }
