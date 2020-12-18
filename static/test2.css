@@ -345,6 +345,7 @@ border-radius: 50%;
         animation-fill-mode: both;
 -webkit-transition-duration: 300ms;
         transition-duration: 300ms;
+  
 }
 
 /* .seat label:hover {

@@ -934,6 +934,10 @@ function continueToPayment() {
 			<div class="pass-dets-sub-title">Phone Number : </div>
 			<div class="pass-phno h6">${phno}</div>
 		</div>
+
+
+
+
 	</div>
 	<hr class="personal-details-slide-up-line" noshade>`
 
