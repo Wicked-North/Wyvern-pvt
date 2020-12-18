@@ -1,0 +1,73 @@
+$darkest-grey:rgb(42, 42, 48);
+$black:rgb(16, 16, 17);
+$medium-grey:rgb(78, 78, 80);
+$transparent-grey:rgba(78, 78, 80, 0.4);
+$black-lighter:rgba(8, 8, 8, 0.3);
+$font-light:rgb(240, 247, 238);
+$height-field: 3.5rem;
+$font-size-custom: 1.2em;
+$before-color: rgb(255, 154, 139);
+$after-color:rgb(240, 247, 238);
+$grad-pink:rgb(255, 154, 139);
+$grad-red:rgb(219, 39, 99);
+$light-pink:rgb(255, 189, 179);
+$after-color-login:rgb(219, 39, 99);
+$before-color-login:rgb(240, 247, 238);
+$height-field-login:3rem;
+$font-size-custom-login:1em;
+
+
+
+@mixin removeStyle() {
+    outline: none;
+    background: transparent;
+    text-decoration: none;
+    border: none;
+}
+
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+    scrollbar-width: none;
+    
+}
+
+body{
+
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Average Sans', sans-serif;
+    padding: 6.5% 15%;
+    color:$font-light;
+
+}
+body {
+    background: linear-gradient(51deg, #2a2a30, #080808, #2a2a30,#0f0f10,#010101);
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 51s ease infinite;
+    -moz-animation: AnimationName 51s ease infinite;
+    animation: AnimationName 51s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 69%}
+    50%{background-position:100% 32%}
+    100%{background-position:0% 69%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 69%}
+    50%{background-position:100% 32%}
+    100%{background-position:0% 69%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 69%}
+    50%{background-position:100% 32%}
+    100%{background-position:0% 69%}
+}
