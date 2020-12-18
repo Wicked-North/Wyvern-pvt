@@ -601,7 +601,7 @@ app.post("/getCurrentTicketsPassengers", (req, resp) => {
             con.query(curTicketsPassengers, (err, result) => {
                 if (err) throw err;
                 else {
-                    console.log(result)
+                   // console.log(result)
                     pnrWiseTickets.push(result)
                 }
 
@@ -624,6 +624,8 @@ app.post("/getPastTicketsPassengers", (req, resp) => {
     con.query(distinctPnrSql, (err, res) => {
         if (err) throw err
         console.log(res)
+        console.log(res.length)
+
         for (let i = 0; i < res.length; i++) {
             let curTicketsPassengers = `
             select t.pnr, t.class, t.flight_num, t.userID, t.total_price, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name, t.status from flights f, completed_tickets t, completed_passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
@@ -631,7 +633,7 @@ app.post("/getPastTicketsPassengers", (req, resp) => {
             con.query(curTicketsPassengers, (err, result) => {
                 if (err) throw err;
                 else {
-                    console.log(result)
+                   // console.log(result)
                     pnrWiseTickets.push(result)
                 }
 
@@ -660,6 +662,7 @@ app.post('/cancelTickets', async (req, res) => {
         await pool.query(updateToCancelled)
         let delTickSql = `delete from tickets where pnr = '${pnr}'`
         await pool.query(delTickSql)
+        res.json({message:'cancelled'})
     } catch (err) {
         console.log(err)
     }
@@ -900,7 +903,9 @@ app.post('/updateFlight', async (req, res) => {
         await pool.query(sql)
         //res.json(result)
         //res.json(all)
+        res.json({message:'successful'})
     } catch (err) {
+        res.json({message:'error'})
         console.log(err)
     }
 })
