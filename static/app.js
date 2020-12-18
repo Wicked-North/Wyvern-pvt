@@ -23,7 +23,6 @@ function passDetailsDisplay() {
     <div class="personal-details-disclaimer">Your name should match how it appears on the ID
         that you will use at the airport</div>
     <div class="control-group">
-
         <!--i class="fa fa-user" aria-hidden="true" id="usericon"></i-->
         <div class="passenger-name">
             <div class="passenger-name-1">
@@ -58,7 +57,6 @@ function passDetailsDisplay() {
                 </div>
             </div>
         </div>
-
     </div>
     <div class="gender-radio-button">
         <input type="radio" name="field" id="inlineRadio2+${i+1}" value="option2" />
@@ -83,7 +81,6 @@ function passDetailsDisplay() {
             </svg>Female
         </label>
         
-
     </div>
     <div class="formi dob">
         <input type="text" name="start"  autocomplete="off" id="start+${i+1}"
@@ -95,7 +92,6 @@ function passDetailsDisplay() {
             </span>
         </label>
     </div>
-
     <div class="contacts">
         
         <div class="formi email">
@@ -118,7 +114,6 @@ function passDetailsDisplay() {
         </div>
     </div>
     <div class="email-disclaimer">We will never share your email with anyone else.</div>
-
 </div>
 <hr class="personal-details-line" noshade>
         `
@@ -153,7 +148,6 @@ $("#passform").submit(function (e) {
 var paymentSlideUpDetails = ""
 
 var paymentSlideDownDetails = `
-
 <div class="payment-desc">
 					Wyvern charges a fee for use of some payment methods. If the fee applies, you will see the amount
 					after
@@ -162,9 +156,6 @@ var paymentSlideDownDetails = `
 					You may need to present the card that you use below when you check in at the airport, so
 					bring it with you on the day of departure.
 				</div>
-
-
-
 				<div class="personal-details-card">
 					<div class="formi card-number">
 						<input type="text" name="start" autocomplete="off" id="cardNum" >
@@ -192,7 +183,6 @@ var paymentSlideDownDetails = `
 							</span>
 						</label>
 					</div>
-
 					<div class="formi card-exp">
 						<input type="text" name="exp" autocomplete="off" id="expYear" >
 						<label name="exp" class="label-name" for="exp">
@@ -228,7 +218,6 @@ var paymentSlideDownDetails = `
 						</label>
 					</div>
 				</div>
-
 				<div class="termsnservices">
 					<div class="line-1">
 						By continuing,you agree to the Wyvern Payments terms and services.
@@ -236,9 +225,7 @@ var paymentSlideDownDetails = `
 					<div class="line-2">
 						The Wyvern payments privacy notice describes how Wyvern handles payments info.
 					</div>
-
 				</div>
-
 				<button class="login-btn-invisible" id="savebutton"><a class="login-btn">
 						<svg width="277" height="62">
 							<rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50">
@@ -252,7 +239,6 @@ var paymentSlideDownDetails = `
 
 var seatBookUp = ""
 var seatBookDown = `
-
 <ol class="cabin">
 							<li class="row row--1">
 								<ol class="seats" type="A">
@@ -343,9 +329,6 @@ var seatBookDown = `
 								</ol>
 							</li>
 							<li class="row row--3">
-
-
-
 								<ol class="seats" type="A">
 									<li class="seat">
 										<input type="checkbox" onclick='modifySeats(this.id)' id="21" />
@@ -389,7 +372,6 @@ var seatBookDown = `
 									</li>
 								</ol>
 							</li> <br><br>
-
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
@@ -523,7 +505,6 @@ var seatBookDown = `
 								</ol>
 							</li>
 							<br><br>
-
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
@@ -657,8 +638,6 @@ var seatBookDown = `
 								</ol>
 							</li>
 						</ol>
-
-
 `
 
 let revUp = ''
@@ -810,8 +789,6 @@ function showSB() {
 	<div class="pay-up"><div class="pay-div-up-sub-title">Address :</div><div> ${adr}</div></div>
 	<div class="pay-up"><div class="pay-div-up-sub-title">City :</div><div> ${city}</div></div>
 	<div class="pay-up"><div class="pay-div-up-sub-title">State :</div><div> ${state}</div></div>
-
-
 </div>`
 
 	paymentForm = document.getElementById('paymentDetails').innerHTML
@@ -958,8 +935,10 @@ function continueToPayment() {
 			<div class="pass-phno h6">${phno}</div>
 		</div>
 
-	</div>
 
+
+
+	</div>
 	<hr class="personal-details-slide-up-line" noshade>`
 
 		passengerSeat += `<div id='p-${i}' class='allPass' onclick="passengerSelect(${i})">
@@ -974,7 +953,6 @@ function continueToPayment() {
             </label>
             <button id='cross-btn' onclick="cancelSeats(${i})"><i class="fas fa-times"></i></buton>
         </div>
-
         <div class="seat-passenger-content">
             <div class="pass-name-seats">
                 <div class="pass-name-seats">${fname} ${mname} ${lname}</div>
@@ -982,7 +960,6 @@ function continueToPayment() {
             <div class="seat-name">Seat -<div class="seat-id" id='s-${i}'>Not Selected</div>
             </div>
         </div>
-
     </div>`
 
 

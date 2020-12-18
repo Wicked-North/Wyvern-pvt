@@ -95,15 +95,18 @@ function displayTickets() {
         togglePast[i] = 1
     }
 
-    for (var i = 0; i < current.length; i++) {
+    for (let i = 0; i < current.length; i++) {
         let passArr = current[i]
+        //console.log(passArr[i])
+        console.log(current.length)
 
-        currBooking = `<div  onclick='displayPass(${i})'><div id='pnr'>${passArr[i].pnr}</div>
-                <div id='company'>${passArr[i].flight_name}</div>
-                <div id='sourceDest'>${passArr[i].start}-${passArr[i].via}-${passArr[i].end}</div>
-                <div id='class'>${passArr[i].class}</div>
-                <div id='price'>${passArr[i].total_price}</div>
-                <div id='crossBtn' onclick='cancelTicket(${passArr[i].pnr})'>x</div>
+
+        currBooking = `<div  onclick='displayPass(${i})'><div id='pnr'>${passArr[0].pnr}</div>
+                <div id='company'>${passArr[0].flight_name}</div>
+                <div id='sourceDest'>${passArr[0].start}-${passArr[0].via}-${passArr[0].end}</div>
+                <div id='class'>${passArr[0].class}</div>
+                <div id='price'>${passArr[0].total_price}</div>
+                <button id='crossBtn' style='cursor:pointer;'onclick='cancelTicket(${passArr[0].pnr})'>x</button>
                 <div id='status'> STATUS: CONFIRMED</div>
                 <div id='pasDet-${i}' style='display:none'></div>
 
@@ -130,17 +133,18 @@ function displayTickets() {
     ////////////////////////////////////////////
 
     for (var i = 0; i < past.length; i++) {
+        //console.log(past.length)
         let pastPassArr = past[i]
+        console.log(pastPassArr)
 
-        prevBooking = `<div  onclick='displayPastPass(${i})'><div id='pnr'>${pastPassArr[i].pnr}</div>
-                <div id='company'>${pastPassArr[i].flight_name}</div>
-                <div id='sourceDest'>${pastPassArr[i].start}-${pastPassArr[i].via}-${pastPassArr[i].end}</div>
-                <div id='class'>${pastPassArr[i].class}</div>
-                <div id='price'>${pastPassArr[i].total_price}</div>
-                
-                <div id='status'>${pastPassArr[i].status}</div>
+        prevBooking = `<div  onclick='displayPastPass(${i})'><div id='pnr'>${pastPassArr[0].pnr}</div>
+                <div id='company'>${pastPassArr[0].flight_name}</div>
+                <div id='sourceDest'>${pastPassArr[0].start}-${pastPassArr[0].via}-${pastPassArr[0].end}</div>
+                <div id='class'>${pastPassArr[0].class}</div>
+                <div id='price'>${pastPassArr[0].total_price}</div>
+                <div id='status'>${pastPassArr[0].status}</div>
                 <div id='pastPasDet-${i}' style='display:none'></div>
-                <hr><hr></div>
+                </div>
                 
                 `
 
@@ -194,7 +198,7 @@ function displayPastPass(i) {
 function cancelTicket(pnr) {
 
     var data = {
-        pnr:pnr
+        pnr: pnr
     }
 
     const options = {
@@ -205,7 +209,12 @@ function cancelTicket(pnr) {
         body: JSON.stringify(data)
     };
 
-    fetch('/cancelTickets', options)
-
-    window.location.reload();
-} 
+    fetch('/cancelTickets', options).then(res => res.json()).then((data) => {
+        if (data.message == 'cancelled') {
+            window.alert('Cancelled Successfully')
+        }
+        return
+    }).then((data)=>{
+        window.location.reload();
+    })
+}
