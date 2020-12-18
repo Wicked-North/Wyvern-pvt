@@ -154,32 +154,41 @@
 
 
 			</div>
-			<div alignment="right">
+			<!-- <div alignment="right">
 				<button type="button" class="btn btn-primary" onclick="continueToRev()" style='display:none'
 					id='continueToRev'><span>Continue</span></button>
-			</div>
-			<!-- <button class="login-btn-invisible" id='continueToRev' onclick="continueToRev()" style='display:none'><a class="login-btn">
+			</div> -->
+			<button class="login-btn-invisible continue-to-rev-btn-invisible" id='continueToRev' onclick="continueToRev()" style='display:none'>
+				<a class="login-btn  ">
 				<svg width="277" height="62">
 				  <rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50"></rect>
 				</svg>
 				<span>Continue</span>
 			  </a>
-			</button> -->
+			</button>
 
 		</div>
 	</div>
 
 	<div class="card" ext id="card7">
 		<div class="card-body">
-			<h3 class="card1sttext">Review Booking</h3>
+			<div class="review-booking-title">Review Booking</div>
 		</div>
 
 		<div id=revBooking></div>
 
-		<div alignment="right">
+		<!-- <div alignment="right">
 			<button type="button" class="btn btn-primary" onclick="bookSeats();" id='finalBook'
 				style='display: none;'><span>BOOK</span></button>
-		</div>
+		</div> -->
+		<button class="login-btn-invisible book-btn-invisible" id='finalBook' onclick="bookSeats()" style='display:none'>
+			<a class="login-btn book-btn">
+			<svg width="277" height="62">
+			  <rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50"></rect>
+			</svg>
+			<span>Book</span>
+		  </a>
+		</button>
 	</div>
 
 

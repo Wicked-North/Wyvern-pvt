@@ -489,12 +489,10 @@ input[type=number] {
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
     }
-
     50% {
         -webkit-transform: scale3d(1.15, 0.85, 1);
         transform: scale3d(1.15, 0.85, 1);
     }
-
     100% {
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
@@ -581,17 +579,17 @@ input[type=number] {
 
 }
 
+
 .flight-name{
     display:flex;
-    justify-content:space-between;
-    
-}
+    justify-content:space-between; // for space between flight-name and time
+} 
 
 .direct-flights-o .flight-name{
     width: 85%;
 }
 
-.via-flights-o .flight-name{
+.via-flights-o .flight-name:not(.flight-name-4){
     width: 93%;
 }
 

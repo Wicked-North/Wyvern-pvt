@@ -108,7 +108,7 @@ body {
     .title-masks,
     .title-travel,
     .payments-title,
-    .select-seats-title {
+    .select-seats-title{
 
         background-image: linear-gradient(45deg, $grad-pink, $grad-red);
         -webkit-text-fill-color: transparent;
@@ -128,7 +128,7 @@ body {
     .title-masks,
     .title-travel,
     .payments-title,
-    .select-seats-title {
+    .select-seats-title{
         font-weight: 700;
         letter-spacing: 0.05rem;
         font-size: 2rem;
@@ -137,6 +137,22 @@ body {
 
 }
 
+.review-booking-title{
+
+    background-image: linear-gradient(45deg, $grad-pink, $grad-red);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    width: fit-content;
+    font-family: 'Overlock', cursive;
+
+}
+
+.review-booking-title{
+    font-weight: 700;
+    letter-spacing: 0.05rem;
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+}
 
 #redtext,
 #redgraph {
@@ -417,8 +433,9 @@ body {
     font-size: 1.4rem;
     letter-spacing: 0.045em;
     margin: 1.5em 36%;
-
 }
+
+
 
 .login-btn svg {
     position: absolute;
@@ -458,6 +475,18 @@ body {
     margin-left: 58%;
 }
 
+//changing margin for continue to review button
+.continue-to-rev-btn-invisible{
+    margin-left: 54.5%;
+}
+
+//book button
+.book-btn-invisible{
+    margin-left: 58%;
+}
+.book-btn{
+    margin:0;
+}
 .nav {
     display: flex;
     position: absolute;
@@ -543,10 +572,20 @@ ol {
     border-top: 2px solid $grad-pink;
 }
 
-.seats-parent,
 .seat-name {
     display: flex;
 }
+
+//making seats parent invisible initially make it flex on click of the payment button
+.seats-parent{
+    display:flex;
+}
+
+/* .seats-parent{
+    display:none;
+} */
+
+
 
 .seat-passenger-content {
     color: $grad-pink;
@@ -690,6 +729,41 @@ ol {
         font-weight: 600;
         letter-spacing: 0.05rem;
     }
+}
+
+//passenger card 
+.pass-dets{
+    display:flex;
+    div:not(.pass-dets-sub-title){
+        margin-left:0.2em;
+        margin-top: 3px;
+    }
+}
+
+
+//review booking styling
+//common details
+.rev-booking-all-dets{
+    display:flex;
+    div:not(.rev-booking-all-dets-sub-title){
+        margin-left:0.2em;
+        margin-top: 3px;
+    }
+}
+
+.rev-booking-item{
+    display: flex;
+    div:not(.rev-booking-sub-title){
+        margin-left:0.2em;
+        margin-top: 2px; //BAD PRACTICE! HARD CODING MARGIN TO ALIGN BOTH LABEL AND CONTENT
+    }
+}
+
+.rev-booking-sub-title, .rev-booking-all-dets-sub-title, .pass-dets-sub-title{
+    font-size:1.1rem;
+    color:$font-light;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
 }
 
 
