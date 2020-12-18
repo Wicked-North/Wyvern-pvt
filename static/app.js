@@ -12,7 +12,7 @@ let paymentForm = ''
 let flag
 let prevSeats = []
 let prevSeatName = []
-var space=" "
+var space = " "
 
 function passDetailsDisplay() {
 	for (let i = 0; i < n; i++) {
@@ -656,7 +656,7 @@ let revDown =
 	<div>${sessionStorage.getItem('via')}</div></div>
 <div class="rev-booking-all-dets">
 	<div class="rev-booking-all-dets-sub-title">Destination :</div> 
-	<div>${sessionStorage.getItem('destinaton')}</div>
+	<div>${sessionStorage.getItem('destination')}</div>
 </div>
 <div class="rev-booking-all-dets">
 	<div class="rev-booking-all-dets-sub-title">Departure Time :</div> 
@@ -939,7 +939,7 @@ function continueToPayment() {
 
 		passengerSeat += `<div id='p-${i}' class='allPass' onclick="passengerSelect(${i})">
         <div class="select-radio-button">
-            <input type="radio" name="field" id="inlineRadio+${i}" class="allPassRadio" value="option2" onclick="passengerDivSelect()" />
+            <input type="radio" name="field" id="inlineRadio+${i}" class="allPassRadio" value="option2" onclick="passengerDivSelect(this);" />
             <label class="label-radio" for="inlineRadio+${i}">
                 <svg class="check" viewbox="0 0 40 40">
                     <circle id="border" r="18px" cx="20px" cy="20px"></circle>
@@ -1105,17 +1105,24 @@ $("#payForm").submit(function (e) {
 	e.preventDefault();
 });
 
-//$(".select-radio-button").click(passengerDivSelect)
-//$("#radio1").attr('checked', true).trigger('click');
-// $(".select-seats-title").on('click',".allPassRadio",passengerDivSelect)
 
-function passengerDivSelect() {
-	// console.log("if")
-	// if ($('.allPassRadio').is(':checked')) {
-	// 	console.log("parent",$(".allPassRadio").parent())
-	// }
-	// else{
+function passengerDivSelect(evt) {
+	var elemId = evt.id
+	var parentElemId = evt.parentElement.parentElement.parentElement //getting the entire right div(which is on left :p) to get all passenger divs
+	var childArr = $(parentElemId).children() //making an array containing all passenger cards
 
-	// }
-	console.log('clicked')
+	if (!($(`#${elemId}`).is(':checked'))) {
+		//console.log("parent",evt.parentElement.parentElement)
+		evt.parentElement.parentElement.setAttribute("style", "border: 2px solid transparent; border-image: linear-gradient(45deg, rgb(219, 39, 99), rgb(255, 154, 139)); border-image-slice: 1;")
+		for (let r = 0; r < childArr.length; r++) {
+			if ($(childArr[r]).attr("id") != evt.parentElement.parentElement.id) {
+				//console.log("border none",$(childArr[r]).attr("id"))
+				//making all passenger divisions border none except for the one selected
+				$(childArr[r]).css("border", "none")
+			}
+
+		}
+	} else {
+
+	}
 }

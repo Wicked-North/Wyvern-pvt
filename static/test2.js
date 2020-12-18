@@ -2,6 +2,14 @@ openPage('Home', document.getElementById('flightTab'), '#323233');
 getFlightDetails()
 
 let flights
+let fnum
+let fname
+let start
+let via
+let end
+let departure
+let arrival
+let price
 
 function openPage(pageName, elmnt, color) {
     // Hide all elements with class="tabcontent" by default */
@@ -61,8 +69,9 @@ function getCurrentTicketDetails() {
         `
 
         for (let i = 0; i < data.length; i++) {
-            curTicketContent +=
-                `<tr>
+            if (i % 2 == 0) {
+                curTicketContent +=
+                    `<tr class='even'>
         <td> ${i+1}</td>
          <td> ${data[i].userid}</td>
          <td> ${data[i].PNR} </td>
@@ -74,6 +83,21 @@ function getCurrentTicketDetails() {
          
           </tr>
         `
+            } else {
+                curTicketContent +=
+                    `<tr class='odd'>
+        <td> ${i+1}</td>
+         <td> ${data[i].userid}</td>
+         <td> ${data[i].PNR} </td>
+          <td> ${data[i].flight_num}</td>
+          <td> ${data[i].class} </td>
+          <td> ${data[i].boarding}</td>
+          <td> ${data[i].total_price} </td>
+          <td> ${data[i].status} </td>
+         
+          </tr>
+        `
+            }
         }
         curTicketContent += `</table>`
         document.getElementById('mainContent-4').innerHTML = curTicketContent
@@ -98,8 +122,9 @@ function getPreviousTicketDetails() {
         `
 
         for (let i = 0; i < data.length; i++) {
-            prevTicketContent +=
-                `<tr>
+            if (i % 2 == 0) {
+                prevTicketContent +=
+                    `<tr class='even'>
         <td> ${i+1}</td>
          <td> ${data[i].userID}</td>
          <td> ${data[i].pnr} </td>
@@ -111,6 +136,21 @@ function getPreviousTicketDetails() {
          
           </tr>
         `
+            } else {
+                prevTicketContent +=
+                    `<tr class='odd'>
+        <td> ${i+1}</td>
+         <td> ${data[i].userID}</td>
+         <td> ${data[i].pnr} </td>
+          <td> ${data[i].flight_num}</td>
+          <td> ${data[i].class} </td>
+          <td> ${data[i].boarding}</td>
+          <td> ${data[i].total_price} </td>
+          <td> ${data[i].status} </td>
+         
+          </tr>
+        `
+            }
         }
         prevTicketContent += `</table>`
         document.getElementById('mainContent-3').innerHTML = prevTicketContent
@@ -135,8 +175,11 @@ function getCancelledTicketDetails() {
         `
 
         for (let i = 0; i < data.length; i++) {
-            cancTicketContent +=
-                `<tr>
+
+
+            if (i % 2 == 0) {
+                cancTicketContent +=
+                    `<tr class='even'>
         <td> ${i+1}</td>
          <td> ${data[i].userID}</td>
          <td> ${data[i].pnr} </td>
@@ -148,6 +191,22 @@ function getCancelledTicketDetails() {
          
           </tr>
         `
+            } else {
+                cancTicketContent +=
+                    `<tr class='odd'>
+        <td> ${i+1}</td>
+         <td> ${data[i].userID}</td>
+         <td> ${data[i].pnr} </td>
+          <td> ${data[i].flight_num}</td>
+          <td> ${data[i].class} </td>
+          <td> ${data[i].boarding}</td>
+          <td> ${data[i].total_price} </td>
+          <td> ${data[i].status} </td>
+         
+          </tr>
+        `
+            }
+
         }
         cancTicketContent += `</table>`
         document.getElementById('mainContent-5').innerHTML = cancTicketContent
@@ -217,7 +276,6 @@ function getFlightDetails() {
               <th id='arrival'>ARRIVAL</th>
               <th id='price'>PRICE</th>
               <th id='adminPanel'>&nbsp;&nbsp;&nbsp;PANEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-
           
               
             `
@@ -237,7 +295,7 @@ function getFlightDetails() {
               <td id='departure-${i+1}'  > ${data[i].departure} </td>
               <td id='arrival-${i+1}'> ${data[i].arrival}</td>
               <td id='price-${i+1}'> ${data[i].price} </td>
-              <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i><button id="button1-${i+1}" onclick='updateFlight()' style="display:none">Update</button><button id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none">x</button><td>
+              <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i><button id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none">Update</button><button id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none">x</button><td>
               </tr>
             `
             } else {
@@ -252,7 +310,7 @@ function getFlightDetails() {
               <td id='departure-${i+1}'  > ${data[i].departure} </td>
               <td id='arrival-${i+1}'> ${data[i].arrival}</td>
               <td id='price-${i+1}'> ${data[i].price} </td>
-              <td class='adminPanel'></i><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' style='cursor:pointer' onclick='updateFlight(this.id)'></i><td>
+              <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i><button id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none">Update</button><button id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none">x</button><td>
               </tr>
             `
 
@@ -357,8 +415,10 @@ function getUserDetails() {
             `
 
         for (let i = 0; i < data.length; i++) {
-            userContent +=
-                `<tr>
+
+            if (i % 2 == 0) {
+                userContent +=
+                    `<tr class='even'>
                 <td id='u_snum-${i+1}'> ${i+1}</td>
              <td id='user_id-${i+1}'> ${data[i].user_id}</td>
              <td id='user_name-${i+1}'> ${data[i].user_name} </td>
@@ -370,6 +430,22 @@ function getUserDetails() {
              
               </tr>
             `
+            } else {
+                userContent +=
+                    `<tr class='odd'>
+                <td id='u_snum-${i+1}'> ${i+1}</td>
+             <td id='user_id-${i+1}'> ${data[i].user_id}</td>
+             <td id='user_name-${i+1}'> ${data[i].user_name} </td>
+              <td id='DOB-${i+1}'> ${data[i].DOB}</td>
+              <td id='email-${i+1}'> ${data[i].email} </td>
+              <td id='gender-${i+1}'> ${data[i].gender}</td>
+              <td id='mobile_1-${i+1}'> ${data[i].mobile_1} </td>
+              <td id='mobile_2-${i+1}'> ${data[i].mobile_2} </td>
+             
+              </tr>
+            `
+            }
+
         }
         userContent += `</table>`
         document.getElementById('mainContent-2').innerHTML = userContent
@@ -460,8 +536,11 @@ function checkRadioButton() {
                 `
 
                 for (let i = 0; i < data.length; i++) {
-                    udets +=
-                        `<tr>
+
+
+                    if (i % 2 == 0) {
+                        udets +=
+                            `<tr class='even'>
                 <td id='u_snum-${i+1}'> ${i+1}</td>
              <td id='user_id-${i+1}'> ${data[i].user_id}</td>
              <td id='user_name-${i+1}'> ${data[i].user_name} </td>
@@ -473,6 +552,22 @@ function checkRadioButton() {
              
               </tr>
             `
+                    } else {
+                        udets +=
+                            `<tr class='odd'>
+                <td id='u_snum-${i+1}'> ${i+1}</td>
+             <td id='user_id-${i+1}'> ${data[i].user_id}</td>
+             <td id='user_name-${i+1}'> ${data[i].user_name} </td>
+              <td id='DOB-${i+1}'> ${data[i].DOB}</td>
+              <td id='email-${i+1}'> ${data[i].email} </td>
+              <td id='gender-${i+1}'> ${data[i].gender}</td>
+              <td id='mobile_1-${i+1}'> ${data[i].mobile_1} </td>
+              <td id='mobile_2-${i+1}'> ${data[i].mobile_2} </td>
+             
+              </tr>
+            `
+                    }
+
                 }
                 udets += `</table>`
                 document.getElementById('mainContent-6').innerHTML = udets
@@ -513,7 +608,6 @@ function checkRadioButton() {
                   <th>Gender</th>
                   <th>DOB</th>
                   <th>Boarding</th>
-
                 `
 
                 for (let i = 0; i < data[0].length; i++) {
@@ -547,7 +641,6 @@ function checkRadioButton() {
                   <th>Gender</th>
                   <th>DOB</th>
                   <th>Boarding</th>
-
                 `
 
                 for (let i = 0; i < data[1].length; i++) {
@@ -594,7 +687,7 @@ function checkRadioButton() {
         let tickByUid = ``
         fetch('/getTicketDetailsByUserid', options).then((res) => res.json()).then((data) => {
             if (data[0].length > 0 || data[1].length > 0 || data[2].length > 0) {
-                let k = 1
+                let k = 0
                 console.log(data)
                 tickByUid +=
                     ` <table>
@@ -607,24 +700,43 @@ function checkRadioButton() {
               <th>Status</th>
             `
 
+                let y = 0
                 for (let i = 0; i < data.length; i++) {
                     let tempArr = data[i]
                     console.log(tempArr)
 
 
                     for (let j = 0; j < tempArr.length; j++) {
-                        tickByUid +=
-                            `<tr>
-              <td> ${k++}</td>
-              <td> ${tempArr[j].flight_num}</td>
-              <td> ${tempArr[j].PNR} </td>
-              <td> ${tempArr[j].class}</td>
-           
-              <td> ${tempArr[j].boarding}</td>
-              <td> ${tempArr[j].total_price} </td>
-              <td> ${tempArr[j].status} </td>
-              </tr>
+
+                        y++
+                        if (y % 2 == 0) {
+                            tickByUid +=
+                                `<tr class='even'>
+            <td> ${k++}</td>
+            <td> ${tempArr[j].flight_num}</td>
+            <td> ${tempArr[j].PNR} </td>
+            <td> ${tempArr[j].class}</td>
+        
+            <td> ${tempArr[j].boarding}</td>
+            <td> ${tempArr[j].total_price} </td>
+            <td> ${tempArr[j].status} </td>
+            </tr>
             `
+                        } else {
+                            tickByUid +=
+                                `<tr  class='odd'>
+            <td> ${k++}</td>
+            <td> ${tempArr[j].flight_num}</td>
+            <td> ${tempArr[j].PNR} </td>
+            <td> ${tempArr[j].class}</td>
+        
+            <td> ${tempArr[j].boarding}</td>
+            <td> ${tempArr[j].total_price} </td>
+            <td> ${tempArr[j].status} </td>
+            </tr>
+            `
+                        }
+
                     }
                 }
                 tickByUid += `</table>`
@@ -735,7 +847,6 @@ function searchSeats() {
             console.log(seats)
 
             var seatDetails = `
-
 <ol class="cabin">
 							<li class="row row--1">
 								<ol class="seats" type="A">
@@ -826,9 +937,6 @@ function searchSeats() {
 								</ol>
 							</li>
 							<li class="row row--3">
-
-
-
 								<ol class="seats" type="A">
 									<li class="seat">
 										<input type="checkbox"   id="21" />
@@ -872,7 +980,6 @@ function searchSeats() {
 									</li>
 								</ol>
 							</li> <br><br>
-
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
@@ -1006,7 +1113,6 @@ function searchSeats() {
 								</ol>
 							</li>
 							<br><br>
-
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
@@ -1140,8 +1246,6 @@ function searchSeats() {
 								</ol>
 							</li>
 						</ol>
-
-
 `
             document.getElementById('mainContent-6').innerHTML = seatDetails;
 
@@ -1164,14 +1268,14 @@ function searchSeats() {
 function showInsertFlight() {
     document.getElementById('insertFlight').style.display = 'block'
     document.getElementById('insButton').style.display = 'none'
-    document.getElementById('cancButton').style.display = 'block'
+    document.getElementById('cancButton').style.display = 'inline'
 
 }
 
 function cancelInsertFlight() {
     document.getElementById('insertFlight').style.display = 'none'
     document.getElementById('cancButton').style.display = 'none'
-    document.getElementById('insButton').style.display = 'block'
+    document.getElementById('insButton').style.display = 'inline'
 
 }
 
@@ -1184,14 +1288,14 @@ function fixName(str) {
 
 function updateFlight(id) {
 
-    var fnum = document.getElementById(`fnum-${id}`).innerHTML
-    var fname = document.getElementById(`fname-${id}`).innerHTML
-    var start = document.getElementById(`start-${id}`).innerHTML
-    var via = document.getElementById(`via-${id}`).innerHTML
-    var end = document.getElementById(`end-${id}`).innerHTML
-    var departure = document.getElementById(`departure-${id}`).innerHTML
-    var arrival = document.getElementById(`arrival-${id}`).innerHTML
-    var price = document.getElementById(`price-${id}`).innerHTML
+    fnum = document.getElementById(`fnum-${id}`).innerHTML
+    fname = document.getElementById(`fname-${id}`).innerHTML
+    start = document.getElementById(`start-${id}`).innerHTML
+    via = document.getElementById(`via-${id}`).innerHTML
+    end = document.getElementById(`end-${id}`).innerHTML
+    departure = document.getElementById(`departure-${id}`).innerHTML
+    arrival = document.getElementById(`arrival-${id}`).innerHTML
+    price = document.getElementById(`price-${id}`).innerHTML
 
     document.getElementById(`button1-${id}`).style.display = "block"
     document.getElementById(`button2-${id}`).style.display = "block"
@@ -1200,21 +1304,21 @@ function updateFlight(id) {
 
 
 
-    document.getElementById(`fnum-${id}`).innerHTML = `<input type="text"  style="width:70px" id="f_num" value=${fnum}>`
+    document.getElementById(`fnum-${id}`).innerHTML = `<input type="text"  style="width:70px" id="f_num-${id}" value=${fnum}>`
 
-    document.getElementById(`fname-${id}`).innerHTML = `<input type="text"  style="width:70px" id="f_name" value=${fname}>`
+    document.getElementById(`fname-${id}`).innerHTML = `<input type="text"  style="width:70px" id="f_name-${id}" value=${fname}>`
 
-    document.getElementById(`start-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_start" value=${start}>`
+    document.getElementById(`start-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_start-${id}" value=${start}>`
 
-    document.getElementById(`via-${id}`).innerHTML = `<input type="text"  style="width:70px" id="f_via" value=${via}>`
+    document.getElementById(`via-${id}`).innerHTML = `<input type="text"  style="width:70px" id="f_via-${id}" value=${via}>`
 
-    document.getElementById(`end-${id}`).innerHTML = `<input type="text"style="width:70px" id="f_end" value=${end}>`
+    document.getElementById(`end-${id}`).innerHTML = `<input type="text"style="width:70px" id="f_end-${id}" value=${end}>`
 
-    document.getElementById(`departure-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_departure" value=${departure}>`
+    document.getElementById(`departure-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_departure-${id}" value=${departure}>`
 
-    document.getElementById(`arrival-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_arrival" value=${arrival}>`
+    document.getElementById(`arrival-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_arrival-${id}" value=${arrival}>`
 
-    document.getElementById(`price-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_price" value=${price}>`
+    document.getElementById(`price-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_price-${id}" value=${price}>`
 
     for (var i = 1; i <= flights.length; i++) {
 
@@ -1226,22 +1330,147 @@ function updateFlight(id) {
         document.getElementsByClassName('fa-trash-alt')[i].style.display = "none"
     }
 
+
+
+
 }
 
-function cancelUpdate(id){
-    console.log(id)
-    document.getElementById(id).style.display="none"
+function cancelUpdate(id) {
+    var a = id.split('-')[1]
+    console.log(a)
+    document.getElementById(`button1-${a}`).style.display = "none"
+    document.getElementById(id).style.display = "none"
 
-    for(let i=1; i< 343; i++){
-        document.getElementsByClassName(`fa-wrench`)[i].style.display = "block"
+    for (let i = 0; i < flights.length; i++) {
+        document.getElementsByClassName(`fa-wrench`)[i].style.display = "inline"
     }
 
     // for(let i=1; i<= 343; i++){
     //     document.getElementById(i).style.display = "block"
     // }
 
-    for (var i = 0; i < 343; i++) {
+    for (var i = 0; i < flights.length; i++) {
 
-        document.getElementsByClassName('fa-trash-alt')[i].style.display = "block"
+        document.getElementsByClassName('fa-trash-alt')[i].style.display = "inline"
     }
+
+
+
+    document.getElementById(`fnum-${a}`).innerHTML = fnum
+    document.getElementById(`fname-${a}`).innerHTML = fname
+    document.getElementById(`start-${a}`).innerHTML = start
+    document.getElementById(`via-${a}`).innerHTML = via
+    document.getElementById(`end-${a}`).innerHTML = end
+    document.getElementById(`departure-${a}`).innerHTML = departure
+    document.getElementById(`arrival-${a}`).innerHTML = arrival
+    document.getElementById(`price-${a}`).innerHTML = price
+}
+
+
+function updateInDb(a) {
+
+    var id = a.split('-')[1]
+
+    console.log(id)
+    var fnum = document.getElementById(`f_num-${id}`).value
+    var fname = document.getElementById(`f_name-${id}`).value
+    var start = document.getElementById(`f_start-${id}`).value
+    var via = document.getElementById(`f_via-${id}`).value
+    var end = document.getElementById(`f_end-${id}`).value
+    var departure = document.getElementById(`f_departure-${id}`).value
+    var arrival = document.getElementById(`f_arrival-${id}`).value
+    var price = document.getElementById(`f_price-${id}`).value
+
+
+    let data = {
+        fnum,
+        fname,
+        start,
+        via,
+        end,
+        departure,
+        arrival,
+        price
+    }
+    console.log(data)
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }
+
+    fetch('/updateFlight', options).then((res) => res.json()).then((data) => {
+        if (data.message == "error") {
+            window.alert('An error has occured. Please fill the fields correctly.')
+        } else {
+            console.log('1')
+            window.alert('Updated Successfully')
+            window.location.reload()
+        }
+    })
+
+}
+
+function searchByFnum() {
+    let fnum = document.getElementById('searchByFnum').value
+    let data = {
+        fnum
+    }
+    console.log(data)
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }
+    fetch('/searchFlightsByFnum', options).then((res) => res.json()).then((data) => {
+
+
+        searchData =
+            ` <table id='flight-table'>
+            <tr class="header">
+      <th id='F.Sno'>S. No.</th>
+      <th id='number'>FLIGHT NUM</th>
+      <th id='name'>FLIGHT NAME</th>
+      <th id='start'>START</th>
+      <th id='via'>VIA</th>
+      <th id='end'>END</th>           
+      <th id='departure'>DEPARTURE</th>
+      <th id='arrival'>ARRIVAL</th>
+      <th id='price'>PRICE</th>
+      <th id='adminPanel'>PANEL</th>
+</tr>
+  
+      
+    `
+        if (data.length == 0) {
+            window.alert("No Results Found")
+        } else {
+            var i = 0;
+            searchData +=
+                `<tr class='odd'>
+              <td id='f_snum-${i+1}'> ${i+1}</td>
+              <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
+              <td id='fname-${i+1}'> ${data[i].flight_name} </td>
+              <td id='start-${i+1}' > ${data[i].start}</td>
+              <td id='via-${i+1}'> ${data[i].via} </td>
+              <td id='end-${i+1}'  > ${data[i].end} </td>            
+              <td id='departure-${i+1}'  > ${data[i].departure} </td>
+              <td id='arrival-${i+1}'> ${data[i].arrival}</td>
+              <td id='price-${i+1}'> ${data[i].price} </td>
+              <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i><button id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none">Update</button><button id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none">x</button><td>
+              </tr>
+              </table>
+            `
+            document.getElementById('mainContent-1').innerHTML = searchData
+
+
+        }
+
+
+        console.log(data)
+    })
 }

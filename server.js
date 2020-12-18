@@ -547,7 +547,7 @@ function insertDirectPath() {
 
 
 //One time function for feeding values into SQL
-function abcd() {
+function insertViaPath() {
     var cou = 604
     var places = ["bangalore", "delhi", "mumbai", "kolkata", "jaipur", "hyderabad", "ahmedabad"];
     for (var i = 0; i < places.length; i++) {
@@ -601,7 +601,7 @@ app.post("/getCurrentTicketsPassengers", (req, resp) => {
             con.query(curTicketsPassengers, (err, result) => {
                 if (err) throw err;
                 else {
-                   // console.log(result)
+                    console.log(result)
                     pnrWiseTickets.push(result)
                 }
 
@@ -624,8 +624,6 @@ app.post("/getPastTicketsPassengers", (req, resp) => {
     con.query(distinctPnrSql, (err, res) => {
         if (err) throw err
         console.log(res)
-        console.log(res.length)
-
         for (let i = 0; i < res.length; i++) {
             let curTicketsPassengers = `
             select t.pnr, t.class, t.flight_num, t.userID, t.total_price, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name, t.status from flights f, completed_tickets t, completed_passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
@@ -633,7 +631,7 @@ app.post("/getPastTicketsPassengers", (req, resp) => {
             con.query(curTicketsPassengers, (err, result) => {
                 if (err) throw err;
                 else {
-                   // console.log(result)
+                    console.log(result)
                     pnrWiseTickets.push(result)
                 }
 
@@ -662,7 +660,6 @@ app.post('/cancelTickets', async (req, res) => {
         await pool.query(updateToCancelled)
         let delTickSql = `delete from tickets where pnr = '${pnr}'`
         await pool.query(delTickSql)
-        res.json({message:'cancelled'})
     } catch (err) {
         console.log(err)
     }
@@ -884,6 +881,49 @@ app.post('/insertFlight', async (req, res) => {
     }
 })
 
+
+app.post('/deleteFlight', async (req, res) => {
+    //console.log(req)
+    try {
+        //let all = []
+        //console.log(req)
+        let fnum = req.body.fnum
+        let sql = `delete from flights where flight_num = '${fnum}'`
+        console.log(sql)
+        await pool.query(sql)
+        res.json({message:"Successfully deleted"})
+        //res.json(result)
+        //res.json(all)
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+app.post('/insertFlight', async (req, res) => {
+    //console.log(req)
+    try {
+        //let all = []
+        //console.log(req)
+        let fnum = req.body.fnum
+        let fname = req.body.fname
+        let start = req.body.start
+        let via = req.body.via
+        let end = req.body.end
+        let departure = req.body.departure
+        let arrival = req.body.arrival
+        let price = req.body.price
+
+        let sql = `insert into flights values('${fnum}', '${fname}', '${start}','${via}','${end}','${departure}','${arrival}', ${price})`
+        console.log(sql)
+        await pool.query(sql)
+        //res.json(result)
+        res.json({message:'successful'})
+    } catch (err) {
+        res.json({message:'error'})
+        console.log(err)
+    }
+})
+
 app.post('/updateFlight', async (req, res) => {
     //console.log(req)
     try {
@@ -903,9 +943,29 @@ app.post('/updateFlight', async (req, res) => {
         await pool.query(sql)
         //res.json(result)
         //res.json(all)
+        console.log('UPDATED')
         res.json({message:'successful'})
     } catch (err) {
         res.json({message:'error'})
+        console.log(err)
+    }
+})
+
+app.post('/searchFlightsByFnum', async (req, res) => {
+    //console.log(req)
+    try {
+        //let all = []
+        //console.log(req)
+        let fnum = req.body.fnum
+        let sql = `select* from flights where flight_num = '${fnum}'`
+        console.log(sql)
+        let [result] = await pool.query(sql)
+        console.log(result)
+
+        res.json(result)
+        //res.json(result)
+        //res.json(all)
+    } catch (err) {
         console.log(err)
     }
 })
