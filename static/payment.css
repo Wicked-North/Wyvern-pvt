@@ -54,14 +54,15 @@ body {
 .card {
   background-color: #101011;
   padding: 2em;
-  width: 60%;
-  margin-left: 18%;
+  width: 95%;
+  margin: 0;
   border: 4px solid transparent;
   -o-border-image: linear-gradient(45deg, #db2763, #ff9a8b);
      border-image: linear-gradient(45deg, #db2763, #ff9a8b);
   border-image-slice: 1;
   border-radius: 4px;
   margin-bottom: 1.5em;
+  margin-left: 1em;
   font-size: 1rem;
 }
 
@@ -479,7 +480,7 @@ body {
   background: transparent;
   text-decoration: none;
   border: none;
-  margin-left: 58%;
+  margin-left: 52%;
 }
 
 .continue-to-rev-btn-invisible {
@@ -1063,5 +1064,15 @@ ol {
 .rubberBand {
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
+}
+
+.payment-parent-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.payment-left {
+  width: 60%;
 }
 /*# sourceMappingURL=payment.css.map */

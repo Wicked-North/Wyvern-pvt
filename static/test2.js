@@ -276,7 +276,6 @@ function getFlightDetails() {
               <th id='arrival'>ARRIVAL</th>
               <th id='price'>PRICE</th>
               <th id='adminPanel'>&nbsp;&nbsp;&nbsp;PANEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-
           
               
             `
@@ -609,7 +608,6 @@ function checkRadioButton() {
                   <th>Gender</th>
                   <th>DOB</th>
                   <th>Boarding</th>
-
                 `
 
                 for (let i = 0; i < data[0].length; i++) {
@@ -643,7 +641,6 @@ function checkRadioButton() {
                   <th>Gender</th>
                   <th>DOB</th>
                   <th>Boarding</th>
-
                 `
 
                 for (let i = 0; i < data[1].length; i++) {
@@ -850,7 +847,6 @@ function searchSeats() {
             console.log(seats)
 
             var seatDetails = `
-
 <ol class="cabin">
 							<li class="row row--1">
 								<ol class="seats" type="A">
@@ -941,9 +937,6 @@ function searchSeats() {
 								</ol>
 							</li>
 							<li class="row row--3">
-
-
-
 								<ol class="seats" type="A">
 									<li class="seat">
 										<input type="checkbox"   id="21" />
@@ -987,7 +980,6 @@ function searchSeats() {
 									</li>
 								</ol>
 							</li> <br><br>
-
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
@@ -1121,7 +1113,6 @@ function searchSeats() {
 								</ol>
 							</li>
 							<br><br>
-
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
@@ -1255,8 +1246,6 @@ function searchSeats() {
 								</ol>
 							</li>
 						</ol>
-
-
 `
             document.getElementById('mainContent-6').innerHTML = seatDetails;
 
