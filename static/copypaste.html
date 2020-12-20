@@ -359,3 +359,110 @@ bring it with you on the day of departure.
 </script>
 
 <img src="./images/air india.png">
+
+<div class="content-present-booking" onclick='displayPass(${i})'>
+    <div class="right-div">
+        <div class="present-booking-sub-title">
+            <div class="pnr-title">PNR-</div>
+            <div id='pnr'>${passArr[0].pnr}</div>
+        </div>
+        <div class="flight-name-title">
+            <div class='flight-name'>${passArr[0].flight_name}</div>
+            <div class="flight-num">(${passArr[0].flight_num})</div>
+        </div>
+        <div id='srcviadest'>
+            <div class="place">${passArr[0].start}</div> <i class="fas fa-arrow-right icon-via" aria-hidden="true"></i>
+            <div class="place">${passArr[0].via} </div> <i class="fas fa-arrow-right icon-via" aria-hidden="true"></i>
+            <div class="place">${passArr[0].end}</div>
+        </div>
+        <div id='class'>${passArr[0].class}</div>
+        <div class="time-div">
+            <div class="depart-div">
+                <div class="depart-title"> Departure Time - </div>
+                <div>${passArr[0].departure}</div>
+            </div>
+            <i class="fas fa-circle"></i>
+            <div class="arrival-div">
+                <div class="arrival-title"> Arrival Time - </div>
+                <div>${passArr[0].arrival}</div>
+            </div>
+
+        </div>
+        <div class="price-div">
+            <div class="price-title"> Total Price : </div>
+            <div id='price'>${passArr[0].total_price}</div>
+        </div>
+
+        <div id='status'> STATUS: CONFIRMED</div>
+    </div>
+    <div class="left-di">
+        <button class="login-btn-invisible">
+            <a class="login-btn">
+                <svg width="277" height="62">
+                    <rect x="5" y="5" rx="2" fill="none" stroke="url(#gradient)" width="235" height="47"></rect>
+                </svg>
+                <span>Cancel</span>
+            </a>
+        </button>
+
+
+
+    </div>
+
+
+</div>
+
+
+<!--IMPORTANT ADDITIONS TO BOOKINGS-->
+<button id='crossBtn' style='cursor:pointer;' onclick='cancelTicket(${passArr[0].pnr})'>x</button>
+<div id='pasDet-${i}' style='display:none'></div>
+
+<i class="fas fa-circle"></i>
+
+<div class="name-div">
+    <div class="name-title">Name -</div>
+    <div id='name'>${passArr[k].pname}</div>
+</div>
+<i class="fas fa-circle"></i>
+<div class="seatno-div">
+    <div class="seatno-title">Seat Number -</div>
+    <div id='seat'>${passArr[k].seat_no}</div>
+</div>
+<i class="fas fa-circle"></i>
+<div class="gender-div">
+    <div class="gender-title">Gender -</div>
+    <div id='gender'>${passArr[k].gender}</div>
+</div>
+<i class="fas fa-circle"></i>
+<div class="dob-div">
+    <div class="dob-title">Date Of Birth -</div>
+    <div id='dob'>${passArr[k].dob}</div>
+</div>
+
+
+<div id='name'>${passArr[k].pname}</div>
+<div id='seat'>${passArr[k].seat_no}</div>
+<div id='gender'>${passArr[k].gender}</div>
+<div id='dob'>${passArr[k].dob}</div>
+
+<div class="pass-division pass-div-${k}">
+    <div class="name-div">
+        <div class="name-title">Name -</div>
+        <div id='name'>${passArr[k].pname}</div>
+    </div>
+    <i class="fas fa-circle"></i>
+    <div class="seatno-div">
+        <div class="seatno-title">Seat Number -</div>
+        <div id='seat'>${passArr[k].seat_no}</div>
+    </div>
+    <i class="fas fa-circle"></i>
+    <div class="gender-div">
+        <div class="gender-title">Gender -</div>
+        <div id='gender'>${passArr[k].gender}</div>
+    </div>
+    <i class="fas fa-circle"></i>
+    <div class="dob-div">
+        <div class="dob-title">Date Of Birth -</div>
+        <div id='dob'>${passArr[k].dob}</div>
+    </div>
+</div>

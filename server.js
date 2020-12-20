@@ -55,7 +55,7 @@ const app = express();
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "abhra", //change password 
+    password: "", //change password 
     database: "wyvern",
     multipleStatements: true
 })
@@ -596,7 +596,7 @@ app.post("/getCurrentTicketsPassengers", (req, resp) => {
         console.log(res)
         for (let i = 0; i < res.length; i++) {
             let curTicketsPassengers = `
-            select t.pnr, t.class, t.flight_num, t.userID, t.total_price, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name from flights f, tickets t, passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
+            select t.pnr, t.class, t.flight_num, t.userID, t.total_price, t.boarding, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name, f.departure, f.arrival from flights f, tickets t, passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
 
             con.query(curTicketsPassengers, (err, result) => {
                 if (err) throw err;
@@ -626,7 +626,7 @@ app.post("/getPastTicketsPassengers", (req, resp) => {
         console.log(res)
         for (let i = 0; i < res.length; i++) {
             let curTicketsPassengers = `
-            select t.pnr, t.class, t.flight_num, t.userID, t.total_price, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name, t.status from flights f, completed_tickets t, completed_passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
+            select t.pnr, t.class, t.flight_num, t.userID, t.total_price, t.boarding, p.pname, p.pid, p.seat_no, p.gender, p.dob, f.start, f.via, f.end, f.flight_name, f.departure, f.arrival, t.status from flights f, completed_tickets t, completed_passengers p where t.pnr = p.paspnr and t.userid = '${userID}' and f.flight_num = t.flight_num and pnr = ${res[i].pnr}`
 
             con.query(curTicketsPassengers, (err, result) => {
                 if (err) throw err;

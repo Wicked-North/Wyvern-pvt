@@ -10,8 +10,9 @@ $before-color: rgb(255, 154, 139);
 $after-color:rgb(240, 247, 238);
 $grad-pink:rgb(255, 154, 139);
 $grad-red:rgb(219, 39, 99);
-$light-pink:rgb(255, 189, 179);
+$light-pink:rgba(255, 189, 179, 0.692);
 $after-color-login:rgb(219, 39, 99);
+$grad-red-warning:rgb(243, 9, 60);
 $before-color-login:rgb(240, 247, 238);
 $height-field-login:3rem;
 $font-size-custom-login:1em;
@@ -25,31 +26,48 @@ $font-size-custom-login:1em;
     border: none;
 }
 
+@keyframes onclick {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
 
 
-*{
+
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     user-select: none;
-    &::-webkit-scrollbar{
+
+    &::-webkit-scrollbar {
         display: none;
     }
+
     scrollbar-width: none;
-    
+
 }
 
-body{
+body {
 
     height: 100vh;
     width: 100vw;
     font-family: 'Average Sans', sans-serif;
     padding: 6.5% 15%;
-    color:$font-light;
+    color: $font-light;
 
 }
+
 body {
-    background: linear-gradient(51deg, #2a2a30, #080808, #2a2a30,#0f0f10,#010101);
+    background: linear-gradient(51deg, #2a2a30, #080808, #2a2a30, #0f0f10, #010101);
     background-size: 800% 800%;
     -webkit-animation: AnimationName 51s ease infinite;
     -moz-animation: AnimationName 51s ease infinite;
@@ -57,17 +75,298 @@ body {
 }
 
 @-webkit-keyframes AnimationName {
-    0%{background-position:0% 69%}
-    50%{background-position:100% 32%}
-    100%{background-position:0% 69%}
+    0% {
+        background-position: 0% 69%
+    }
+
+    50% {
+        background-position: 100% 32%
+    }
+
+    100% {
+        background-position: 0% 69%
+    }
 }
+
 @-moz-keyframes AnimationName {
-    0%{background-position:0% 69%}
-    50%{background-position:100% 32%}
-    100%{background-position:0% 69%}
+    0% {
+        background-position: 0% 69%
+    }
+
+    50% {
+        background-position: 100% 32%
+    }
+
+    100% {
+        background-position: 0% 69%
+    }
 }
+
 @keyframes AnimationName {
-    0%{background-position:0% 69%}
-    50%{background-position:100% 32%}
-    100%{background-position:0% 69%}
+    0% {
+        background-position: 0% 69%
+    }
+
+    50% {
+        background-position: 100% 32%
+    }
+
+    100% {
+        background-position: 0% 69%
+    }
+}
+
+//all titles styling
+.bookings-main-heading {
+    font-size: 48px;
+    font-family: 'Overlock', cursive;
+    font-weight: 700;
+    width: fit-content;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(50deg, $grad-pink, $grad-red);
+}
+
+.present-booking-sub-title{
+    font-family: 'Overlock', cursive;
+    font-weight: 700;
+    color:$grad-red;
+    font-size: 1.8rem;
+    letter-spacing: 0.2rem;
+    text-transform: capitalize;
+    
+}
+
+.present-booking-sub-title{
+    display: flex;
+}
+
+.flight-name-title{
+    display: flex;
+    letter-spacing:0.05rem;
+    .flight-name{
+        text-transform: capitalize;
+        margin-right:0.2em;
+    }
+}
+
+.content-present-booking {
+    border: 3px solid transparent;
+    border-image: linear-gradient(45deg, $grad-red, $grad-pink);
+    border-image-slice: 1;
+    cursor: pointer;
+    font-size: 1.15rem;
+    padding: 1.5em 2.5em 0.7em 2.5em;
+    display:flex;
+    margin-top: 1em;
+
+}
+
+.content-present-booking:not(.content-present-booking-0){
+    margin-top: 1.7em;
+}
+
+.right-div{
+    width:50%;
+}
+
+.left-div{
+    width:50%;
+    display:flex;
+}
+
+#srcviadest{
+    display:flex;
+    color: $grad-pink;
+    letter-spacing: 0.05rem;
+    font-size: 28px;
+    font-family: 'Overlock', cursive;
+    font-weight: 700;
+    i{
+        font-size:1rem;
+        margin:auto 0.3em;
+        color:$grad-red;
+    }
+}
+.place{
+    text-transform: capitalize;
+}
+
+.price-div, .time-div, .arrival-div, .depart-div{
+    display:flex;
+
+}
+
+.price-div #price{
+    margin-left:0.2em ;
+}
+
+.arrival-div, .depart-div{
+    div{
+        margin-left:0.1em;
+    }
+}
+
+.fa-circle{
+    display: block;
+    font-size:4px;
+    margin: auto 2em;
+    opacity: 0.8;
+}
+
+
+//gradient button animation
+//login-btn class name because I did not want to rename it since I copy pasted the code
+.login-btn {
+    position: relative;
+    display: inline-block;
+    outline: none;
+    width: 240px;
+    height: 50px;
+    font-weight: 700;
+    line-height: 60px;
+    text-align: center;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: 0.045em;
+    margin: 1.5em 36%;
+}
+
+
+
+.login-btn svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.login-btn svg rect {
+    /*stroke: #EC0033;*/
+    stroke-width: 3;
+    stroke-dasharray: 353, 0;
+    stroke-dashoffset: 0;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+}
+
+.login-btn span {
+    /* background: -moz-linear-gradient(left, $grad-pink 0%, $grad-red 100%);
+    background: -webkit-linear-gradient(left, $grad-pink 0%, $grad-red 100%);
+    background: linear-gradient(to right, $grad-pink 0%, $grad-red 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8282', endColorstr='#e178ed', GradientType=1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    color: $grad-red;
+}
+
+
+
+.login-btn:hover svg rect {
+    stroke-width: 4;
+    stroke-dasharray: 190, 543;
+    stroke-dashoffset: 437;
+}
+
+
+.login-btn-invisible {
+    @include removeStyle();
+    margin: 20% 0 0 30%;
+}
+
+//passenger details button
+.pass-dets-btn {
+    position: relative;
+    display: inline-block;
+    outline: none;
+    width: 240px;
+    height: 50px;
+    font-weight: 700;
+    line-height: 60px;
+    text-align: center;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: 0.045em;
+    margin: 1.5em 36%;
+}
+
+
+
+.pass-dets-btn svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pass-dets-btn svg rect {
+    /*stroke: #EC0033;*/
+    stroke-width: 3;
+    stroke-dasharray: 353, 0;
+    stroke-dashoffset: 0;
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+}
+
+.pass-dets-btn span {
+    /* background: -moz-linear-gradient(left, $grad-pink 0%, $grad-red 100%);
+    background: -webkit-linear-gradient(left, $grad-pink 0%, $grad-red 100%);
+    background: linear-gradient(to right, $grad-pink 0%, $grad-red 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8282', endColorstr='#e178ed', GradientType=1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    color: $grad-red;
+}
+
+
+
+.pass-dets-btn:hover svg rect {
+    stroke-width: 4;
+    stroke-dasharray: 190, 543;
+    stroke-dashoffset: 437;
+}
+
+
+.pass-dets-btn-invisible {
+    @include removeStyle();
+    margin: 20% 0 0 30%;
+}
+
+//button animation on click
+.animateButton {
+    animation-name: onclick;
+    animation-duration: 200ms;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+}
+
+//passengers current booking 
+.pass-division{
+    display: flex;
+    border: 2px solid $light-pink;
+    color:$font-light;
+    font-size: 1.2rem;
+    margin-top:0.7em;
+    padding-left:1em;
+    height: 3em;
+    align-items:center;
+}
+
+.pass-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.name-div, .dob-div, .seatno-div, .gender-div{
+    display:flex;
+}
+
+#name, #dob, #seat, #gender{
+    margin-left:0.5em;
 }

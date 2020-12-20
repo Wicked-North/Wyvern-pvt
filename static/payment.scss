@@ -82,13 +82,14 @@ body {
 .card {
     background-color: $black;
     padding: 2em;
-    width: 60%;
-    margin-left: 18%;
+    width: 95%;
+    margin:0;
     border: 4px solid transparent;
     border-image: linear-gradient(45deg, $grad-red, $grad-pink);
     border-image-slice: 1;
     border-radius: 4px;
     margin-bottom: 1.5em;
+    margin-left: 1em;
     font-size: 1rem;
     
 }
@@ -486,7 +487,7 @@ body {
 
 .login-btn-invisible {
     @include removeStyle();
-    margin-left: 58%;
+    margin-left: 52%;
 }
 
 //changing margin for continue to review button
@@ -1025,4 +1026,14 @@ ol {
 .rubberBand {
     -webkit-animation-name: rubberBand;
     animation-name: rubberBand;
+}
+
+//parent div styling
+
+.payment-parent-div{
+    display:flex;
+}
+
+.payment-left{
+    width: 60%;
 }
