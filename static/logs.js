@@ -39,6 +39,7 @@ function getTicketsPassengers() {
 
                 })
                 .then(data => {
+                    
                     displayTickets()
                 });
         })
@@ -87,6 +88,12 @@ let togglePast = []
 // }, 1000)
 
 function displayTickets() {
+
+    document.getElementById('loader').style.display='none'
+    document.getElementById('data').style.display='block'
+
+
+
     for (let i = 0; i < current.length; i++) {
         toggleCurrent[i] = 1
     }

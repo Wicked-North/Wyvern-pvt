@@ -494,27 +494,33 @@ app.get('/data', (req, res) => {
     })
 })
 
-// async function verifyToken(req, res, next){
+async function verifyToken(req, res, next) {
 
-//     console.log('in verify token')
-//     //console.log(req)
-// try{
-//         const bearerHeader = req.headers["authorisation"];
-//         if (typeof bearerHeader !== "undefined") {
-//             const bearer = bearerHeader.split(' ');
-//             const bearerToken = bearer[1];
-//             let authData = await jwt.verify(bearerToken, "secretkey");
-//             console.log(bearerToken)
-//             console.log(req.token)
-//             next();
-//         } else {
-//           res.status(403).json({message : "authentication failed"});
-//         }
-//     } catch(error){
-//         res.status(403).json({message : "authentication failed"})
-//     }
+    console.log('in verify token')
+    //console.log(req)
+    try {
+        const bearerHeader = req.headers["authorisation"];
+        if (typeof bearerHeader !== "undefined") {
+            const bearer = bearerHeader.split(' ');
+            const bearerToken = bearer[1];
+            let authData = await jwt.verify(bearerToken, "secretkey");
+            console.log(bearerToken)
+            //console.log(req.token)
+            next();
+        } else {
+            console.log('error')
 
-// }
+            res.status(403).json({
+                message: "authentication failed"
+            });
+        }
+    } catch (error) {
+        res.status(403).json({
+            message: "authentication failed"
+        })
+    }
+
+}
 
 //One time function for feeding values into SQL
 function insertDirectPath() {
@@ -682,7 +688,110 @@ app.post('/cancelTickets', async (req, res) => {
 
 //===============================================  ADMIN SECTION===============================================================================
 
-app.get('/getCurrentTicketDetails', async (req, res) => {
+
+
+app.get('/adminPage', (req, res) => {
+    res.redirect('login.html')
+})
+
+app.post('/getAdminLogin', async (req, res) => {
+    //console.log(req);
+
+    let admin_name
+    let loginObject = req.body
+    let admin_id = loginObject.admin_id
+    let password = loginObject.password
+    let adminDetails
+    console.log(loginObject)
+    //res.json({'msg':'logged in succesfully'})
+    let dbpassword
+    let test = {}
+    var checkSql = `select * from admin where admin_id = '${admin_id}'`
+    try {
+        const [row, field] = await pool.query(checkSql)
+
+        if (row.length == 0) {
+            return res.status(500).json({
+
+                message: "The admin_id does not exist"
+
+            });
+        }
+
+        dbpassword = row[0].admin_password
+        //console.log
+        const validPassword = await bcrypt.compare(password, dbpassword)
+
+        if (!validPassword) {
+            return res.status(500).json({
+
+                message: "The password is incorrect"
+
+            });
+        }
+
+
+
+
+        var getDataSql = `select* from admin where admin_id = '${admin_id}' `
+
+        const [rows, fields] = await pool.query(getDataSql)
+
+
+
+
+        admin_name = rows[0].admin_name
+
+
+
+        console.log(admin_name)
+
+
+
+
+        let admin = {
+            admin_id: admin_id
+        };
+
+        jwt.sign({
+                admin,
+            },
+            "secretkey",
+            (err, token) => {
+                // req.session.token = token ;
+                //vtoken = token
+                adminDetails = {
+                    admin_id: admin_id,
+                    token: token,
+                    sess: "1",
+                    admin_name: admin_name
+                }
+                //console.log("2")
+
+                //res.json(userDetails)
+                console.log(adminDetails)
+                // res.json(userDetails)
+
+                res.json(adminDetails)
+            }
+        );
+
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+app.get('/getCurrentTicketDetails', verifyToken, async (req, res) => {
     try {
         let sql = `select* from tickets`
         let [result] = await pool.query(sql)
@@ -693,7 +802,7 @@ app.get('/getCurrentTicketDetails', async (req, res) => {
     }
 })
 
-app.get('/getPreviousTicketDetails', async (req, res) => {
+app.get('/getPreviousTicketDetails', verifyToken, async (req, res) => {
     try {
         let sql = `select* from completed_tickets where status = 'completed'`
         let [result] = await pool.query(sql)
@@ -704,7 +813,7 @@ app.get('/getPreviousTicketDetails', async (req, res) => {
     }
 })
 
-app.get('/getCancelledTicketDetails', async (req, res) => {
+app.get('/getCancelledTicketDetails', verifyToken, async (req, res) => {
     try {
         let sql = `select* from completed_tickets where status = 'cancelled'`
         let [result] = await pool.query(sql)
@@ -715,7 +824,7 @@ app.get('/getCancelledTicketDetails', async (req, res) => {
     }
 })
 
-app.post('/getTicketDetailsByPnr', async (req, res) => {
+app.post('/getTicketDetailsByPnr', verifyToken, async (req, res) => {
     //console.log(req)
     try {
         console.log(req)
@@ -729,7 +838,7 @@ app.post('/getTicketDetailsByPnr', async (req, res) => {
     }
 })
 
-app.post('/getTicketDetailsByUserid', async (req, res) => {
+app.post('/getTicketDetailsByUserid', verifyToken, async (req, res) => {
     let userTickDets = []
     //console.log(req)
     try {
@@ -753,7 +862,7 @@ app.post('/getTicketDetailsByUserid', async (req, res) => {
 })
 
 
-app.get('/getFlightDetails', async (req, res) => {
+app.get('/getFlightDetails', verifyToken, async (req, res) => {
     try {
         let sql = `select* from flights`
         let [result] = await pool.query(sql)
@@ -764,7 +873,7 @@ app.get('/getFlightDetails', async (req, res) => {
     }
 })
 
-app.get('/getUserDetails', async (req, res) => {
+app.get('/getUserDetails', verifyToken, async (req, res) => {
     try {
         let sql = `select* from userinfo`
         let [result] = await pool.query(sql)
@@ -775,7 +884,7 @@ app.get('/getUserDetails', async (req, res) => {
     }
 })
 
-app.post('/getUserDetailsByUserid', async (req, res) => {
+app.post('/getUserDetailsByUserid', verifyToken, async (req, res) => {
     //console.log(req)
     try {
         console.log(req)
@@ -791,7 +900,7 @@ app.post('/getUserDetailsByUserid', async (req, res) => {
 })
 
 
-app.get('/getPassengerDetails', async (req, res) => {
+app.get('/getPassengerDetails', verifyToken, async (req, res) => {
     try {
         let sql = `select* from passengers order by paspnr`
         let [result] = await pool.query(sql)
@@ -802,7 +911,7 @@ app.get('/getPassengerDetails', async (req, res) => {
     }
 })
 
-app.post('/getPassengerDetailsByPnr', async (req, res) => {
+app.post('/getPassengerDetailsByPnr', verifyToken, async (req, res) => {
     //console.log(req)
     try {
         let all = []
@@ -822,14 +931,14 @@ app.post('/getPassengerDetailsByPnr', async (req, res) => {
     }
 })
 
-app.post('/getSeats', async (req, res) => {
+app.post('/getSeats', verifyToken, async (req, res) => {
     //console.log(req)
     try {
         //let all = []
         //console.log(req)
         let fnum = req.body.fnum
         let date = req.body.date
-        let sql = 'select`'+ `${date}` +'`'+`as 'day'`+'from seats where flight_num ='+"'"+`${fnum}`+"'"
+        let sql = 'select`' + `${date}` + '`' + `as 'day'` + 'from seats where flight_num =' + "'" + `${fnum}` + "'"
         console.log(sql)
         let [result] = await pool.query(sql)
         res.json(result)
@@ -839,7 +948,7 @@ app.post('/getSeats', async (req, res) => {
     }
 })
 
-app.post('/deleteFlight', async (req, res) => {
+app.post('/deleteFlight', verifyToken, async (req, res) => {
     //console.log(req)
     try {
         //let all = []
@@ -848,7 +957,9 @@ app.post('/deleteFlight', async (req, res) => {
         let sql = `delete from flights where flight_num = '${fnum}'`
         console.log(sql)
         await pool.query(sql)
-        res.json({message:"Successfully deleted"})
+        res.json({
+            message: "Successfully deleted"
+        })
         //res.json(result)
         //res.json(all)
     } catch (err) {
@@ -856,7 +967,7 @@ app.post('/deleteFlight', async (req, res) => {
     }
 })
 
-app.post('/insertFlight', async (req, res) => {
+app.post('/insertFlight', verifyToken, async (req, res) => {
     //console.log(req)
     try {
         //let all = []
@@ -874,15 +985,19 @@ app.post('/insertFlight', async (req, res) => {
         console.log(sql)
         await pool.query(sql)
         //res.json(result)
-        res.json({message:'successful'})
+        res.json({
+            message: 'successful'
+        })
     } catch (err) {
-        res.json({message:'error'})
+        res.json({
+            message: 'error'
+        })
         console.log(err)
     }
 })
 
 
-app.post('/deleteFlight', async (req, res) => {
+app.post('/deleteFlight', verifyToken, async (req, res) => {
     //console.log(req)
     try {
         //let all = []
@@ -891,7 +1006,9 @@ app.post('/deleteFlight', async (req, res) => {
         let sql = `delete from flights where flight_num = '${fnum}'`
         console.log(sql)
         await pool.query(sql)
-        res.json({message:"Successfully deleted"})
+        res.json({
+            message: "Successfully deleted"
+        })
         //res.json(result)
         //res.json(all)
     } catch (err) {
@@ -899,7 +1016,7 @@ app.post('/deleteFlight', async (req, res) => {
     }
 })
 
-app.post('/insertFlight', async (req, res) => {
+app.post('/insertFlight', verifyToken, async (req, res) => {
     //console.log(req)
     try {
         //let all = []
@@ -917,14 +1034,18 @@ app.post('/insertFlight', async (req, res) => {
         console.log(sql)
         await pool.query(sql)
         //res.json(result)
-        res.json({message:'successful'})
+        res.json({
+            message: 'successful'
+        })
     } catch (err) {
-        res.json({message:'error'})
+        res.json({
+            message: 'error'
+        })
         console.log(err)
     }
 })
 
-app.post('/updateFlight', async (req, res) => {
+app.post('/updateFlight', verifyToken, async (req, res) => {
     //console.log(req)
     try {
         //let all = []
@@ -944,15 +1065,19 @@ app.post('/updateFlight', async (req, res) => {
         //res.json(result)
         //res.json(all)
         console.log('UPDATED')
-        res.json({message:'successful'})
+        res.json({
+            message: 'successful'
+        })
     } catch (err) {
-        res.json({message:'error'})
+        res.json({
+            message: 'error'
+        })
         console.log(err)
     }
 })
 
-app.post('/searchFlightsByFnum', async (req, res) => {
-    //console.log(req)
+app.post('/searchFlightsByFnum', verifyToken, async (req, res) => {
+    console.log(req.headers)
     try {
         //let all = []
         //console.log(req)
