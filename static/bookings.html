@@ -4,21 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--FONT-->
-    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
     <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script>
-    <!--ICONS-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link href="./bookings.css" rel="stylesheet" />
-
-
     <title>Bookings</title>
 </head>
 
 <body>
-    <div style='display:block;' id='loader'>
+    <div style='display:block;position:fixed;left:50%;' id='loader'>
     
-        <div style='z-index:20;position:fixed;'>
+        <div style='z-index:20;'>
             <svg width="300px" height="300px">
             <defs>
               <path id="svg-half-plane"
@@ -60,12 +59,24 @@
     </div>
 
 
-    <div style='display:none' id='data'>
-      <div id='prevBookings'></div>
-      <div id='currentBookings'></div>
-      <div id='cancelledBookings'></div>
+  
+    <div class="bookings-content" id='data'>
+        <div class="bookings-main-heading">Bookings</div>
+        <div id='prevBookings'></div>
+        <div id='currentBookings'></div>
+        <!-- <div id='cancelledBookings'></div> -->
 
     </div>
+    <svg>
+        <defs>
+            <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+                <stop offset="0%" stop-color="rgb(255, 154, 139)"></stop>
+                <stop offset="100%" stop-color="rgb(219, 39, 99)"></stop>
+                <stop offset="50%" stop-color="rgb(219, 39, 99)"></stop>
+                
+            </linearGradient>
+        </defs>
+    </svg>
 </body>
 <script src='logs.js'></script>
 

@@ -81,6 +81,7 @@ function bookSeats() {
     var fnum = sessionStorage.getItem("Flight-Name")
     var result = fnum.match(/\((.*)\)/);
     var regex = / /gi
+    let totPrice = totalPrice.replace(',','')
 
     let ticketInfo = {
         type: sessionStorage.getItem("class"),
@@ -88,7 +89,7 @@ function bookSeats() {
         price: sessionStorage.getItem("basePrice"),
         userid: userId,
         boarding: `${day} ${deptTime}`,
-        totalPrice: totalPrice
+        totalPrice: totPrice
 
     }
 
