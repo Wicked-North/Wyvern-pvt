@@ -490,6 +490,7 @@ function updateViaCard(arr) {
         priceVia = viaflights[i].price
         priceVia = numberWithCommas(priceVia)
         $(`.price-${countViaCard}`).text(priceVia)
+        
         if (i == 0) {
             var elem = ` <div class="card-${countViaCard} card">
             <div class="img" style="content: url('./images/${imgFileName}.png')"></div>
@@ -546,16 +547,6 @@ $(".direct-flights-o").on('click', '.card-1', animatingCard)
 $(".direct-flights-o").on('click', '.card-2', animatingCard)
 $(".direct-flights-o").on('click', '.card-3', animatingCard)
 
-/* //changing map on click
-$(".direct-flights-o .card-1").click(() => {
-    showPath($(".from-1").text().toLowerCase(), $(".to-1").text().toLowerCase())
-})
-$(".direct-flights-o .card-2").click(() => {
-    showPath($(".from-2").text().toLowerCase(), $(".to-2").text().toLowerCase())
-})
-$(".direct-flights-o .card-3").click(() => {
-    showPath($(".from-3").text().toLowerCase(), $(".to-3").text().toLowerCase())
-}) */
 
 //cards ( overlay ) animating on click
 $(".via-flights-o").on('click', '.card-4', animatingCard);
@@ -819,9 +810,7 @@ $(".static-container").ready(() => {
     $(".static-container .arrivalTime").text(arrTime)
     time = diff(deptTime, arrTime)
     time = time.split(":")
-    hrs = time[0]
-    mins = time[1]
-    console.log("time diff" + time)
+    //console.log("time diff" + time)
     $(".static-container .hours").text(hrs)
     $(".static-container .minutes").text(mins)
     $(".static-container .price").text(totalPrice)
@@ -1060,6 +1049,7 @@ function sortAll(viaflights, optimised) {
     var viaFlightsNum = "";
     var countViaCard = 5;
     var priceVia;
+    var time, arrTime, deptTime
     $(".via-flights-o").empty();
 
     console.log("sorted array", viaflights)
@@ -1069,7 +1059,7 @@ function sortAll(viaflights, optimised) {
 
         viaFlightsNum = viaflights[i].flight_num.split('-')
         var imgFileName = viaFlightsNum[0]
-        console.log("img file name", imgFileName)
+        //console.log("img file name", imgFileName)
         viaFlightsNum = viaFlightsNum[0].toUpperCase() + " - " + viaFlightsNum[1];
 
         viaFlightsName = viaflights[i].flight_name.split(" ");
@@ -1086,7 +1076,11 @@ function sortAll(viaflights, optimised) {
         priceVia = numberWithCommas(priceVia)
         $(`.price-${countViaCard}`).text(priceVia)
 
+        time = diff(viaflights[i].departure, viaflights[i].arrival)
+        time = time.split(":")
+        
         if (viaflights[i].flight_num == optimised[0].flight_num) {
+
             var elem = `  <div class="card-4 card">
             <div class="img" style="content: url('./images/${imgFileName}.png')"></div>
             <div class="card-content">
