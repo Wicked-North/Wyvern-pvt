@@ -157,7 +157,7 @@
       let email = document.getElementById('email').value
       let password = document.getElementById('pass').value
       let data = {
-        email: email,
+        admin_id: email,
         password: password
       }
       const options = {
@@ -169,32 +169,29 @@
       };
 
 
-      fetch("/getLogin", options).then((res) => res.json().then((data) => {
+      fetch("/getAdminLogin", options).then((res) => res.json().then((data) => {
         console.log(data)
-        if (data.successful == '0') {
+        if (data.message == "The admin_id does not exist" || data.message == 'The password is incorrect') {
           console.log('not successful')
+          window.alert(data.message)
         }
+
         // else if(data.successful == 'incorrect email'){console.log('Email is incorrect')}
         else {
+          sessionStorage.clear()
           fillSessionStorage()
 
           function fillSessionStorage() {
             sessionStorage.setItem('token', data.token)
-            sessionStorage.setItem('user_id', data.user_id)
-            sessionStorage.setItem('dob', data.dob)
+            sessionStorage.setItem('admin_id', data.admin_id)
+            sessionStorage.setItem('admin_name', data.admin_name)
             sessionStorage.setItem('sess', data.sess)
-            sessionStorage.setItem('user_name', data.user_name)
-            sessionStorage.setItem('gender', data.gender)
-            sessionStorage.setItem('mobile', data.mobile)
           }
 
           console.log('successful')
 
-          setTimeout(()=>{
-            window.location.assign('home-page.html')
-          }, 1000)
-        
-
+             window.location.assign('admin.html')
+          
         }
 
       })).catch((err) => console.log(err))

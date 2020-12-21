@@ -2,95 +2,289 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<title>Test2 Admin Panel</title>
+
+	<link rel="stylesheet" type="text/css" href="admin.css">
 </head>
-<script src='admin.js'></script>
+
 <body>
-    <div>
-        <label for="pnr">Search Tickets with PNR</label><br>
-        <input type="text" id="pnr" name="pnr" placeholder="Enter PNR">&nbsp;
-        <input type="submit" value="Search" onclick="getTicketDetailsByPnr()">
-    </div>
-    <br>
+	<script src="https://kit.fontawesome.com/528142d28e.js" crossorigin="anonymous"></script>
+
+	<body class="bdy">
 
 
 
-    <div>
-        <label for="uid">Search Tickets with User ID</label><br>
-        <input type="text" id="uid" name="uid" placeholder="Enter UserID">&nbsp;
-        <input type="submit" value="Search" onclick="getTicketDetailsByUserid()">
+		<div class="leftsection">
 
-    </div>
-    <br>
+			<!-- Side navigation -->
+			<div class="sidenav">
 
 
-    <div>
-        <!-- <label for="pnr">All Flight Details</label><br>
-        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
-        <input type="submit" value="Current Ticket Details" onclick="getCurrentTicketDetails()">
+				<input type="text" placeholder="Search.." id='searchQuery'>
 
-    </div>
-    <br>
 
-    <div>
-        <!-- <label for="pnr">All Flight Details</label><br>
-        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
-        <input type="submit" value="Previous Ticket Details" onclick="getPreviousTicketDetails()">
+				<div class="form-check" id="radiobtn">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+						value="option1">
+					<label class="form-check-label" for="exampleRadios1" id="texta">
+						Search user using User ID
+					</label>
+				</div>
+				<div class="form-check" id="radiobtn">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+						value="option1">
+					<label class="form-check-label" for="exampleRadios1" id="texta">
+						Search passengers using PNR
+					</label>
+				</div>
+				<div class="form-check" id="radiobtn">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
+						value="option1">
+					<label class="form-check-label" for="exampleRadios1" id="texta">
+						Search tickets using User ID
+					</label>
+				</div>
+				<div class="form-check" id="radiobtn">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4"
+						value="option1">
+					<label class="form-check-label" for="exampleRadios1" id="texta">
+						Search tickets using PNR
+					</label>
+				</div>
 
-    </div>
-    <br>
+				<button onclick="checkRadioButton()">
+					Search
+				</button>
 
-    <div>
-        <!-- <label for="pnr">All Flight Details</label><br>
-        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
-        <input type="submit" value="Cancelled Ticket Details" onclick="getCancelledTicketDetails()">
 
-    </div>
-    <br>
 
-    <div>
-        <!-- <label for="pnr">All Flight Details</label><br>
-        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
-        <input type="submit" value="Ticket Details" onclick="getCurrentTicketDetails()">
 
-    </div>
-    <br>
-    <div>
-        <!-- <label for="pnr">All Flight Details</label><br>
-        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
-        <input type="submit" value="Flight Details" onclick="getFlightDetails()">
 
-    </div>
-    <br>
-    <div>
-        <label for="udets">Search Users with ID</label><br>
-        <input type="text" id="udets" name="udets" placeholder="Enter UserID">&nbsp;
-        <input type="submit" value="Search" onclick="getUserDetailsByUserid()">
+				<div class="sidenav" id="sidenavsec">
 
-    </div>
-    <br>
-    <div>
-        <!-- <label for="pnr">All Flight Details</label><br>
-        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
-        <input type="submit" value="User Details" onclick="getUserDetails()">
+					<!-- <p>Search seats using FlightNo:</p> -->
+					<label id='texta' class="form-check-label flightLabel" for='search4'>Search seats using
+						FlightNo</label>
+					<input type="text" placeholder="Flight Number" id="search4" class='seatText'>
 
-    </div>
-    <br>
-    <div>
-        <label for="paspnr">Search Passengers with PNR</label><br>
-        <input type="text" id="paspnr" name="paspnr" placeholder="Enter PNR">&nbsp;
-        <input type="submit" value="Search" onclick="getPassengerDetailsByPnr()">
+					<form action="/action_page.php">
+						<label for="birthday" id="datea"></label>
+						<input type="date" id="birthday" name="birthday">
+					</form>
 
-    </div>
-    <br>
-    <div>
-        <!-- <label for="pnr">All Flight Details</label><br>
-        <input type="text" id="fdets" name="fdets" placeholder="Enter PNR">&nbsp; -->
-        <input type="submit" value="Passenger Details" onclick="getPassengerDetails()">
+					<button type="button" class="btn btn-dark btn-rounded" id="submitbtn"
+						onclick='searchSeats()'>Submit</button>
 
-    </div>
+
+
+				</div>
+
+
+
+
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+		<div class="rightsection">
+
+			<button class="tablink" id="flightTab" onclick="openPage('Home', this, '#323233'); getFlightDetails()">All
+				flights</button>
+			<button class="tablink" id="tabbtns" onclick="openPage('News', this, '#323233'); getUserDetails()"
+				id="defaultOpen">All
+				Users</button>
+			<button class="tablink" id="tabbtns"
+				onclick="openPage('Contact', this, '#323233');getPreviousTicketDetails()">Previous
+				Tickets</button>
+			<button class="tablink" id="tabbtns"
+				onclick="openPage('About', this, '#323233');getCurrentTicketDetails()">Current Tickets</button>
+			<button class="tablink" id="tabbtns"
+				onclick="openPage('cancelled', this, '#323233');getCancelledTicketDetails()">Cancelled
+				tickets</button>
+
+
+			<select class="mdb-select md-form" id="drop" onchange="logOut(value)">
+				<option value="" disabled selected>ad-101</option>
+				<option value="1">Log Out</option>
+				<option value="2">Log in as user</option>
+			</select>
+
+
+
+
+
+			<div id="Home" class="tabcontent">
+
+
+
+				<input type="text" placeholder="Search.." id="searchByFnum">
+				<button onclick="searchByFnum()">Search</button>
+				<span><button id='insButton' onclick="showInsertFlight()" style='background-color: gray;color:rgb(34, 34, 34);'><i class="fas fa-plus-square"></i>&nbsp;ADD FLIGHT</button></span>
+				<span><button id='cancButton' onclick="cancelInsertFlight()" style='background-color: gray;color:rgb(34, 34, 34); display: none;'>CANCEL</button></span>
+
+
+				<!-- INSERT DIV -->
+				<div id='insertFlight' style='padding-bottom: 20px; display: none;'>
+					
+					<span><select name="cars" id="flightName" onchange="fixName(value)" style="height:30px">
+							<option value="air india" >Air India</option>
+							<option value="go air">GO Air</option>
+							<option value="indigo">Indigo</option>
+							<option value="spice jet">Spice Jet</option>
+							<option value="vistara">Vistara</option>
+							<option value="asia airways">Asia Airways</option>
+
+
+						</select></span>
+					<span><input type="text" placeholder="" id="flightInitial" style="width:35px;padding-left:8px;" value='ai' readonly></span>
+					<span>-</span>
+					<span><input type="text" placeholder="Flight Num" id="fnum" style="width:100px"></span>
+
+					<span><select name="cars" id="start" style="height:30px">
+							<option value="" disabled selected>Start</option>
+							<option value="Bangalore">Bangalore</option>
+							<option value="Mumbai">Mumbai</option>
+							<option value="Kolkata">Kolkata</option>
+							<option value="Hyderabad">Hyderabad</option>
+							<option value="Delhi">Delhi</option>
+							<option value="Jaipur">Jaipur</option>
+							<option value="Ahmedabad">Ahmedabad</option>
+
+						</select></span>
+					<span><select name="cars" id="via" style="height:30px">
+						<option value="" disabled selected>Via</option>
+						<option value="Kolkata">Kolkata</option>
+						<option value="Bangalore">Bangalore</option>
+						<option value="Mumbai">Mumbai</option>
+						
+						<option value="Hyderabad">Hyderabad</option>
+						<option value="Delhi">Delhi</option>
+						<option value="Jaipur">Jaipur</option>
+						<option value="Ahmedabad">Ahmedabad</option>
+
+						</select></span>
+
+					
+					<span><select name="cars" id="end" style="height:30px">
+						<option value="" disabled selected>End</option>
+						<option value="Mumbai">Mumbai</option>
+						<option value="Bangalore">Bangalore</option>
+						
+						<option value="Kolkata">Kolkata</option>
+						<option value="Hyderabad">Hyderabad</option>
+						<option value="Delhi">Delhi</option>
+						<option value="Jaipur">Jaipur</option>
+						<option value="Ahmedabad">Ahmedabad</option>
+
+						</select></span>
+
+					<span><input type="text" placeholder="Departure (hh:mm:ss)" id="dep" style="width:130px"></span>
+					<span><input type="text" placeholder="Arrival (hh:mm:ss)" id="arri" style="width:130px"></span>
+					<span><input type="text" placeholder="Price" id="price" style="width:130px"></span>
+					<button onclick="insertFlight()">Insert</button>
+
+
+					
+
+				</div>
+
+				<div id='mainContent-1'>
+
+				</div>
+
+
+
+			</div>
+
+			<div id="News" class="tabcontent">
+
+				<div id='mainContent-2'>
+
+				</div>
+			</div>
+
+			<div id="Contact" class="tabcontent">
+				<div id='mainContent-3'>
+
+				</div>
+
+			</div>
+
+			<div id="About" class="tabcontent">
+
+				<div id='mainContent-4'>
+
+				</div>
+			</div>
+
+			<div id="cancelled" class="tabcontent">
+
+				<div id='mainContent-5'>
+
+				</div>
+			</div>
+
+			<div id="radioButtonContent" class="tabcontent">
+				<!-- <input type="text" placeholder="Search.." id="tabsearch"> -->
+
+				<div id='mainContent-6'>
+
+				</div>
+			</div>
+
+
+		</div>
+
+		<script>
+			if(sessionStorage.getItem('sess') != "ad-1"){
+				window.alert('Please login to continue')
+				window.location.replace('login.html')
+			}
+		</script>
+
+
+
+
+
+
+
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+			integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
+		</script>
+		<script src="admin.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+		</script>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+		</script>
+	</body>
 </body>
 
 </html>
