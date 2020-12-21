@@ -77,10 +77,10 @@ function getTicketsPassengers() {
 //animating button on click (binding event to static element again >.<) 
 
 $(document).on('click', '.login-btn', animateBtn)
-function animateBtn(){
-    $(".login-btn").addClass("animateButton");
+function animateBtn(evt){
+    $(evt.target).addClass("animateButton");
     setTimeout(() => {
-        $(".login-btn").removeClass("animateButton");
+        $(evt.target).removeClass("animateButton");
 
     }, 500)
 }
@@ -145,26 +145,32 @@ function displayTickets() {
             <div class="price-title"> Total Price : </div>
             <div id='price'>${passArr[0].total_price}</div>
         </div>
+        <div class="status-div">
+            <div id='status'> STATUS : </div> 
+            <div class="status-confirmed">CONFIRMED</div>
+        </div>
 
-        <div id='status'> STATUS: CONFIRMED</div>
+        
     </div>
     <div class="left-div">
+        <div class="left-div-content">
         <button class="pass-dets-btn-invisible">
-            <a class="pass-dets-btn">
-                <svg width="277" height="62">
-                    <rect x="5" y="5" rx="2" fill="none" stroke="url(#gradient)" width="235" height="47"></rect>
-                </svg>
-                <span>Passenger Details</span>
-            </a>
-        </button>
-        <button class="login-btn-invisible">
-            <a class="login-btn">
-                <svg width="277" height="62">
-                    <rect x="5" y="5" rx="2" fill="none" stroke="url(#gradient)" width="235" height="47"></rect>
-                </svg>
-                <span>Cancel Booking</span>
-            </a>
-        </button>
+        <a class="pass-dets-btn">
+            <svg width="277" height="62">
+                <rect x="5" y="5" rx="2" fill="none" stroke="url(#gradient)" width="235" height="47"></rect>
+            </svg>
+            <span>Passenger Details</span>
+        </a>
+    </button>
+    <button class="login-btn-invisible" onclick='cancelTicket(${passArr[0].pnr})' id='crossBtn'>
+        <a class="login-btn">
+            <svg width="277" height="62">
+                <rect x="5" y="5" rx="2" fill="none" stroke="url(#gradient)" width="235" height="47"></rect>
+            </svg>
+            <span>Cancel Booking</span>
+        </a>
+    </button>
+    </div>
         <button id='crossBtn' style='cursor:pointer; display:none;' onclick='cancelTicket(${passArr[0].pnr})'>x</button>
     </div>
     
@@ -183,25 +189,27 @@ function displayTickets() {
             
             <div class="pass-division pass-div-${k}">
             <div class="name-div">
-            <div class="name-title">Name -</div>
+            <div class="name-title">Name :</div>
             <div id='name'>${passArr[k].pname}</div>
         </div>
         <i class="fas fa-circle"></i>
         <div class="seatno-div">
-            <div class="seatno-title">Seat Number -</div>
+            <div class="seatno-title">Seat Number :</div>
             <div id='seat'>${passArr[k].seat_no}</div>
         </div>
         <i class="fas fa-circle"></i>
         <div class="gender-div">
-            <div class="gender-title">Gender -</div>
+            <div class="gender-title">Gender :</div>
             <div id='gender'>${passArr[k].gender}</div>
         </div>
         <i class="fas fa-circle"></i>
         <div class="dob-div">
-            <div class="dob-title">Date Of Birth -</div>
+            <div class="dob-title">Date Of Birth :</div>
             <div id='dob'>${passArr[k].dob}</div>
         </div>
         </div>
+    </div>
+        <div id='pasDet-${i}' class="pass-details" style='display:none'></div>
             `
             document.getElementById(`pasDet-${i}`).innerHTML += passDets;
 
@@ -216,15 +224,63 @@ function displayTickets() {
         let pastPassArr = past[i]
         console.log(pastPassArr)
 
-        prevBooking = `<div  onclick='displayPastPass(${i})'>
+        prevBooking = ` <div class="content-previous-booking content-previous-booking-${i}" onclick='displayPastPass(${i})'>
+        <div class="right-div">
+            <div class="present-booking-sub-title">
+                <div class="pnr-title">PNR-</div>
                 <div id='pnr'>${pastPassArr[0].pnr}</div>
-                <div id='company'>${pastPassArr[0].flight_name}</div>
-                <div id='sourceDest'>${pastPassArr[0].start}-${pastPassArr[0].via}-${pastPassArr[0].end}</div>
-                <div id='class'>${pastPassArr[0].class}</div>
+            </div>
+            <div class="flight-name-title">
+                <div class='flight-name'>${pastPassArr[0].flight_name}</div>
+                <div class="flight-num">(${pastPassArr[0].flight_num})</div>
+            </div>
+            <div id='srcviadest'>
+                <div class="place">${pastPassArr[0].start}</div> <i class="fas fa-arrow-right icon-via"
+                    aria-hidden="true"></i>
+                <div class="place">${pastPassArr[0].via} </div> <i class="fas fa-arrow-right icon-via"
+                    aria-hidden="true"></i>
+                <div class="place">${pastPassArr[0].end}</div>
+            </div>
+            <div id='class'>${pastPassArr[0].class}</div>
+            <div class="time-div">
+                <div class="depart-div">
+                    <div class="depart-title"> Departure Time - </div>
+                    <div>${pastPassArr[0].departure}</div>
+                </div>
+                <i class="fas fa-circle"></i>
+                <div class="arrival-div">
+                    <div class="arrival-title"> Arrival Time - </div>
+                    <div>${pastPassArr[0].arrival}</div>
+                </div>
+    
+            </div>
+            <div class="price-div">
+                <div class="price-title"> Total Price : </div>
                 <div id='price'>${pastPassArr[0].total_price}</div>
-                <div id='status'>${pastPassArr[0].status}</div>
-                <div id='pastPasDet-${i}' style='display:none'></div>
-                </div>                
+            </div>
+            <div class="status-div">
+                <div id='status'> STATUS : </div>
+                <div class="status-cancelled">CANCELLED</div>
+            </div>
+    
+    
+        </div>
+        <div class="left-div-past-pass">
+            <div class="left-div-content">
+                <button class="pass-dets-btn-invisible">
+                    <a class="pass-dets-btn">
+                        <svg width="277" height="62">
+                            <rect x="5" y="5" rx="2" fill="none" stroke="url(#gradient1)" width="235" height="47"></rect>
+                        </svg>
+                        <span>Passenger Details</span>
+                    </a>
+                </button>
+            </div>
+            <div id='pastPasDet-${i}' style='display:none'></div>
+    
+    
+        </div>
+    </div>     
                 `
 
         document.getElementById('prevBookings').innerHTML += prevBooking;
@@ -232,10 +288,29 @@ function displayTickets() {
         let pastPassDets = ``
         for (var k = 0; k < pastPassArr.length; k++) {
 
-            pastPassDets = `<div id='name'>${pastPassArr[k].pname}</div>
-            <div id='seat'>${pastPassArr[k].seat_no}</div>
-            <div id='gender'>${pastPassArr[k].gender}</div>
-            <div id='dob'>${pastPassArr[k].dob}</div>
+            pastPassDets = `  
+            
+            <div class="pass-division pass-div-${k}">
+                <div class="name-div">
+                <div class="name-title">Name :</div>
+                <div id='name'>${pastPassArr[k].pname}</div>
+            </div>
+            <i class="fas fa-circle"></i>
+            <div class="seatno-div">
+                <div class="seatno-title">Seat Number :</div>
+                <div id='seat'>${pastPassArr[k].seat_no}</div>
+            </div>
+            <i class="fas fa-circle"></i>
+            <div class="gender-div">
+                <div class="gender-title">Gender :</div>
+                <div id='gender'>${pastPassArr[k].gender}</div>
+            </div>
+            <i class="fas fa-circle"></i>
+            <div class="dob-div">
+                <div class="dob-title">Date Of Birth :</div>
+                <div id='dob'>${pastPassArr[k].dob}</div>
+            </div>
+            </div>
             `
             document.getElementById(`pastPasDet-${i}`).innerHTML += pastPassDets;
 

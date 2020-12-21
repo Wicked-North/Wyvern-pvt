@@ -4,6 +4,7 @@ $medium-grey:rgb(78, 78, 80);
 $transparent-grey:rgba(78, 78, 80, 0.4);
 $black-lighter:rgba(8, 8, 8, 0.3);
 $font-light:rgb(240, 247, 238);
+$font-light-transparent:rgba(240, 247, 238, 0.836);
 $height-field: 3.5rem;
 $font-size-custom: 1.2em;
 $before-color: rgb(255, 154, 139);
@@ -14,6 +15,7 @@ $light-pink:rgba(255, 189, 179, 0.692);
 $after-color-login:rgb(219, 39, 99);
 $grad-red-warning:rgb(243, 9, 60);
 $before-color-login:rgb(240, 247, 238);
+$confirmed:#29b80d;
 $height-field-login:3rem;
 $font-size-custom-login:1em;
 
@@ -168,14 +170,45 @@ body {
     margin-top: 1.7em;
 }
 
+.content-previous-booking {
+    border: 3px solid transparent;
+    //border-image: linear-gradient(45deg, $grad-pink, $grad-pink);
+    border-image: linear-gradient(45deg, $medium-grey,$font-light);
+    border-image-slice: 1;
+    cursor: pointer;
+    font-size: 1.15rem;
+    padding: 1.5em 2.5em 0.7em 2.5em;
+    display:flex;
+    margin-top: 1em;
+
+}
+
+.content-previous-booking:not(.content-previous-booking-0){
+    margin-top: 1.7em;
+}
+
 .right-div{
     width:50%;
 }
 
+//all left divisions present + past
 .left-div{
     width:50%;
-    display:flex;
+    padding:3.5em 0 0 22%;
+    //display:flex;
 }
+
+.left-div-content{
+    display:flex;
+    flex-direction:column;
+}
+
+.left-div-past-pass{
+    width:fit-content;
+    height:fit-content;
+    margin:6.7em 0 0 22% ;
+}
+
 
 #srcviadest{
     display:flex;
@@ -192,6 +225,16 @@ body {
 }
 .place{
     text-transform: capitalize;
+}
+
+.content-previous-booking #srcviadest{
+    
+    color: $font-light;
+    i{
+        font-size:1rem;
+        margin:auto 0.3em;
+        color:$grad-red;
+    }
 }
 
 .price-div, .time-div, .arrival-div, .depart-div{
@@ -212,11 +255,16 @@ body {
 .fa-circle{
     display: block;
     font-size:4px;
-    margin: auto 2em;
+    margin: auto 2.5em;
     opacity: 0.8;
 }
 
-
+.pass-details .fa-circle{
+    display: block;
+    font-size:4px;
+    margin: auto 12.5em;
+    opacity: 0.8;
+}
 //gradient button animation
 //login-btn class name because I did not want to rename it since I copy pasted the code
 .login-btn {
@@ -232,9 +280,9 @@ body {
     cursor: pointer;
     text-decoration: none;
     font-weight: 500;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     letter-spacing: 0.045em;
-    margin: 1.5em 36%;
+    //margin: 1.5em 36%;
 }
 
 
@@ -275,7 +323,9 @@ body {
 
 .login-btn-invisible {
     @include removeStyle();
-    margin: 20% 0 0 30%;
+    height:0;
+    width:0;
+    //margin: 20% 0 0 30%;
 }
 
 //passenger details button
@@ -292,9 +342,9 @@ body {
     cursor: pointer;
     text-decoration: none;
     font-weight: 500;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     letter-spacing: 0.045em;
-    margin: 1.5em 36%;
+    margin-bottom: 0.7em;
 }
 
 
@@ -335,8 +385,11 @@ body {
 
 .pass-dets-btn-invisible {
     @include removeStyle();
-    margin: 20% 0 0 30%;
+    height:fit-content;
+    width:fit-content;
+    //margin: 20% 0 0 30%;
 }
+
 
 //button animation on click
 .animateButton {
@@ -352,7 +405,7 @@ body {
     border: 2px solid $light-pink;
     color:$font-light;
     font-size: 1.2rem;
-    margin-top:0.7em;
+    //margin-top:0.7em;
     padding-left:1em;
     height: 3em;
     align-items:center;
@@ -366,7 +419,28 @@ body {
 .name-div, .dob-div, .seatno-div, .gender-div{
     display:flex;
 }
-
+.name-title, .dob-title, .seatno-title, .gender-title{
+    color:$grad-pink;
+}
 #name, #dob, #seat, #gender{
     margin-left:0.5em;
+}
+
+.status-div{
+    display:flex;
+    color:$grad-pink;
+    #status{
+        margin-right:0.3em;
+    }
+    .status-confirmed{
+        color:$confirmed;
+    }
+
+    .status-cancelled{
+        color:$grad-red-warning
+    }
+}
+
+.content-previous-booking .status-div{
+    color:$font-light;
 }
