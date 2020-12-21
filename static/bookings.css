@@ -185,15 +185,51 @@ body {
   margin-top: 1.7em;
 }
 
+.content-previous-booking {
+  border: 3px solid transparent;
+  -o-border-image: linear-gradient(45deg, #4e4e50, #f0f7ee);
+     border-image: linear-gradient(45deg, #4e4e50, #f0f7ee);
+  border-image-slice: 1;
+  cursor: pointer;
+  font-size: 1.15rem;
+  padding: 1.5em 2.5em 0.7em 2.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1em;
+}
+
+.content-previous-booking:not(.content-previous-booking-0) {
+  margin-top: 1.7em;
+}
+
 .right-div {
   width: 50%;
 }
 
 .left-div {
   width: 50%;
+  padding: 3.5em 0 0 22%;
+}
+
+.left-div-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.left-div-past-pass {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 6.7em 0 0 22%;
 }
 
 #srcviadest {
@@ -217,6 +253,16 @@ body {
   text-transform: capitalize;
 }
 
+.content-previous-booking #srcviadest {
+  color: #f0f7ee;
+}
+
+.content-previous-booking #srcviadest i {
+  font-size: 1rem;
+  margin: auto 0.3em;
+  color: #db2763;
+}
+
 .price-div, .time-div, .arrival-div, .depart-div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -234,7 +280,14 @@ body {
 .fa-circle {
   display: block;
   font-size: 4px;
-  margin: auto 2em;
+  margin: auto 2.5em;
+  opacity: 0.8;
+}
+
+.pass-details .fa-circle {
+  display: block;
+  font-size: 4px;
+  margin: auto 12.5em;
   opacity: 0.8;
 }
 
@@ -251,9 +304,8 @@ body {
   cursor: pointer;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   letter-spacing: 0.045em;
-  margin: 1.5em 36%;
 }
 
 .login-btn svg {
@@ -292,7 +344,8 @@ body {
   background: transparent;
   text-decoration: none;
   border: none;
-  margin: 20% 0 0 30%;
+  height: 0;
+  width: 0;
 }
 
 .pass-dets-btn {
@@ -308,9 +361,9 @@ body {
   cursor: pointer;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   letter-spacing: 0.045em;
-  margin: 1.5em 36%;
+  margin-bottom: 0.7em;
 }
 
 .pass-dets-btn svg {
@@ -349,7 +402,12 @@ body {
   background: transparent;
   text-decoration: none;
   border: none;
-  margin: 20% 0 0 30%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .animateButton {
@@ -370,7 +428,6 @@ body {
   border: 2px solid rgba(255, 189, 179, 0.692);
   color: #f0f7ee;
   font-size: 1.2rem;
-  margin-top: 0.7em;
   padding-left: 1em;
   height: 3em;
   -webkit-box-align: center;
@@ -394,7 +451,34 @@ body {
   display: flex;
 }
 
+.name-title, .dob-title, .seatno-title, .gender-title {
+  color: #ff9a8b;
+}
+
 #name, #dob, #seat, #gender {
   margin-left: 0.5em;
+}
+
+.status-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #ff9a8b;
+}
+
+.status-div #status {
+  margin-right: 0.3em;
+}
+
+.status-div .status-confirmed {
+  color: #29b80d;
+}
+
+.status-div .status-cancelled {
+  color: #f3093c;
+}
+
+.content-previous-booking .status-div {
+  color: #f0f7ee;
 }
 /*# sourceMappingURL=bookings.css.map */
