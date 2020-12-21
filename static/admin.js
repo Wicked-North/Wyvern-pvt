@@ -904,43 +904,43 @@ function searchSeats() {
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
-										<input type="checkbox"   id="1" />
+										<input type="checkbox"   id="s-1" />
 										<label for="1" id='l-1'>A1</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="2" />
+										<input type="checkbox"   id="s-2" />
 										<label for="2" id='l-2'>A2</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="3" />
+										<input type="checkbox"   id="s-3" />
 										<label for="3" id='l-3'>A3</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="4" />
+										<input type="checkbox"   id="s-4" />
 										<label for="4" id='l-4'>A4</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="5" />
+										<input type="checkbox"   id="s-5" />
 										<label for="5" id='l-5'>A5</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="6" />
+										<input type="checkbox"   id="s-6" />
 										<label for="6" id='l-6'>A6</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="7" />
+										<input type="checkbox"   id="s-7" />
 										<label for="7" id='l-7'>A7</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="8" />
+										<input type="checkbox"   id="s-8" />
 										<label for="8" id='l-8'>A8</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="9" />
+										<input type="checkbox"   id="s-9" />
 										<label for="9" id='l-9'>A9</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="10" />
+										<input type="checkbox"   id="s-10" />
 										<label for="10" id='l-10'>A10</label>
 									</li>
 								</ol>
@@ -948,43 +948,43 @@ function searchSeats() {
 							<li class="row row--2">
 								<ol class="seats" type="A">
 									<li class="seat">
-										<input type="checkbox"   id="11" />
+										<input type="checkbox"   id="s-11" />
 										<label for="11" id='l-11'>B1</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="12" />
+										<input type="checkbox"   id="s-12" />
 										<label for="12" id='l-12'>B2</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="13" />
+										<input type="checkbox"   id="s-13" />
 										<label for="13" id='l-13'>B3</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="14" />
+										<input type="checkbox"   id="s-14" />
 										<label for="14" id='l-14'>B4</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="15" />
+										<input type="checkbox"   id="s-15" />
 										<label for="15" id='l-15'>B5</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="16" />
+										<input type="checkbox"   id="s-16" />
 										<label for="16" id='l-16'>B6</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="17" />
+										<input type="checkbox"   id="s-17" />
 										<label for="17" id='l-17'>B7</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="18" />
+										<input type="checkbox"   id="s-18" />
 										<label for="18" id='l-18'>B8</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="19" />
+										<input type="checkbox"   id="s-19" />
 										<label for="19" id='l-19'>B9</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="20" />
+										<input type="checkbox"   id="s-20" />
 										<label for="20" id='l-20'>B10</label>
 									</li>
 								</ol>
@@ -992,43 +992,43 @@ function searchSeats() {
 							<li class="row row--3">
 								<ol class="seats" type="A">
 									<li class="seat">
-										<input type="checkbox"   id="21" />
+										<input type="checkbox"   id="s-21" />
 										<label for="21" id='l-21'>C1</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="22" />
+										<input type="checkbox"   id="s-22" />
 										<label for="22" id='l-22'>C2</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="23" />
+										<input type="checkbox"   id="s-23" />
 										<label for="23" id='l-23'>C3</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="24" />
+										<input type="checkbox"   id="s-24" />
 										<label for="24" id='l-24'>C4</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="25" />
+										<input type="checkbox"   id="s-25" />
 										<label for="25" id='l-25'>C5</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="26" />
+										<input type="checkbox"   id="s-26" />
 										<label for="26" id='l-26'>C6</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="27" />
+										<input type="checkbox"   id="s-27" />
 										<label for="27" id='l-27'>C7</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="28" />
+										<input type="checkbox"   id="s-28" />
 										<label for="28" id='l-28'>C8</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="29" />
+										<input type="checkbox"   id="s-29" />
 										<label for="29" id='l-29'>C9</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="30" />
+										<input type="checkbox"   id="s-30" />
 										<label for="30" id='l-30'>C10</label>
 									</li>
 								</ol>
@@ -1036,43 +1036,43 @@ function searchSeats() {
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
-										<input type="checkbox"   id="31" />
+										<input type="checkbox"   id="s-31" />
 										<label for="31" id='l-31'>D1</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="32" />
+										<input type="checkbox"   id="s-32" />
 										<label for="32" id='l-32'>D2</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="33" />
+										<input type="checkbox"   id="s-33" />
 										<label for="33" id='l-33'>D3</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="34" />
+										<input type="checkbox"   id="s-34" />
 										<label for="34" id='l-34'>D4</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="35" />
+										<input type="checkbox"   id="s-35" />
 										<label for="35" id='l-35'>D5</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="36" />
+										<input type="checkbox"   id="s-36" />
 										<label for="36" id='l-36'>D6</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="37" />
+										<input type="checkbox"   id="s-37" />
 										<label for="37" id='l-37'>D7</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="38" />
+										<input type="checkbox"   id="s-38" />
 										<label for="38" id='l-38'>D8</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="39" />
+										<input type="checkbox"   id="s-39" />
 										<label for="39" id='l-39'>D9</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="40" />
+										<input type="checkbox"   id="s-40" />
 										<label for="40" id='l-40'>D10</label>
 									</li>
 								</ol>
@@ -1080,43 +1080,43 @@ function searchSeats() {
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
-										<input type="checkbox"   id="41" />
+										<input type="checkbox"   id="s-41" />
 										<label for="41" id='l-41'>E1</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="42" />
+										<input type="checkbox"   id="s-42" />
 										<label for="42" id='l-42'>E2</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="43" />
+										<input type="checkbox"   id="s-43" />
 										<label for="43" id='l-43'>E3</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="44" />
+										<input type="checkbox"   id="s-44" />
 										<label for="44" id='l-44'>E4</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="45" />
+										<input type="checkbox"   id="s-45" />
 										<label for="45" id='l-45'>E5</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="46" />
+										<input type="checkbox"   id="s-46" />
 										<label for="46" id='l-46'>E6</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="47" />
+										<input type="checkbox"   id="s-47" />
 										<label for="47" id='l-47'>E7</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="48" />
+										<input type="checkbox"   id="s-48" />
 										<label for="48" id='l-48'>E8</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="49" />
+										<input type="checkbox"   id="s-49" />
 										<label for="49" id='l-49'>E9</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="50" />
+										<input type="checkbox"   id="s-50" />
 										<label for="50" id='l-50'>E10</label>
 									</li>
 								</ol>
@@ -1124,43 +1124,43 @@ function searchSeats() {
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
-										<input type="checkbox"   id="51" />
+										<input type="checkbox"   id="s-51" />
 										<label for="51" id='l-51'>F1</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="52" />
+										<input type="checkbox"   id="s-52" />
 										<label for="52" id='l-52'>F2</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="53" />
+										<input type="checkbox"   id="s-53" />
 										<label for="53" id='l-53'>F3</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="54" />
+										<input type="checkbox"   id="s-54" />
 										<label for="54" id='l-54'>F4</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="55" />
+										<input type="checkbox"   id="s-55" />
 										<label for="55" id='l-55'>F5</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="56" />
+										<input type="checkbox"   id="s-56" />
 										<label for="56" id='l-56'>F6</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="57" />
+										<input type="checkbox"   id="s-57" />
 										<label for="57" id='l-57'>F7</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="58" />
+										<input type="checkbox"   id="s-58" />
 										<label for="58" id='l-58'>F8</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="59" />
+										<input type="checkbox"   id="s-59" />
 										<label for="59" id='l-59'>F9</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="60" />
+										<input type="checkbox"   id="s-60" />
 										<label for="60" id='l-60'>F10</label>
 									</li>
 								</ol>
@@ -1169,43 +1169,43 @@ function searchSeats() {
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
-										<input type="checkbox"   id="61" />
+										<input type="checkbox"   id="s-61" />
 										<label for="61" id='l-61'>G1</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="62" />
+										<input type="checkbox"   id="s-62" />
 										<label for="62" id='l-62'>G2</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="63" />
+										<input type="checkbox"   id="s-63" />
 										<label for="63" id='l-63'>G3</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="64" />
+										<input type="checkbox"   id="s-64" />
 										<label for="64" id='l-64'>G4</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="65" />
+										<input type="checkbox"   id="s-65" />
 										<label for="65" id='l-65'>G5</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="66" />
+										<input type="checkbox"   id="s-66" />
 										<label for="66" id='l-66'>G6</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="67" />
+										<input type="checkbox"   id="s-67" />
 										<label for="67" id='l-67'>G7</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="68" />
+										<input type="checkbox"   id="s-68" />
 										<label for="68" id='l-68'>G8</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="69" />
+										<input type="checkbox"   id="s-69" />
 										<label for="69" id='l-69'>G9</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="70" />
+										<input type="checkbox"   id="s-70" />
 										<label for="70" id='l-70'>G10</label>
 									</li>
 								</ol>
@@ -1213,43 +1213,43 @@ function searchSeats() {
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
-										<input type="checkbox"   id="71" />
+										<input type="checkbox"   id="s-71" />
 										<label for="71" id='l-71'>H1</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="72" />
+										<input type="checkbox"   id="s-72" />
 										<label for="72" id='l-72'>H2</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="73" />
+										<input type="checkbox"   id="s-73" />
 										<label for="73" id='l-73'>H3</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="74" />
+										<input type="checkbox"   id="s-74" />
 										<label for="74" id='l-74'>H4</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="75" />
+										<input type="checkbox"   id="s-75" />
 										<label for="75" id='l-75'>H5</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="76" />
+										<input type="checkbox"   id="s-76" />
 										<label for="76" id='l-76'>H6</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="77" />
+										<input type="checkbox"   id="s-77" />
 										<label for="77" id='l-77'>H7</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="78" />
+										<input type="checkbox"   id="s-78" />
 										<label for="78" id='l-78'>H8</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="79" />
+										<input type="checkbox"   id="s-79" />
 										<label for="79" id='l-79'>H9</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="80" />
+										<input type="checkbox"   id="s-80" />
 										<label for="80" id='l-80'>H10</label>
 									</li>
 								</ol>
@@ -1257,43 +1257,43 @@ function searchSeats() {
 							<li class="row row--1">
 								<ol class="seats" type="A">
 									<li class="seat">
-										<input type="checkbox"   id="81" />
+										<input type="checkbox"   id="s-81" />
 										<label for="81" id='l-81'>I1</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="82" />
+										<input type="checkbox"   id="s-82" />
 										<label for="82" id='l-82'>I2</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="83" />
+										<input type="checkbox"   id="s-83" />
 										<label for="83" id='l-83'>I3</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="84" />
+										<input type="checkbox"   id="s-84" />
 										<label for="84" id='l-84'>I4</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="85" />
+										<input type="checkbox"   id="s-85" />
 										<label for="85" id='l-85'>I5</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="86" />
+										<input type="checkbox"   id="s-86" />
 										<label for="86" id='l-86'>I6</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="87" />
+										<input type="checkbox"   id="s-87" />
 										<label for="87" id='l-87'>I7</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="88" />
+										<input type="checkbox"   id="s-88" />
 										<label for="88" id='l-88'>I8</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="89" />
+										<input type="checkbox"   id="s-89" />
 										<label for="89" id='l-89'>I9</label>
 									</li>
 									<li class="seat">
-										<input type="checkbox"   id="90" />
+										<input type="checkbox"   id="s-90" />
 										<label for="90" id='l-90'>I10</label>
 									</li>
 								</ol>
@@ -1306,8 +1306,9 @@ function searchSeats() {
             for (let i = 0; i < 100; i++) {
 
                 if (seats[i] == 1) {
+                    console.log(document.getElementById(i + 1))
                     console.log(i + 1)
-                    document.getElementById(i + 1).disabled = true;
+                    document.getElementById(`s-${i + 1}`).disabled = true;
                 }
             }
         })

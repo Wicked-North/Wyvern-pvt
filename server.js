@@ -666,6 +666,7 @@ app.post('/cancelTickets', async (req, res) => {
         await pool.query(updateToCancelled)
         let delTickSql = `delete from tickets where pnr = '${pnr}'`
         await pool.query(delTickSql)
+        res.json({message: 'cancelled'})
     } catch (err) {
         console.log(err)
     }

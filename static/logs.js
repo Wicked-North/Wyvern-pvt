@@ -39,7 +39,7 @@ function getTicketsPassengers() {
 
                 })
                 .then(data => {
-                    
+
                     displayTickets()
                 });
         })
@@ -78,7 +78,9 @@ function getTicketsPassengers() {
 //animating button on click (binding event to static element again >.<) 
 
 $(document).on('click', '.login-btn', animateBtn)
-function animateBtn(evt){
+$(document).on('click', '.pass-dets-btn', animateBtn)
+$(document).on('click', '.past-pass-dets-btn', animateBtn)
+function animateBtn(evt) {
     $(evt.target).addClass("animateButton");
     setTimeout(() => {
         $(evt.target).removeClass("animateButton");
@@ -99,8 +101,8 @@ let togglePast = []
 
 function displayTickets() {
 
-    document.getElementById('loader').style.display='none'
-    document.getElementById('data').style.display='block'
+    document.getElementById('loader').style.display = 'none'
+    document.getElementById('data').style.display = 'block'
 
 
 
@@ -112,15 +114,17 @@ function displayTickets() {
         togglePast[i] = 1
     }
 
+    
+    
     for (let i = 0; i < current.length; i++) {
         let passArr = current[i]
         //console.log(passArr[i])
         console.log(current.length)
 
         console.log(passArr[0])
-        //<div class="company-title">Flight Name : </div>
+
         currBooking = `
-        <div class="content-present-booking content-present-booking-${i}" onclick='displayPass(${i})'>
+        <div class="content-present-booking content-present-booking-${i}" >
     <div class="right-div">
         <div class="present-booking-sub-title">
             <div class="pnr-title">PNR-</div>
@@ -161,7 +165,7 @@ function displayTickets() {
     </div>
     <div class="left-div">
         <div class="left-div-content">
-        <button class="pass-dets-btn-invisible">
+        <button class="pass-dets-btn-invisible" onclick='displayPass(${i})'>
         <a class="pass-dets-btn">
             <svg width="277" height="62">
                 <rect x="5" y="5" rx="2" fill="none" stroke="url(#gradient)" width="235" height="47"></rect>
@@ -178,7 +182,7 @@ function displayTickets() {
         </a>
     </button>
     </div>
-        <button id='crossBtn' style='cursor:pointer; display:none;' onclick='cancelTicket(${passArr[0].pnr})'>x</button>
+        
     </div>
     
 
@@ -222,6 +226,7 @@ function displayTickets() {
 
 
         }
+
     }
 
     ////////////////////////////////////////////
@@ -229,9 +234,10 @@ function displayTickets() {
     for (var i = 0; i < past.length; i++) {
         //console.log(past.length)
         let pastPassArr = past[i]
-        console.log(pastPassArr)
+        console.log('past array', pastPassArr)
 
-        prevBooking = ` <div class="content-previous-booking content-previous-booking-${i}" onclick='displayPastPass(${i})'>
+
+        prevBooking = ` <div class="content-previous-booking content-previous-booking-${i}" >
         <div class="right-div">
             <div class="present-booking-sub-title">
                 <div class="pnr-title">PNR-</div>
@@ -267,15 +273,15 @@ function displayTickets() {
             </div>
             <div class="status-div">
                 <div id='status'> STATUS : </div>
-                <div class="status-cancelled">CANCELLED</div>
+                <div class="status-value"></div>
             </div>
     
     
         </div>
         <div class="left-div-past-pass">
             <div class="left-div-content">
-                <button class="pass-dets-btn-invisible">
-                    <a class="pass-dets-btn">
+                <button class="pass-dets-btn-invisible" onclick='displayPastPass(${i})'>
+                    <a class="past-pass-dets-btn">
                         <svg width="277" height="62">
                             <rect x="5" y="5" rx="2" fill="none" stroke="url(#gradient1)" width="235" height="47"></rect>
                         </svg>
@@ -283,15 +289,27 @@ function displayTickets() {
                     </a>
                 </button>
             </div>
-            <div id='pastPasDet-${i}' style='display:none'></div>
+          
     
     
         </div>
-    </div>     
+        
+    </div> 
+    <div id='pastPasDet-${i}' style='display:none'></div>    
                 `
 
-        document.getElementById('prevBookings').innerHTML += prevBooking;
 
+        document.getElementById('prevBookings').innerHTML += prevBooking;
+        if (pastPassArr.status == "completed") {
+            console.log("status conf")
+            $(".status-value").text("COMPLETED")
+            $(".status-value").css("color", "rgb(25, 154, 139)");
+        } else {
+            // console.log("status canc", i)
+            // console.log($(".status-value"))
+            $(".status-value").text("CANCELLED")
+            $(".status-value").css("color", "rgb(243, 9, 60)");
+        }
         let pastPassDets = ``
         for (var k = 0; k < pastPassArr.length; k++) {
 
@@ -326,6 +344,25 @@ function displayTickets() {
     }
 
 
+    console.log('length', $("#currentBookings").children().length)
+    if ($("#currentBookings").children().length == 1) {
+        var elem = `
+                    <div class="no-bookings">
+                    No Current Bookings
+                    </div>
+              `
+        $("#currentBookings").append(elem)
+    }
+
+    console.log('length', $("#prevBookings").children().length)
+    if ($("#prevBookings").children().length== 1) {
+        var elem = `
+                    <div class="no-prev-bookings">
+                    No Previous Bookings
+                    </div>
+              `
+        $("#prevBookings").append(elem)
+    }
 
     // document.getElementById('prevBookings').innerHTML = prevBooking;
     // document.getElementById('cancelledBookings').innerHTML=cancBooking;
@@ -372,11 +409,14 @@ function cancelTicket(pnr) {
 
     fetch('/cancelTickets', options).then(res => res.json()).then((data) => {
         if (data.message == 'cancelled') {
+
             window.alert('Cancelled Successfully')
+
+
+
         }
         return
     }).then((data) => {
         window.location.reload();
     })
 }
-
