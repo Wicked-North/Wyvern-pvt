@@ -1,5 +1,5 @@
-var bgImageArray = ["lonely.jpg", "uluwatu.jpg", "carezza-lake.jpg", "batu-bolong-temple.jpg"],
-base = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/full-",
+var bgImageArray = ["64million.png", "atlantis.png", "food.png", "journeyends.png", "over100k2.png", "test1.png"],
+base = "./images/payment_Illustrations/",
 secs = 4;
 bgImageArray.forEach(function(img){
     new Image().src = base + img; 
@@ -12,7 +12,9 @@ function backgroundSequence() {
 	for (i = 0; i < bgImageArray.length; i++) {
 		setTimeout(function(){ 
 			document.documentElement.style.background = "url(" + base + bgImageArray[k] + ") no-repeat center center fixed";
-			document.documentElement.style.backgroundSize ="cover";
+			document.documentElement.style.backgroundSize ="contain";
+			document.documentElement.style.backgroundColor ="#121214";
+
 		if ((k + 1) === bgImageArray.length) { setTimeout(function() { backgroundSequence() }, (secs * 1000))} else { k++; }			
 		}, (secs * 1000) * i)	
 	}

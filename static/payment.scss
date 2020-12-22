@@ -4,6 +4,7 @@ $medium-grey:rgb(78, 78, 80);
 $transparent-grey:rgba(78, 78, 80, 0.4);
 $black-lighter:rgba(8, 8, 8, 0.3);
 $font-light:rgb(240, 247, 238);
+$font-light-transparent:rgba(240, 247, 238, 0);
 $height-field: 3rem;
 $font-size-custom: 1em;
 $before-color: rgb(255, 154, 139);
@@ -83,7 +84,7 @@ body {
     background-color: $black;
     padding: 2em;
     width: 95%;
-    margin:0;
+    margin: 0;
     border: 4px solid transparent;
     border-image: linear-gradient(45deg, $grad-red, $grad-pink);
     border-image-slice: 1;
@@ -91,7 +92,7 @@ body {
     margin-bottom: 1.5em;
     margin-left: 1em;
     font-size: 1rem;
-    
+
 }
 
 #card1 {
@@ -109,7 +110,7 @@ body {
     .title-masks,
     .title-travel,
     .payments-title,
-    .select-seats-title{
+    .select-seats-title {
 
         background-image: linear-gradient(45deg, $grad-pink, $grad-red);
         -webkit-text-fill-color: transparent;
@@ -129,7 +130,7 @@ body {
     .title-masks,
     .title-travel,
     .payments-title,
-    .select-seats-title{
+    .select-seats-title {
         font-weight: 700;
         letter-spacing: 0.05rem;
         font-size: 2rem;
@@ -138,7 +139,7 @@ body {
 
 }
 
-.review-booking-title{
+.review-booking-title {
 
     background-image: linear-gradient(45deg, $grad-pink, $grad-red);
     -webkit-text-fill-color: transparent;
@@ -148,7 +149,7 @@ body {
 
 }
 
-.review-booking-title{
+.review-booking-title {
     font-weight: 700;
     letter-spacing: 0.05rem;
     font-size: 2rem;
@@ -159,14 +160,14 @@ body {
     font-family: 'Overlock', cursive;
     color: $grad-red;
     font-size: 1.7rem;
-    font-weight:600;
+    font-weight: 600;
 }
 
-.notice{
+.notice {
     font-family: 'Overlock', cursive;
     color: $grad-red;
     font-size: 1.2rem;
-    font-weight:600;
+    font-weight: 600;
 }
 
 #redtext,
@@ -491,17 +492,19 @@ body {
 }
 
 //changing margin for continue to review button
-.continue-to-rev-btn-invisible{
+.continue-to-rev-btn-invisible {
     margin-left: 54.5%;
 }
 
 //book button
-.book-btn-invisible{
+.book-btn-invisible {
     margin-left: 58%;
 }
-.book-btn{
-    margin:0 36%;
+
+.book-btn {
+    margin: 0 36%;
 }
+
 .nav {
     display: flex;
     position: absolute;
@@ -510,7 +513,7 @@ body {
     right: 0;
     //background-color:$darkest-grey;
     background-image: linear-gradient(45deg, $darkest-grey, $black);
-    box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
+    box-shadow: 10px 0 20px rgba(128, 127, 127, 0.5);
     //left:0;
     //right:50%;
     //width:49%;
@@ -592,8 +595,8 @@ ol {
 }
 
 //making seats parent invisible initially make it flex on click of the payment button
-.seats-parent{
-    display:flex;
+.seats-parent {
+    display: flex;
 }
 
 /* .seats-parent{
@@ -622,17 +625,18 @@ ol {
     border-image-slice: 1; */
     padding: 0.7em 0.5em;
     width: 12.5em;
-    height:5.7em;
+    height: 5.7em;
     margin-bottom: 1em;
-    background-color: rgba(42, 42, 48,0.4);
+    background-color: rgba(42, 42, 48, 0.4);
     transition: background-color 200ms ease-in;
-    &:hover{
-        background-color: rgba(42, 42, 48,1);
+
+    &:hover {
+        background-color: rgba(42, 42, 48, 1);
     }
 }
 
 //selecting passenger 1 by default
-#p-0{
+#p-0 {
     border: 2px solid transparent;
     border-image: linear-gradient(45deg, $grad-red, $grad-pink);
     border-image-slice: 1;
@@ -688,7 +692,9 @@ ol {
 
 }
 
-#detailsButton1, #detailsButton2, #detailsButton3{
+#detailsButton1,
+#detailsButton2,
+#detailsButton3 {
     @include removeStyle();
     font-size: 1.5rem;
     background-image: linear-gradient(50deg, $grad-red, $grad-pink);
@@ -697,6 +703,7 @@ ol {
     margin-left: 0.7em;
     cursor: pointer;
     transform: scale(1);
+
     ///border:2px solid $grad-red;
     &:hover {
         /* animation: scalePop;
@@ -705,15 +712,17 @@ ol {
         animation: scalePop 400ms ease-in forwards;
         transform: scale(1.05);
     }
-    
-    i{
+
+    i {
         pointer-events: none;
-        margin-bottom:0.5em;
-        
+        margin-bottom: 0.5em;
+
     }
 }
 
-.whostravelling-main-title , .payments-main-title, .select-seats-main-title{
+.whostravelling-main-title,
+.payments-main-title,
+.select-seats-main-title {
     display: flex;
 }
 
@@ -722,18 +731,21 @@ ol {
     0% {
         //transform: scale(0.75);
         background-image: linear-gradient(50deg, $grad-pink, $grad-pink);
-        
+
     }
+
     25% {
         //transform: scale(0.75);
         background-image: linear-gradient(50deg, $grad-pink, $grad-pink);
-        
+
     }
+
     50% {
         //transform: scale(0.5);
         background-image: linear-gradient(50deg, $grad-pink, $grad-red);
-        
+
     }
+
     75% {
         //transform: scale(1);
         background-image: linear-gradient(50deg, $grad-red, $grad-red);
@@ -746,23 +758,25 @@ ol {
 }
 
 
-.pay-up{
+.pay-up {
     display: flex;
     align-items: center;
+
     //justify-content: center;
-    .pay-div-up-sub-title{
-        font-size:1.1rem;
-        color:$font-light;
+    .pay-div-up-sub-title {
+        font-size: 1.1rem;
+        color: $font-light;
         font-weight: 500;
         letter-spacing: 0.05rem;
     }
 }
 
 //passenger card 
-.pass-dets{
-    display:flex;
-    div:not(.pass-dets-sub-title){
-        margin-left:0.2em;
+.pass-dets {
+    display: flex;
+
+    div:not(.pass-dets-sub-title) {
+        margin-left: 0.2em;
         margin-top: 3px;
     }
 }
@@ -770,33 +784,38 @@ ol {
 
 //review booking styling
 //common details
-.rev-booking-all-dets{
-    display:flex;
-    div:not(.rev-booking-all-dets-sub-title){
-        margin-left:0.2em;
+.rev-booking-all-dets {
+    display: flex;
+
+    div:not(.rev-booking-all-dets-sub-title) {
+        margin-left: 0.2em;
         margin-top: 3px;
     }
 }
 
-.rev-booking-item{
+.rev-booking-item {
     display: flex;
-    div:not(.rev-booking-sub-title){
-        margin-left:0.2em;
+
+    div:not(.rev-booking-sub-title) {
+        margin-left: 0.2em;
         margin-top: 2px; //BAD PRACTICE! HARD CODING MARGIN TO ALIGN BOTH LABEL AND CONTENT
     }
 }
 
-.rev-booking-sub-title, .rev-booking-all-dets-sub-title, .pass-dets-sub-title{
-    font-size:1.1rem;
-    color:$font-light;
+.rev-booking-sub-title,
+.rev-booking-all-dets-sub-title,
+.pass-dets-sub-title {
+    font-size: 1.1rem;
+    color: $font-light;
     font-weight: 500;
     letter-spacing: 0.05rem;
 }
 
 
-.formi input:not(.email){
+.formi input:not(.email) {
     text-transform: capitalize;
 }
+
 //SEAT SELECTION STYLE
 
 
@@ -1030,10 +1049,40 @@ ol {
 
 //parent div styling
 
-.payment-parent-div{
-    display:flex;
+.payment-parent-div {
+    display: flex;
 }
 
-.payment-left{
+.payment-left {
     width: 60%;
+}
+
+.payment-right {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-right-content {
+    position: fixed;
+    top: 2%;
+    //top:7.5%;
+    left: 60%;
+    background-color: $font-light-transparent; 
+    height: 47em;
+    width: 50%;
+    display: flex;
+    // justify-content:center;
+    align-items: center;
+}
+
+
+.payment-right-image {
+
+    position: absolute;
+    left: 2%;
+    width: 550px;
+    // height: 450px;
+    content: url('./images/food.png');
 }

@@ -19,7 +19,18 @@
 </head>
 
 <body>
+	<svg height="0" width="0">
+	<defs>
+		<linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+			<stop offset="0%" stop-color="rgb(219, 39, 99)"></stop>
+			<stop offset="50%" stop-color="rgb(219, 39, 99)"></stop>
+			<stop offset="100%" stop-color="rgb(255, 154, 139)"></stop>
+		</linearGradient>
+	</defs>
+	</svg>
+
 	<script src="https://kit.fontawesome.com/528142d28e.js" crossorigin="anonymous"></script>
+
 	<div class="nav">
 		<div class="left-nav">
 			<div class="nav-elem-1" id='uname'><a href="#" class="login-nav" id='login-nav'></a></div>
@@ -36,7 +47,7 @@
 		<div class="payment-left">
 
 			<div class="container payment-details">
-		
+
 				<div class="card card-1" id="card1">
 					<div class="main-title">Check Out</div>
 					<!--div class="cardimg">
@@ -51,7 +62,7 @@
 						<a href="https://www.Wyvern.com/contactus.aspx" class="card-link">Learn more</a>
 					</div>
 				</div>
-		
+
 				<!--div class="card" id="card2">
 						<div class="card-body">
 							<p>
@@ -61,140 +72,152 @@
 							<button type="button" class="btn btn-link">Show Iternary</button>
 						</div>
 					</div-->
-		
+
 				<div class="card" id="card3">
 					<ul class="list-group list-group-flush">
-		
+
 						<div class="title-masks">Masks Required!</div>
 						<p>You'll need to wear a mask to board this flight.
 							<a href="https://www.Wyvern.com/COVID19.aspx" target="_blank">Learn More</a>
-		
-		
+
+
 							<p><i class="fa fa-exclamation-triangle"></i> Wyvern
 								charges a fee for use of some payment methods</p>
-		
-		
-		
+
+
+
 							<p><i class="fa fa-line-chart" aria-hidden="true" id="redgraph"></i>
 								<span id="redtext">Unfortunately,</span> the fare went up by INR ₹500.00 since we last
 								checked</p>
-		
+
 					</ul>
 				</div>
-		
+
 				<div class="card" id="card4">
 					<ul class="list-group list-group-flush">
-		
+
 						<div class="whostravelling-main-title">
 							<div class="title-travel">Who's travelling?</div>
 							<button id="detailsButton1" onclick="slideUpDown()" style="display: none;">
-								<i class="fa fa-pencil" ></i>
+								<i class="fa fa-pencil"></i>
 							</button>
 						</div>
-		
-		
+
+
 						<li id="customerDetails" class="list-group-item">
 							<form id="passform" onsubmit="continueToPayment()">
 								<!--Paste code here to style-->
-		
+
 								<!-- form required -->
 							</form>
-		
-		
+
+
 					</ul>
 				</div>
-		
+
 				<div class="card" id="card5">
-		
+
 					<div class="payments-main-title">
 						<div class="payments-title">Payments</div>
-		
-						<button type='button' id="detailsButton2" onclick="paymentsSlideUpDown()" style="display: none"><i
-								class="fa fa-pencil" aria-hidden="true"></i>
+
+						<button type='button' id="detailsButton2" onclick="paymentsSlideUpDown()"
+							style="display: none"><i class="fa fa-pencil" aria-hidden="true"></i>
 						</button>
 					</div>
-		
-		
+
+
 					<form id='payForm' onsubmit="showSB(); flightSearch()">
 						<!--Paste code here to style-->
-		
-		
+
+
 						<div id="paymentDetails">
 							<!--Paste code here to style-->
-		
+
 						</div>
-		
+
 					</form>
-		
-		
-		
+
+
+
 				</div>
-		
-		
+
+
 				<div class="card" id="card6">
 					<div class="card-body">
 						<div class="select-seats-main-title">
 							<div class="select-seats-title">Select Seats</div>
 							<!-- <div id='passengerSeat'></div> -->
-		
+
 							<button id="detailsButton3" onclick="seatUpDown()" style="display: none">
 								<i class="fa fa-pencil"></i>
 							</button>
 						</div>
-		
+
 						<div class="seats-parent">
 							<div class="right-seats" id='right-seats'>
-		
+
 							</div>
 							<div id="seatSelection">
-		
-		
-		
+
+
+
 							</div>
-		
+
 						</div>
-		
-		
-		
+
+
+
 					</div>
 					<!-- <div alignment="right">
 						<button type="button" class="btn btn-primary" onclick="continueToRev()" style='display:none'
 							id='continueToRev'><span>Continue</span></button>
 					</div> -->
-					<button class="login-btn-invisible continue-to-rev-btn-invisible" id='continueToRev' onclick="continueToRev()" style='display:none'>
+					<button class="login-btn-invisible continue-to-rev-btn-invisible" id='continueToRev'
+						onclick="continueToRev()" style='display:none'>
 						<a class="login-btn  ">
-						<svg width="277" height="62">
-						  <rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50"></rect>
-						</svg>
-						<span>Continue</span>
-					  </a>
+							<svg width="277" height="62">
+								<defs>
+									<linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+										<stop offset="0%" stop-color="rgb(219, 39, 99)"></stop>
+										<stop offset="50%" stop-color="rgb(219, 39, 99)"></stop>
+										<stop offset="100%" stop-color="rgb(255, 154, 139)"></stop>
+									</linearGradient>
+								</defs>
+								<rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50">
+								</rect>
+							</svg>
+							<span>Continue</span>
+						</a>
 					</button>
-		
+
 				</div>
 			</div>
-		
+
 			<div class="card" ext id="card7">
 				<div class="card-body">
 					<div class="review-booking-title">Review Booking</div>
 				</div>
-		
+
 				<div id=revBooking></div>
-		
+
 				<!-- <div alignment="right">
 					<button type="button" class="btn btn-primary" onclick="bookSeats();" id='finalBook'
 						style='display: none;'><span>BOOK</span></button>
 				</div> -->
-				<button class="login-btn-invisible book-btn-invisible" id='finalBook' onclick="bookSeats()" style='display:none'>
+				<button class="login-btn-invisible book-btn-invisible" id='finalBook' onclick="bookSeats()"
+					style='display:none'>
 					<a class="login-btn book-btn">
-					<svg width="277" height="62">
-					  <rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50"></rect>
-					</svg>
-					<span>Book</span>
-				  </a>
+						<svg width="277" height="62">
+							
+							<rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50">
+							</rect>
+						</svg>
+						<span>Book</span>
+					</a>
 				</button>
 			</div>
-		
-		
+
+
 			<div class="card" id="card8">
 				<div class="card-body">
 					<div class="text-1">
@@ -202,9 +225,10 @@
 						Wyvern may charge fees for itinerary changes or cancellations. Please see here for more
 						information.
 					</div>
-		
+
 					<div class="text-2">
-						<span class="notice">Notice:</span> Overbooking of Flights – Airline flights may be overbooked, and there is a slight chance
+						<span class="notice">Notice:</span> Overbooking of Flights – Airline flights may be overbooked,
+						and there is a slight chance
 						that a seat will not be available on a flight for which a person has a confirmed reservation. If
 						the flight is overbooked, no one will be denied a seat until airline personnel first ask for
 						volunteers willing to give up their reservation in exchange for compensation of the airline's
@@ -217,7 +241,7 @@
 						protections to travel from some foreign countries, although other consumer protections may be
 						available. Check with your airline or your travel agent.
 					</div>
-		
+
 					<div class="text">
 						<p>Baggage liability</p>
 						For flights within the US, federal rules require any limit on an airline's baggage liability to
@@ -231,7 +255,7 @@
 						may not be declared on certain types of valuable articles. Airlines may assume no liability for
 						fragile or perishable articles. Check with your airline.
 					</div>
-		
+
 					<div class="text">
 						<p>TSA data collection</p>
 						The Transportation Security Administration of the U.S. Department of Homeland Security requires
@@ -247,7 +271,7 @@
 						system of records notice and the privacy impact assessment, please see
 						TSA's Web site at <a href="https://www.tsa.gov/" class="card-link">www.tsa.com</a>
 					</div>
-		
+
 					<div class="text">
 						<p>Disinsection</p>
 						Some foreign countries require disinsection of aircraft;
@@ -255,7 +279,7 @@
 						Transportation's website <a href="https://www.transportation.gov/airconsumer/spray"
 							class="card-link">here.</a>
 					</div>
-		
+
 					<div class="text">
 						<p>Hazardous materials</p>
 						Some everyday products, like aerosol spray starch, can be dangerous when transported on the
@@ -264,10 +288,10 @@
 						Carriage of prohibited items may result in fines or in
 						certain cases imprisonment. Please ensure that there are no forbidden
 						hazardous materials in your baggage like:
-		
+
 						<ul>
 							<li>Some lithium batteries (e.g. spares in checked baggage, batteries over a certain size),
-		
+
 							<li>Explosives/fireworks,
 							<li>Strike anywhere matches/lighter fluid,
 							<li>Compressed gases/aerosols
@@ -277,7 +301,7 @@
 							<li>Corrosive material
 						</ul>
 					</div>
-		
+
 					<div class="text">
 						<p>Please see <a href="https://www.Wyvern.com/Tnc.aspx" class="card-link">here</a> for
 							Wyvern's detailed hazardous materials policy.</p>
@@ -290,15 +314,19 @@
 						applying to packages under Directive (EU) 2015/2302. Wyvern will not
 						be responsible for the proper performance of any travel services. In case of problems, please
 						contact the relevant service provider.
-		
+
 					</div>
-		
+
 				</div>
 			</div>
+		</div>
+		<div class="payment-right">
+			<div class="payment-right-content">
+				<div class="payment-right-image">
+
+				</div>
 			</div>
-			<div class="payment-right">
-				hello right div
-			</div>
+		</div>
 	</div>
 
 	<!-- <hr>
@@ -314,15 +342,7 @@
 
 	</div>
 
-	<svg>
-		<defs>
-			<linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
-				<stop offset="0%" stop-color="rgb(219, 39, 99)"></stop>
-				<stop offset="50%" stop-color="rgb(219, 39, 99)"></stop>
-				<stop offset="100%" stop-color="rgb(255, 154, 139)"></stop>
-			</linearGradient>
-		</defs>
-	</svg>
+
 	<script>
 		let x = 1
 		if (!sessionStorage.getItem('sess')) {

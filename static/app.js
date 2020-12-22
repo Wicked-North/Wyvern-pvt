@@ -228,6 +228,13 @@ var paymentSlideDownDetails = `
 				</div>
 				<button class="login-btn-invisible" id="savebutton"><a class="login-btn">
 						<svg width="277" height="62">
+						<defs>
+							<linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+								<stop offset="0%" stop-color="rgb(219, 39, 99)"></stop>
+								<stop offset="50%" stop-color="rgb(219, 39, 99)"></stop>
+								<stop offset="100%" stop-color="rgb(255, 154, 139)"></stop>
+							</linearGradient>
+							</defs>
 							<rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50">
 							</rect>
 						</svg>

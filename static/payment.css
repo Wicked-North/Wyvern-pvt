@@ -504,8 +504,8 @@ body {
   top: 0;
   right: 0;
   background-image: linear-gradient(45deg, #2a2a30, #101011);
-  -webkit-box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
-          box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
+  -webkit-box-shadow: 10px 0 20px rgba(128, 127, 127, 0.5);
+          box-shadow: 10px 0 20px rgba(128, 127, 127, 0.5);
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -702,7 +702,9 @@ ol {
   margin-bottom: 1em;
 }
 
-#detailsButton1, #detailsButton2, #detailsButton3 {
+#detailsButton1,
+#detailsButton2,
+#detailsButton3 {
   outline: none;
   background: transparent;
   text-decoration: none;
@@ -717,7 +719,9 @@ ol {
           transform: scale(1);
 }
 
-#detailsButton1:hover, #detailsButton2:hover, #detailsButton3:hover {
+#detailsButton1:hover,
+#detailsButton2:hover,
+#detailsButton3:hover {
   /* animation: scalePop;
         animation-name: rubberBand;
         animation-duration: 300ms; */
@@ -727,12 +731,16 @@ ol {
           transform: scale(1.05);
 }
 
-#detailsButton1 i, #detailsButton2 i, #detailsButton3 i {
+#detailsButton1 i,
+#detailsButton2 i,
+#detailsButton3 i {
   pointer-events: none;
   margin-bottom: 0.5em;
 }
 
-.whostravelling-main-title, .payments-main-title, .select-seats-main-title {
+.whostravelling-main-title,
+.payments-main-title,
+.select-seats-main-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -823,7 +831,9 @@ ol {
   margin-top: 2px;
 }
 
-.rev-booking-sub-title, .rev-booking-all-dets-sub-title, .pass-dets-sub-title {
+.rev-booking-sub-title,
+.rev-booking-all-dets-sub-title,
+.pass-dets-sub-title {
   font-size: 1.1rem;
   color: #f0f7ee;
   font-weight: 500;
@@ -1074,5 +1084,40 @@ ol {
 
 .payment-left {
   width: 60%;
+}
+
+.payment-right {
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.payment-right-content {
+  position: fixed;
+  top: 2%;
+  left: 60%;
+  background-color: rgba(240, 247, 238, 0);
+  height: 47em;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.payment-right-image {
+  position: absolute;
+  left: 2%;
+  width: 550px;
+  content: url("./images/food.png");
 }
 /*# sourceMappingURL=payment.css.map */
