@@ -684,6 +684,13 @@ let revDown =
 `
 
 function continueToRev() {
+	for(let i=0; i<n; i++){
+		if(passengers[i].seatId == null){
+			window.alert('Please select all the seats to continue')
+			return
+		}
+	}
+	
 
 	flag = 1
 
@@ -759,7 +766,7 @@ function seatUpDown() { //SEAT EDIT
 
 	// document.getElementById('seatSelection').innerHTML = ''
 	// seatDetails = true;
-
+	heightTransitionPencilThree()
 }
 
 
@@ -1085,6 +1092,7 @@ function slideUpDown() {
 	}
 	passengers = []
 
+	heightTransitionPencilOne()
 }
 
 function paymentsSlideUpDown() {
@@ -1111,6 +1119,7 @@ function paymentsSlideUpDown() {
 	//     document.getElementById("paymentDetails").innerHTML = paymentSlideDownDetails;
 	//     paymentDetails = true;
 	// }
+	heightTransitionPencilTwo()
 }
 
 $("#payForm").submit(function (e) {
@@ -1155,32 +1164,108 @@ function heightTransitionOne(){
 		$("#card5").css("height","40em")
 	},400)
 
+	//scrolling to payments
+	$(window).scrollTop($('#card5').offset().top);
+
 }
 
 function heightTransitionTwo(){
 	console.log("ht two")
+	
 	$("#card5").css("height","17em")
 	setTimeout(()=>{
 		$(".seats-parent").css("opacity","1")
+		$("#seatSelection").css("opacity","1")
 		$("#card6").css("height","44.5em")
+		
 	},400)
+
+	//scrolling to seats
+	$(window).scrollTop($('#card6').offset().top);
 }
 
 function heightTransitionThree(){
 	console.log("ht three")
 	var heightcardSix=14.5 //after seats close height
-	heightcardSix= 14.5 + (n-1)*6.7
+	heightcardSix= 14.5 + (n-1)*7
 	//5.7 is the height of each smol card
 	var heightCardSeven=35
 	heightCardSeven=35 + (n-1)*9.5
 
-	var heightRightSeats= 6 * n //initially 29em when seats are visible
+	var heightRightSeats= 7 * n //initially 29em when seats are visible
 
 	$("#card6").css("height",`${heightcardSix}em`)
 	$("#seatSelection").css("opacity","0")
 	$(".right-seats").css("height",`${heightRightSeats}em`)
+
 	setTimeout(()=>{
 		$("#revBooking").css("opacity","1")
 		$("#card7").css("height",`${heightCardSeven}em`)
 	},400)
+
+	//scrolling to review
+	$(window).scrollTop($('#card7').offset().top);
+	
 }
+
+function heightTransitionPencilOne(){
+
+	//adjusting height according to the number of passengers (later changing height with heightTransitionOne)
+	var heightCardFour=47
+	heightCardFour=47 + 32*(n-1) //n-1 because height of one pass already added i.e 47
+	//multiplying the next number of passengers with 33 b/c 47 includes the height of the title as well
+	$("#card4").css("height",`${heightCardFour}em`);
+	
+	//making opacity from 1 to 0 then 1 so that content is not visible before height enlarges
+	$("#card4 #passForm").css("opacity","0")
+
+	if(document.getElementById('revBooking').innerHTML == ''){
+		$("#card5").css("height","7em")
+		$("#card5 #payForm").css("opacity","0")
+
+		/* $("#card6").css("height","7em")
+		$("#card6 .seats-parent").css("opacity","0") */
+
+		$("#card7").css("height","7em")
+		$("#card7 #revBooking").css("opacity","0")
+	}
+
+	//scrolling to who's travelling card
+	$(window).scrollTop($('#card4').offset().top);
+}
+
+
+function heightTransitionPencilTwo(){
+
+	$("#card5").css("height","40em")
+	
+	if(document.getElementById('seatSelection').innerHTML == ''){
+
+		/* $("#card6").css("height","7em")
+		$("#card6 .seats-parent").css("opacity","0") */
+
+		$("#card7").css("height","7em")
+		$("#card7 #revBooking").css("opacity","0")
+	}
+
+	//scrolling to payments
+	$(window).scrollTop($('#card5').offset().top);
+}
+
+
+
+function heightTransitionPencilThree(){
+	console.log("ht 3")
+		
+	$("#card6").css("height",`44.5em`)
+	$("#seatSelection").css("opacity","1")
+	$(".right-seats").css("height","29em")
+	if(document.getElementById('revBooking').innerHTML == ''){
+		$("#card7").css("height","7em")
+		$("#card7 #revBooking").css("opacity","0")
+	}
+
+	//scrolling to seats
+	$(window).scrollTop($('#card6').offset().top);
+}
+

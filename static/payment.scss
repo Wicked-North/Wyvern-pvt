@@ -1041,7 +1041,7 @@ ol {
 
 //adding transition to heights in cards
 #card4, #card5, #card6, #card7{
-    transition: height 400ms ease;
+    transition: height 300ms ease;
 }
 
 
@@ -1049,6 +1049,10 @@ ol {
     height: 47em;
     //height: 47em; //initially height of each division (one pass)
     //after transition height 17em (along with title) so should be a little lesser for each passenger division 
+    #passForm{
+        opacity: 1;
+        transition: opacity 500ms ease-in;
+    }
 }
 
 
@@ -1067,11 +1071,13 @@ ol {
     height: 7em; //after transition when seats shown 44.5em 
     #seatSelection{
         opacity: 1; //adding just in case this property is however being overridden by the next property
+        transition: opacity 500ms ease-out;
     }
     .seats-parent{
         opacity: 0;
         transition: opacity 500ms ease-out;
     }
+
 
 }
 
