@@ -1075,4 +1075,47 @@ ol {
 .payment-left {
   width: 60%;
 }
+
+#card4, #card5, #card6, #card7 {
+  -webkit-transition: height 400ms ease;
+  transition: height 400ms ease;
+}
+
+#card4 {
+  height: 47em;
+}
+
+#card5 {
+  height: 7em;
+}
+
+#card5 #payForm {
+  opacity: 0;
+  -webkit-transition: opacity 500ms ease-out;
+  transition: opacity 500ms ease-out;
+}
+
+#card6 {
+  height: 7em;
+}
+
+#card6 #seatSelection {
+  opacity: 1;
+}
+
+#card6 .seats-parent {
+  opacity: 0;
+  -webkit-transition: opacity 500ms ease-out;
+  transition: opacity 500ms ease-out;
+}
+
+#card7 {
+  height: 7em;
+}
+
+#card7 #revBooking {
+  opacity: 0;
+  -webkit-transition: opacity 500ms ease-out;
+  transition: opacity 500ms ease-out;
+}
 /*# sourceMappingURL=payment.css.map */
