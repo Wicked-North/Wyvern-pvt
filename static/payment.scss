@@ -1,4 +1,5 @@
 $darkest-grey:rgb(42, 42, 48);
+$bg-grey:#18181A;
 $black:rgb(16, 16, 17);
 $medium-grey:rgb(78, 78, 80);
 $transparent-grey:rgba(78, 78, 80, 0.4);
@@ -58,7 +59,7 @@ ul {
 }
 
 body {
-    background-image: linear-gradient(45deg, $darkest-grey, $black);
+    background: $bg-grey;
     color: $light-pink;
     font-family: 'Average Sans', sans-serif;
 
@@ -1057,32 +1058,163 @@ ol {
     width: 60%;
 }
 
-.payment-right {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+
+
+// .payment-right-image {
+
+//     position: absolute;
+//     left: 2%;
+//     width: 550px;
+//     // height: 450px;
+//     content: url('./images/food.png');
+// }
+
+//adding transition to heights in cards
+#card4, #card5, #card6, #card7{
+    transition: height 400ms ease;
 }
 
-.payment-right-content {
-    position: fixed;
-    top: 2%;
-    //top:7.5%;
-    left: 60%;
-    background-color: $font-light-transparent; 
+
+#card4{
     height: 47em;
-    width: 50%;
-    display: flex;
-    // justify-content:center;
-    align-items: center;
+    //height: 47em; //initially height of each division (one pass)
+    //after transition height 17em (along with title) so should be a little lesser for each passenger division 
 }
 
 
-.payment-right-image {
 
-    position: absolute;
-    left: 2%;
-    width: 550px;
-    // height: 450px;
-    content: url('./images/food.png');
+
+#card5{
+    height: 7em; //after transition should be 40em (when payment card opens)
+    //when payment card closes height 17em
+    #payForm{
+        opacity: 0;
+        transition: opacity 500ms ease-out;
+    }
 }
+
+#card6{
+    height: 7em; //after transition when seats shown 44.5em 
+    #seatSelection{
+        opacity: 1; //adding just in case this property is however being overridden by the next property
+    }
+    .seats-parent{
+        opacity: 0;
+        transition: opacity 500ms ease-out;
+    }
+
+}
+
+#card7{
+    height: 7em; //after transition 35em when there is only one passenger after that maybe plus 17 em for each pass
+    #revBooking{
+        opacity: 0;
+        transition: opacity 500ms ease-out;
+    }
+}
+
+//==========================================CROSS FADE============================================================
+
+
+// Naming section
+$image-base-class-name: 'background-image-crossfade';
+$crossfade-animation-name: 'background-image-crossfade-animation';
+
+// Variables that affect animation
+$image-quantity: 6;
+$time-unit: s;
+$image-show-time: 5;
+$image-crossfade-time: 2;
+
+// Path and image names choosing
+// In this example files located as:
+// https://s3-us-west-2.amazonaws.com/s.cdpn.io/2494056/background-n.jpg
+$image-url-path: './images/payment_Illustrations/';
+$image-extension: 'png';
+$image-base-file-name: 'bg';
+$image-number-separator: '-';
+
+// Use 'null' in image-base-file-name variable, if you're using numbers as image name. 
+@if ($image-base-file-name != null) {
+    $image-base-file-name: #{$image-base-file-name}#{$image-number-separator};
+}
+
+// Animation calculating
+$image-delay: $image-show-time + $image-crossfade-time;
+$image-total-time: ( $image-show-time + $image-crossfade-time ) * $image-quantity;
+
+$image-keyframe-first: 0%;
+$image-keyframe-second: ( $image-show-time / $image-total-time ) * 100%;
+$image-keyframe-third: ( $image-show-time + $image-crossfade-time ) / $image-total-time * 100%;
+$image-keyframe-fourth: 100% - ( ( $image-crossfade-time / $image-total-time ) * 100% );
+$image-keyframe-fifth: 100%;
+
+// Other variables
+$z-index-image: -1; 
+
+// Set z-index-image = null, if you dont want use it.
+@mixin z-index($value) {
+    @if $value != null {
+        z-index: $value;
+    }
+}
+
+%image-base-properties {
+    position: fixed;
+    top: 0;
+    left:60%;
+	width: 100%;
+    height: 100%;
+}
+
+// Create background classes with relevant url
+@for $image-number from 1 through $image-quantity {
+    .#{$image-base-class-name}-#{$image-number} {
+    @extend %image-base-properties;
+    background: url('#{$image-url-path}#{$image-base-file-name}#{$image-number}.#{$image-extension}');
+    background-size: contain;
+    width:40%;
+  
+	background-repeat: no-repeat;
+    background-position: center;
+
+    @include z-index($z-index-image);
+    }
+}
+
+// Automatic keyframes calculations
+@keyframes #{$crossfade-animation-name} {
+	#{$image-keyframe-first} {
+		opacity: 1;
+    }
+    
+    #{$image-keyframe-second} {
+        opacity: 1;     
+    }
+
+    #{$image-keyframe-third} {
+        opacity: 0;
+    }
+
+    #{$image-keyframe-fourth} {
+        opacity: 0;
+    }
+
+	#{$image-keyframe-fifth} {
+		opacity: 1;
+    }
+}
+
+// Automatic delay calculations
+  @for $image-number from 1 through $image-quantity {
+    .container-images-crossfade div:nth-of-type(#{$image-number}) {
+        animation-delay: ($image-quantity * $image-delay - $image-number * $image-delay) + $time-unit;
+    }
+  }
+
+  .container-images-crossfade div {
+    animation-name: #{$crossfade-animation-name};
+    animation-iteration-count: infinite;
+    animation-duration: 36s;
+  }

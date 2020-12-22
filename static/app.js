@@ -122,7 +122,8 @@ function passDetailsDisplay() {
 	// slideDown += `<div align="right">
 	// <button class="btn btn-primary">Continue</button>
 	// </div>`
-	slideDown += `<button class="login-btn-invisible"><a class="login-btn">
+	slideDown += `<button class="login-btn-invisible">
+	<a class="login-btn continue-to-payment-btn">
     <svg width="277" height="62">
       <rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50"></rect>
     </svg>
@@ -131,6 +132,12 @@ function passDetailsDisplay() {
 
 
 	document.getElementById('passform').innerHTML = slideDown
+
+	//adjusting height according to the number of passengers (later changing height with heightTransitionOne)
+	var heightCardFour = 47
+	heightCardFour = 47 + 32 * (n - 1) //n-1 because height of one pass already added i.e 47
+	//multiplying the next number of passengers with 33 b/c 47 includes the height of the title as well
+	$("#card4").css("height", `${heightCardFour}em`);
 }
 
 passDetailsDisplay()
@@ -141,8 +148,6 @@ $("#passform").submit(function (e) {
 
 
 //pattern pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-
-
 
 
 var paymentSlideUpDetails = ""
@@ -226,7 +231,8 @@ var paymentSlideDownDetails = `
 						The Wyvern payments privacy notice describes how Wyvern handles payments info.
 					</div>
 				</div>
-				<button class="login-btn-invisible" id="savebutton"><a class="login-btn">
+				<button class="login-btn-invisible" id="savebutton">
+				<a class="login-btn save-btn">
 						<svg width="277" height="62">
 						<defs>
 							<linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
@@ -733,6 +739,7 @@ function continueToRev() {
         
         `
 	}
+	heightTransitionThree()
 }
 
 function seatUpDown() { //SEAT EDIT
@@ -855,7 +862,7 @@ function showSB() {
 	passengerSelect("0")
 	document.getElementById('inlineRadio+0').checked = true
 
-
+	heightTransitionTwo()
 }
 
 //cross button animation 
@@ -1000,6 +1007,7 @@ function continueToPayment() {
 
 	//document.getElementById("detailsButton3").style.display = "block"
 
+
 	document.getElementById('paymentDetails').innerHTML = paymentSlideDownDetails
 	// details = false;
 	// paymentsSlideUpDown()
@@ -1055,7 +1063,7 @@ function continueToPayment() {
 
 	}
 
-
+	heightTransitionOne()
 }
 
 
@@ -1137,3 +1145,109 @@ function passengerDivSelect(evt) {
 
 	}
 }
+
+
+//transitions of cards 
+
+//$("#card4").on('click',".continue-to-payment-btn",heightTransitionOne)
+function heightTransitionOne() {
+	console.log("ht one")
+
+	var heightCardFour = 17 //with only one passenger
+	heightCardFour = 17 + (n - 1) * 10
+
+	$("#card4").css("height", `${heightCardFour}em`)
+	setTimeout(() => {
+		$("#payForm").css("opacity", "1")
+		$("#card5").css("height", "40em")
+	}, 400)
+
+}
+
+function heightTransitionTwo() {
+	console.log("ht two")
+	$("#card5").css("height", "17em")
+	setTimeout(() => {
+		$(".seats-parent").css("opacity", "1")
+		$("#card6").css("height", "44.5em")
+	}, 400)
+}
+
+function heightTransitionThree() {
+	console.log("ht three")
+	var heightcardSix = 14.5 //after seats close height
+	heightcardSix = 14.5 + (n - 1) * 6.7
+	//5.7 is the height of each smol card
+	var heightCardSeven = 35
+	heightCardSeven = 35 + (n - 1) * 9.5
+
+	var heightRightSeats = 6 * n //initially 29em when seats are visible
+
+	$("#card6").css("height", `${heightcardSix}em`)
+	$("#seatSelection").css("opacity", "0")
+	$(".right-seats").css("height", `${heightRightSeats}em`)
+	setTimeout(() => {
+		$("#revBooking").css("opacity", "1")
+		$("#card7").css("height", `${heightCardSeven}em`)
+	}, 400)
+}
+
+function showBookings() {
+	if (sessionStorage.getItem('sess')) {
+		window.location.assign('bookings.html')
+	} else {
+		openDiv()
+	}
+}
+
+
+var bgImageArray = ["bg-1.png", "bg-2.png", "bg-3.png", "bg-4.png", "bg-5.png","bg-6.png"]
+base = "./images/payment_Illustrations/",
+	secs = 4;
+bgImageArray.forEach(function (img) {
+	new Image().src = base + img;
+	// caches images, avoiding white flash between background replacements
+});
+
+// function backgroundSequence() {
+// 	window.clearTimeout();
+// 	var k = 0;
+// 	for (i = 0; i < bgImageArray.length; i++) {
+// 		setTimeout(function () {
+// 			console.log(document.getElementById('payment-right-image'))
+
+// 			document.getElementById('payment-right-image').setAttribute('src', `${base+bgImageArray[k]}`)
+// 			//document.getElementById('payment-right-image').style.background = "contain";
+// 			if ((k + 1) === bgImageArray.length) {
+// 				setTimeout(function () {
+// 					backgroundSequence()
+// 				}, (secs * 1000))
+// 			} else {
+// 				k++;
+// 			}
+// 		}, (secs * 1000) * i)
+// 	}
+// }
+// backgroundSequence();
+
+
+// function backgroundSequence() {
+// 	window.clearTimeout();
+// 	var k = 0;
+// 	for (i = 0; i < bgImageArray.length; i++) {
+// 		setTimeout(function () {
+// 			// console.log(document.getElementById('payement-right-image'))
+// 			document.getElementById('payment-right-content').style.background = "url(" + base + bgImageArray[k] + ") no-repeat center center fixed";
+// 			// document.getElementById('payment-right-content').style.width="600px"
+
+// 			if ((k + 1) === bgImageArray.length) {
+// 				setTimeout(function () {
+// 					backgroundSequence()
+// 				}, (secs * 1000))
+// 			} else {
+// 				k++;
+// 			}
+// 		}, (secs * 1000) * i)
+// 	}
+// }
+// backgroundSequence();
