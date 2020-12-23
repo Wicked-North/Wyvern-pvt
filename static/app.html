@@ -4,6 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="./images/dragon1.png"/>
+
 
 	<!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"-->
@@ -43,7 +45,7 @@
 
 		</div>
 	</div>
-	<div class="payment-parent-div">
+	<div class="payment-parent-div" id='paymentData'>
 		<div class="payment-left">
 
 			<div class="container payment-details">
@@ -313,12 +315,12 @@
 		</div>
 		<div class="payment-right">
 			<div class="container-images-crossfade"> 
-				<div class="background-image-crossfade-1" ></div>
-				<div class="background-image-crossfade-2" ></div>
-				<div class="background-image-crossfade-3" ></div>
-				<div class="background-image-crossfade-4" ></div>
-				<div class="background-image-crossfade-5" ></div>
-				<div class="background-image-crossfade-6" ></div>
+				<div class="background-image-crossfade-1"></div>
+				<div class="background-image-crossfade-2"></div>
+				<div class="background-image-crossfade-3"></div>
+				<div class="background-image-crossfade-4"></div>
+				<div class="background-image-crossfade-5"></div>
+				<div class="background-image-crossfade-6"></div>
 			
 			  </div>
 		</div>
@@ -339,18 +341,27 @@
 
 
 	<script>
-		let x = 1
-		if (!sessionStorage.getItem('sess')) {
-			window.alert('Please login and select a flight to view this flight')
-			window.location.replace('home-page.html')
-			x = 0
-		}
+	       let x = 1
+        if (!sessionStorage.getItem('sess')) {
+            document.getElementById('paymentData').style.display = "none"
+            setTimeout(() => {
+                window.alert('Please login and select a flight to view this page')
+                window.location.replace('home-page.html')
+            }, 1000)
 
-		if (!sessionStorage.getItem('Flight-Name') && x) {
-			window.alert('Please select a flight to view this page')
-			window.location.replace('home-page.html')
-		}
+            x = 0
+        }
 
+        if (!sessionStorage.getItem('Flight-Name') && x) {
+
+            document.getElementById('paymentData').style.display = "none"
+            setTimeout(() => {
+                window.alert('Please select a flight to view this page')
+                //console.log('Please select a flight to view this page')
+                window.location.replace('home-page.html')
+            }, 1000)
+
+        }
 		if (sessionStorage.getItem('user_name')) {
 			//console.log("thereeeee!!")
 			document.getElementById('login-nav').innerHTML = sessionStorage.getItem('user_name')

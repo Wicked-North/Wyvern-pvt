@@ -1,9 +1,9 @@
-.bdy{
+.bdy {
   background: #656769;
 }
 
 
-.rightsection{
+.rightsection {
   margin-left: 320px;
   margin-top: 25px;
 }
@@ -11,7 +11,8 @@
 
 
 /* Set height of body and the document to 100% to enable "full page tabs" */
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
   font-family: Arial;
@@ -19,7 +20,7 @@ body, html {
 
 /* Style tab links */
 .tablink {
-  background-color:  #656769;
+  background-color: #656769;
   color: white;
   float: left;
   border: none;
@@ -43,22 +44,39 @@ body, html {
   font-size: 1rem;
 }
 
-#Home {background-color:#323233;}
-#News {background-color:#323233;}
-#Contact {background-color:#323233;}
-#About {background-color: #323233;}
-#cancelled{background-color: #323233;}
-#radioButtonContent{background-color: #323233;}
+#Home {
+  background-color: #323233;
+}
+
+#News {
+  background-color: #323233;
+}
+
+#Contact {
+  background-color: #323233;
+}
+
+#About {
+  background-color: #323233;
+}
+
+#cancelled {
+  background-color: #323233;
+}
+
+#radioButtonContent {
+  background-color: #323233;
+}
 
 
 
 
-#drop{
-cursor: pointer;
-padding: 14px 16px;
-font-size: 17px;
-width: 15%;
-background-color: #555;
+#drop {
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 15%;
+  background-color: #555;
   color: white;
   border: none;
   float: right;
@@ -70,56 +88,97 @@ background-color: #555;
 /* The sidebar menu */
 .sidenav {
   margin-left: 20px;
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 300px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
+  height: 100%;
+  /* Full-height: remove this if you want "auto" height */
+  width: 300px;
+  /* Set the width of the sidebar */
+  position: fixed;
+  /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1;
+  /* Stay on top */
+  top: 0;
+  /* Stay at the top */
   left: 0;
-  background-color: #656769; /* gray */
-  overflow-x: hidden; /* Disable horizontal scroll */
+  background-color: #656769;
+  /* gray */
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
   padding-top: 20px;
 }
 
-#sidenavsec{
-  margin-top: 250px;
+#sidenavsec {
+  margin-top: 400px;
   background-color: #4f4f4d;
   margin-bottom: 50px;
-  padding-bottom: 100px;
+
   width: 275px;
-  height: 450px;
+  height: 300px;
 }
+
 .active-pink-2 input.form-control[type=text]:focus:not([readonly]) {
   border-bottom: 1px solid #f48fb1;
   box-shadow: 0 1px 0 0 #f48fb1;
   background-color: aquamarine;
 }
+
 .active-pink input.form-control[type=text] {
   border-bottom: 1px solid #131212;
   box-shadow: 0 1px 0 0 aquamarine;
   background: aquamarine;
 }
 
+.buttonUpdate {
+  background-color: gray;
+  color: rgb(34, 34, 34);
+}
+
+.buttonInsert {
+  font-weight: bold;
+  background-color: gray;
+  color: rgb(34, 34, 34);
+}
+
+#insButton {
+  font-weight: bold;
+}
+#cancButton {
+  font-weight: bold;
+}
+
+.deleteUpdate {
+  margin-top: 1px;
+  background-color: gray;
+  color: rgb(34, 34, 34);
+}
+
+.btnSearch {
+  font-weight: bold;
+  background-color: gray;
+  color: rgb(34, 34, 34);
+}
 
 
-
-#exampleRadio4{
+#exampleRadio4 {
   margin-left: 10px;
 }
-#search4{
+
+#search4 {
   margin-left: 21px;
   margin-top: 5px;
   margin-bottom: 20px;
 }
-#radiobtn{
+
+#radiobtn {
   margin-bottom: 15px;
   margin-top: 15px;
   margin-left: 5px;
 }
-#rd{
+
+#rd {
   margin-left: 15px;
 }
-#datea{
+
+#datea {
   color: #000000;
   margin-left: 10px;
   margin-top: 15px;
@@ -127,14 +186,17 @@ background-color: #555;
   font-size: 1.2rem;
   margin-right: 5px;
 }
-#texta{
+
+#texta {
   color: #000000;
   font-weight: bold;
 }
-#tabsearch{
+
+#tabsearch {
   margin-bottom: 10px;
 }
-#submitbtn{
+
+#submitbtn {
   width: 90px;
   background-color: #000000;
   margin-left: 20px;
@@ -143,37 +205,39 @@ background-color: #555;
 }
 
 
-input[type=radio]{
-transform:scale(1.5);
+input[type=radio] {
+  transform: scale(1.5);
 }
 
 td {
-padding-left:15px;
-padding-right:15px;
-padding-top:5px;
-padding-bottom:5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
 
-text-align:center;
+  text-align: center;
+
+}
+
+th {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  text-align: center;
+  background-color: rgb(19, 19, 19);
+  color: whitesmoke;
 
 }
 
-th{
-padding-left:15px;
-padding-right:15px;
-padding-top:10px;
-padding-bottom:10px;
-
-text-align:center;
-background-color: rgb(19, 19, 19);
-color: whitesmoke;
-
+.odd {
+  background-color: rgb(44, 44, 44);
 }
-.odd{
-background-color: rgb(44, 44, 44);
-}
-tr:hover{
-background-color: rgb(24, 24, 24);
+
+tr:hover {
+  background-color: rgb(24, 24, 24);
 }
 
 
@@ -187,14 +251,15 @@ display: block;
 
 /* =========================SEATS============================= */
 ::-moz-selection {
-background-color: #eee;
+  background-color: #eee;
 }
+
 ::selection {
-background-color: #eee;
+  background-color: #eee;
 }
 
 ::-moz-selection {
-background-color: #eee;
+  background-color: #eee;
 }
 
 /* body {
@@ -202,92 +267,92 @@ background-color: #eee;
   background-color: #269686;
 } */
 .theatre {
-margin: 20px auto;
-width: 100%;
-max-width: 350px;
-border-radius: 5px;
-background-color: #fff;
-padding: 20px 10px;
--webkit-box-shadow: 0px 0px 17px -4px #000;
-        box-shadow: 0px 0px 17px -4px #000;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 20px 10px;
+  -webkit-box-shadow: 0px 0px 17px -4px #000;
+  box-shadow: 0px 0px 17px -4px #000;
 }
 
 .screen-side {
-text-align: center;
+  text-align: center;
 }
 
 .screen-side .screen {
-height: 25px;
-margin: 0 20px;
-border-radius: 50%;
--webkit-box-shadow: 0px -3px 0px 1px #ccc;
-        box-shadow: 0px -3px 0px 1px #ccc;
-color: #ccc;
+  height: 25px;
+  margin: 0 20px;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px -3px 0px 1px #ccc;
+  box-shadow: 0px -3px 0px 1px #ccc;
+  color: #ccc;
 }
 
 .screen-side .select-text {
-color: #969696;
+  color: #969696;
 }
 
 .exit {
-position: relative;
-height: 50px;
+  position: relative;
+  height: 50px;
 }
 
 .exit:before,
 .exit:after {
-content: "EXIT";
-font-size: 14px;
-line-height: 18px;
-padding: 0px 5px;
-font-family: "Arial Narrow", Arial, sans-serif;
-display: block;
-position: absolute;
-background: #81c784;
-color: white;
-top: 50%;
--webkit-transform: translate(0, -50%);
-        transform: translate(0, -50%);
+  content: "EXIT";
+  font-size: 14px;
+  line-height: 18px;
+  padding: 0px 5px;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  display: block;
+  position: absolute;
+  background: #81c784;
+  color: white;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
 }
 
 .exit:before {
-left: 0;
+  left: 0;
 }
 
 .exit:after {
-right: 0;
+  right: 0;
 }
 
 .seats {
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-orient: horizontal;
--webkit-box-direction: normal;
-    -ms-flex-direction: row;
-        flex-direction: row;
--ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
--webkit-box-pack: start;
-    -ms-flex-pack: start;
-        justify-content: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
 }
 
 .seat {
-display: -webkit-box;
-display: -ms-flexbox;
-display: flex;
--webkit-box-flex: 0;
-    -ms-flex: 0 0 55px;
-        flex: 0 0 55px;
-padding-right: 20px;
-padding-top: 3px;
-position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 55px;
+  flex: 0 0 55px;
+  padding-right: 20px;
+  padding-top: 3px;
+  position: relative;
 }
 
 .seat input[type="checkbox"] {
-position: absolute;
-opacity: 0;
+  position: absolute;
+  opacity: 0;
 }
 
 /* .seat input[type="checkbox"]:checked + label {
@@ -300,52 +365,53 @@ animation-name: rubberBand;
 -webkit-animation-fill-mode: both;
         animation-fill-mode: both;
 } */
-.flightLabel{
-margin-left: 21px;
-margin-top: 10px;
-}
-.seat input[type="checkbox"]:disabled + label {
-background: #ddd;
-text-indent: -9999px;
-overflow: hidden;
+.flightLabel {
+  margin-left: 21px;
+  margin-top: 10px;
 }
 
-.seat input[type="checkbox"]:disabled + label:after {
-content: "X";
-text-indent: 0;
-position: absolute;
-top: 4px;
-left: 50%;
--webkit-transform: translate(-50%, 0%);
-        transform: translate(-50%, 0%);
-color: #2a2a30;
+.seat input[type="checkbox"]:disabled+label {
+  background: #ddd;
+  text-indent: -9999px;
+  overflow: hidden;
 }
 
-.seat input[type="checkbox"]:disabled + label:hover {
--webkit-box-shadow: none;
-        box-shadow: none;
+.seat input[type="checkbox"]:disabled+label:after {
+  content: "X";
+  text-indent: 0;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%);
+  color: #2a2a30;
+}
+
+.seat input[type="checkbox"]:disabled+label:hover {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 
 }
 
 .seat label {
-display: block;
-position: relative;
-width: 100%;
-text-align: center;
-font-size: 14px;
-font-weight: bold;
-line-height: 1.5rem;
-padding: 4px 0;
-color: rgb(201, 201, 201);
-background-image: linear-gradient(35deg, #101011, #101011);
-border-radius: 50%;
--webkit-animation-duration: 300ms;
-        animation-duration: 300ms;
--webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
--webkit-transition-duration: 300ms;
-        transition-duration: 300ms;
-  
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.5rem;
+  padding: 4px 0;
+  color: rgb(201, 201, 201);
+  background-image: linear-gradient(35deg, #101011, #101011);
+  border-radius: 50%;
+  -webkit-animation-duration: 300ms;
+  animation-duration: 300ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+
 }
 
 /* .seat label:hover {

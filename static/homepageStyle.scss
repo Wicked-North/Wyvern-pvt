@@ -1059,3 +1059,45 @@ input[type=number] {
 .img{
     margin: auto 0.5em;
 }
+
+//==================================LOADER============================================
+svg {
+    display          : block;
+    shape-rendering  : crispEdges;
+  }
+  
+  .plane-container {
+    perspective         : 900px;
+  }
+  
+  @keyframes flyaround {
+    0% {
+      transform         : rotateX(0deg) translateZ(140px) scale3d(1, 1, 1);
+      fill              : #636060;
+      opacity           : 1;
+    }
+  
+    50% {
+      transform       : rotateX(180deg) translateZ(140px) scale3d(1, 1, 1);
+      fill            : #636060;
+      opacity         : 0;
+    }
+  
+    100% {
+      transform       : rotateX(360deg) translateZ(140px) scale3d(1, 1, 1);
+      fill            : #636060;
+      opacity         : 1;
+    }
+  }
+  
+  .plane {
+    fill              : none;
+    animation         : flyaround 2500ms infinite linear;
+  }
+  
+  .delay-1 { animation-delay: 123ms; }
+  .delay-2 { animation-delay: 2023ms; }
+  .delay-3 { animation-delay: 773ms; }
+  .delay-4 { animation-delay: 1123ms; }
+  
+//============================================================================================================

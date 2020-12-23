@@ -326,7 +326,9 @@ function getFlightDetails() {
               <td id='departure-${i+1}'  > ${data[i].departure} </td>
               <td id='arrival-${i+1}'> ${data[i].arrival}</td>
               <td id='price-${i+1}'> ${data[i].price} </td>
-              <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i><button id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none">Update</button><button id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none">x</button><td>
+              <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i>
+              <button class='buttonUpdate' id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none;padding:none;margin:0px"><i class="fa fa-check" style="font-size:16px;width:15px"></i></button>
+              <button class='deleteUpdate' id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none;width:30.97px;height:29.31px"><i class="fa fa-close" style="font-size:16px"></i></button><td>
               </tr>
             `
             } else {
@@ -341,7 +343,9 @@ function getFlightDetails() {
               <td id='departure-${i+1}'  > ${data[i].departure} </td>
               <td id='arrival-${i+1}'> ${data[i].arrival}</td>
               <td id='price-${i+1}'> ${data[i].price} </td>
-              <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i><button id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none">Update</button><button id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none">x</button><td>
+              <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i>
+              <button class='buttonUpdate' id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none;padding:none;"><i class="fa fa-check" style="font-size:16px;width:15px"></i></button>
+              <button class='deleteUpdate' id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none;width:30.97px;height:29.31px"><i class="fa fa-close" style="font-size:16px"></i></button><td>
               </tr>
             `
 
@@ -1352,8 +1356,8 @@ function updateFlight(id) {
     arrival = document.getElementById(`arrival-${id}`).innerHTML
     price = document.getElementById(`price-${id}`).innerHTML
 
-    document.getElementById(`button1-${id}`).style.display = "block"
-    document.getElementById(`button2-${id}`).style.display = "block"
+    document.getElementById(`button1-${id}`).style.display = "inline"
+    document.getElementById(`button2-${id}`).style.display = "inline"
 
 
 

@@ -1087,12 +1087,18 @@ ol {
 }
 
 #card4, #card5, #card6, #card7 {
-  -webkit-transition: height 400ms ease;
-  transition: height 400ms ease;
+  -webkit-transition: height 300ms ease;
+  transition: height 300ms ease;
 }
 
 #card4 {
   height: 47em;
+}
+
+#card4 #passForm {
+  opacity: 1;
+  -webkit-transition: opacity 500ms ease-in;
+  transition: opacity 500ms ease-in;
 }
 
 #card5 {
@@ -1111,6 +1117,8 @@ ol {
 
 #card6 #seatSelection {
   opacity: 1;
+  -webkit-transition: opacity 500ms ease-out;
+  transition: opacity 500ms ease-out;
 }
 
 #card6 .seats-parent {
@@ -1262,7 +1270,7 @@ ol {
           animation-name: background-image-crossfade-animation;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
-  -webkit-animation-duration: 36s;
-          animation-duration: 36s;
+  -webkit-animation-duration: 42s;
+          animation-duration: 42s;
 }
 /*# sourceMappingURL=payment.css.map */

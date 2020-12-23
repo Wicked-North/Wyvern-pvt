@@ -1,7 +1,27 @@
 let current = []
 let past = []
 
-getTicketsPassengers()
+if (sessionStorage.getItem('user_name')) {
+    //console.log("thereeeee!!")
+    document.getElementById('login-nav').innerHTML = sessionStorage.getItem('user_name')
+    document.getElementById('lin').style.display = 'none'
+    document.getElementById('lout').style.display = 'block'
+}
+
+
+
+
+function logOut() {
+    sessionStorage.clear()
+    window.location.replace('home-page.html')
+    document.getElementById('login-nav').innerHTML = ''
+    document.getElementById('lin').style.display = 'block'
+    document.getElementById('lout').style.display = 'none'
+}
+
+setTimeout(()=>{
+    getTicketsPassengers()
+}, 2000)
 
 function getTicketsPassengers() {
 

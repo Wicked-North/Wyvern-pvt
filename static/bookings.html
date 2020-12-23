@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="./images/dragon1.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link
@@ -13,22 +14,28 @@
     <link href="./bookings.css" rel="stylesheet" />
     <title>Bookings</title>
 </head>
-
+<script>
+  let x = 1
+  if (!sessionStorage.getItem('sess')) {
+      window.alert('Please login and select a flight to view this page')
+      window.location.replace('home-page.html')
+      x = 0
+  }
+</script>
 <body>
-    <div style='display:block;position:fixed;left:50%;' id='loader'>
-    
-        <div style='z-index:20;'>
-            <svg width="300px" height="300px">
+  <div style='display:block;position:fixed;' id='loader'>
+
+    <div style='position:fixed;z-index:10;background-image:url(./images/dragon3.png);height:200px;width:200px;top:38%;left:44.5%'></div>
+
+      <div style='z-index:50;position:fixed;left:40%;top:32%'>
+          <svg width="300px" height="300px">
             <defs>
               <path id="svg-half-plane"
-                    d=" M 0,-5
-                       A 1,1 0 0 1 1,-4
-                       L 1,-1 5,1 5,2 1,1 1,3 2,4 2,5 0,4
-                       Z"
-                    ></path>
+              d="M0.0344505 2.43268L0.610908 1.82638C0.948489 1.4888 1.51693 1.6059 1.51693 1.6059L3.20382 1.83671L4.05818 1.00073C4.50829 0.558658 4.91482 1.23501 4.73799 1.4681L4.29933 1.97795L6.11598 2.31442L6.73263 1.59556C7.39171 0.807872 7.88208 1.51751 7.58469 1.93547L7.18622 2.43958L9.91579 2.79556C12.2628 0.536986 13.2209 -0.399887 13.8385 0.156705C14.46 0.716886 13.3606 1.83344 11.2226 4.03576L11.6107 6.848L12.1826 6.37146C12.5202 6.09014 13.1196 6.54146 12.5007 7.12821L11.7141 7.87002L12.0459 9.71078L12.5374 9.33299C12.9714 8.98737 13.4985 9.44442 12.9118 10.0714L12.1309 10.858C12.0988 10.8821 12.3858 12.4725 12.3858 12.4725C12.5627 13.2522 12.1229 13.537 12.1229 13.537L11.5866 14.0044L9.54948 8.25011C9.38068 7.74374 8.9529 7.19385 8.23808 7.25911C7.86031 7.2993 6.90602 7.94352 6.77741 8.09623L4.56804 10.2206C4.51177 10.2608 4.90794 12.9824 4.90794 12.9824C4.90794 13.0627 4.20746 13.9814 4.20746 13.9814L2.80765 11.4895L2.11637 11.8111L2.52057 11.1818L0 9.759L0.945074 9.06772C1.39518 9.17221 3.75502 9.43748 3.80325 9.41336C3.80325 9.41336 5.72493 7.50758 5.83464 7.39231C6.46961 6.72519 6.68326 6.47593 6.77971 6.14638C6.87625 5.81657 6.7118 5.33324 5.71521 4.7213C4.34078 3.87735 0.0344505 2.43268 0.0344505 2.43268L0.0344505 2.43268Z" transform="matrix(0.7071068 -0.7071068 0.7071068 0.7071068 0 9.907227)"  />
+                   
           
-              <symbol viewBox="0 0 10 10" id="svg-plane" overflow="visible">
-                <use xlink:href="#svg-half-plane"></use>
+              <symbol viewBox="0 0 12 12" id="svg-plane" overflow="visible">
+                <!-- <use xlink:href="#svg-half-plane" ></use> -->
                 <use xlink:href="#svg-half-plane" transform="scale(-1, 1)"></use>
               </symbol>
             </defs>
@@ -49,18 +56,34 @@
               <g class="plane-container" transform="rotate(180)">
                 <use class="plane delay-3" xlink:href="#svg-plane" width="30" height="30"></use>
               </g>
-             
-           </g>
-          </svg>
-        </div>
-          
-          <div style='position:fixed;background-image:url(./images/logo.png);height:150px;width:150px;'></div>
-    
-    </div>
+            
+          </g>
+        </svg>
+      </div>
+        
+       
+  
+  </div>
+
 
 
   
-    <div class="bookings-content" id='data'>
+    <div class="bookings-content" id='data' style='display:none'>
+
+      <div class="nav">
+        <div class="left-nav">
+            <div class="nav-elem-1" id='uname'><a href="#" class="login-nav" id='login-nav'></a></div>
+            <div class="nav-elem-2"><a href="#" class="prev-nav" onclick="showBookings()">Bookings</a></div>
+            <div class="nav-elem-0" id='lin'><a href="#" class="prev-nav" onclick='openDiv();'>Log In</a></div>
+            <div class="nav-elem-0" id='lout' style='display:none'><a href="#" class="prev-nav"
+                    onclick='logOut();'>Log
+                    Out</a></div>
+        </div>
+        <div class="right-nav">
+
+        </div>
+    </div>
+
         <div class="bookings-main-heading">Bookings</div>
         
         <div id='currentBookings'>

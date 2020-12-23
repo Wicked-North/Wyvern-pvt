@@ -490,7 +490,7 @@ function updateViaCard(arr) {
         priceVia = viaflights[i].price
         priceVia = numberWithCommas(priceVia)
         $(`.price-${countViaCard}`).text(priceVia)
-        
+
         if (i == 0) {
             var elem = ` <div class="card-${countViaCard} card">
             <div class="img" style="content: url('./images/${imgFileName}.png')"></div>
@@ -667,6 +667,13 @@ function animatingCard(evt) {
 $(".overlay .search-btn").click(staticCardOpen)
 
 function staticCardOpen(event) {
+
+
+
+
+
+
+
     var countSelection = 0
     var cardClass = ''
     var cardArray = ["card-1", "card-2", "card-3", "card-4", "card-5", "card-6", "card-7", "card-8"]
@@ -685,7 +692,7 @@ function staticCardOpen(event) {
             viaPlace = $("." + cardClass + " .via-overlay").text()
 
             sessionStorage.setItem("via", viaPlace)
-            sessionStorage.setItem("Flight-Name",$("." + cardClass + " .flight-name").text())
+            sessionStorage.setItem("Flight-Name", $("." + cardClass + " .flight-name").text())
             sessionStorage.setItem("departureTime", $("." + cardClass + " .fromTime").text())
             sessionStorage.setItem("arrivalTime", $("." + cardClass + " .toTime").text())
             sessionStorage.setItem("basePrice", $("." + cardClass + " .base-price").text())
@@ -710,13 +717,20 @@ function staticCardOpen(event) {
         }
         setTimeout(() => {
             window.alert("Select a Flight to Proceed")
-            
+
         }, 500)
 
         event.preventDefault()
     } else {
         if (sessionStorage.getItem('sess')) {
-            window.location.assign('static-card.html')
+
+            document.getElementById('homepageData').style.display = 'none'
+            document.getElementById('loader').style.display = 'block'
+            setTimeout(() => {
+                window.location.assign('static-card.html')
+
+            }, 2500)
+
         } else {
             openDiv()
         }
@@ -899,7 +913,16 @@ function cardOpen(evt) {
 
 
 function payment() {
-    window.location.assign('app.html')
+
+    document.getElementById('staticData').style.display = 'none';
+    document.getElementById('loader').style.display = 'block'
+
+
+
+    setTimeout(() => {
+        window.location.assign('app.html')
+    }, 4000)
+
 }
 
 //login button
@@ -954,7 +977,7 @@ function landingPage() {
         if (data.message == 'The email is incorrect' || data.message == 'The password is incorrect') {
             console.log('not successful')
             window.alert(data.message)
-           
+
         }
         // else if(data.successful == 'incorrect email'){console.log('Email is incorrect')}
         else {
@@ -1078,7 +1101,7 @@ function sortAll(viaflights, optimised) {
 
         time = diff(viaflights[i].departure, viaflights[i].arrival)
         time = time.split(":")
-        
+
         if (viaflights[i].flight_num == optimised[0].flight_num) {
 
             var elem = `  <div class="card-4 card">

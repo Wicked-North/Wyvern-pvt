@@ -4,6 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="./images/wyvernAdmin.png"/>
+
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -22,8 +24,15 @@
 
 		<div class="leftsection">
 
+		
+
 			<!-- Side navigation -->
-			<div class="sidenav">
+			<div class="sidenav" >
+
+				<div style="margin-bottom:10px;position:relative;left:10% ;width:200px">
+					<img src='./images/wyvernAdmin.png' width='130px' >
+	
+				</div>
 
 
 				<input type="text" placeholder="Search.." id='searchQuery'>
@@ -58,7 +67,7 @@
 					</label>
 				</div>
 
-				<button onclick="checkRadioButton()">
+				<button class='btnSearch' onclick="checkRadioButton()">
 					Search
 				</button>
 
@@ -134,13 +143,13 @@
 
 
 				<input type="text" placeholder="Search.." id="searchByFnum">
-				<button onclick="searchByFnum()">Search</button>
+				<button class='btnSearch' onclick="searchByFnum()">Search</button>
 				<span><button id='insButton' onclick="showInsertFlight()" style='background-color: gray;color:rgb(34, 34, 34);'><i class="fas fa-plus-square"></i>&nbsp;ADD FLIGHT</button></span>
 				<span><button id='cancButton' onclick="cancelInsertFlight()" style='background-color: gray;color:rgb(34, 34, 34); display: none;'>CANCEL</button></span>
 
 
 				<!-- INSERT DIV -->
-				<div id='insertFlight' style='padding-bottom: 20px; display: none;'>
+				<div id='insertFlight' style='padding-bottom: 8px; display: none; padding-top: 8px;'>
 					
 					<span><select name="cars" id="flightName" onchange="fixName(value)" style="height:30px">
 							<option value="air india" >Air India</option>
@@ -197,7 +206,7 @@
 					<span><input type="text" placeholder="Departure (hh:mm:ss)" id="dep" style="width:130px"></span>
 					<span><input type="text" placeholder="Arrival (hh:mm:ss)" id="arri" style="width:130px"></span>
 					<span><input type="text" placeholder="Price" id="price" style="width:130px"></span>
-					<button onclick="insertFlight()">Insert</button>
+					<button class='buttonInsert' onclick="insertFlight()">Insert</button>
 
 
 					
