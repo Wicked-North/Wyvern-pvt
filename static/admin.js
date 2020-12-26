@@ -10,6 +10,17 @@ let end
 let departure
 let arrival
 let price
+let places = ['kolkata', 'bangalore', 'mumbai', 'hyderabad', 'delhi', 'jaipur', 'ahmedabad', "null"]
+
+var placesObj = {
+    kolkata: 0,
+    bangalore: 1,
+    mumbai: 2,
+    hyderabad: 3,
+    delhi: 4,
+    jaipur: 5,
+    ahmedabad: 6
+}
 
 function openPage(pageName, elmnt, color) {
     // Hide all elements with class="tabcontent" by default */
@@ -317,15 +328,15 @@ function getFlightDetails() {
 
                 flightContent +=
                     `<tr class='even'>
-              <td id='f_snum-${i+1}'> ${i+1}</td>
-              <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
-              <td id='fname-${i+1}'> ${data[i].flight_name} </td>
-              <td id='start-${i+1}' > ${data[i].start}</td>
-              <td id='via-${i+1}'> ${data[i].via} </td>
-              <td id='end-${i+1}'  > ${data[i].end} </td>             
-              <td id='departure-${i+1}'  > ${data[i].departure} </td>
-              <td id='arrival-${i+1}'> ${data[i].arrival}</td>
-              <td id='price-${i+1}'> ${data[i].price} </td>
+              <td id='f_snum-${i+1}'>${i+1}</td>
+              <td id='fnum-${i+1}'>${data[i].flight_num}</td>
+              <td id='fname-${i+1}'>${data[i].flight_name}</td>
+              <td id='start-${i+1}'>${data[i].start}</td>
+              <td id='via-${i+1}'>${data[i].via}</td>
+              <td id='end-${i+1}'>${data[i].end}</td>             
+              <td id='departure-${i+1}'>${data[i].departure} </td>
+              <td id='arrival-${i+1}'>${data[i].arrival}</td>
+              <td id='price-${i+1}'>${data[i].price}</td>
               <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i>
               <button class='buttonUpdate' id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none;padding:none;margin:0px"><i class="fa fa-check" style="font-size:16px;width:15px"></i></button>
               <button class='deleteUpdate' id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none;width:30.97px;height:29.31px"><i class="fa fa-close" style="font-size:16px"></i></button><td>
@@ -334,15 +345,15 @@ function getFlightDetails() {
             } else {
                 flightContent +=
                     `<tr class='odd'>
-              <td id='f_snum-${i+1}'> ${i+1}</td>
-              <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
-              <td id='fname-${i+1}'> ${data[i].flight_name} </td>
-              <td id='start-${i+1}' > ${data[i].start}</td>
-              <td id='via-${i+1}'> ${data[i].via} </td>
-              <td id='end-${i+1}'  > ${data[i].end} </td>            
-              <td id='departure-${i+1}'  > ${data[i].departure} </td>
-              <td id='arrival-${i+1}'> ${data[i].arrival}</td>
-              <td id='price-${i+1}'> ${data[i].price} </td>
+              <td id='f_snum-${i+1}'>${i+1}</td>
+              <td id='fnum-${i+1}'>${data[i].flight_num}</td>
+              <td id='fname-${i+1}'>${data[i].flight_name}</td>
+              <td id='start-${i+1}'>${data[i].start}</td>
+              <td id='via-${i+1}'>${data[i].via}</td>
+              <td id='end-${i+1}'>${data[i].end}</td>            
+              <td id='departure-${i+1}'>${data[i].departure}</td>
+              <td id='arrival-${i+1}'>${data[i].arrival}</td>
+              <td id='price-${i+1}'>${data[i].price}</td>
               <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i>
               <button class='buttonUpdate' id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none;padding:none;"><i class="fa fa-check" style="font-size:16px;width:15px"></i></button>
               <button class='deleteUpdate' id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none;width:30.97px;height:29.31px"><i class="fa fa-close" style="font-size:16px"></i></button><td>
@@ -391,15 +402,23 @@ function insertFlight() {
     let fname = document.getElementById('flightName').value
     let fnum = document.getElementById('flightName').value.slice(0, 2) + '-' + document.getElementById('fnum').value
     let start = document.getElementById('start').value
-    let via = document.getElementById('via').value
     let end = document.getElementById('end').value
     let departure = document.getElementById('dep').value
     let arrival = document.getElementById('arri').value
     let price = document.getElementById('price').value
+
+    if (document.getElementById(`via`).value == null || document.getElementById(`via`).value == 'null') {
+        var via = null
+    } else {
+        var via = document.getElementById(`via`).value
+    }
+
     if (start == via || via == end || start == end) {
         window.alert("Please enter different values for start, via and end")
         return
     }
+
+
     var data = {
         fname,
         fnum,
@@ -1346,7 +1365,6 @@ function fixName(str) {
 
 
 function updateFlight(id) {
-
     fnum = document.getElementById(`fnum-${id}`).innerHTML
     fname = document.getElementById(`fname-${id}`).innerHTML
     start = document.getElementById(`start-${id}`).innerHTML
@@ -1355,6 +1373,7 @@ function updateFlight(id) {
     departure = document.getElementById(`departure-${id}`).innerHTML
     arrival = document.getElementById(`arrival-${id}`).innerHTML
     price = document.getElementById(`price-${id}`).innerHTML
+    //console.log(fname)
 
     document.getElementById(`button1-${id}`).style.display = "inline"
     document.getElementById(`button2-${id}`).style.display = "inline"
@@ -1365,19 +1384,73 @@ function updateFlight(id) {
 
     document.getElementById(`fnum-${id}`).innerHTML = `<input type="text"  style="width:70px" id="f_num-${id}" value=${fnum}>`
 
-    document.getElementById(`fname-${id}`).innerHTML = `<input type="text"  style="width:70px" id="f_name-${id}" value=${fname}>`
+    document.getElementById(`fname-${id}`).innerHTML = `<input type="text"  style="width:70px" id="f_name-${id}" value='${fname}'>`
 
-    document.getElementById(`start-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_start-${id}" value=${start}>`
+    document.getElementById(`start-${id}`).innerHTML = `<select name="cars" style="width:110px;height:30px" id="f_start-${id}">
+    <option value="kolkata">kolkata</option>
+    <option value="bangalore">bangalore</option>
+    <option value="mumbai">mumbai</option>
+    <option value="hyderabad">hyderabad</option>
+    <option value="delhi">delhi</option>
+    <option value="jaipur">jaipur</option>
+    <option value="ahmedabad">ahmedabad</option>
 
-    document.getElementById(`via-${id}`).innerHTML = `<input type="text"  style="width:70px" id="f_via-${id}" value=${via}>`
 
-    document.getElementById(`end-${id}`).innerHTML = `<input type="text"style="width:70px" id="f_end-${id}" value=${end}>`
+    </select>`
+
+    document.getElementById(`via-${id}`).innerHTML = `<select name="cars" style="width:110px;height:30px" id="f_via-${id}">
+    <option value="kolkata">kolkata</option>
+    <option value="bangalore">bangalore</option>
+    <option value="mumbai">mumbai</option>
+    <option value="hyderabad">hyderabad</option>
+    <option value="delhi">delhi</option>
+    <option value="jaipur">jaipur</option>
+    <option value="ahmedabad">ahmedabad</option>
+    <option value="null">null</option>
+
+
+    </select>`
+
+
+
+
+    document.getElementById(`end-${id}`).innerHTML = `<select name="cars" style="width:110px;height:30px" id="f_end-${id}">
+    
+    <option value="kolkata">kolkata</option>
+    <option value="bangalore">bangalore</option>
+    <option value="mumbai">mumbai</option>
+    <option value="hyderabad">hyderabad</option>
+    <option value="delhi">delhi</option>
+    <option value="jaipur">jaipur</option>
+    <option value="ahmedabad">ahmedabad</option>
+
+
+    </select>`
+
+
+    // console.log(start.length)
+    // if (start == ' bangalore') {
+    //     console.log('yay')
+    // } else {
+    //     console.log('nay')
+    // }
+    //console.log(typeof (startx), places, viax, endx, placesObj.ahmedabad)
+    console.log(start, via, end)
+    console.log(places.indexOf(start), start)
+    console.log(places.indexOf(via), via)
+    console.log(places.indexOf(end), end)
+
+
+    document.getElementById(`f_start-${id}`).options[places.indexOf(start)].setAttribute('selected', 'selected')
+    document.getElementById(`f_via-${id}`).options[places.indexOf(via)].setAttribute('selected', 'selected')
+    document.getElementById(`f_end-${id}`).options[places.indexOf(end)].setAttribute('selected', 'selected')
+
 
     document.getElementById(`departure-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_departure-${id}" value=${departure}>`
 
     document.getElementById(`arrival-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_arrival-${id}" value=${arrival}>`
 
-    document.getElementById(`price-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_price-${id}" value=${price}>`
+    document.getElementById(`price-${id}`).innerHTML = `<input type="text"   style="width:60px" id="f_price-${id}" value=${price}>`
 
     for (var i = 1; i <= flights.length; i++) {
 
@@ -1393,6 +1466,8 @@ function updateFlight(id) {
 
 
 }
+
+
 
 function cancelUpdate(id) {
     var a = id.split('-')[1]
@@ -1431,14 +1506,24 @@ function updateInDb(a) {
     var id = a.split('-')[1]
 
     console.log(id)
+    console.log(document.getElementById(`f_via-${id}`).value)
     var fnum = document.getElementById(`f_num-${id}`).value
     var fname = document.getElementById(`f_name-${id}`).value
     var start = document.getElementById(`f_start-${id}`).value
-    var via = document.getElementById(`f_via-${id}`).value
     var end = document.getElementById(`f_end-${id}`).value
     var departure = document.getElementById(`f_departure-${id}`).value
     var arrival = document.getElementById(`f_arrival-${id}`).value
     var price = document.getElementById(`f_price-${id}`).value
+    if (document.getElementById(`f_via-${id}`).value == null || document.getElementById(`f_via-${id}`).value == 'null') {
+        var via = null
+    } else {
+        var via = document.getElementById(`f_via-${id}`).value
+    }
+
+    if (start == via || via == end || start == end) {
+        window.alert("Please enter different values for start, via and end")
+        return
+    }
 
 
     let data = {

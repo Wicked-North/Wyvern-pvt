@@ -666,7 +666,9 @@ app.post('/cancelTickets', async (req, res) => {
         await pool.query(updateToCancelled)
         let delTickSql = `delete from tickets where pnr = '${pnr}'`
         await pool.query(delTickSql)
-        res.json({message: 'cancelled'})
+        res.json({
+            message: 'cancelled'
+        })
     } catch (err) {
         console.log(err)
     }
@@ -981,8 +983,13 @@ app.post('/insertFlight', verifyToken, async (req, res) => {
         let departure = req.body.departure
         let arrival = req.body.arrival
         let price = req.body.price
-
-        let sql = `insert into flights values('${fnum}', '${fname}', '${start}','${via}','${end}','${departure}','${arrival}', ${price})`
+        let sql
+        if(via == null){
+             sql = `insert into flights values('${fnum}', '${fname}', '${start}',${null},'${end}','${departure}','${arrival}', ${price})`
+        }else{
+             sql = `insert into flights values('${fnum}', '${fname}', '${start}','${via}','${end}','${departure}','${arrival}', ${price})`
+        }
+       
         console.log(sql)
         await pool.query(sql)
         //res.json(result)
@@ -1059,8 +1066,14 @@ app.post('/updateFlight', verifyToken, async (req, res) => {
         let departure = req.body.departure
         let arrival = req.body.arrival
         let price = req.body.price
+        let sql
+        if (via == null) {
+             sql = `update flights set flight_name = '${fname}', start = '${start}', via = ${null}, end = '${end}', departure = '${departure}', arrival = '${arrival}', price = ${price} where flight_num = '${fnum}'`
+        }else{
+             sql = `update flights set flight_name = '${fname}', start = '${start}', via = '${via}', end = '${end}', departure = '${departure}', arrival = '${arrival}', price = ${price} where flight_num = '${fnum}'`
+        }
 
-        let sql = `update flights set flight_name = '${fname}', start = '${start}', via = '${via}', end = '${end}', departure = '${departure}', arrival = '${arrival}', price = ${price} where flight_num = '${fnum}'`
+        
         console.log(sql)
         await pool.query(sql)
         //res.json(result)

@@ -691,13 +691,13 @@ let revDown =
 `
 
 function continueToRev() {
-	for(let i=0; i<n; i++){
-		if(passengers[i].seatId == null){
+	for (let i = 0; i < n; i++) {
+		if (passengers[i].seatId == null) {
 			window.alert('Please select all the seats to continue')
 			return
 		}
 	}
-	
+
 
 	flag = 1
 
@@ -1114,7 +1114,9 @@ function paymentsSlideUpDown() {
 
 	document.getElementById('finalBook').style.display = 'none'
 
+
 	document.getElementById('paymentDetails').innerHTML = paymentForm
+
 
 	// document.getElementById("detailsButton2").style.display = "block"
 	// document.getElementById("seatSelection").innerHTML = seatBookUp;
@@ -1157,11 +1159,11 @@ function passengerDivSelect(evt) {
 
 
 function showBookings() {
-    if (sessionStorage.getItem('sess')) {
-        window.location.assign('bookings.html')
-    } else {
-        openDiv()
-    }
+	if (sessionStorage.getItem('sess')) {
+		window.location.assign('bookings.html')
+	} else {
+		openDiv()
+	}
 }
 
 
@@ -1187,101 +1189,139 @@ function heightTransitionOne() {
 
 function heightTransitionTwo() {
 	console.log("ht two")
-	
-	$("#card5").css("height","17em")
-	setTimeout(()=>{
-		$(".seats-parent").css("opacity","1")
-		$("#seatSelection").css("opacity","1")
-		$("#card6").css("height","44.5em")
-		
-	},400)
+	$("#continueToRev").css('display', "none")
+	$("#card5").css("height", "17em")
+	setTimeout(() => {
+		$(".seats-parent").css("opacity", "1")
+		$("#seatSelection").css("opacity", "1")
+		$("#continueToRev").css('display', "block") 
+		$("#card6").css("height", "44.5em")
+	}, 400)
 
 	//scrolling to seats
 	$(window).scrollTop($('#card6').offset().top);
 }
 
 function heightTransitionThree() {
-	console.log("ht three")
-	var heightcardSix=14.5 //after seats close height
-	heightcardSix= 14.5 + (n-1)*7
-	//5.7 is the height of each smol card
-	var heightCardSeven=35
-	heightCardSeven=35 + (n-1)*9.5
-
-	var heightRightSeats= 7 * n //initially 29em when seats are visible
-
-	$("#card6").css("height",`${heightcardSix}em`)
-	$("#seatSelection").css("opacity","0")
-	$(".right-seats").css("height",`${heightRightSeats}em`)
-
-	setTimeout(()=>{
-		$("#revBooking").css("opacity","1")
-		$("#card7").css("height",`${heightCardSeven}em`)
-	},400)
-
-	//scrolling to review
 	$(window).scrollTop($('#card7').offset().top);
-	
+	$("#revBooking").css("opacity", "1")
+	$("#revBooking").css("display", "none")
+	$('#finalBook').css("display", "none")
+	console.log("ht three")
+	var heightcardSix = 14.5 //after seats close height
+	heightcardSix = 14.5 + (n - 1) * 7
+	//5.7 is the height of each smol card
+	var heightCardSeven = 35
+	heightCardSeven = 35 + (n - 1) * 9.5
+
+	var heightRightSeats = 7 * n //initially 29em when seats are visible
+
+	$("#card6").css("height", `${heightcardSix}em`)
+	$("#seatSelection").css("opacity", "0")
+	$(".right-seats").css("height", `${heightRightSeats}em`)
+
+	setTimeout(() => {
+		$("#card7").css("height", `${heightCardSeven}em`)
+	}, 400)
+	setTimeout(() => {
+		$("#revBooking").css("display", "block")
+		$('#finalBook').css("display", "block")
+	}, 500)
+	//scrolling to review
 }
 
-function heightTransitionPencilOne(){
-
+function heightTransitionPencilOne() {
+	$(window).scrollTop($('#card4').offset().top);
 	//adjusting height according to the number of passengers (later changing height with heightTransitionOne)
-	var heightCardFour=47
-	heightCardFour=47 + 32*(n-1) //n-1 because height of one pass already added i.e 47
+	var heightCardFour = 47
+	heightCardFour = 47 + 32 * (n - 1) //n-1 because height of one pass already added i.e 47
 	//multiplying the next number of passengers with 33 b/c 47 includes the height of the title as well
-	$("#card4").css("height",`${heightCardFour}em`);
-	
+	$("#passform").css("display", "none")
+	$("#card4").css("height", `7em`);
+
+	setTimeout(() => {
+		$("#card4").css("height", `${heightCardFour}em`);
+	}, 400)
+	setTimeout(() => {
+		$("#passform").css("display", "block")
+	}, 600)
+
 	//making opacity from 1 to 0 then 1 so that content is not visible before height enlarges
-	$("#card4 #passForm").css("opacity","0")
 
-	if(document.getElementById('revBooking').innerHTML == ''){
-		$("#card5").css("height","7em")
-		$("#card5 #payForm").css("opacity","0")
+	if (document.getElementById('paymentDetails').innerHTML == '') {
+		$("#card5").css("height", "7em")
+		$("#card5 #payForm").css("opacity", "0")
+	}
+	/* $("#card6").css("height","7em")
+	$("#card6 .seats-parent").css("opacity","0") */
 
-		/* $("#card6").css("height","7em")
-		$("#card6 .seats-parent").css("opacity","0") */
-
-		$("#card7").css("height","7em")
-		$("#card7 #revBooking").css("opacity","0")
+	if (document.getElementById('revBooking').innerHTML == '') {
+		$("#card7").css("height", "7em")
+		$("#card7 #revBooking").css("opacity", "0")
+	}
+	if (document.getElementById('seatSelection').innerHTML == '') {
+		var heightcardSix = 14.5 //after seats close height
+		heightcardSix = 14.5 + (n - 1) * 7
+		$("#card6").css("height", `${heightcardSix}em`)
+		$("#seatSelection").css("opacity", "0")
+		$(".right-seats").css("height", `${heightRightSeats}em`)
 	}
 
 	//scrolling to who's travelling card
-	$(window).scrollTop($('#card4').offset().top);
 }
 
 
-function heightTransitionPencilTwo(){
-
-	$("#card5").css("height","40em")
-	
-	if(document.getElementById('seatSelection').innerHTML == ''){
-
-		/* $("#card6").css("height","7em")
-		$("#card6 .seats-parent").css("opacity","0") */
-
-		$("#card7").css("height","7em")
-		$("#card7 #revBooking").css("opacity","0")
+function heightTransitionPencilTwo() {
+	if (document.getElementById('revBooking').innerHTML == '') {
+		$("#card7").css("height", "7em")
+		$("#card7 #revBooking").css("opacity", "0")
 	}
-
-	//scrolling to payments
 	$(window).scrollTop($('#card5').offset().top);
+	$("#payForm").css("display", "none")
+	$("#card5").css("height", `7em`);
+
+	//$("#card5").css("height","40em")
+	setTimeout(() => {
+		$("#card5").css("height", "40em")
+		//$("#payForm").css("display", "block")
+	}, 400)
+	setTimeout(() => {
+		//$("#card5").css("height", "40em")
+		$("#payForm").css("display", "block")
+	}, 600)
+
+	if (document.getElementById('seatSelection').innerHTML == '') {
+		var heightcardSix = 14.5 //after seats close height
+		heightcardSix = 14.5 + (n - 1) * 7
+		$("#card6").css("height", `${heightcardSix}em`)
+		$("#seatSelection").css("opacity", "0")
+		$(".right-seats").css("height", `${heightRightSeats}em`)
+
+
+	}
+	/* $("#card6").css("height","7em")
+	$("#card6 .seats-parent").css("opacity","0") */
+	//scrolling to payments
 }
 
 
 
-function heightTransitionPencilThree(){
+function heightTransitionPencilThree() {
 	console.log("ht 3")
-		
-	$("#card6").css("height",`44.5em`)
-	$("#seatSelection").css("opacity","1")
-	$(".right-seats").css("height","29em")
-	if(document.getElementById('revBooking').innerHTML == ''){
-		$("#card7").css("height","7em")
-		$("#card7 #revBooking").css("opacity","0")
+	$("#continueToRev").css('display', "none")
+
+	setTimeout(() => {
+		$(".seats-parent").css("opacity", "1")
+		$("#seatSelection").css("opacity", "1")
+		$("#continueToRev").css('display', "block")
+		$("#card6").css("height", "44.5em")
+	}, 400)
+
+	if (document.getElementById('revBooking').innerHTML == '') {
+		$("#card7").css("height", "7em")
+		$("#card7 #revBooking").css("opacity", "0")
 	}
 
 	//scrolling to seats
 	$(window).scrollTop($('#card6').offset().top);
 }
-

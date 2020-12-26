@@ -138,6 +138,10 @@ html {
   color: rgb(34, 34, 34);
 }
 
+.insertBtnDiv{
+  margin-bottom: 8px;
+}
+
 #insButton {
   font-weight: bold;
 }
