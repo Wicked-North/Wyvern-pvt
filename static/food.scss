@@ -1,0 +1,261 @@
+$darkest-grey:rgb(42, 42, 48);
+$black:rgb(16, 16, 17);
+$medium-grey:rgb(78, 78, 80);
+$light-grey:rgb(154, 154, 155);
+$transparent-grey:rgba(78, 78, 80, 0.4);
+$black-lighter:rgba(8, 8, 8, 0.3);
+$font-light:rgb(240, 247, 238);
+$font-light-transparent:rgba(240, 247, 238, 0.836);
+$height-field: 3.5rem;
+$font-size-custom: 1.2em;
+$before-color: rgb(255, 154, 139);
+$after-color:rgb(240, 247, 238);
+$grad-pink:rgb(255, 154, 139);
+$grad-red:rgb(219, 39, 99);
+$light-pink:rgba(255, 189, 179, 0.692);
+$after-color-login:rgb(219, 39, 99);
+$grad-red-warning:rgb(243, 9, 60);
+$before-color-login:rgb(240, 247, 238);
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+@mixin removeStyle() {
+    outline: none;
+    background: transparent;
+    text-decoration: none;
+    border: none;
+}
+
+body {
+    width: 100vw;
+    padding: 5% 14%;
+    font-family: 'Average Sans', sans-serif;
+}
+
+body {
+    background: linear-gradient(51deg, #2a2a30, #010101);
+}
+
+.sub-title-top,
+.main-title,
+.sub-title-bottom {
+    font-family: 'Overlock', cursive;
+}
+
+.sub-title-top {
+    color: $grad-pink;
+    font-style: italic;
+    font-size: 1.2rem;
+    line-height: 0.9;
+}
+
+.main-title {
+    //color: $grad-red;
+    font-size: 3rem;
+    font-weight: 700;
+    background-image: linear-gradient(80deg, $grad-red, $grad-pink);
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+    //display: flex;
+
+}
+
+.sub-title-bottom-1 {
+    color: $grad-red;
+    font-size: 1.8rem;
+    margin-top: 0.8em;
+    font-weight: 600;
+}
+
+.row-1 {
+    margin: 1em 0 2em 0;
+}
+
+.entree-pic-division {
+    .row-1 {
+        display: flex;
+        justify-content: space-between;
+
+        .pic-1-img {
+            cursor: pointer;
+            content: url('./images/sandwich.png');
+        }
+
+        .pic-2-img {
+            cursor: pointer;
+            content: url('./images/noodles.png');
+        }
+
+        .pic-3-img {
+            cursor: pointer;
+            content: url('./images/steak-cropped.png');
+        }
+    }
+
+    .row-2 {
+        display: flex;
+        justify-content: space-between;
+
+        .pic-1-img {
+            cursor: pointer;
+            content: url('./images/indian\ thali.png');
+        }
+
+        .pic-2-img {
+            cursor: pointer;
+            content: url('./images/pizza.png');
+        }
+
+        .pic-3-img {
+            cursor: pointer;
+            content: url('./images/pancake.png');
+        }
+    }
+}
+
+.snacks-pic-division {
+    .row-1 {
+        display: flex;
+        justify-content: space-between;
+
+        .pic-1-img {
+            cursor: pointer;
+            content: url('./images/fries.png');
+        }
+
+        .pic-2-img {
+            cursor: pointer;
+            content: url('./images/samosa.png');
+        }
+
+        .pic-3-img {
+            cursor: pointer;
+            content: url('./images/croissant.png');
+        }
+    }
+
+    .row-2 {
+        display: flex;
+        justify-content: space-between;
+
+        .pic-1-img {
+            cursor: pointer;
+            content: url('./images/waffle.png');
+        }
+
+        .pic-2-img {
+            cursor: pointer;
+            content: url('./images/burger.png');
+        }
+
+        .pic-3-img {
+            cursor: pointer;
+            content: url('./images/nachos.png');
+        }
+    }
+}
+
+.desserts-pic-division {
+    .row-1 {
+        display: flex;
+        justify-content: space-between;
+
+        .pic-1-img {
+            cursor: pointer;
+            content: url('./images/pannacotta.png');
+        }
+
+        .pic-2-img {
+            cursor: pointer;
+            content: url('./images/parfait.png');
+        }
+
+        .pic-3-img {
+            cursor: pointer;
+            content: url('./images/raspberryjampastry.png');
+        }
+    }
+
+    .row-2 {
+        display: flex;
+        justify-content: space-between;
+
+        .pic-1-img {
+            cursor: pointer;
+            content: url('./images/chococupcake.png');
+        }
+
+        .pic-2-img {
+            cursor: pointer;
+            content: url('./images/cheesecake.png');
+        }
+
+        .pic-3-img {
+            cursor: pointer;
+            content: url('./images/icecream.png');
+        }
+    }
+}
+
+.beverages-pic-division {
+    .row-1 {
+        display: flex;
+        justify-content: space-between;
+
+        .pic-1-img {
+            cursor: pointer;
+            content: url('./images/cranberryjuice.png');
+        }
+
+        .pic-2-img {
+            cursor: pointer;
+            content: url('./images/coffee.png');
+        }
+
+        .pic-3-img {
+            cursor: pointer;
+            content: url('./images/lassi.png');
+        }
+    }
+
+}
+
+.entree-pic-division, .snacks-pic-division, .desserts-pic-division{
+    margin-bottom: 5em;
+}
+.snacks-pic-division, .desserts-pic-division, .beverages-pic-division{
+    margin-top: 3em;
+}
+
+.pic-1-dets,
+.pic-2-dets,
+.pic-3-dets {
+    margin-top: 1em;
+    margin-left: 0.5em;
+}
+
+.food-name {
+    color: $grad-pink;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.price {
+    color: $font-light;
+
+}
+
+hr{
+    border: 1px solid transparent;
+    border-image: linear-gradient(45deg, $grad-pink,$grad-red);
+    border-image-slice: 1;
+    opacity: 0.8;
+}
