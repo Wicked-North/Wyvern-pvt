@@ -384,20 +384,41 @@ function searchFlightsOnReload() {
 
 function sortPrice() {
 
-    let j
-    let itemPrice
-    for (let i = 0; i < viaFlights.length; i++) {
-        j = i - 1;
-        itemPrice = viaFlights[i].price
-        itemObj = viaFlights[i]
-        while (j >= 0 && itemPrice < viaFlights[j].price) {
-            viaFlights[j + 1] = viaFlights[j]
-            j--
+
+    if(sessionStorage.getItem('class')=="Economy"){
+
+        let j
+        let itemPrice
+        for (let i = 0; i < viaFlights.length; i++) {
+            j = i - 1;
+            itemPrice = viaFlights[i].e_price
+            itemObj = viaFlights[i]
+            while (j >= 0 && itemPrice < viaFlights[j].e_price) {
+                viaFlights[j + 1] = viaFlights[j]
+                j--
+            }
+            viaFlights[j + 1] = itemObj
         }
-        viaFlights[j + 1] = itemObj
+        console.log("price sorted",viaFlights)
+        sortAll(viaFlights,optiFlight)
+        
+    }else{
+        let j
+        let itemPrice
+        for (let i = 0; i < viaFlights.length; i++) {
+            j = i - 1;
+            itemPrice = viaFlights[i].b_price
+            itemObj = viaFlights[i]
+            while (j >= 0 && itemPrice < viaFlights[j].b_price) {
+                viaFlights[j + 1] = viaFlights[j]
+                j--
+            }
+            viaFlights[j + 1] = itemObj
+        }
+        console.log("price sorted",viaFlights)
+        sortAll(viaFlights,optiFlight)
     }
-    console.log("price sorted",viaFlights)
-    sortAll(viaFlights,optiFlight)
+    
 }
 
 function sortArrivalTime() {

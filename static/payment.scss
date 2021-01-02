@@ -1,9 +1,11 @@
 $darkest-grey:rgb(42, 42, 48);
+$bg-grey:#18181A;
 $black:rgb(16, 16, 17);
 $medium-grey:rgb(78, 78, 80);
 $transparent-grey:rgba(78, 78, 80, 0.4);
 $black-lighter:rgba(8, 8, 8, 0.3);
 $font-light:rgb(240, 247, 238);
+$font-light-transparent:rgba(240, 247, 238, 0);
 $height-field: 3rem;
 $font-size-custom: 1em;
 $before-color: rgb(255, 154, 139);
@@ -57,7 +59,7 @@ ul {
 }
 
 body {
-    background-image: linear-gradient(45deg, $darkest-grey, $black);
+    background: $bg-grey;
     color: $light-pink;
     font-family: 'Average Sans', sans-serif;
 
@@ -83,7 +85,7 @@ body {
     background-color: $black;
     padding: 2em;
     width: 95%;
-    margin:0;
+    margin: 0;
     border: 4px solid transparent;
     border-image: linear-gradient(45deg, $grad-red, $grad-pink);
     border-image-slice: 1;
@@ -91,7 +93,7 @@ body {
     margin-bottom: 1.5em;
     margin-left: 1em;
     font-size: 1rem;
-    
+
 }
 
 #card1 {
@@ -109,7 +111,7 @@ body {
     .title-masks,
     .title-travel,
     .payments-title,
-    .select-seats-title{
+    .select-seats-title {
 
         background-image: linear-gradient(45deg, $grad-pink, $grad-red);
         -webkit-text-fill-color: transparent;
@@ -129,7 +131,7 @@ body {
     .title-masks,
     .title-travel,
     .payments-title,
-    .select-seats-title{
+    .select-seats-title {
         font-weight: 700;
         letter-spacing: 0.05rem;
         font-size: 2rem;
@@ -138,7 +140,7 @@ body {
 
 }
 
-.review-booking-title{
+.review-booking-title {
 
     background-image: linear-gradient(45deg, $grad-pink, $grad-red);
     -webkit-text-fill-color: transparent;
@@ -148,7 +150,7 @@ body {
 
 }
 
-.review-booking-title{
+.review-booking-title {
     font-weight: 700;
     letter-spacing: 0.05rem;
     font-size: 2rem;
@@ -159,14 +161,14 @@ body {
     font-family: 'Overlock', cursive;
     color: $grad-red;
     font-size: 1.7rem;
-    font-weight:600;
+    font-weight: 600;
 }
 
-.notice{
+.notice {
     font-family: 'Overlock', cursive;
     color: $grad-red;
     font-size: 1.2rem;
-    font-weight:600;
+    font-weight: 600;
 }
 
 #redtext,
@@ -491,17 +493,19 @@ body {
 }
 
 //changing margin for continue to review button
-.continue-to-rev-btn-invisible{
+.continue-to-rev-btn-invisible {
     margin-left: 54.5%;
 }
 
 //book button
-.book-btn-invisible{
+.book-btn-invisible {
     margin-left: 58%;
 }
-.book-btn{
-    margin:0 36%;
+
+.book-btn {
+    margin: 0 36%;
 }
+
 .nav {
     display: flex;
     position: absolute;
@@ -510,7 +514,7 @@ body {
     right: 0;
     //background-color:$darkest-grey;
     background-image: linear-gradient(45deg, $darkest-grey, $black);
-    box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
+    box-shadow: 10px 0 20px rgba(128, 127, 127, 0.5);
     //left:0;
     //right:50%;
     //width:49%;
@@ -592,8 +596,8 @@ ol {
 }
 
 //making seats parent invisible initially make it flex on click of the payment button
-.seats-parent{
-    display:flex;
+.seats-parent {
+    display: flex;
 }
 
 /* .seats-parent{
@@ -622,17 +626,18 @@ ol {
     border-image-slice: 1; */
     padding: 0.7em 0.5em;
     width: 12.5em;
-    height:5.7em;
+    height: 5.7em;
     margin-bottom: 1em;
-    background-color: rgba(42, 42, 48,0.4);
+    background-color: rgba(42, 42, 48, 0.4);
     transition: background-color 200ms ease-in;
-    &:hover{
-        background-color: rgba(42, 42, 48,1);
+
+    &:hover {
+        background-color: rgba(42, 42, 48, 1);
     }
 }
 
 //selecting passenger 1 by default
-#p-0{
+#p-0 {
     border: 2px solid transparent;
     border-image: linear-gradient(45deg, $grad-red, $grad-pink);
     border-image-slice: 1;
@@ -688,7 +693,9 @@ ol {
 
 }
 
-#detailsButton1, #detailsButton2, #detailsButton3{
+#detailsButton1,
+#detailsButton2,
+#detailsButton3 {
     @include removeStyle();
     font-size: 1.5rem;
     background-image: linear-gradient(50deg, $grad-red, $grad-pink);
@@ -697,6 +704,7 @@ ol {
     margin-left: 0.7em;
     cursor: pointer;
     transform: scale(1);
+
     ///border:2px solid $grad-red;
     &:hover {
         /* animation: scalePop;
@@ -705,15 +713,17 @@ ol {
         animation: scalePop 400ms ease-in forwards;
         transform: scale(1.05);
     }
-    
-    i{
+
+    i {
         pointer-events: none;
-        margin-bottom:0.5em;
-        
+        margin-bottom: 0.5em;
+
     }
 }
 
-.whostravelling-main-title , .payments-main-title, .select-seats-main-title{
+.whostravelling-main-title,
+.payments-main-title,
+.select-seats-main-title {
     display: flex;
 }
 
@@ -722,18 +732,21 @@ ol {
     0% {
         //transform: scale(0.75);
         background-image: linear-gradient(50deg, $grad-pink, $grad-pink);
-        
+
     }
+
     25% {
         //transform: scale(0.75);
         background-image: linear-gradient(50deg, $grad-pink, $grad-pink);
-        
+
     }
+
     50% {
         //transform: scale(0.5);
         background-image: linear-gradient(50deg, $grad-pink, $grad-red);
-        
+
     }
+
     75% {
         //transform: scale(1);
         background-image: linear-gradient(50deg, $grad-red, $grad-red);
@@ -746,23 +759,25 @@ ol {
 }
 
 
-.pay-up{
+.pay-up {
     display: flex;
     align-items: center;
+
     //justify-content: center;
-    .pay-div-up-sub-title{
-        font-size:1.1rem;
-        color:$font-light;
+    .pay-div-up-sub-title {
+        font-size: 1.1rem;
+        color: $font-light;
         font-weight: 500;
         letter-spacing: 0.05rem;
     }
 }
 
 //passenger card 
-.pass-dets{
-    display:flex;
-    div:not(.pass-dets-sub-title){
-        margin-left:0.2em;
+.pass-dets {
+    display: flex;
+
+    div:not(.pass-dets-sub-title) {
+        margin-left: 0.2em;
         margin-top: 3px;
     }
 }
@@ -770,33 +785,38 @@ ol {
 
 //review booking styling
 //common details
-.rev-booking-all-dets{
-    display:flex;
-    div:not(.rev-booking-all-dets-sub-title){
-        margin-left:0.2em;
+.rev-booking-all-dets {
+    display: flex;
+
+    div:not(.rev-booking-all-dets-sub-title) {
+        margin-left: 0.2em;
         margin-top: 3px;
     }
 }
 
-.rev-booking-item{
+.rev-booking-item {
     display: flex;
-    div:not(.rev-booking-sub-title){
-        margin-left:0.2em;
+
+    div:not(.rev-booking-sub-title) {
+        margin-left: 0.2em;
         margin-top: 2px; //BAD PRACTICE! HARD CODING MARGIN TO ALIGN BOTH LABEL AND CONTENT
     }
 }
 
-.rev-booking-sub-title, .rev-booking-all-dets-sub-title, .pass-dets-sub-title{
-    font-size:1.1rem;
-    color:$font-light;
+.rev-booking-sub-title,
+.rev-booking-all-dets-sub-title,
+.pass-dets-sub-title {
+    font-size: 1.1rem;
+    color: $font-light;
     font-weight: 500;
     letter-spacing: 0.05rem;
 }
 
 
-.formi input:not(.email){
+.formi input:not(.email) {
     text-transform: capitalize;
 }
+
 //SEAT SELECTION STYLE
 
 
@@ -1030,14 +1050,25 @@ ol {
 
 //parent div styling
 
-.payment-parent-div{
-    display:flex;
+.payment-parent-div {
+    display: flex;
 }
 
-.payment-left{
+.payment-left {
     width: 60%;
 }
 
+
+
+
+// .payment-right-image {
+
+//     position: absolute;
+//     left: 2%;
+//     width: 550px;
+//     // height: 450px;
+//     content: url('./images/food.png');
+// }
 
 //adding transition to heights in cards
 #card4, #card5, #card6, #card7{
@@ -1088,3 +1119,248 @@ ol {
         transition: opacity 500ms ease-out;
     }
 }
+
+//==========================================CROSS FADE============================================================
+
+
+// Naming section
+$image-base-class-name: 'background-image-crossfade';
+$crossfade-animation-name: 'background-image-crossfade-animation';
+
+// Variables that affect animation
+$image-quantity: 6;
+$time-unit: s;
+$image-show-time: 5;
+$image-crossfade-time: 2;
+
+// Path and image names choosing
+// In this example files located as:
+// https://s3-us-west-2.amazonaws.com/s.cdpn.io/2494056/background-n.jpg
+$image-url-path: './images/payment_Illustrations/';
+$image-extension: 'png';
+$image-base-file-name: 'bg';
+$image-number-separator: '-';
+
+// Use 'null' in image-base-file-name variable, if you're using numbers as image name. 
+@if ($image-base-file-name != null) {
+    $image-base-file-name: #{$image-base-file-name}#{$image-number-separator};
+}
+
+// Animation calculating
+$image-delay: $image-show-time + $image-crossfade-time;
+$image-total-time: ( $image-show-time + $image-crossfade-time ) * $image-quantity;
+
+$image-keyframe-first: 0%;
+$image-keyframe-second: ( $image-show-time / $image-total-time ) * 100%;
+$image-keyframe-third: ( $image-show-time + $image-crossfade-time ) / $image-total-time * 100%;
+$image-keyframe-fourth: 100% - ( ( $image-crossfade-time / $image-total-time ) * 100% );
+$image-keyframe-fifth: 100%;
+
+// Other variables
+$z-index-image: -1; 
+
+// Set z-index-image = null, if you dont want use it.
+@mixin z-index($value) {
+    @if $value != null {
+        z-index: $value;
+    }
+}
+
+%image-base-properties {
+    position: fixed;
+    top: 0;
+    left:60%;
+	width: 100%;
+    height: 100%;
+}
+
+// Create background classes with relevant url
+@for $image-number from 1 through $image-quantity {
+    .#{$image-base-class-name}-#{$image-number} {
+    @extend %image-base-properties;
+    background: url('#{$image-url-path}#{$image-base-file-name}#{$image-number}.#{$image-extension}');
+    background-size: contain;
+    width:40%;
+  
+	background-repeat: no-repeat;
+    background-position: center;
+
+    @include z-index($z-index-image);
+    }
+}
+
+// Automatic keyframes calculations
+@keyframes #{$crossfade-animation-name} {
+	#{$image-keyframe-first} {
+		opacity: 1;
+    }
+    
+    #{$image-keyframe-second} {
+        opacity: 1;     
+    }
+
+    #{$image-keyframe-third} {
+        opacity: 0;
+    }
+
+    #{$image-keyframe-fourth} {
+        opacity: 0;
+    }
+
+	#{$image-keyframe-fifth} {
+		opacity: 1;
+    }
+}
+
+// Automatic delay calculations
+  @for $image-number from 1 through $image-quantity {
+    .container-images-crossfade div:nth-of-type(#{$image-number}) {
+        animation-delay: ($image-quantity * $image-delay - $image-number * $image-delay) + $time-unit;
+    }
+  }
+
+  .container-images-crossfade div {
+    animation-name: #{$crossfade-animation-name};
+    animation-iteration-count: infinite;
+    animation-duration: 42s;
+  }
+
+
+  //======================================final payment loader=================================================
+  .payment-loader {
+    width : 150px;
+    position: absolute;
+    top: 50%;
+    left : 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -moz-transform: translateY(-50%) translateX(-50%);
+    -o-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+  }
+  
+  .payment-loader .binding {
+    content : '';
+    width : 60px;
+    height : 4px;
+    border : 2px solid #9b72ee;
+    margin : 0 auto;
+  }
+  
+  .payment-loader .pad {
+    width : 70px;
+    height : 50px;
+    border-radius : 8px;
+    border : 2px solid white;
+    padding : 6px;
+    margin : 0 auto;
+  }
+  
+  .payment-loader .chip {
+    width : 12px;
+    height: 8px;
+   background:white;
+    border-radius: 3px;
+    margin-top: 4px;
+    margin-left: 3px;
+  }
+  
+  .payment-loader .line {
+    width : 52px;
+    margin-top : 6px;
+    margin-left : 3px;
+    height : 4px;
+   background:white; border-radius: 100px;
+    opacity : 0;
+    -webkit-animation : writeline 3s infinite ease-in;
+    -moz-animation : writeline 3s infinite ease-in;
+    -o-animation : writeline 3s infinite ease-in;
+    animation : writeline 3s infinite ease-in;
+  }
+  
+  .payment-loader .line2 {
+    width : 32px;
+    margin-top : 6px;
+    margin-left : 3px;
+    height : 4px;
+       background : white;
+    border-radius: 100px;
+    opacity : 0;
+    -webkit-animation : writeline2 3s infinite ease-in;
+    -moz-animation : writeline2 3s infinite ease-in;
+    -o-animation : writeline2 3s infinite ease-in;
+    animation : writeline2 3s infinite ease-in;
+  }
+  
+  .payment-loader .line:first-child {
+    margin-top : 0;
+  }
+  
+  .payment-loader .line.line1 {
+    -webkit-animation-delay: 0s;
+    -moz-animation-delay: 0s;
+    -o-animation-delay: 0s;
+    animation-delay: 0s;
+  }
+  
+  .payment-loader .line.line2 {
+    -webkit-animation-delay: 0.5s;
+    -moz-animation-delay: 0.5s;
+    -o-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+  }
+  
+  .payment-loader .loader-text {
+    
+  
+    
+  
+    
+    p:nth-child(1){
+        color : white;
+    font-size : 16px;
+      margin-top:12px;
+      margin-bottom:0px;
+       overflow: hidden; 
+    white-space: nowrap;
+  
+        animation-delay: 10s;
+      animation : textline1 3s infinite ease-in;
+    }
+    p:nth-child(2){
+      margin-top:10px;
+      color:white;
+      font-size:14px;
+       overflow: hidden; 
+    white-space: nowrap;
+      text-align:center;
+        animation-delay: 2s;
+      animation : textline2 3s infinite ease-in;
+    }
+  }
+  
+  
+  @keyframes writeline {
+    0% { width : 0px; opacity: 0; }
+    33% { width : 52px; opacity : 1; }
+    70% { opacity : 1; }
+    100% {opacity : 0; }
+  }
+  
+  @keyframes writeline2 {
+    0% { width : 0px; opacity: 0; }
+    33% { width : 32px; opacity : 1; }
+    70% { opacity : 1; }
+    100% {opacity : 0; }
+  }
+  @keyframes textline1{
+    0% { width : 0%; opacity: 0;  }
+    33% { width : 100%; opacity : 1; }
+    70% { opacity : 1; }
+    100% {opacity : 0; }
+  }
+  @keyframes textline2{
+    0% { width : 100%; opacity: 0;  }
+    33% { width : 100%; opacity : 1; }
+    70% { opacity : 1; }
+    100% {opacity : 0; }
+  }

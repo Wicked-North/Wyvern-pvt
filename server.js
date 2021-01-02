@@ -449,7 +449,7 @@ app.post("/bookSeats", (req, res) => {
     })
 
 
-
+res.json({status:"done"})
 
 });
 
@@ -666,7 +666,9 @@ app.post('/cancelTickets', async (req, res) => {
         await pool.query(updateToCancelled)
         let delTickSql = `delete from tickets where pnr = '${pnr}'`
         await pool.query(delTickSql)
-        res.json({message: 'cancelled'})
+        res.json({
+            message: 'cancelled'
+        })
     } catch (err) {
         console.log(err)
     }
@@ -980,9 +982,16 @@ app.post('/insertFlight', verifyToken, async (req, res) => {
         let end = req.body.end
         let departure = req.body.departure
         let arrival = req.body.arrival
-        let price = req.body.price
-
-        let sql = `insert into flights values('${fnum}', '${fname}', '${start}','${via}','${end}','${departure}','${arrival}', ${price})`
+        let e_price = req.body.e_price
+        let b_price = req.body.b_price
+       
+        let sql
+        if(via == null){
+             sql = `insert into flights values('${fnum}', '${fname}', '${start}',${null},'${end}','${departure}','${arrival}', ${e_price}, ${b_price} )`
+        }else{
+             sql = `insert into flights values('${fnum}', '${fname}', '${start}','${via}','${end}','${departure}','${arrival}', ${e_price}, ${b_price})`
+        }
+       
         console.log(sql)
         await pool.query(sql)
         //res.json(result)
@@ -1017,34 +1026,36 @@ app.post('/deleteFlight', verifyToken, async (req, res) => {
     }
 })
 
-app.post('/insertFlight', verifyToken, async (req, res) => {
-    //console.log(req)
-    try {
-        //let all = []
-        //console.log(req)
-        let fnum = req.body.fnum
-        let fname = req.body.fname
-        let start = req.body.start
-        let via = req.body.via
-        let end = req.body.end
-        let departure = req.body.departure
-        let arrival = req.body.arrival
-        let price = req.body.price
+// app.post('/insertFlight', verifyToken, async (req, res) => {
+//     //console.log(req)
+//     try {
+//         //let all = []
+//         //console.log(req)
+//         let fnum = req.body.fnum
+//         let fname = req.body.fname
+//         let start = req.body.start
+//         let via = req.body.via
+//         let end = req.body.end
+//         let departure = req.body.departure
+//         let arrival = req.body.arrival
+//         let e_price = req.body.e_price
+//         let b_price = req.body.b_price
 
-        let sql = `insert into flights values('${fnum}', '${fname}', '${start}','${via}','${end}','${departure}','${arrival}', ${price})`
-        console.log(sql)
-        await pool.query(sql)
-        //res.json(result)
-        res.json({
-            message: 'successful'
-        })
-    } catch (err) {
-        res.json({
-            message: 'error'
-        })
-        console.log(err)
-    }
-})
+
+//         let sql = `insert into flights values('${fnum}', '${fname}', '${start}','${via}','${end}','${departure}','${arrival}', ${e_price}, ${b_price})`
+//         console.log(sql)
+//         await pool.query(sql)
+//         //res.json(result)
+//         res.json({
+//             message: 'successful'
+//         })
+//     } catch (err) {
+//         res.json({
+//             message: 'error'
+//         })
+//         console.log(err)
+//     }
+// })
 
 app.post('/updateFlight', verifyToken, async (req, res) => {
     //console.log(req)
@@ -1058,9 +1069,18 @@ app.post('/updateFlight', verifyToken, async (req, res) => {
         let end = req.body.end
         let departure = req.body.departure
         let arrival = req.body.arrival
-        let price = req.body.price
+        let e_price = req.body.e_price
+        let b_price = req.body.b_price
 
-        let sql = `update flights set flight_name = '${fname}', start = '${start}', via = '${via}', end = '${end}', departure = '${departure}', arrival = '${arrival}', price = ${price} where flight_num = '${fnum}'`
+
+        let sql
+        if (via == null) {
+             sql = `update flights set flight_name = '${fname}', start = '${start}', via = ${null}, end = '${end}', departure = '${departure}', arrival = '${arrival}', e_price = ${e_price}, b_price = ${b_price} where flight_num = '${fnum}'`
+        }else{
+             sql = `update flights set flight_name = '${fname}', start = '${start}', via = '${via}', end = '${end}', departure = '${departure}', arrival = '${arrival}', e_price = ${e_price}, b_price = ${b_price}  where flight_num = '${fnum}'`
+        }
+
+        
         console.log(sql)
         await pool.query(sql)
         //res.json(result)

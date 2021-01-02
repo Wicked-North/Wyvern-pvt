@@ -1,7 +1,27 @@
 let current = []
 let past = []
 
-getTicketsPassengers()
+if (sessionStorage.getItem('user_name')) {
+    //console.log("thereeeee!!")
+    document.getElementById('login-nav').innerHTML = sessionStorage.getItem('user_name')
+    document.getElementById('lin').style.display = 'none'
+    document.getElementById('lout').style.display = 'block'
+}
+
+
+
+
+function logOut() {
+    sessionStorage.clear()
+    window.location.replace('home-page.html')
+    document.getElementById('login-nav').innerHTML = ''
+    document.getElementById('lin').style.display = 'block'
+    document.getElementById('lout').style.display = 'none'
+}
+
+setTimeout(()=>{
+    getTicketsPassengers()
+}, 2000)
 
 function getTicketsPassengers() {
 
@@ -395,28 +415,37 @@ function displayPastPass(i) {
 
 function cancelTicket(pnr) {
 
-    var data = {
-        pnr: pnr
+    let ask=window.confirm("Are you sure you want to cancel your ticket?")
+
+    if(ask==true){
+        var data = {
+            pnr: pnr
+        }
+    
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        };
+    
+        fetch('/cancelTickets', options).then(res => res.json()).then((data) => {
+            if (data.message == 'cancelled') {
+    
+                window.alert('Cancelled Successfully')
+    
+    
+    
+            }
+            return
+        }).then((data) => {
+            window.location.reload();
+        })
+    
+    }else{
+        return
     }
 
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    };
-
-    fetch('/cancelTickets', options).then(res => res.json()).then((data) => {
-        if (data.message == 'cancelled') {
-
-            window.alert('Cancelled Successfully')
-
-
-
-        }
-        return
-    }).then((data) => {
-        window.location.reload();
-    })
+    
 }

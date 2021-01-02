@@ -4,6 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="./images/wyvernAdmin.png" />
+
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -22,8 +24,15 @@
 
 		<div class="leftsection">
 
+
+
 			<!-- Side navigation -->
 			<div class="sidenav">
+
+				<div style="margin-bottom:10px;position:relative;left:10% ;width:200px">
+					<img src='./images/wyvernAdmin.png' width='130px'>
+
+				</div>
 
 
 				<input type="text" placeholder="Search.." id='searchQuery'>
@@ -58,7 +67,7 @@
 					</label>
 				</div>
 
-				<button onclick="checkRadioButton()">
+				<button class='btnSearch' onclick="checkRadioButton()">
 					Search
 				</button>
 
@@ -132,18 +141,21 @@
 			<div id="Home" class="tabcontent">
 
 
-
-				<input type="text" placeholder="Search.." id="searchByFnum">
-				<button onclick="searchByFnum()">Search</button>
-				<span><button id='insButton' onclick="showInsertFlight()" style='background-color: gray;color:rgb(34, 34, 34);'><i class="fas fa-plus-square"></i>&nbsp;ADD FLIGHT</button></span>
-				<span><button id='cancButton' onclick="cancelInsertFlight()" style='background-color: gray;color:rgb(34, 34, 34); display: none;'>CANCEL</button></span>
-
+				<div class='insertBtnDiv'>
+					<input type="text" placeholder="Search.." id="searchByFnum">
+					<button class='btnSearch' onclick="searchByFnum()">Search</button>
+					<span><button id='insButton' onclick="showInsertFlight()"
+							style='background-color: gray;color:rgb(34, 34, 34);'><i
+								class="fas fa-plus-square"></i>&nbsp;ADD FLIGHT</button></span>
+					<span><button id='cancButton' onclick="cancelInsertFlight()"
+							style='background-color: gray;color:rgb(34, 34, 34); display: none;'>CANCEL</button></span>
+				</div>
 
 				<!-- INSERT DIV -->
-				<div id='insertFlight' style='padding-bottom: 20px; display: none;'>
-					
-					<span><select name="cars" id="flightName" onchange="fixName(value)" style="height:30px">
-							<option value="air india" >Air India</option>
+				<div id='insertFlight' style='padding-bottom: 8px; display: none; padding-top: 8px;'>
+
+					<span><select id="flightName" onchange="fixName(value)" style="height:30px">
+							<option value="air india">Air India</option>
 							<option value="go air">GO Air</option>
 							<option value="indigo">Indigo</option>
 							<option value="spice jet">Spice Jet</option>
@@ -152,55 +164,58 @@
 
 
 						</select></span>
-					<span><input type="text" placeholder="" id="flightInitial" style="width:35px;padding-left:8px;" value='ai' readonly></span>
+					<span><input type="text" placeholder="" id="flightInitial" style="width:35px;padding-left:8px;"
+							value='ai' readonly></span>
 					<span>-</span>
 					<span><input type="text" placeholder="Flight Num" id="fnum" style="width:100px"></span>
 
-					<span><select name="cars" id="start" style="height:30px">
+					<span><select id="start" style="height:30px">
 							<option value="" disabled selected>Start</option>
-							<option value="Bangalore">Bangalore</option>
-							<option value="Mumbai">Mumbai</option>
-							<option value="Kolkata">Kolkata</option>
-							<option value="Hyderabad">Hyderabad</option>
-							<option value="Delhi">Delhi</option>
-							<option value="Jaipur">Jaipur</option>
-							<option value="Ahmedabad">Ahmedabad</option>
+							<option value="bangalore">bangalore</option>
+							<option value="mumbai">mumbai</option>
+							<option value="kolkata">kolkata</option>
+							<option value="hyderabad">hyderabad</option>
+							<option value="delhi">delhi</option>
+							<option value="jaipur">jaipur</option>
+							<option value="ahmedabad">ahmedabad</option>
 
 						</select></span>
-					<span><select name="cars" id="via" style="height:30px">
-						<option value="" disabled selected>Via</option>
-						<option value="Kolkata">Kolkata</option>
-						<option value="Bangalore">Bangalore</option>
-						<option value="Mumbai">Mumbai</option>
-						
-						<option value="Hyderabad">Hyderabad</option>
-						<option value="Delhi">Delhi</option>
-						<option value="Jaipur">Jaipur</option>
-						<option value="Ahmedabad">Ahmedabad</option>
+					<span><select id="via" style="height:30px">
+							<option value="" disabled selected>Via</option>
+							<option value="kolkata">kolkata</option>
+							<option value="bangalore">bangalore</option>
+							<option value="mumbai">mumbai</option>
+							<option value="hyderabad">hyderabad</option>
+							<option value="delhi">delhi</option>
+							<option value="jaipur">jaipur</option>
+							<option value="ahmedabad">ahmedabad</option>
+							<option value="null">null</option>
+
 
 						</select></span>
 
-					
-					<span><select name="cars" id="end" style="height:30px">
-						<option value="" disabled selected>End</option>
-						<option value="Mumbai">Mumbai</option>
-						<option value="Bangalore">Bangalore</option>
-						
-						<option value="Kolkata">Kolkata</option>
-						<option value="Hyderabad">Hyderabad</option>
-						<option value="Delhi">Delhi</option>
-						<option value="Jaipur">Jaipur</option>
-						<option value="Ahmedabad">Ahmedabad</option>
+
+					<span><select id="end" style="height:30px">
+							<option value="" disabled selected>End</option>
+							<option value="mumbai">mumbai</option>
+							<option value="bangalore">bangalore</option>
+
+							<option value="kolkata">kolkata</option>
+							<option value="hyderabad">hyderabad</option>
+							<option value="delhi">delhi</option>
+							<option value="jaipur">jaipur</option>
+							<option value="ahmedabad">ahmedabad</option>
 
 						</select></span>
 
 					<span><input type="text" placeholder="Departure (hh:mm:ss)" id="dep" style="width:130px"></span>
 					<span><input type="text" placeholder="Arrival (hh:mm:ss)" id="arri" style="width:130px"></span>
-					<span><input type="text" placeholder="Price" id="price" style="width:130px"></span>
-					<button onclick="insertFlight()">Insert</button>
+					<span><input type="text" placeholder="Eco Price" id="e_price" style="width:130px"></span>
+					<span><input type="text" placeholder="Bus Price" id="b_price" style="width:130px"></span>
+					<button class='buttonInsert' onclick="insertFlight()">Insert</button>
 
 
-					
+
 
 				</div>
 
@@ -252,7 +267,7 @@
 		</div>
 
 		<script>
-			if(sessionStorage.getItem('sess') != "ad-1"){
+			if (sessionStorage.getItem('sess') != "ad-1") {
 				window.alert('Please login to continue')
 				window.location.replace('login.html')
 			}
