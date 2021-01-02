@@ -228,6 +228,13 @@ body {
 
 }
 
+.pic-1-img, .pic-2-img, .pic-3-img{
+    opacity: 0.5;
+    transition: opacity 300ms ease-in;
+    &:hover{
+        opacity: 1;
+    }
+}
 .entree-pic-division, .snacks-pic-division, .desserts-pic-division{
     margin-bottom: 5em;
 }

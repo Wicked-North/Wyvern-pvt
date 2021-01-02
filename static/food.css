@@ -224,6 +224,16 @@ body {
   content: url("./images/lassi.png");
 }
 
+.pic-1-img, .pic-2-img, .pic-3-img {
+  opacity: 0.5;
+  -webkit-transition: opacity 300ms ease-in;
+  transition: opacity 300ms ease-in;
+}
+
+.pic-1-img:hover, .pic-2-img:hover, .pic-3-img:hover {
+  opacity: 1;
+}
+
 .entree-pic-division, .snacks-pic-division, .desserts-pic-division {
   margin-bottom: 5em;
 }
