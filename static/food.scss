@@ -235,6 +235,19 @@ body {
         opacity: 1;
     }
 }
+
+.pic-1, .pic-2, .pic-3{
+    
+
+    &:hover .food-name{
+        color: $grad-red;
+    }
+
+    &:hover .price{
+        color: $grad-pink;
+    }
+}
+
 .entree-pic-division, .snacks-pic-division, .desserts-pic-division{
     margin-bottom: 5em;
 }
@@ -253,10 +266,12 @@ body {
     color: $grad-pink;
     font-size: 1.2rem;
     font-weight: 500;
+    transition: color 300ms ease-in;
 }
 
 .price {
     color: $font-light;
+    transition: color 300ms ease-in;
 
 }
 

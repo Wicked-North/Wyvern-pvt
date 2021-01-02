@@ -234,6 +234,14 @@ body {
   opacity: 1;
 }
 
+.pic-1:hover .food-name, .pic-2:hover .food-name, .pic-3:hover .food-name {
+  color: #db2763;
+}
+
+.pic-1:hover .price, .pic-2:hover .price, .pic-3:hover .price {
+  color: #ff9a8b;
+}
+
 .entree-pic-division, .snacks-pic-division, .desserts-pic-division {
   margin-bottom: 5em;
 }
@@ -253,10 +261,14 @@ body {
   color: #ff9a8b;
   font-size: 1.2rem;
   font-weight: 500;
+  -webkit-transition: color 300ms ease-in;
+  transition: color 300ms ease-in;
 }
 
 .price {
   color: #f0f7ee;
+  -webkit-transition: color 300ms ease-in;
+  transition: color 300ms ease-in;
 }
 
 hr {
