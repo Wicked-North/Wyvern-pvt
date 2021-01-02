@@ -415,28 +415,37 @@ function displayPastPass(i) {
 
 function cancelTicket(pnr) {
 
-    var data = {
-        pnr: pnr
+    let ask=window.confirm("Are you sure you want to cancel your ticket?")
+
+    if(ask==true){
+        var data = {
+            pnr: pnr
+        }
+    
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        };
+    
+        fetch('/cancelTickets', options).then(res => res.json()).then((data) => {
+            if (data.message == 'cancelled') {
+    
+                window.alert('Cancelled Successfully')
+    
+    
+    
+            }
+            return
+        }).then((data) => {
+            window.location.reload();
+        })
+    
+    }else{
+        return
     }
 
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    };
-
-    fetch('/cancelTickets', options).then(res => res.json()).then((data) => {
-        if (data.message == 'cancelled') {
-
-            window.alert('Cancelled Successfully')
-
-
-
-        }
-        return
-    }).then((data) => {
-        window.location.reload();
-    })
+    
 }
