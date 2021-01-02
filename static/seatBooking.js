@@ -116,14 +116,48 @@ function bookSeats() {
     }
 
 
+    
+
+   
 
 
 
-    console.log(allDetails)
+    // console.log(allDetails)
 
-    //fetch('/bookTickets', ticketOptions)
+    
+    // document.getElementById('mainPage').style.filter='blur(10px)'
+    
+    // document.getElementById('paymentLoader').style.display='block'
+
+    // setTimeout(()=>{
+
+    //     document.getElementById('choice').innerHTML="Booking your seats"
+
+    // },3000)
+
+    // setTimeout(()=>{
+
+    //     document.getElementById('choice').innerHTML="Ordering your meal"
+
+    // },6000)
+
+    // setTimeout(()=>{
+    //     location.assign("confirmation.html");
+
+    // },8000)
 
     fetch('/bookSeats', pasOptions)
+    .then(res=> res.json())
+    .then(data=>{
+        console.log(data)
+        document.getElementById('mainPage').style.display='none'
+        document.getElementById('paymentLoader').style.display='block'
+
+        setTimeout(()=>{
+            location.assign("confirmation.html");
+
+        },3000)
+    })
 }
 
 

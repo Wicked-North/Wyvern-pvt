@@ -422,9 +422,21 @@ function updateDirectCard(arr) {
         time = diff(dirflights[i].departure, dirflights[i].arrival)
         console.log(time.split(":"))
         time = time.split(":")
-        var priceDir = dirflights[i].price
-        priceDir = numberWithCommas(priceDir)
-        $(`.price-${countDirCard}`).text(priceDir)
+
+
+        if(sessionStorage.getItem('class')=="Economy"){
+            var priceDir = dirflights[i].e_price
+            priceDir = numberWithCommas(priceDir)
+            $(`.price-${countDirCard}`).text(priceDir)
+        }else{
+            var priceDir = dirflights[i].b_price
+            priceDir = numberWithCommas(priceDir)
+            $(`.price-${countDirCard}`).text(priceDir)
+        }
+
+        
+
+
         var elem = ` <div class="card-${countDirCard} card">
         <div class="img" style="content: url('./images/${imgFileName}.png')"></div>
               <div class="card-content">
@@ -487,9 +499,17 @@ function updateViaCard(arr) {
         console.log(time.split(":"))
         time = time.split(":")
 
-        priceVia = viaflights[i].price
-        priceVia = numberWithCommas(priceVia)
-        $(`.price-${countViaCard}`).text(priceVia)
+
+        if(sessionStorage.getItem('class')=="Economy"){
+            priceVia = viaflights[i].e_price
+            priceVia = numberWithCommas(priceVia)
+            $(`.price-${countViaCard}`).text(priceVia)
+        }else{
+            priceVia = viaflights[i].b_price
+            priceVia = numberWithCommas(priceVia)
+            $(`.price-${countViaCard}`).text(priceVia)
+        }
+      
 
         if (i == 0) {
             var elem = ` <div class="card-${countViaCard} card">
@@ -1095,9 +1115,16 @@ function sortAll(viaflights, optimised) {
         viaFlightsName = viaFlightsName + " (" + viaFlightsNum + ")"
 
 
-        priceVia = viaflights[i].price
-        priceVia = numberWithCommas(priceVia)
-        $(`.price-${countViaCard}`).text(priceVia)
+        if(sessionStorage.getItem('class')=="Economy"){
+            priceVia = viaflights[i].e_price
+            priceVia = numberWithCommas(priceVia)
+            $(`.price-${countViaCard}`).text(priceVia)
+        }else{
+            priceVia = viaflights[i].b_price
+            priceVia = numberWithCommas(priceVia)
+            $(`.price-${countViaCard}`).text(priceVia)
+        }
+      
 
         time = diff(viaflights[i].departure, viaflights[i].arrival)
         time = time.split(":")

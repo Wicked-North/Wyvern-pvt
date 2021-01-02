@@ -9,7 +9,8 @@ let via
 let end
 let departure
 let arrival
-let price
+let e_price
+let b_price
 let places = ['kolkata', 'bangalore', 'mumbai', 'hyderabad', 'delhi', 'jaipur', 'ahmedabad', "null"]
 
 var placesObj = {
@@ -316,7 +317,8 @@ function getFlightDetails() {
               <th id='end'>END</th>           
               <th id='departure'>DEPARTURE</th>
               <th id='arrival'>ARRIVAL</th>
-              <th id='price'>PRICE</th>
+              <th id='e_price'>ECONOMY PRICE</th>
+              <th id='b_price'>BUSINESS PRICE</th>
               <th id='adminPanel'>&nbsp;&nbsp;&nbsp;PANEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
           
               
@@ -336,7 +338,9 @@ function getFlightDetails() {
               <td id='end-${i+1}'>${data[i].end}</td>             
               <td id='departure-${i+1}'>${data[i].departure} </td>
               <td id='arrival-${i+1}'>${data[i].arrival}</td>
-              <td id='price-${i+1}'>${data[i].price}</td>
+              <td id='e_price-${i+1}'>${data[i].e_price}</td>
+              <td id='b_price-${i+1}'>${data[i].b_price}</td>
+
               <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i>
               <button class='buttonUpdate' id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none;padding:none;margin:0px"><i class="fa fa-check" style="font-size:16px;width:15px"></i></button>
               <button class='deleteUpdate' id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none;width:30.97px;height:29.31px"><i class="fa fa-close" style="font-size:16px"></i></button><td>
@@ -353,7 +357,8 @@ function getFlightDetails() {
               <td id='end-${i+1}'>${data[i].end}</td>            
               <td id='departure-${i+1}'>${data[i].departure}</td>
               <td id='arrival-${i+1}'>${data[i].arrival}</td>
-              <td id='price-${i+1}'>${data[i].price}</td>
+              <td id='e_price-${i+1}'>${data[i].e_price}</td>
+              <td id='b_price-${i+1}'>${data[i].b_price}</td>
               <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i>
               <button class='buttonUpdate' id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none;padding:none;"><i class="fa fa-check" style="font-size:16px;width:15px"></i></button>
               <button class='deleteUpdate' id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none;width:30.97px;height:29.31px"><i class="fa fa-close" style="font-size:16px"></i></button><td>
@@ -405,7 +410,9 @@ function insertFlight() {
     let end = document.getElementById('end').value
     let departure = document.getElementById('dep').value
     let arrival = document.getElementById('arri').value
-    let price = document.getElementById('price').value
+    let e_price = document.getElementById('e_price').value
+    let b_price = document.getElementById('b_price').value
+
 
     if (document.getElementById(`via`).value == null || document.getElementById(`via`).value == 'null') {
         var via = null
@@ -427,7 +434,8 @@ function insertFlight() {
         end,
         departure,
         arrival,
-        price
+        e_price,
+        b_price
     }
     const options = {
         method: "POST",
@@ -1364,7 +1372,7 @@ function fixName(str) {
 
 
 
-function updateFlight(id) {
+function updateFlight(id,numFlight) {
     fnum = document.getElementById(`fnum-${id}`).innerHTML
     fname = document.getElementById(`fname-${id}`).innerHTML
     start = document.getElementById(`start-${id}`).innerHTML
@@ -1372,7 +1380,10 @@ function updateFlight(id) {
     end = document.getElementById(`end-${id}`).innerHTML
     departure = document.getElementById(`departure-${id}`).innerHTML
     arrival = document.getElementById(`arrival-${id}`).innerHTML
-    price = document.getElementById(`price-${id}`).innerHTML
+    e_price = document.getElementById(`e_price-${id}`).innerHTML
+    b_price = document.getElementById(`b_price-${id}`).innerHTML
+
+
     //console.log(fname)
 
     document.getElementById(`button1-${id}`).style.display = "inline"
@@ -1450,8 +1461,16 @@ function updateFlight(id) {
 
     document.getElementById(`arrival-${id}`).innerHTML = `<input type="text"   style="width:70px" id="f_arrival-${id}" value=${arrival}>`
 
-    document.getElementById(`price-${id}`).innerHTML = `<input type="text"   style="width:60px" id="f_price-${id}" value=${price}>`
+    document.getElementById(`e_price-${id}`).innerHTML = `<input type="text"   style="width:60px" id="f_e_price-${id}" value=${e_price}>`
 
+    document.getElementById(`b_price-${id}`).innerHTML = `<input type="text"   style="width:60px" id="f_b_price-${id}" value=${b_price}>`
+
+if(numFlight=='1'){
+
+    document.getElementsByClassName('fa-trash-alt')[0].style.display = "none"
+    document.getElementById('a1').style.display = "none"
+
+}else{
     for (var i = 1; i <= flights.length; i++) {
 
         document.getElementById(i).style.display = "none"
@@ -1461,20 +1480,27 @@ function updateFlight(id) {
 
         document.getElementsByClassName('fa-trash-alt')[i].style.display = "none"
     }
-
-
-
-
+}
+ 
 }
 
 
 
-function cancelUpdate(id) {
+
+
+function cancelUpdate(id,numFlight) {
     var a = id.split('-')[1]
     console.log(a)
     document.getElementById(`button1-${a}`).style.display = "none"
     document.getElementById(id).style.display = "none"
 
+if(numFlight=='1'){
+    document.getElementsByClassName(`fa-wrench`)[0].style.display = "inline"
+    document.getElementsByClassName('fa-trash-alt')[0].style.display = "inline"
+
+
+
+}else{
     for (let i = 0; i < flights.length; i++) {
         document.getElementsByClassName(`fa-wrench`)[i].style.display = "inline"
     }
@@ -1487,6 +1513,9 @@ function cancelUpdate(id) {
 
         document.getElementsByClassName('fa-trash-alt')[i].style.display = "inline"
     }
+}
+
+   
 
 
 
@@ -1497,8 +1526,12 @@ function cancelUpdate(id) {
     document.getElementById(`end-${a}`).innerHTML = end
     document.getElementById(`departure-${a}`).innerHTML = departure
     document.getElementById(`arrival-${a}`).innerHTML = arrival
-    document.getElementById(`price-${a}`).innerHTML = price
+    document.getElementById(`e_price-${a}`).innerHTML = e_price
+    document.getElementById(`b_price-${a}`).innerHTML = b_price
+
 }
+
+
 
 
 function updateInDb(a) {
@@ -1513,7 +1546,9 @@ function updateInDb(a) {
     var end = document.getElementById(`f_end-${id}`).value
     var departure = document.getElementById(`f_departure-${id}`).value
     var arrival = document.getElementById(`f_arrival-${id}`).value
-    var price = document.getElementById(`f_price-${id}`).value
+    var e_price = document.getElementById(`f_e_price-${id}`).value
+    var b_price = document.getElementById(`f_b_price-${id}`).value
+
     if (document.getElementById(`f_via-${id}`).value == null || document.getElementById(`f_via-${id}`).value == 'null') {
         var via = null
     } else {
@@ -1534,7 +1569,8 @@ function updateInDb(a) {
         end,
         departure,
         arrival,
-        price
+        e_price,
+        b_price
     }
     console.log(data)
     const options = {
@@ -1586,7 +1622,9 @@ function searchByFnum() {
       <th id='end'>END</th>           
       <th id='departure'>DEPARTURE</th>
       <th id='arrival'>ARRIVAL</th>
-      <th id='price'>PRICE</th>
+      <th id='e_price'>ECONOMY PRICE</th>
+      <th id='b_price'>BUSINESS PRICE</th>
+
       <th id='adminPanel'>PANEL</th>
 </tr>
   
@@ -1597,20 +1635,24 @@ function searchByFnum() {
         } else {
             var i = 0;
             searchData +=
-                `<tr class='odd'>
-              <td id='f_snum-${i+1}'> ${i+1}</td>
-              <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
-              <td id='fname-${i+1}'> ${data[i].flight_name} </td>
-              <td id='start-${i+1}' > ${data[i].start}</td>
-              <td id='via-${i+1}'> ${data[i].via} </td>
-              <td id='end-${i+1}'  > ${data[i].end} </td>            
-              <td id='departure-${i+1}'  > ${data[i].departure} </td>
-              <td id='arrival-${i+1}'> ${data[i].arrival}</td>
-              <td id='price-${i+1}'> ${data[i].price} </td>
-              <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='${i+1}' onclick='updateFlight(this.id)' style='cursor:pointer'></i><button id="button1-${i+1}" onclick='updateInDb(this.id)' style="display:none">Update</button><button id="button2-${i+1}" onclick='cancelUpdate(this.id)' style="display:none">x</button><td>
-              </tr>
-              </table>
-            `
+            `<tr class='even'>
+            <td id='f_snum-a1'>1</td>
+            <td id='fnum-a1'>${data[i].flight_num}</td>
+            <td id='fname-a1'>${data[i].flight_name}</td>
+            <td id='start-a1'>${data[i].start}</td>
+            <td id='via-a1'>${data[i].via}</td>
+            <td id='end-a1'>${data[i].end}</td>             
+            <td id='departure-a1'>${data[i].departure} </td>
+            <td id='arrival-a1'>${data[i].arrival}</td>
+            <td id='e_price-a1'>${data[i].e_price}</td>
+            <td id='b_price-a1'>${data[i].b_price}</td>
+
+            <td class='adminPanel'><i class="far fa-trash-alt" id='${data[i].flight_num}' onclick='deleteFlight(this.id)' style='cursor:pointer'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-wrench" id='a1' onclick='updateFlight(this.id,1)' style='cursor:pointer'></i>
+            <button class='buttonUpdate' id="button1-a1" onclick='updateInDb(this.id)' style="display:none;padding:none;margin:0px"><i class="fa fa-check" style="font-size:16px;width:15px"></i></button>
+            <button class='deleteUpdate' id="button2-a1" onclick='cancelUpdate(this.id,1)' style="display:none;width:30.97px;height:29.31px"><i class="fa fa-close" style="font-size:16px"></i></button><td>
+            </tr>
+            </table>
+          `
             document.getElementById('mainContent-1').innerHTML = searchData
 
 
