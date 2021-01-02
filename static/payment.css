@@ -1273,22 +1273,18 @@ ol {
   -webkit-animation-duration: 42s;
           animation-duration: 42s;
 }
-/*# sourceMappingURL=payment.css.map */
 
-/* ======================================final payment loader================================================= */
 .payment-loader {
   width: 150px;
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translateY(-50%) translateX(-50%);
-  -moz-transform: translateY(-50%) translateX(-50%);
-  -o-transform: translateY(-50%) translateX(-50%);
   transform: translateY(-50%) translateX(-50%);
 }
 
 .payment-loader .binding {
-  content: "";
+  content: '';
   width: 60px;
   height: 4px;
   border: 2px solid #9b72ee;
@@ -1322,8 +1318,6 @@ ol {
   border-radius: 100px;
   opacity: 0;
   -webkit-animation: writeline 3s infinite ease-in;
-  -moz-animation: writeline 3s infinite ease-in;
-  -o-animation: writeline 3s infinite ease-in;
   animation: writeline 3s infinite ease-in;
 }
 
@@ -1336,8 +1330,6 @@ ol {
   border-radius: 100px;
   opacity: 0;
   -webkit-animation: writeline2 3s infinite ease-in;
-  -moz-animation: writeline2 3s infinite ease-in;
-  -o-animation: writeline2 3s infinite ease-in;
   animation: writeline2 3s infinite ease-in;
 }
 
@@ -1347,15 +1339,11 @@ ol {
 
 .payment-loader .line.line1 {
   -webkit-animation-delay: 0s;
-  -moz-animation-delay: 0s;
-  -o-animation-delay: 0s;
   animation-delay: 0s;
 }
 
 .payment-loader .line.line2 {
   -webkit-animation-delay: 0.5s;
-  -moz-animation-delay: 0.5s;
-  -o-animation-delay: 0.5s;
   animation-delay: 0.5s;
 }
 
@@ -1366,9 +1354,12 @@ ol {
   margin-bottom: 0px;
   overflow: hidden;
   white-space: nowrap;
-  animation-delay: 10s;
-  animation: textline1 3s infinite ease-in;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+  -webkit-animation: textline1 3s infinite ease-in;
+          animation: textline1 3s infinite ease-in;
 }
+
 .payment-loader .loader-text p:nth-child(2) {
   margin-top: 10px;
   color: white;
@@ -1376,8 +1367,27 @@ ol {
   overflow: hidden;
   white-space: nowrap;
   text-align: center;
-  animation-delay: 2s;
-  animation: textline2 3s infinite ease-in;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  -webkit-animation: textline2 3s infinite ease-in;
+          animation: textline2 3s infinite ease-in;
+}
+
+@-webkit-keyframes writeline {
+  0% {
+    width: 0px;
+    opacity: 0;
+  }
+  33% {
+    width: 52px;
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes writeline {
@@ -1396,6 +1406,24 @@ ol {
     opacity: 0;
   }
 }
+
+@-webkit-keyframes writeline2 {
+  0% {
+    width: 0px;
+    opacity: 0;
+  }
+  33% {
+    width: 32px;
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes writeline2 {
   0% {
     width: 0px;
@@ -1412,6 +1440,24 @@ ol {
     opacity: 0;
   }
 }
+
+@-webkit-keyframes textline1 {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  33% {
+    width: 100%;
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes textline1 {
   0% {
     width: 0%;
@@ -1428,6 +1474,24 @@ ol {
     opacity: 0;
   }
 }
+
+@-webkit-keyframes textline2 {
+  0% {
+    width: 100%;
+    opacity: 0;
+  }
+  33% {
+    width: 100%;
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes textline2 {
   0% {
     width: 100%;
@@ -1444,3 +1508,4 @@ ol {
     opacity: 0;
   }
 }
+/*# sourceMappingURL=payment.css.map */
