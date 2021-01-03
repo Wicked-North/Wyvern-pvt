@@ -54,6 +54,21 @@ body {
     line-height: 0.9;
 }
 
+.sub-title-2{
+    //color:$font-light;
+    font-family: 'Overlock', cursive;
+    font-size: 2rem;
+    margin-top: 0.5em;
+    font-weight: 600;
+    background-image: linear-gradient(80deg, $grad-pink,$font-light);
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+}
+
+
 .main-title {
     //color: $grad-red;
     font-size: 3rem;
@@ -251,8 +266,12 @@ body {
 .entree-pic-division, .snacks-pic-division, .desserts-pic-division{
     margin-bottom: 5em;
 }
-.snacks-pic-division, .desserts-pic-division, .beverages-pic-division{
+.desserts-pic-division, .beverages-pic-division{
     margin-top: 3em;
+}
+
+.snacks-pic-division{
+    margin-top: 1em;
 }
 
 .pic-1-dets,
@@ -281,3 +300,4 @@ hr{
     border-image-slice: 1;
     opacity: 0.8;
 }
+
