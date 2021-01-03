@@ -712,7 +712,11 @@ function staticCardOpen(event) {
             viaPlace = $("." + cardClass + " .via-overlay").text()
 
             sessionStorage.setItem("via", viaPlace)
-            sessionStorage.setItem("Flight-Name", $("." + cardClass + " .flight-name").text())
+            var flgname=$("." + cardClass + " .flight-name").text()
+            var fin = flgname.indexOf(')');
+            flgname=flgname.substr(0,fin+1)
+            //console.log("flag",flgname.substr(0,fin+1))
+            sessionStorage.setItem("Flight-Name",flgname )
             sessionStorage.setItem("departureTime", $("." + cardClass + " .fromTime").text())
             sessionStorage.setItem("arrivalTime", $("." + cardClass + " .toTime").text())
             sessionStorage.setItem("basePrice", $("." + cardClass + " .base-price").text())
@@ -844,9 +848,9 @@ $(".static-container").ready(() => {
     $(".static-container .arrivalTime").text(arrTime)
     time = diff(deptTime, arrTime)
     time = time.split(":")
-    //console.log("time diff" + time)
-    $(".static-container .hours").text(hrs)
-    $(".static-container .minutes").text(mins)
+    console.log("time diff" + time)
+    $(".timeDiff .hours").text(time[0])
+    $(".timeDiff .minutes").text(time[1])
     $(".static-container .price").text(totalPrice)
 
     const d = new Date(departureDate); //converting date to string format
