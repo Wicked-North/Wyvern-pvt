@@ -32,14 +32,28 @@ $before-color-login:rgb(240, 247, 238);
 }
 
 body {
+    overflow-x: hidden;
     width: 100vw;
     padding: 5% 14%;
     font-family: 'Average Sans', sans-serif;
+    background: linear-gradient(51deg, #2a2a30, #010101);
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        background:transparent;
+    } 
+    
+    &::-webkit-scrollbar-track {
+        background: #2e2e2ee0;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgb(158, 158, 158);
+        border-radius: 5px;
+    }
 }
 
-body {
-    background: linear-gradient(51deg, #2a2a30, #010101);
-}
+
+
 
 .sub-title-top,
 .main-title,

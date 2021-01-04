@@ -10,13 +10,25 @@
 }
 
 body {
+  overflow-x: hidden;
   width: 100vw;
   padding: 5% 14%;
   font-family: 'Average Sans', sans-serif;
+  background: linear-gradient(51deg, #2a2a30, #010101);
 }
 
-body {
-  background: linear-gradient(51deg, #2a2a30, #010101);
+body::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+
+body::-webkit-scrollbar-track {
+  background: #2e2e2ee0;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #9e9e9e;
+  border-radius: 5px;
 }
 
 .sub-title-top,
