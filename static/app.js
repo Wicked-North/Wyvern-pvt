@@ -691,13 +691,26 @@ let revDown =
 `
 
 function continueToRev() {
+
 	for (let i = 0; i < n; i++) {
 		if (passengers[i].seatId == null) {
 			window.alert('Please select all the seats to continue')
 			return
 		}
 	}
+	for (let i = 0; i < n; i++) {
+		document.getElementsByClassName('payment-cross')[i].style.display = 'none'
+		$(`#p-${i}`).css("border", "none")
 
+	}
+
+	passengerSelect("0")
+	document.getElementById('inlineRadio+0').checked = true
+	$("#p-0").css({
+		"border": "2px solid transparent",
+		"border-image": "linear-gradient(45deg, rgb(219, 39, 99), rgb(255, 154, 139))",
+		"border-image-slice": "1"
+	})
 
 	flag = 1
 
@@ -751,6 +764,10 @@ function continueToRev() {
 
 function seatUpDown() { //SEAT EDIT
 
+	for (let i = 0; i < n; i++) {
+		document.getElementsByClassName('payment-cross')[i].style.display = 'block'
+	}
+
 	document.getElementById("detailsButton1").style.display = "none"
 	document.getElementById('detailsButton2').style.display = 'none'
 	document.getElementById('detailsButton3').style.display = 'none'
@@ -780,6 +797,9 @@ function seatUpDown() { //SEAT EDIT
 paymentUp = ``
 
 function showSB() {
+	for (let i = 0; i < n; i++) {
+		document.getElementsByClassName('payment-cross')[i].style.display = 'block'
+	}
 
 	var cardno = document.getElementById('cardNum').value
 	document.getElementById('cardNum').setAttribute('value', cardno)
@@ -843,6 +863,7 @@ function showSB() {
 			var p = 0
 			for (p = 0; p < 3; p++) {
 				document.getElementById(i + p + 1).disabled = true;
+
 			}
 		}
 	}
@@ -889,7 +910,6 @@ $("#cross-btn").on('click', () => {
 })
 
 function continueToPayment() {
-
 
 
 
@@ -972,7 +992,7 @@ function continueToPayment() {
                 </svg>
                 <div class="seat-passenger-title">Passenger-${i+1}</div>
             </label>
-            <button id='cross-btn' onclick="cancelSeats(${i})"><i class="fas fa-times"></i></buton>
+            <button id='cross-btn' class='payment-cross' onclick="cancelSeats(${i})"><i class="fas fa-times"></i></buton>
         </div>
         <div class="seat-passenger-content">
             <div class="pass-name-seats">
@@ -1069,7 +1089,19 @@ function continueToPayment() {
 		}
 
 	}
+	for (let i = 0; i < n; i++) {
+		document.getElementsByClassName('payment-cross')[i].style.display = 'none'
+		$(`#p-${i}`).css("border", "none")
+	}
 
+	$("#p-0").css({
+		"border": "2px solid transparent",
+		"border-image": "linear-gradient(45deg, rgb(219, 39, 99), rgb(255, 154, 139))",
+		"border-image-slice": "1"
+	})
+	passengerSelect("0")
+	document.getElementById('inlineRadio+0').checked = true
+	
 	heightTransitionOne()
 }
 
@@ -1194,7 +1226,7 @@ function heightTransitionTwo() {
 	setTimeout(() => {
 		$(".seats-parent").css("opacity", "1")
 		$("#seatSelection").css("opacity", "1")
-		$("#continueToRev").css('display', "block") 
+		$("#continueToRev").css('display', "block")
 		$("#card6").css("height", "44.5em")
 	}, 400)
 
@@ -1325,3 +1357,6 @@ function heightTransitionPencilThree() {
 	//scrolling to seats
 	$(window).scrollTop($('#card6').offset().top);
 }
+
+
+$(".class").text("(" + sessionStorage.getItem("class") + ")")

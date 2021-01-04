@@ -238,7 +238,7 @@ function tierSelect() {
 
     $(".dropdown-tier").css("display", "block");
     setTimeout(() => {
-        $(".dropdown-tier").css("height", "11em");
+        $(".dropdown-tier").css("height", "6em");
     }, 200);
 
 }
@@ -852,6 +852,8 @@ $(".static-container").ready(() => {
     $(".timeDiff .hours").text(time[0])
     $(".timeDiff .minutes").text(time[1])
     $(".static-container .price").text(totalPrice)
+    $(".travelTime .hours").text(time[0])
+    $(".travelTime .minutes").text(time[1])
 
     const d = new Date(departureDate); //converting date to string format
     $(".static-container .date").text(d.getDate())

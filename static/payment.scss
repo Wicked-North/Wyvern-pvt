@@ -140,6 +140,20 @@ body {
 
 }
 
+.class {
+
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    font-size: 1.5rem;
+    //margin-bottom: 0.5em;
+    margin: 0.2em 0.2em 0.2em 0.5em;
+    background-image: linear-gradient(80deg, $grad-pink, $font-light);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    width: fit-content;
+    font-family: 'Overlock', cursive;
+}
+
 .review-booking-title {
 
     background-image: linear-gradient(45deg, $grad-pink, $grad-red);
@@ -924,20 +938,27 @@ ol {
 }
 
 .seat input[type="checkbox"]:disabled+label {
-    background: #ddd;
+    background: transparent;
     text-indent: -9999px;
     overflow: hidden;
 }
 
 .seat input[type="checkbox"]:disabled+label:after {
-    content: "X";
+    
+    font-family: "Font Awesome 5 Free";
+    content: "\f00d";
     text-indent: 0;
     position: absolute;
     top: 4px;
     left: 50%;
     transform: translate(-50%, 0%);
-    color: $darkest-grey;
+    color: $grad-red-warning;
+    
 }
+.seat input[type="checkbox"]:disabled+label{
+    border: 3px solid $grad-red-warning;
+}
+
 
 .seat input[type="checkbox"]:disabled+label:hover {
     box-shadow: none;
@@ -948,19 +969,25 @@ ol {
     display: block;
     position: relative;
     width: 100%;
+    height: 2.5em;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
     line-height: 1.5rem;
-    padding: 4px 0;
-    color: #fff;
+    padding: 5px 0;
+    //color: #fff;
     background-image: linear-gradient(35deg, $grad-red, $black);
+    border-radius: 25%;
     //background: $black;
     //border: 2px solid $grad-red;
-    border-radius: 50%;
+ 
     animation-duration: 300ms;
     animation-fill-mode: both;
     transition-duration: 300ms;
+    /* display:flex;
+    justify-items:center;
+    align-items: center; */
+
 }
 
 .seat label:hover {
@@ -1071,16 +1098,20 @@ ol {
 // }
 
 //adding transition to heights in cards
-#card4, #card5, #card6, #card7{
+#card4,
+#card5,
+#card6,
+#card7 {
     transition: height 300ms ease;
 }
 
 
-#card4{
+#card4 {
     height: 47em;
+
     //height: 47em; //initially height of each division (one pass)
     //after transition height 17em (along with title) so should be a little lesser for each passenger division 
-    #passForm{
+    #passForm {
         opacity: 1;
         transition: opacity 500ms ease-in;
     }
@@ -1089,22 +1120,25 @@ ol {
 
 
 
-#card5{
+#card5 {
     height: 7em; //after transition should be 40em (when payment card opens)
+
     //when payment card closes height 17em
-    #payForm{
+    #payForm {
         opacity: 0;
         transition: opacity 500ms ease-out;
     }
 }
 
-#card6{
+#card6 {
     height: 7em; //after transition when seats shown 44.5em 
-    #seatSelection{
+
+    #seatSelection {
         opacity: 1; //adding just in case this property is however being overridden by the next property
         transition: opacity 500ms ease-out;
     }
-    .seats-parent{
+
+    .seats-parent {
         opacity: 0;
         transition: opacity 500ms ease-out;
     }
@@ -1112,9 +1146,10 @@ ol {
 
 }
 
-#card7{
+#card7 {
     height: 7em; //after transition 35em when there is only one passenger after that maybe plus 17 em for each pass
-    #revBooking{
+
+    #revBooking {
         opacity: 0;
         transition: opacity 500ms ease-out;
     }
@@ -1142,26 +1177,26 @@ $image-base-file-name: 'bg';
 $image-number-separator: '-';
 
 // Use 'null' in image-base-file-name variable, if you're using numbers as image name. 
-@if ($image-base-file-name != null) {
+@if ($image-base-file-name !=null) {
     $image-base-file-name: #{$image-base-file-name}#{$image-number-separator};
 }
 
 // Animation calculating
-$image-delay: $image-show-time + $image-crossfade-time;
-$image-total-time: ( $image-show-time + $image-crossfade-time ) * $image-quantity;
+$image-delay: $image-show-time+$image-crossfade-time;
+$image-total-time: ($image-show-time + $image-crossfade-time) * $image-quantity;
 
 $image-keyframe-first: 0%;
-$image-keyframe-second: ( $image-show-time / $image-total-time ) * 100%;
-$image-keyframe-third: ( $image-show-time + $image-crossfade-time ) / $image-total-time * 100%;
-$image-keyframe-fourth: 100% - ( ( $image-crossfade-time / $image-total-time ) * 100% );
+$image-keyframe-second: ($image-show-time / $image-total-time) * 100%;
+$image-keyframe-third: ($image-show-time + $image-crossfade-time) / $image-total-time * 100%;
+$image-keyframe-fourth: 100% - (($image-crossfade-time / $image-total-time) * 100%);
 $image-keyframe-fifth: 100%;
 
 // Other variables
-$z-index-image: -1; 
+$z-index-image: -1;
 
 // Set z-index-image = null, if you dont want use it.
 @mixin z-index($value) {
-    @if $value != null {
+    @if $value !=null {
         z-index: $value;
     }
 }
@@ -1169,34 +1204,34 @@ $z-index-image: -1;
 %image-base-properties {
     position: fixed;
     top: 0;
-    left:60%;
-	width: 100%;
+    left: 60%;
+    width: 100%;
     height: 100%;
 }
 
 // Create background classes with relevant url
 @for $image-number from 1 through $image-quantity {
     .#{$image-base-class-name}-#{$image-number} {
-    @extend %image-base-properties;
-    background: url('#{$image-url-path}#{$image-base-file-name}#{$image-number}.#{$image-extension}');
-    background-size: contain;
-    width:40%;
-  
-	background-repeat: no-repeat;
-    background-position: center;
+        @extend %image-base-properties;
+        background: url('#{$image-url-path}#{$image-base-file-name}#{$image-number}.#{$image-extension}');
+        background-size: contain;
+        width: 40%;
 
-    @include z-index($z-index-image);
+        background-repeat: no-repeat;
+        background-position: center;
+
+        @include z-index($z-index-image);
     }
 }
 
 // Automatic keyframes calculations
 @keyframes #{$crossfade-animation-name} {
-	#{$image-keyframe-first} {
-		opacity: 1;
+    #{$image-keyframe-first} {
+        opacity: 1;
     }
-    
+
     #{$image-keyframe-second} {
-        opacity: 1;     
+        opacity: 1;
     }
 
     #{$image-keyframe-third} {
@@ -1207,160 +1242,216 @@ $z-index-image: -1;
         opacity: 0;
     }
 
-	#{$image-keyframe-fifth} {
-		opacity: 1;
+    #{$image-keyframe-fifth} {
+        opacity: 1;
     }
 }
 
 // Automatic delay calculations
-  @for $image-number from 1 through $image-quantity {
+@for $image-number from 1 through $image-quantity {
     .container-images-crossfade div:nth-of-type(#{$image-number}) {
         animation-delay: ($image-quantity * $image-delay - $image-number * $image-delay) + $time-unit;
     }
-  }
+}
 
-  .container-images-crossfade div {
+.container-images-crossfade div {
     animation-name: #{$crossfade-animation-name};
     animation-iteration-count: infinite;
     animation-duration: 42s;
-  }
+}
 
 
-  //======================================final payment loader=================================================
-  .payment-loader {
-    width : 150px;
+//======================================final payment loader=================================================
+.payment-loader {
+    width: 150px;
     position: absolute;
     top: 50%;
-    left : 50%;
+    left: 50%;
     -webkit-transform: translateY(-50%) translateX(-50%);
     -moz-transform: translateY(-50%) translateX(-50%);
     -o-transform: translateY(-50%) translateX(-50%);
     transform: translateY(-50%) translateX(-50%);
-  }
-  
-  .payment-loader .binding {
-    content : '';
-    width : 60px;
-    height : 4px;
-    border : 2px solid #9b72ee;
-    margin : 0 auto;
-  }
-  
-  .payment-loader .pad {
-    width : 70px;
-    height : 50px;
-    border-radius : 8px;
-    border : 2px solid white;
-    padding : 6px;
-    margin : 0 auto;
-  }
-  
-  .payment-loader .chip {
-    width : 12px;
+}
+
+.payment-loader .binding {
+    content: '';
+    width: 60px;
+    height: 4px;
+    border: 2px solid #9b72ee;
+    margin: 0 auto;
+}
+
+.payment-loader .pad {
+    width: 70px;
+    height: 50px;
+    border-radius: 8px;
+    border: 2px solid white;
+    padding: 6px;
+    margin: 0 auto;
+}
+
+.payment-loader .chip {
+    width: 12px;
     height: 8px;
-   background:white;
+    background: white;
     border-radius: 3px;
     margin-top: 4px;
     margin-left: 3px;
-  }
-  
-  .payment-loader .line {
-    width : 52px;
-    margin-top : 6px;
-    margin-left : 3px;
-    height : 4px;
-   background:white; border-radius: 100px;
-    opacity : 0;
-    -webkit-animation : writeline 3s infinite ease-in;
-    -moz-animation : writeline 3s infinite ease-in;
-    -o-animation : writeline 3s infinite ease-in;
-    animation : writeline 3s infinite ease-in;
-  }
-  
-  .payment-loader .line2 {
-    width : 32px;
-    margin-top : 6px;
-    margin-left : 3px;
-    height : 4px;
-       background : white;
+}
+
+.payment-loader .line {
+    width: 52px;
+    margin-top: 6px;
+    margin-left: 3px;
+    height: 4px;
+    background: white;
     border-radius: 100px;
-    opacity : 0;
-    -webkit-animation : writeline2 3s infinite ease-in;
-    -moz-animation : writeline2 3s infinite ease-in;
-    -o-animation : writeline2 3s infinite ease-in;
-    animation : writeline2 3s infinite ease-in;
-  }
-  
-  .payment-loader .line:first-child {
-    margin-top : 0;
-  }
-  
-  .payment-loader .line.line1 {
+    opacity: 0;
+    -webkit-animation: writeline 3s infinite ease-in;
+    -moz-animation: writeline 3s infinite ease-in;
+    -o-animation: writeline 3s infinite ease-in;
+    animation: writeline 3s infinite ease-in;
+}
+
+.payment-loader .line2 {
+    width: 32px;
+    margin-top: 6px;
+    margin-left: 3px;
+    height: 4px;
+    background: white;
+    border-radius: 100px;
+    opacity: 0;
+    -webkit-animation: writeline2 3s infinite ease-in;
+    -moz-animation: writeline2 3s infinite ease-in;
+    -o-animation: writeline2 3s infinite ease-in;
+    animation: writeline2 3s infinite ease-in;
+}
+
+.payment-loader .line:first-child {
+    margin-top: 0;
+}
+
+.payment-loader .line.line1 {
     -webkit-animation-delay: 0s;
     -moz-animation-delay: 0s;
     -o-animation-delay: 0s;
     animation-delay: 0s;
-  }
-  
-  .payment-loader .line.line2 {
+}
+
+.payment-loader .line.line2 {
     -webkit-animation-delay: 0.5s;
     -moz-animation-delay: 0.5s;
     -o-animation-delay: 0.5s;
     animation-delay: 0.5s;
-  }
-  
-  .payment-loader .loader-text {
-    
-  
-    
-  
-    
-    p:nth-child(1){
-        color : white;
-    font-size : 16px;
-      margin-top:12px;
-      margin-bottom:0px;
-       overflow: hidden; 
-    white-space: nowrap;
-  
+}
+
+.payment-loader .loader-text {
+
+
+
+
+
+    p:nth-child(1) {
+        color: white;
+        font-size: 16px;
+        margin-top: 12px;
+        margin-bottom: 0px;
+        overflow: hidden;
+        white-space: nowrap;
+
         animation-delay: 10s;
-      animation : textline1 3s infinite ease-in;
+        animation: textline1 3s infinite ease-in;
     }
-    p:nth-child(2){
-      margin-top:10px;
-      color:white;
-      font-size:14px;
-       overflow: hidden; 
-    white-space: nowrap;
-      text-align:center;
+
+    p:nth-child(2) {
+        margin-top: 10px;
+        color: white;
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-align: center;
         animation-delay: 2s;
-      animation : textline2 3s infinite ease-in;
+        animation: textline2 3s infinite ease-in;
     }
-  }
-  
-  
-  @keyframes writeline {
-    0% { width : 0px; opacity: 0; }
-    33% { width : 52px; opacity : 1; }
-    70% { opacity : 1; }
-    100% {opacity : 0; }
-  }
-  
-  @keyframes writeline2 {
-    0% { width : 0px; opacity: 0; }
-    33% { width : 32px; opacity : 1; }
-    70% { opacity : 1; }
-    100% {opacity : 0; }
-  }
-  @keyframes textline1{
-    0% { width : 0%; opacity: 0;  }
-    33% { width : 100%; opacity : 1; }
-    70% { opacity : 1; }
-    100% {opacity : 0; }
-  }
-  @keyframes textline2{
-    0% { width : 100%; opacity: 0;  }
-    33% { width : 100%; opacity : 1; }
-    70% { opacity : 1; }
-    100% {opacity : 0; }
-  }
+}
+
+
+@keyframes writeline {
+    0% {
+        width: 0px;
+        opacity: 0;
+    }
+
+    33% {
+        width: 52px;
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes writeline2 {
+    0% {
+        width: 0px;
+        opacity: 0;
+    }
+
+    33% {
+        width: 32px;
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes textline1 {
+    0% {
+        width: 0%;
+        opacity: 0;
+    }
+
+    33% {
+        width: 100%;
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes textline2 {
+    0% {
+        width: 100%;
+        opacity: 0;
+    }
+
+    33% {
+        width: 100%;
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
