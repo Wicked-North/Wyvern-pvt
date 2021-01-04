@@ -1,0 +1,209 @@
+* {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+html {
+  overflow: hidden;
+  height: 100vh;
+}
+
+body {
+  height: 100%;
+  background-image: linear-gradient(51deg, #2a2a30, #010101);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cardWrap {
+  margin: auto;
+  color: #f0f7ee;
+  font-family: sans-serif;
+}
+
+.card {
+  background: -webkit-gradient(linear, left top, left bottom, from(#db2763), color-stop(26%, #db2763), color-stop(26%, #ecedef), to(#ecedef));
+  background: linear-gradient(to bottom, #db2763 0%, #db2763 26%, #ecedef 26%, #ecedef 100%);
+  height: 11em;
+  float: left;
+  position: relative;
+  padding: 1em;
+}
+
+.cardLeft {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  width: 16em;
+}
+
+.cardRight {
+  width: 6.5em;
+  border-left: 0.18em dashed #101011;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.cardRight:before, .cardRight:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: .9em;
+  height: .9em;
+  background: #101011;
+  border-radius: 50%;
+  left: -.5em;
+}
+
+.cardRight:before {
+  top: -.4em;
+}
+
+.cardRight:after {
+  bottom: -.4em;
+}
+
+h1 {
+  font-size: 1.1em;
+  margin-top: 0;
+}
+
+h1 span {
+  font-weight: normal;
+}
+
+.title, .name, .seat, .time {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.title h2, .name h2, .seat h2, .time h2 {
+  font-size: .9em;
+  color: #4e4e50;
+  margin: 0;
+}
+
+.title span, .name span, .seat span, .time span {
+  font-size: .7em;
+  color: #737979;
+}
+
+.departure-date {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.departure-date h2 {
+  font-size: .9em;
+  color: #4e4e50;
+  margin: 0;
+}
+
+.departure-date .dept-date {
+  font-size: .7em;
+  color: #737979;
+}
+
+.title {
+  margin: 2em 0 0 0;
+}
+
+.name, .seat {
+  margin: .7em 0 0 0;
+}
+
+.time {
+  margin: .7em 0 0 1em;
+}
+
+.seat, .time {
+  float: left;
+}
+
+.number {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.number h3 {
+  color: #db2763;
+  margin: 2em 0 0 0;
+  font-size: 1.7em;
+}
+
+.number span {
+  display: block;
+  color: #a2aeae;
+}
+
+.barcode {
+  height: 2em;
+  width: 0;
+  margin: 1.2em 0 0 .8em;
+  -webkit-box-shadow: 1px 0 0 1px #101011, 5px 0 0 1px #101011, 10px 0 0 1px #101011, 11px 0 0 1px #101011, 15px 0 0 1px #101011, 18px 0 0 1px #101011, 22px 0 0 1px #101011, 23px 0 0 1px #101011, 26px 0 0 1px #101011, 30px 0 0 1px #101011, 35px 0 0 1px #101011, 37px 0 0 1px #101011, 41px 0 0 1px #101011, 44px 0 0 1px #101011, 47px 0 0 1px #101011, 51px 0 0 1px #101011, 56px 0 0 1px #101011, 59px 0 0 1px #101011, 64px 0 0 1px #101011, 68px 0 0 1px #101011, 72px 0 0 1px #101011, 74px 0 0 1px #101011, 77px 0 0 1px #101011, 81px 0 0 1px #101011;
+          box-shadow: 1px 0 0 1px #101011, 5px 0 0 1px #101011, 10px 0 0 1px #101011, 11px 0 0 1px #101011, 15px 0 0 1px #101011, 18px 0 0 1px #101011, 22px 0 0 1px #101011, 23px 0 0 1px #101011, 26px 0 0 1px #101011, 30px 0 0 1px #101011, 35px 0 0 1px #101011, 37px 0 0 1px #101011, 41px 0 0 1px #101011, 44px 0 0 1px #101011, 47px 0 0 1px #101011, 51px 0 0 1px #101011, 56px 0 0 1px #101011, 59px 0 0 1px #101011, 64px 0 0 1px #101011, 68px 0 0 1px #101011, 72px 0 0 1px #101011, 74px 0 0 1px #101011, 77px 0 0 1px #101011, 81px 0 0 1px #101011;
+}
+
+.stamp {
+  position: absolute;
+  height: 100px;
+  width: 115px;
+  left: 50%;
+  top: 50%;
+  content: url("./images/stamp.png");
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  animation-delay: 2.5s;
+  -webkit-animation-delay: 2.5s;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  opacity: 0;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: .50;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotate(-2deg) scale(5);
+            transform: rotate(-2deg) scale(5);
+    -webkit-transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: rotate(-15deg) scale(1);
+            transform: rotate(-15deg) scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: .50;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-transform: rotate(-2deg) scale(5);
+            transform: rotate(-2deg) scale(5);
+    -webkit-transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: rotate(-15deg) scale(1);
+            transform: rotate(-15deg) scale(1);
+  }
+}
+/*# sourceMappingURL=confirmation1.css.map */
