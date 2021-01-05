@@ -30,20 +30,27 @@ html{
 }
 
 body {
-    height:100%;
+    height:100vh;
+    width: 100vw;
     //padding: 5% 14%;
     //font-family: 'Average Sans', sans-serif;
-    background-image: linear-gradient(51deg, #2a2a30, #010101);
+    //background-image: linear-gradient(51deg, #2a2a30, #010101);
+    background-color: $black;
     display: flex;
-    
     justify-content: center;
+    font-family: 'Average Sans', sans-serif;
 }
 .cardWrap {
   //width: 27em;
   //margin: 3em auto;
   margin: auto;
+  position: absolute;
+  top:35%;
   color: $font-light;
   font-family: sans-serif;
+  display:block;
+  transform: scale(1.4);
+  
 }
 
 .card {
@@ -52,6 +59,7 @@ body {
   float: left;
   position: relative;
   padding: 1em;
+  
   //margin-top: 100px;
 }
 
@@ -187,10 +195,10 @@ h1 {
 
 .stamp{
     position: absolute;
-     height:100px;
-    width:115px;
+     height:150px;
+    width:170px;
     left:50%;
-    top:50%;
+    top:45%;
     content: url('./images/stamp.png');
     //background-color:#ef8080;
     -webkit-animation-name: pulse;
@@ -222,4 +230,17 @@ h1 {
   
   
   
-  
+.redirect{
+  position:absolute;
+  color:$grad-pink;
+  top:72%;
+  display: flex;
+  font-size:1.2rem;
+  a, div{
+    margin:0 0.2em;
+  }
+  a{
+    color:$grad-red;
+    cursor: pointer;
+  }
+}  

@@ -189,10 +189,10 @@ var fromPlaceElem = "";
 var toPlaceElem = "";
 var fromDeSelectOpts = 0;
 var toDeSelectOpts = 0;
+
+//dropdown fromSelect displays the from dropdown
 //dropdown for from
 $(".from").click(fromSelect)
-
-$(".from input").blur(selectOpt)
 
 function fromSelect() {
     //var inpTo=$(".to input").val()
@@ -208,31 +208,27 @@ function fromSelect() {
 
 
 
-//dropdown for to
+//toSelect makes the dropdown of to visible
 $(".to").click(toSelect)
-$(".to input").blur(selectOpt)
 
 function toSelect() {
     var inp = $(".from input").val()
     $(".dropdown-to").css("display", "block");
     console.log("input", inp)
-    console.log(placeSelect[inp])
+    /* console.log(placeSelect[inp])
     fromPlaceElem = $(`.${placeSelect[inp]}`)
     console.log(fromPlaceElem)
-    $(`.${placeSelect[inp]}`).remove()
+    $(`.${placeSelect[inp]}`).remove() */
+
     setTimeout(() => {
         $(".dropdown-to").css("height", "11em");
     }, 200);
-
-
-
 }
 
 
-
-//dropdown for tier
+//tierSelect makes the tier dropdown visible
+//dropdown for tier 
 $(".tier").click(tierSelect)
-$(".tier input").blur(selectOpt)
 
 function tierSelect() {
 
@@ -244,7 +240,7 @@ function tierSelect() {
 }
 
 
-
+// hiding the dropdown on clicking options
 //selecting a place (binding event to a static element)
 $(".dropdown-from").on('click', ".place-1", selectOpt)
 $(".dropdown-from").on('click', ".place-2", selectOpt)
@@ -268,23 +264,20 @@ $(".tier-2").click(selectOpt)
 $(".tier-3").click(selectOpt)
 $(".tier-4").click(selectOpt)
 
+//on blur of all the fields
+$(".tier input").blur(selectOpt)
+$(".to input").blur(selectOpt)
+$(".from input").blur(selectOpt)
+
+//selectOpt -> if the input field has no text the content name goes back to its place (on blur) and dropdown is hidden
+//selectOpt -> if any option is selected the dropdown is again hidden with the setTimeout
 function selectOpt(evt) {
     fromDeSelectOpts = 0;
-    /* console.log($(evt.target).text())
-    console.log($(evt.target))
-    console.log($(evt.target).parents().hasClass("dropdown")) */
 
     if ($(evt.target).parents().hasClass("dropdown")) {
-        //console.log("inside")
-        if ($(evt.target).parents().hasClass("dropdown-from") /* && $(evt.target).text()!=$(".to input").val() */ ) {
-
+        if ($(evt.target).parents().hasClass("dropdown-from")) {
             $(".from input").val($(evt.target).text())
             if ($("input").val() != "") {
-                console.log("adding element")
-                console.log(fromPlaceElem[0])
-
-                $(".dropdown").append(fromPlaceElem[0])
-                //$(".dropdown-from").append(fromPlaceElem[0])
                 $(".from .label-name .content-name").css({
                     "color": "rgb(240, 247, 238)",
                     "font-size": "1em",
@@ -330,6 +323,45 @@ function selectOpt(evt) {
         }, 200)
     }, 200)
 
+}
+
+
+
+//checking if place on from and to are same (binding event to a static element)
+$(".dropdown-from").on('click', ".place-1", placeSelectCheck)
+$(".dropdown-from").on('click', ".place-2", placeSelectCheck)
+$(".dropdown-from").on('click', ".place-3", placeSelectCheck)
+$(".dropdown-from").on('click', ".place-4", placeSelectCheck)
+$(".dropdown-from").on('click', ".place-5", placeSelectCheck)
+$(".dropdown-from").on('click', ".place-6", placeSelectCheck)
+$(".dropdown-from").on('click', ".place-7", placeSelectCheck)
+
+$(".dropdown-to").on('click', ".place-1", placeSelectCheck)
+$(".dropdown-to").on('click', ".place-2", placeSelectCheck)
+$(".dropdown-to").on('click', ".place-3", placeSelectCheck)
+$(".dropdown-to").on('click', ".place-4", placeSelectCheck)
+$(".dropdown-to").on('click', ".place-5", placeSelectCheck)
+$(".dropdown-to").on('click', ".place-6", placeSelectCheck)
+$(".dropdown-to").on('click', ".place-7", placeSelectCheck)
+
+//placeSelectCheck -> checks if same places are selected in from and to inputs
+function placeSelectCheck(evt) {
+    //console.log("place select check", $(evt.target))
+    var fromPlace = $(".from input").val()
+    var toPlace = $(".to input").val()
+    //console.log("from place", fromPlace)
+    //console.log("to place", toPlace)
+
+    if (fromPlace == toPlace) {
+        //if empties the 'to' input if user selects the place from 'from' dropdown which is same as 'to' input
+        if ($(evt.target).parents().hasClass("dropdown-from")) {
+            $(".to input").val("")
+        }
+        //else if empties the 'from' input if user selects the place from 'to' which is dropdown same as 'from' input
+        else if ($(evt.target).parents().hasClass("dropdown-to")) {
+            $(".from input").val("")
+        }
+    }
 }
 
 
@@ -424,17 +456,17 @@ function updateDirectCard(arr) {
         time = time.split(":")
 
 
-        if(sessionStorage.getItem('class')=="Economy"){
+        if (sessionStorage.getItem('class') == "Economy") {
             var priceDir = dirflights[i].e_price
             priceDir = numberWithCommas(priceDir)
             $(`.price-${countDirCard}`).text(priceDir)
-        }else{
+        } else {
             var priceDir = dirflights[i].b_price
             priceDir = numberWithCommas(priceDir)
             $(`.price-${countDirCard}`).text(priceDir)
         }
 
-        
+
 
 
         var elem = ` <div class="card-${countDirCard} card">
@@ -500,16 +532,16 @@ function updateViaCard(arr) {
         time = time.split(":")
 
 
-        if(sessionStorage.getItem('class')=="Economy"){
+        if (sessionStorage.getItem('class') == "Economy") {
             priceVia = viaflights[i].e_price
             priceVia = numberWithCommas(priceVia)
             $(`.price-${countViaCard}`).text(priceVia)
-        }else{
+        } else {
             priceVia = viaflights[i].b_price
             priceVia = numberWithCommas(priceVia)
             $(`.price-${countViaCard}`).text(priceVia)
         }
-      
+
 
         if (i == 0) {
             var elem = ` <div class="card-${countViaCard} card">
@@ -712,11 +744,11 @@ function staticCardOpen(event) {
             viaPlace = $("." + cardClass + " .via-overlay").text()
 
             sessionStorage.setItem("via", viaPlace)
-            var flgname=$("." + cardClass + " .flight-name").text()
+            var flgname = $("." + cardClass + " .flight-name").text()
             var fin = flgname.indexOf(')');
-            flgname=flgname.substr(0,fin+1)
+            flgname = flgname.substr(0, fin + 1)
             //console.log("flag",flgname.substr(0,fin+1))
-            sessionStorage.setItem("Flight-Name",flgname )
+            sessionStorage.setItem("Flight-Name", flgname)
             sessionStorage.setItem("departureTime", $("." + cardClass + " .fromTime").text())
             sessionStorage.setItem("arrivalTime", $("." + cardClass + " .toTime").text())
             sessionStorage.setItem("basePrice", $("." + cardClass + " .base-price").text())
@@ -1119,16 +1151,16 @@ function sortAll(viaflights, optimised) {
         viaFlightsName = viaFlightsName + " (" + viaFlightsNum + ")"
 
 
-        if(sessionStorage.getItem('class')=="Economy"){
+        if (sessionStorage.getItem('class') == "Economy") {
             priceVia = viaflights[i].e_price
             priceVia = numberWithCommas(priceVia)
             $(`.price-${countViaCard}`).text(priceVia)
-        }else{
+        } else {
             priceVia = viaflights[i].b_price
             priceVia = numberWithCommas(priceVia)
             $(`.price-${countViaCard}`).text(priceVia)
         }
-      
+
 
         time = diff(viaflights[i].departure, viaflights[i].arrival)
         time = time.split(":")
