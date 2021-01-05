@@ -309,4 +309,63 @@ hr {
   border-image-slice: 1;
   opacity: 0.8;
 }
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  z-index: 200;
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(45deg, #2a2a30, #101011);
+  -webkit-box-shadow: 10px 0 20px rgba(128, 127, 127, 0.5);
+          box-shadow: 10px 0 20px rgba(128, 127, 127, 0.5);
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.nav .left-nav,
+.nav .right-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 1em;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.nav a {
+  outline: none;
+  background: transparent;
+  text-decoration: none;
+  border: none;
+  font-size: 1.2rem;
+  font-family: 'Overlock', cursive;
+  font-weight: 700;
+  color: #ff9a8b;
+  overflow: hidden;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+  margin-left: 0.8em;
+  /* &::after{
+            content: "";
+            display:block;
+            border:1px solid $grad-red;
+            transform:translateX(-100%);
+            opacity:0;
+            width: inherit;
+            position: relative;
+            margin-top:0.2em;
+            transition: transform 400ms ease-in;
+            transform: opacity 100ms ease;
+        } */
+}
+
+.nav a:hover {
+  -webkit-box-shadow: 0 3px 0px #db2763;
+          box-shadow: 0 3px 0px #db2763;
+}
 /*# sourceMappingURL=food.css.map */

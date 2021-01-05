@@ -446,6 +446,15 @@ function cancelTicket(pnr) {
     }else{
         return
     }
+}
 
-    
+function showMeals() {
+    window.location.assign('food.html')
+}
+
+function showHomepage() {
+    sessionStorage.setItem('flagOnReload', '1')
+    sessionStorage.setItem('sourceOnReload', sessionStorage.getItem('source'))
+    sessionStorage.setItem('source', '')
+    window.location.replace('home-page.html')
 }
