@@ -133,28 +133,28 @@ function bookSeats() {
 
     setTimeout(()=>{
 
-        document.getElementById('choice').innerHTML="Booking your seats"
+        document.getElementById('choice').innerHTML=" &nbsp; Booking your seats . . . ."
 
     },3000)
 
     setTimeout(()=>{
 
-        document.getElementById('choice').innerHTML="Ordering your meal"
+        document.getElementById('choice').innerHTML="&nbsp; Ordering your meal . . . ."
 
     },6000)
 
     setTimeout(()=>{
-        fetch('/bookSeats', pasOptions)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
+        // fetch('/bookSeats', pasOptions)
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data)
          
 
-            setTimeout(() => {
-                location.assign("confirmation1.html");
+            // setTimeout(() => {
+            //     location.assign("confirmation1.html");
 
-            }, 3000)
-        })
+            // }, 3000)
+        // })
 
     },8000)
 
