@@ -16,8 +16,6 @@
 
 
 	<title>Card page</title>
-
-	<link rel="stylesheet" type="text/css" href="app.css">
 </head>
 
 <body>
@@ -37,9 +35,11 @@
 	<div class="nav">
 		<div class="left-nav">
 			<div class="nav-elem-1" id='uname'><a href="#" class="login-nav" id='login-nav'></a></div>
-			<div class="nav-elem-2"><a href="#" class="prev-nav" onclick="showBookings()">Bookings</a></div>
-			<div class="nav-elem-0" id='lin'><a href="#" class="prev-nav" onclick='openDiv();'>Log In</a></div>
-			<div class="nav-elem-0" id='lout' style='display:none'><a href="#" class="prev-nav" onclick='logOut();'>Log
+			<div class="nav-elem-4"><a class="prev-nav" onclick="showHomepage()">Home</a></div>
+			<div class="nav-elem-2"><a class="prev-nav" onclick="showBookings()">Bookings</a></div>
+			<div class="nav-elem-3"><a class="prev-nav" onclick="showMeals()">Meals</a></div>
+			<div class="nav-elem-0" id='lin'><a class="prev-nav" onclick='openDiv();'>Log In</a></div>
+			<div class="nav-elem-0" id='lout' style='display:none'><a class="prev-nav" onclick='logOut();'>Log
 					Out</a></div>
 		</div>
 		<div class="right-nav">
@@ -148,7 +148,7 @@
 				<div class="card" id="card6">
 					<div class="card-body">
 						<div class="select-seats-main-title">
-							<div class="select-seats-title">Select Seats</div>
+							<div class="select-seats-title">Select Seats</div><div class="class">(Economy)</div>
 							<!-- <div id='passengerSeat'></div> -->
 
 							<button id="detailsButton3" onclick="seatUpDown()" style="display: none">
@@ -411,7 +411,7 @@
 		integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
 	</script>
 	<!--SCRIPT FILE WHICH CONTAINS HTML-->
-	<script src="app.js"></script>
+	<script src="payment.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 	</script>

@@ -13,6 +13,8 @@ let flag
 let prevSeats = []
 let prevSeatName = []
 var space = " "
+let flag2 = 0;
+
 
 function passDetailsDisplay() {
 	for (let i = 0; i < n; i++) {
@@ -59,14 +61,14 @@ function passDetailsDisplay() {
         </div>
     </div>
     <div class="gender-radio-button">
-        <input type="radio" name="field" id="inlineRadio2+${i+1}" value="option2" />
+        <input type="radio" name="passenger-${i+1}" id="inlineRadio2+${i+1}" value="option2" />
         <label class="male" for="inlineRadio2+${i+1}">
             <svg class="check" viewbox="0 0 40 40">
                 <circle id="border" r="18px" cx="20px" cy="20px"></circle>
                 <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
             </svg>Male
         </label>
-        <input type="radio" name="field" id="inlineRadio1+${i+1}" value="option2" />
+        <input type="radio" name="passenger-${i+1}" id="inlineRadio1+${i+1}" value="option2" />
         <label class="female" for="inlineRadio1+${i+1}">
             <svg class="check" viewbox="0 0 40 40">
                 <defs>
@@ -691,13 +693,26 @@ let revDown =
 `
 
 function continueToRev() {
+
 	for (let i = 0; i < n; i++) {
 		if (passengers[i].seatId == null) {
 			window.alert('Please select all the seats to continue')
 			return
 		}
 	}
+	for (let i = 0; i < n; i++) {
+		document.getElementsByClassName('payment-cross')[i].style.display = 'none'
+		$(`#p-${i}`).css("border", "none")
 
+	}
+
+	passengerSelect("0")
+	document.getElementById('inlineRadio+0').checked = true
+	$("#p-0").css({
+		"border": "2px solid transparent",
+		"border-image": "linear-gradient(45deg, rgb(219, 39, 99), rgb(255, 154, 139))",
+		"border-image-slice": "1"
+	})
 
 	flag = 1
 
@@ -751,6 +766,10 @@ function continueToRev() {
 
 function seatUpDown() { //SEAT EDIT
 
+	for (let i = 0; i < n; i++) {
+		document.getElementsByClassName('payment-cross')[i].style.display = 'block'
+	}
+
 	document.getElementById("detailsButton1").style.display = "none"
 	document.getElementById('detailsButton2').style.display = 'none'
 	document.getElementById('detailsButton3').style.display = 'none'
@@ -780,6 +799,12 @@ function seatUpDown() { //SEAT EDIT
 paymentUp = ``
 
 function showSB() {
+
+
+	flag2 = 1
+	for (let i = 0; i < n; i++) {
+		document.getElementsByClassName('payment-cross')[i].style.display = 'block'
+	}
 
 	var cardno = document.getElementById('cardNum').value
 	document.getElementById('cardNum').setAttribute('value', cardno)
@@ -843,6 +868,7 @@ function showSB() {
 			var p = 0
 			for (p = 0; p < 3; p++) {
 				document.getElementById(i + p + 1).disabled = true;
+
 			}
 		}
 	}
@@ -865,10 +891,21 @@ function showSB() {
 	//  else {
 	//document.getElementById("seatSelection").innerHTML = seatBookUp;
 	// paymentDetails = true;
-	// 
+	//
+	for (let i = 0; i < n; i++) {
+		$(`#p-${i}`).css("border", "none")
+
+	}
+
 	passengerSelect("0")
 	document.getElementById('inlineRadio+0').checked = true
-
+	$("#p-0").css({
+		"border": "2px solid transparent",
+		"border-image": "linear-gradient(45deg, rgb(219, 39, 99), rgb(255, 154, 139))",
+		"border-image-slice": "1"
+	})
+	document.getElementById('inlineRadio+0').checked = true
+	$(".seats-parent").css("display", "flex")
 	heightTransitionTwo()
 }
 
@@ -890,10 +927,6 @@ $("#cross-btn").on('click', () => {
 
 function continueToPayment() {
 
-
-
-
-
 	document.getElementById("right-seats").innerHTML = '';
 	passengerSeat = ''
 
@@ -912,9 +945,11 @@ function continueToPayment() {
 			document.getElementById(`inlineRadio2+${i+1}`).setAttribute('checked', true)
 			// console.log(document.getElementById(`inlineRadio2+${i+1}`))
 			gender = 'Male'
+			console.log(gender)
+
 		}
 
-		var chk = $('#inlineRadio1').checked
+		//var chk = $('#inlineRadio1').checked
 		var fname = document.getElementById(`FirstName+${i+1}`).value
 		document.getElementById(`FirstName+${i+1}`).setAttribute('value', fname)
 		//console.log(fname)
@@ -972,7 +1007,7 @@ function continueToPayment() {
                 </svg>
                 <div class="seat-passenger-title">Passenger-${i+1}</div>
             </label>
-            <button id='cross-btn' onclick="cancelSeats(${i})"><i class="fas fa-times"></i></buton>
+            <button id='cross-btn' class='payment-cross' onclick="cancelSeats(${i})"><i class="fas fa-times"></i></buton>
         </div>
         <div class="seat-passenger-content">
             <div class="pass-name-seats">
@@ -1069,12 +1104,32 @@ function continueToPayment() {
 		}
 
 	}
+	for (let i = 0; i < n; i++) {
+		document.getElementsByClassName('payment-cross')[i].style.display = 'none'
+		$(`#p-${i}`).css("border", "none")
+	}
+
+	$("#p-0").css({
+		"border": "2px solid transparent",
+		"border-image": "linear-gradient(45deg, rgb(219, 39, 99), rgb(255, 154, 139))",
+		"border-image-slice": "1"
+	})
+	passengerSelect("0")
+	document.getElementById('inlineRadio+0').checked = true
 
 	heightTransitionOne()
 }
 
 
 function slideUpDown() {
+	if (flag2 == 1) {
+		for (let i = 0; i < n; i++) {
+			if (passengers[i].seatId == null) {
+				window.alert('Please select all the seats to continue')
+				return
+			}
+		}
+	}
 
 	//document.getElementById("passform").innerHTML = '' 
 	document.getElementById("seatSelection").innerHTML = seatBookUp;
@@ -1099,10 +1154,20 @@ function slideUpDown() {
 	}
 	passengers = []
 
+	for (let i = 0; i < n; i++) {
+		document.getElementsByClassName('payment-cross')[i].style.display = 'none'
+	}
+
 	heightTransitionPencilOne()
 }
 
 function paymentsSlideUpDown() {
+	for (let i = 0; i < n; i++) {
+		if (passengers[i].seatId == null) {
+			window.alert('Please select all the seats to continue')
+			return
+		}
+	}
 
 	document.getElementById("detailsButton1").style.display = "none"
 	document.getElementById('detailsButton2').style.display = 'none'
@@ -1116,6 +1181,10 @@ function paymentsSlideUpDown() {
 
 
 	document.getElementById('paymentDetails').innerHTML = paymentForm
+
+	for (let i = 0; i < n; i++) {
+		document.getElementsByClassName('payment-cross')[i].style.display = 'none'
+	}
 
 
 	// document.getElementById("detailsButton2").style.display = "block"
@@ -1166,13 +1235,21 @@ function showBookings() {
 	}
 }
 
+function showMeals() {
+	window.location.assign('food.html')
+}
 
+function showHomepage() {
+	sessionStorage.setItem('flagOnReload', '1')
+	sessionStorage.setItem('sourceOnReload', sessionStorage.getItem('source'))
+	sessionStorage.setItem('source', '')
+	window.location.replace('home-page.html')
+}
 //transitions of cards 
 
 //$("#card4").on('click',".continue-to-payment-btn",heightTransitionOne)
 function heightTransitionOne() {
 	console.log("ht one")
-
 	var heightCardFour = 17 //with only one passenger
 	heightCardFour = 17 + (n - 1) * 10
 
@@ -1194,10 +1271,9 @@ function heightTransitionTwo() {
 	setTimeout(() => {
 		$(".seats-parent").css("opacity", "1")
 		$("#seatSelection").css("opacity", "1")
-		$("#continueToRev").css('display', "block") 
+		$("#continueToRev").css('display', "block")
 		$("#card6").css("height", "44.5em")
 	}, 400)
-
 	//scrolling to seats
 	$(window).scrollTop($('#card6').offset().top);
 }
@@ -1259,11 +1335,15 @@ function heightTransitionPencilOne() {
 		$("#card7").css("height", "7em")
 		$("#card7 #revBooking").css("opacity", "0")
 	}
-	if (document.getElementById('seatSelection').innerHTML == '') {
+	if (flag2 == 0) {
+		$(".seats-parent").css("display", "none")
+		$("#card6").css("height", `7em`)
+	} else if (document.getElementById('seatSelection').innerHTML == '') {
 		var heightcardSix = 14.5 //after seats close height
 		heightcardSix = 14.5 + (n - 1) * 7
 		$("#card6").css("height", `${heightcardSix}em`)
 		$("#seatSelection").css("opacity", "0")
+		$("#continueToRev").css('display', "none")
 		$(".right-seats").css("height", `${heightRightSeats}em`)
 	}
 
@@ -1295,6 +1375,7 @@ function heightTransitionPencilTwo() {
 		heightcardSix = 14.5 + (n - 1) * 7
 		$("#card6").css("height", `${heightcardSix}em`)
 		$("#seatSelection").css("opacity", "0")
+		$("#continueToRev").css('display', "none")
 		$(".right-seats").css("height", `${heightRightSeats}em`)
 
 
@@ -1325,3 +1406,6 @@ function heightTransitionPencilThree() {
 	//scrolling to seats
 	$(window).scrollTop($('#card6').offset().top);
 }
+
+
+$(".class").text("(" + sessionStorage.getItem("class") + ")")

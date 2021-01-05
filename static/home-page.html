@@ -224,9 +224,9 @@
             <div class="error class-error">Please enter a valid Class</div>
             <div class="dropdown dropdown-tier">
               <div class="tier-1">Economy</div>
-              <div class="tier-2">Premium Economy</div>
-              <div class="tier-3">Business Class</div>
-              <div class="tier-4">First Class</div>
+              <div class="tier-2">Business</div>
+              <!-- <div class="tier-3">Business Class</div>
+              <div class="tier-4">First Class</div> -->
             </div>
             <a href="#" class="btn" onclick="displayPath()">
               <svg width="277" height="62">
@@ -434,10 +434,12 @@
       <div class="col-2">
         <div class="nav">
           <div class="left-nav">
-            <div class="nav-elem-1" id='uname'><a href="#" class="login-nav" id='login-nav'></a></div>
-            <div class="nav-elem-2"><a href="#" class="prev-nav" onclick="showBookings()">Bookings</a></div>
-            <div class="nav-elem-0" id='lin'><a href="#" class="prev-nav" onclick='openDiv();'>Log In</a></div>
-            <div class="nav-elem-0" id='lout' style='display:none'><a href="#" class="prev-nav" onclick='logOut();'>Log
+            <div class="nav-elem-1" id='uname'><a class="login-nav" id='login-nav'></a></div>
+            <div class="nav-elem-4"><a class="prev-nav" onclick="showHomepage()">Home</a></div>
+            <div class="nav-elem-2"><a class="prev-nav" onclick="showBookings()">Bookings</a></div>
+            <div class="nav-elem-3"><a class="prev-nav" onclick="showMeals()">Meals</a></div>
+            <div class="nav-elem-0" id='lin'><a class="prev-nav" onclick='openDiv();'>Log In</a></div>
+            <div class="nav-elem-0" id='lout' style='display:none'><a class="prev-nav" onclick='logOut();'>Log
                 Out</a></div>
           </div>
 
@@ -537,7 +539,7 @@
 
 
 
-  <script src="./script-1.js"></script>
+  <script src="homepageDisplay.js"></script>
   <script src="homepage.js"></script>
   <script src="seatBooking.js"></script>
 

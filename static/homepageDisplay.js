@@ -1,5 +1,4 @@
 //const e = require("express");
-
 var from = "",
     dest = "";
 var flightArr = [];
@@ -46,6 +45,15 @@ var compFlightInfo = [{
 
 ]
 
+
+if(sessionStorage.getItem('flagOnReload') == '1'){
+    console.log("hi+hello")
+    document.getElementById('start').value = sessionStorage.getItem('sourceOnReload')
+    document.getElementById('end').value = sessionStorage.getItem('destination')
+    document.getElementById('date').value = sessionStorage.getItem('deptDate')
+    document.getElementById('passenger').value = sessionStorage.getItem('numPass')
+    document.getElementById('tier').value = sessionStorage.getItem('class')
+}
 
 //time difference
 function diff(start, end) {
@@ -151,6 +159,7 @@ function overlayOpen() {
             $(".class-error").css("transform", "scale(0)")
         }
     } else {
+        
         console.log("valid")
         //storing the values of input field to session storage to pass the values to next page(static-card)
         sessionStorage.setItem("source", $("#start").val())
@@ -234,7 +243,7 @@ function tierSelect() {
 
     $(".dropdown-tier").css("display", "block");
     setTimeout(() => {
-        $(".dropdown-tier").css("height", "11em");
+        $(".dropdown-tier").css("height", "6em");
     }, 200);
 
 }
@@ -884,6 +893,8 @@ $(".static-container").ready(() => {
     $(".timeDiff .hours").text(time[0])
     $(".timeDiff .minutes").text(time[1])
     $(".static-container .price").text(totalPrice)
+    $(".travelTime .hours").text(time[0])
+    $(".travelTime .minutes").text(time[1])
 
     const d = new Date(departureDate); //converting date to string format
     $(".static-container .date").text(d.getDate())
@@ -973,10 +984,10 @@ function payment() {
     document.getElementById('staticData').style.display = 'none';
     document.getElementById('loader').style.display = 'block'
 
-
+    sessionStorage.setItem('flagOnReload', '1')
 
     setTimeout(() => {
-        window.location.assign('app.html')
+        window.location.assign('payment.html')
     }, 4000)
 
 }
@@ -1088,6 +1099,14 @@ function logOut() {
 function showBookings() {
     if (sessionStorage.getItem('sess')) {
         window.location.assign('bookings.html')
+    } else {
+        openDiv()
+    }
+}
+
+function showMeals() {
+    if (sessionStorage.getItem('sess')) {
+        window.location.assign('food.html')
     } else {
         openDiv()
     }
@@ -1224,4 +1243,11 @@ function returnToHomePage() {
     sessionStorage.setItem('source', '')
     sessionStorage.setItem('Flight-Name', '')
     window.location.reload()
+}
+
+function showHomepage() {
+    sessionStorage.setItem('flagOnReload', '1')
+    sessionStorage.setItem('sourceOnReload', sessionStorage.getItem('source'))
+    sessionStorage.setItem('source', '')
+    window.location.replace('home-page.html')
 }

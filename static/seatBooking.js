@@ -81,7 +81,7 @@ function bookSeats() {
     var fnum = sessionStorage.getItem("Flight-Name")
     var result = fnum.match(/\((.*)\)/);
     var regex = / /gi
-    let totPrice = totalPrice.replace(',','')
+    let totPrice = totalPrice.replace(',', '')
 
     let ticketInfo = {
         type: sessionStorage.getItem("class"),
@@ -116,17 +116,17 @@ function bookSeats() {
     }
 
 
-    
 
-   
+
+
 
 
 
     // console.log(allDetails)
 
-    
+
     // document.getElementById('mainPage').style.filter='blur(10px)'
-    
+
     // document.getElementById('paymentLoader').style.display='block'
 
     // setTimeout(()=>{
@@ -147,17 +147,17 @@ function bookSeats() {
     // },8000)
 
     fetch('/bookSeats', pasOptions)
-    .then(res=> res.json())
-    .then(data=>{
-        console.log(data)
-        document.getElementById('mainPage').style.display='none'
-        document.getElementById('paymentLoader').style.display='block'
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            document.getElementById('mainPage').style.display = 'none'
+            document.getElementById('paymentLoader').style.display = 'block'
 
-        setTimeout(()=>{
-            location.assign("confirmation.html");
+            setTimeout(() => {
+                location.assign("confirmation.html");
 
-        },3000)
-    })
+            }, 3000)
+        })
 }
 
 
@@ -193,14 +193,24 @@ function modifySeats(seatNo) {
 
 function passengerSelect(index) {
     selectedPassengerIndex = index
-    
+
 }
 
 
 function cancelSeats(index) {
+    for (let i = 0; i < n; i++) {
+        $(`#p-${i}`).css("border", "none")
+
+    }
 
     //console.log("helloooooooooooooooooooooooo")
     passengerSelect(index)
+    document.getElementById(`inlineRadio+${index}`).checked = true
+    $(`#p-${index}`).css({
+        "border": "2px solid transparent",
+        "border-image": "linear-gradient(45deg, rgb(219, 39, 99), rgb(255, 154, 139))",
+        "border-image-slice": "1"
+    })
     let seatIndex = passengers[index].seatId
     passengers[index].seatId = null
     document.getElementById(seatIndex).checked = false
