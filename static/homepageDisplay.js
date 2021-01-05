@@ -1,5 +1,4 @@
 //const e = require("express");
-
 var from = "",
     dest = "";
 var flightArr = [];
@@ -46,6 +45,15 @@ var compFlightInfo = [{
 
 ]
 
+
+if(sessionStorage.getItem('flagOnReload') == '1'){
+    console.log("hi+hello")
+    document.getElementById('start').value = sessionStorage.getItem('sourceOnReload')
+    document.getElementById('end').value = sessionStorage.getItem('destination')
+    document.getElementById('date').value = sessionStorage.getItem('deptDate')
+    document.getElementById('passenger').value = sessionStorage.getItem('numPass')
+    document.getElementById('tier').value = sessionStorage.getItem('class')
+}
 
 //time difference
 function diff(start, end) {
@@ -151,6 +159,7 @@ function overlayOpen() {
             $(".class-error").css("transform", "scale(0)")
         }
     } else {
+        
         console.log("valid")
         //storing the values of input field to session storage to pass the values to next page(static-card)
         sessionStorage.setItem("source", $("#start").val())
@@ -238,7 +247,7 @@ function tierSelect() {
 
     $(".dropdown-tier").css("display", "block");
     setTimeout(() => {
-        $(".dropdown-tier").css("height", "11em");
+        $(".dropdown-tier").css("height", "6em");
     }, 200);
 
 }
@@ -424,17 +433,17 @@ function updateDirectCard(arr) {
         time = time.split(":")
 
 
-        if(sessionStorage.getItem('class')=="Economy"){
+        if (sessionStorage.getItem('class') == "Economy") {
             var priceDir = dirflights[i].e_price
             priceDir = numberWithCommas(priceDir)
             $(`.price-${countDirCard}`).text(priceDir)
-        }else{
+        } else {
             var priceDir = dirflights[i].b_price
             priceDir = numberWithCommas(priceDir)
             $(`.price-${countDirCard}`).text(priceDir)
         }
 
-        
+
 
 
         var elem = ` <div class="card-${countDirCard} card">
@@ -500,16 +509,16 @@ function updateViaCard(arr) {
         time = time.split(":")
 
 
-        if(sessionStorage.getItem('class')=="Economy"){
+        if (sessionStorage.getItem('class') == "Economy") {
             priceVia = viaflights[i].e_price
             priceVia = numberWithCommas(priceVia)
             $(`.price-${countViaCard}`).text(priceVia)
-        }else{
+        } else {
             priceVia = viaflights[i].b_price
             priceVia = numberWithCommas(priceVia)
             $(`.price-${countViaCard}`).text(priceVia)
         }
-      
+
 
         if (i == 0) {
             var elem = ` <div class="card-${countViaCard} card">
@@ -712,11 +721,11 @@ function staticCardOpen(event) {
             viaPlace = $("." + cardClass + " .via-overlay").text()
 
             sessionStorage.setItem("via", viaPlace)
-            var flgname=$("." + cardClass + " .flight-name").text()
+            var flgname = $("." + cardClass + " .flight-name").text()
             var fin = flgname.indexOf(')');
-            flgname=flgname.substr(0,fin+1)
+            flgname = flgname.substr(0, fin + 1)
             //console.log("flag",flgname.substr(0,fin+1))
-            sessionStorage.setItem("Flight-Name",flgname )
+            sessionStorage.setItem("Flight-Name", flgname)
             sessionStorage.setItem("departureTime", $("." + cardClass + " .fromTime").text())
             sessionStorage.setItem("arrivalTime", $("." + cardClass + " .toTime").text())
             sessionStorage.setItem("basePrice", $("." + cardClass + " .base-price").text())
@@ -852,6 +861,8 @@ $(".static-container").ready(() => {
     $(".timeDiff .hours").text(time[0])
     $(".timeDiff .minutes").text(time[1])
     $(".static-container .price").text(totalPrice)
+    $(".travelTime .hours").text(time[0])
+    $(".travelTime .minutes").text(time[1])
 
     const d = new Date(departureDate); //converting date to string format
     $(".static-container .date").text(d.getDate())
@@ -941,10 +952,10 @@ function payment() {
     document.getElementById('staticData').style.display = 'none';
     document.getElementById('loader').style.display = 'block'
 
-
+    sessionStorage.setItem('flagOnReload', '1')
 
     setTimeout(() => {
-        window.location.assign('app.html')
+        window.location.assign('payment.html')
     }, 4000)
 
 }
@@ -1061,6 +1072,14 @@ function showBookings() {
     }
 }
 
+function showMeals() {
+    if (sessionStorage.getItem('sess')) {
+        window.location.assign('food.html')
+    } else {
+        openDiv()
+    }
+}
+
 // function loadStaticCard(){
 //     if (sessionStorage.getItem('sess')) {
 //         window.location.assign('static-card.html')
@@ -1119,16 +1138,16 @@ function sortAll(viaflights, optimised) {
         viaFlightsName = viaFlightsName + " (" + viaFlightsNum + ")"
 
 
-        if(sessionStorage.getItem('class')=="Economy"){
+        if (sessionStorage.getItem('class') == "Economy") {
             priceVia = viaflights[i].e_price
             priceVia = numberWithCommas(priceVia)
             $(`.price-${countViaCard}`).text(priceVia)
-        }else{
+        } else {
             priceVia = viaflights[i].b_price
             priceVia = numberWithCommas(priceVia)
             $(`.price-${countViaCard}`).text(priceVia)
         }
-      
+
 
         time = diff(viaflights[i].departure, viaflights[i].arrival)
         time = time.split(":")
@@ -1192,4 +1211,11 @@ function returnToHomePage() {
     sessionStorage.setItem('source', '')
     sessionStorage.setItem('Flight-Name', '')
     window.location.reload()
+}
+
+function showHomepage() {
+    sessionStorage.setItem('flagOnReload', '1')
+    sessionStorage.setItem('sourceOnReload', sessionStorage.getItem('source'))
+    sessionStorage.setItem('source', '')
+    window.location.replace('home-page.html')
 }

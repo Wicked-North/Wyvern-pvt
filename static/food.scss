@@ -32,14 +32,28 @@ $before-color-login:rgb(240, 247, 238);
 }
 
 body {
+    overflow-x: hidden;
     width: 100vw;
     padding: 5% 14%;
     font-family: 'Average Sans', sans-serif;
+    background: linear-gradient(51deg, #2a2a30, #010101);
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        background:transparent;
+    } 
+    
+    &::-webkit-scrollbar-track {
+        background: #2e2e2ee0;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgb(158, 158, 158);
+        border-radius: 5px;
+    }
 }
 
-body {
-    background: linear-gradient(51deg, #2a2a30, #010101);
-}
+
+
 
 .sub-title-top,
 .main-title,
@@ -299,5 +313,61 @@ hr{
     border-image: linear-gradient(45deg, $grad-pink,$grad-red);
     border-image-slice: 1;
     opacity: 0.8;
+}
+
+.nav {
+    display: flex;
+    position: absolute;
+    z-index: 200;
+    top: 0;
+    right: 0;
+    //background-color:$darkest-grey;
+    background-image: linear-gradient(45deg, $darkest-grey, $black);
+    box-shadow: 10px 0 20px rgba(128, 127, 127, 0.5);
+    //left:0;
+    //right:50%;
+    //width:49%;
+    justify-content: space-between;
+
+    //border:2px solid $grad-red;
+    //margin: 1em 1em;
+    .left-nav,
+    .right-nav {
+        display: flex;
+        margin: 1em;
+        justify-content: space-between;
+    }
+
+    a {
+        @include removeStyle();
+        font-size: 1.2rem;
+        font-family: 'Overlock', cursive;
+        font-weight: 700;
+        //display:block;
+        color: $grad-pink;
+        overflow: hidden;
+        transition: all 300ms ease;
+        margin-left: 0.8em;
+
+        /* &::after{
+            content: "";
+            display:block;
+            border:1px solid $grad-red;
+            transform:translateX(-100%);
+            opacity:0;
+            width: inherit;
+            position: relative;
+            margin-top:0.2em;
+            transition: transform 400ms ease-in;
+            transform: opacity 100ms ease;
+        } */
+
+        &:hover {
+            box-shadow: 0 3px 0px $grad-red;
+        }
+
+
+    }
+
 }
 

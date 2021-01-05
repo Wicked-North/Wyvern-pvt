@@ -105,6 +105,20 @@ body {
   margin-bottom: 0.5em;
 }
 
+.class {
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  font-size: 1.5rem;
+  margin: 0.2em 0.2em 0.2em 0.5em;
+  background-image: linear-gradient(80deg, #ff9a8b, #f0f7ee);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: 'Overlock', cursive;
+}
+
 .review-booking-title {
   background-image: linear-gradient(45deg, #ff9a8b, #db2763);
   -webkit-text-fill-color: transparent;
@@ -961,20 +975,25 @@ ol {
 }
 
 .seat input[type="checkbox"]:disabled + label {
-  background: #ddd;
+  background: transparent;
   text-indent: -9999px;
   overflow: hidden;
 }
 
 .seat input[type="checkbox"]:disabled + label:after {
-  content: "X";
+  font-family: "Font Awesome 5 Free";
+  content: "\f00d";
   text-indent: 0;
   position: absolute;
   top: 4px;
   left: 50%;
   -webkit-transform: translate(-50%, 0%);
           transform: translate(-50%, 0%);
-  color: #2a2a30;
+  color: #f3093c;
+}
+
+.seat input[type="checkbox"]:disabled + label {
+  border: 3px solid #f3093c;
 }
 
 .seat input[type="checkbox"]:disabled + label:hover {
@@ -987,20 +1006,23 @@ ol {
   display: block;
   position: relative;
   width: 100%;
+  height: 2.5em;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
   line-height: 1.5rem;
-  padding: 4px 0;
-  color: #fff;
+  padding: 5px 0;
   background-image: linear-gradient(35deg, #db2763, #101011);
-  border-radius: 50%;
+  border-radius: 25%;
   -webkit-animation-duration: 300ms;
           animation-duration: 300ms;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
   -webkit-transition-duration: 300ms;
           transition-duration: 300ms;
+  /* display:flex;
+    justify-items:center;
+    align-items: center; */
 }
 
 .seat label:hover {
@@ -1086,7 +1108,10 @@ ol {
   width: 60%;
 }
 
-#card4, #card5, #card6, #card7 {
+#card4,
+#card5,
+#card6,
+#card7 {
   -webkit-transition: height 300ms ease;
   transition: height 300ms ease;
 }
