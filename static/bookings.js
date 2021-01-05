@@ -1,5 +1,8 @@
 let current = []
 let past = []
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
 
 if (sessionStorage.getItem('user_name')) {
     //console.log("thereeeee!!")
@@ -134,13 +137,18 @@ function displayTickets() {
         togglePast[i] = 1
     }
 
+
     
     
     for (let i = 0; i < current.length; i++) {
         let passArr = current[i]
         //console.log(passArr[i])
         console.log(current.length)
-
+        var departureDate=sessionStorage.getItem('deptDate')
+        const d = new Date(departureDate);
+        var date=d.getDate()
+        var month=monthNames[d.getMonth()]
+        var year=d.getFullYear()
         console.log(passArr[0])
 
         currBooking = `
@@ -160,9 +168,12 @@ function displayTickets() {
             <div class="place">${passArr[0].end}</div>
         </div>
         <div id='class'>${passArr[0].class}</div>
+        <div class='depart-date'>
+                Departure Date - ${date} ${month} ${year}
+        </div>
         <div class="time-div">
             <div class="depart-div">
-                <div class="depart-title"> Departure Time - </div>
+                <div class="depart-title"> Departure Time -  </div>
                 <div>${passArr[0].departure}</div>
             </div>
             <i class="fas fa-circle"></i>
@@ -253,6 +264,11 @@ function displayTickets() {
 
     for (var i = 0; i < past.length; i++) {
         //console.log(past.length)
+        var departureDate=sessionStorage.getItem('deptDate')
+        const d = new Date(departureDate);
+        var date=d.getDate()
+        var month=monthNames[d.getMonth()]
+        var year=d.getFullYear()
         let pastPassArr = past[i]
         console.log('past array', pastPassArr)
 
@@ -275,6 +291,9 @@ function displayTickets() {
                 <div class="place">${pastPassArr[0].end}</div>
             </div>
             <div id='class'>${pastPassArr[0].class}</div>
+            <div class='depart-date'>
+                Departure Date - ${date} ${month} ${year}
+            </div>
             <div class="time-div">
                 <div class="depart-div">
                     <div class="depart-title"> Departure Time - </div>
