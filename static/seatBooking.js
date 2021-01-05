@@ -78,6 +78,8 @@ function flightSearch() { //date according to day1,day2,day3.....day6
 
 //ON FINAL CONFIRMATION
 function bookSeats() {
+
+    
     var fnum = sessionStorage.getItem("Flight-Name")
     var result = fnum.match(/\((.*)\)/);
     var regex = / /gi
@@ -125,39 +127,38 @@ function bookSeats() {
     // console.log(allDetails)
 
 
-    // document.getElementById('mainPage').style.filter='blur(10px)'
+    document.getElementById('mainPage').style.filter='blur(10px)'
 
-    // document.getElementById('paymentLoader').style.display='block'
+    document.getElementById('paymentLoader').style.display='block'
 
-    // setTimeout(()=>{
+    setTimeout(()=>{
 
-    //     document.getElementById('choice').innerHTML="Booking your seats"
+        document.getElementById('choice').innerHTML=" &nbsp; Booking your seats . . . ."
 
-    // },3000)
+    },3000)
 
-    // setTimeout(()=>{
+    setTimeout(()=>{
 
-    //     document.getElementById('choice').innerHTML="Ordering your meal"
+        document.getElementById('choice').innerHTML="&nbsp; Ordering your meal . . . ."
 
-    // },6000)
+    },6000)
 
-    // setTimeout(()=>{
-    //     location.assign("confirmation.html");
+    setTimeout(()=>{
+        // fetch('/bookSeats', pasOptions)
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data)
+         
 
-    // },8000)
+            // setTimeout(() => {
+            //     location.assign("confirmation1.html");
 
-    fetch('/bookSeats', pasOptions)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            document.getElementById('mainPage').style.display = 'none'
-            document.getElementById('paymentLoader').style.display = 'block'
+            // }, 3000)
+        // })
 
-            setTimeout(() => {
-                location.assign("confirmation.html");
+    },8000)
 
-            }, 3000)
-        })
+    
 }
 
 
