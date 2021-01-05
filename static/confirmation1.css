@@ -11,20 +11,27 @@ html {
 }
 
 body {
-  height: 100%;
-  background-image: linear-gradient(51deg, #2a2a30, #010101);
+  height: 100vh;
+  width: 100vw;
+  background-color: #101011;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  font-family: 'Average Sans', sans-serif;
 }
 
 .cardWrap {
   margin: auto;
+  position: absolute;
+  top: 35%;
   color: #f0f7ee;
   font-family: sans-serif;
+  display: block;
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
 }
 
 .card {
@@ -151,10 +158,10 @@ h1 span {
 
 .stamp {
   position: absolute;
-  height: 100px;
-  width: 115px;
+  height: 150px;
+  width: 170px;
   left: 50%;
-  top: 50%;
+  top: 45%;
   content: url("./images/stamp.png");
   -webkit-animation-name: pulse;
   animation-name: pulse;
@@ -205,5 +212,24 @@ h1 span {
     -webkit-transform: rotate(-15deg) scale(1);
             transform: rotate(-15deg) scale(1);
   }
+}
+
+.redirect {
+  position: absolute;
+  color: #ff9a8b;
+  top: 72%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.2rem;
+}
+
+.redirect a, .redirect div {
+  margin: 0 0.2em;
+}
+
+.redirect a {
+  color: #db2763;
+  cursor: pointer;
 }
 /*# sourceMappingURL=confirmation1.css.map */
