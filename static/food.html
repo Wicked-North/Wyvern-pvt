@@ -259,6 +259,12 @@
         function showBookings() {
             window.location.assign('bookings.html')
         }
+        $(document).ready(() => {
+            for (let i = 1; i <= 4; i++) {
+                $(`.nav-elem-${i} a`).css("box-shadow", "none")
+            }
+            $(".nav-elem-3 a").css("box-shadow", "0 3px 0px rgb(219, 39, 99)")
+        })
     </script>
 
 </body>

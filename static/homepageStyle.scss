@@ -999,7 +999,7 @@ input[type=number] {
         overflow: hidden;
         transition: all 300ms ease;
         margin-left: 0.8em;
-
+        cursor: pointer;
         /* &::after{
             content: "";
             display:block;
@@ -1014,10 +1014,16 @@ input[type=number] {
         } */
 
         &:hover {
-            box-shadow: 0 3px 0px $grad-red;
-        }
+           //box-shadow: 0 3px 0px $grad-red;
+            color:$grad-red;
+           
+        } 
 
 
+    }
+
+    .nav-elem-1 a{
+        text-transform:capitalize;
     }
 
 }

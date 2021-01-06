@@ -55,7 +55,7 @@ const app = express();
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "abhra", //change password 
+    password: "", //change password 
     database: "wyvern",
     multipleStatements: true
 })
@@ -85,7 +85,7 @@ app.post('/getSignup',async (req, res) => {
     let gender = req.body.gender
     let mobile1 = req.body.mobile_1
     let mobile2 = req.body.mobile_2
-    let address = req.body.address
+    //let address = req.body.address
 
     console.log(name, email, birthday)
     let hashPassword = await bcrypt.hash(password, saltRounds);
@@ -95,7 +95,7 @@ app.post('/getSignup',async (req, res) => {
     con.query(check_sql, (err, result) => {
         var loginId
         if (result.length == 0) {
-            var userIns = `insert into userInfo (user_name, email, gender, DOB, mobile_1, mobile_2, address) values ('${name}', '${email}', '${gender}', '${birthday}', '${mobile1}', '${mobile2}', '${address}')`
+            var userIns = `insert into userInfo (user_name, email, gender, DOB, mobile_1, mobile_2) values ('${name}', '${email}', '${gender}', '${birthday}', '${mobile1}', '${mobile2}')`
 
             con.query(userIns, (err, result) => {
                 if (err) throw err;

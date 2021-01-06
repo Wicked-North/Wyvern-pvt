@@ -323,7 +323,7 @@ hr{
     right: 0;
     //background-color:$darkest-grey;
     background-image: linear-gradient(45deg, $darkest-grey, $black);
-    box-shadow: 10px 0 20px rgba(128, 127, 127, 0.5);
+    box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
     //left:0;
     //right:50%;
     //width:49%;
@@ -348,7 +348,7 @@ hr{
         overflow: hidden;
         transition: all 300ms ease;
         margin-left: 0.8em;
-
+        cursor: pointer;
         /* &::after{
             content: "";
             display:block;
@@ -363,10 +363,16 @@ hr{
         } */
 
         &:hover {
-            box-shadow: 0 3px 0px $grad-red;
-        }
+           //box-shadow: 0 3px 0px $grad-red;
+            color:$grad-red;
+           
+        } 
 
 
+    }
+
+    .nav-elem-1 a{
+        text-transform:capitalize;
     }
 
 }

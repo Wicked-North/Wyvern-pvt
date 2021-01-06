@@ -22,6 +22,13 @@ function logOut() {
     document.getElementById('lout').style.display = 'none'
 }
 
+$(document).ready(()=>{
+    for(let i=1;i<=4;i++){
+        $(`.nav-elem-${i} a`).css("box-shadow","none")
+    }
+    $(".nav-elem-2 a").css("box-shadow", "0 3px 0px rgb(219, 39, 99)")
+})
+
 setTimeout(()=>{
     getTicketsPassengers()
 }, 2000)
