@@ -4,7 +4,7 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
     integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-    <link rel="icon" type="image/png" href="./images/dragon1.png"/>
+  <link rel="icon" type="image/png" href="./images/dragon1.png" />
 
 
   <!-- Required meta tags-->
@@ -104,19 +104,21 @@
         <div class="card-heading"></div>
         <div class="card-body">
           <h2 class="title">Registration Info</h2>
-          <form action="getSignup" method="POST" id="usrform">
+
+
+
+          <div id="usrform">
             <div class="input-group">
-              <input class="input--style-3" type="text" placeholder="Name" autocomplete="off" name="name" id="name"
-                required />
+              <input class="input--style-3" type="text" placeholder="Name" autocomplete="off" name="name" id="name" />
             </div>
             <div class="input-group">
-              <input class="input--style-3 js-datepicker" autocomplete="off" type="text" placeholder="Birthdate (yyyy-mm-dd)"
-                name="birthday" id="birthday" required />
+              <input class="input--style-3 js-datepicker" autocomplete="off" type="text"
+                placeholder="Birthdate (yyyy-mm-dd)" name="birthday" id="birthday" />
               <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
             </div>
             <div class="input-group">
               <div class="rs-select2 js-select-simple select--no-search">
-                <select name="gender" required>
+                <select name="gender">
                   <option id="gender" disabled="disabled" selected="selected">
                     Gender
                   </option>
@@ -128,36 +130,88 @@
               </div>
             </div>
             <div class="input-group">
-              <input class="input--style-3" autocomplete="off" type="email" placeholder="Email" name="email" id="email"
-                required />
+              <input class="input--style-3" autocomplete="off" type="email" placeholder="Email" name="email"
+                id="email" />
             </div>
 
             <div class="input-group">
               <input class="input--style-3" autocomplete="off" type="password" placeholder="Password" name="password"
-                id="password" required />
+                id="password" />
             </div>
 
             <div class="input-group">
-              <input class="input--style-3" autocomplete="off" type="text" placeholder="Mobile_1" name="mobile_1" id="mobile_1"
-                required />
+              <input class="input--style-3" autocomplete="off" type="text" placeholder="Mobile_1" name="mobile_1"
+                id="mobile_1" />
             </div>
 
             <div class="input-group">
-              <input class="input--style-3" autocomplete="off" type="text" placeholder="Mobile_2 (Optional)" name="mobile_2" id="mobile_2"
-               />
+              <input class="input--style-3" autocomplete="off" type="text" placeholder="Mobile_2 (Optional)"
+                name="mobile_2" id="mobile_2" />
             </div>
-            
+
             <div class="input-group">
-              <input class="input--style-3" autocomplete="off" type="text" placeholder="Address" name="address" id="address"
-                required />
+              <input class="input--style-3" autocomplete="off" type="text" placeholder="Address" name="address"
+                id="address" />
             </div>
 
             <div class="p-t-10">
-              <button class="btn btn--pill btn--green" type="submit" id="submit">
+              <button class="btn btn--pill btn--green" type="submit" id="submit" onclick="register()">
                 Submit
               </button>
             </div>
-          </form>
+          </div>
+
+          <script>
+            function register() {
+              // console.log("hello")
+              let name = document.getElementById('name').value
+              let birthday = document.getElementById('birthday').value
+              let gender = document.getElementById('gender').value
+              let email = document.getElementById('email').value
+              let password = document.getElementById('password').value
+              let mobile_1 = document.getElementById('mobile_1').value
+              let mobile_2 = document.getElementById('mobile_2').value
+              let address = document.getElementById('address').value
+
+              // console.log(name, birthday, gender, email, password, mobile_1, mobile_2, address)
+              let data = {
+                name,
+                birthday,
+                gender,
+                email,
+                password,
+                mobile_1,
+                mobile_2,
+                address
+              }
+              const options = {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+              };
+
+              fetch("/getSignup", options).then((res) => res.json().then((data) => {
+                console.log(data)
+                if (data.message == 'User with this email already exists. Try with a different email' || data.message == 'The password is incorrect') {
+                  console.log('not successful')
+                  window.alert(data.message)
+
+                }
+                // else if(data.successful == 'incorrect email'){console.log('Email is incorrect')}
+                else {
+                  window.alert(data.message)
+                  console.log('successful')
+                  window.location.assign("home-page.html")
+                  // setTimeout(()=>{
+                  //   window.location.assign('home-page.html')
+                  // }, 1000)
+                }
+
+              }))
+            }
+          </script>
 
 
           <div class="p-t-10">
