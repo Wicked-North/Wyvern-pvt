@@ -1,0 +1,142 @@
+$darkest-grey:rgb(42, 42, 48);
+$form-bg:rgba(0, 0, 0, 0.562);
+$black:rgb(16, 16, 17);
+$medium-grey:rgb(78, 78, 80);
+$transparent-grey:rgba(78, 78, 80, 0.4);
+$black-lighter:rgba(8, 8, 8, 0.3);
+$font-light:rgb(240, 247, 238);
+$height-field: 3.5rem;
+$font-size-custom: 1.2em;
+$before-color: rgb(20, 212, 212);
+$after-color:rgb(240, 247, 238);
+$grad-pink:rgb(255, 154, 139);
+$grad-red:rgb(219, 39, 99);
+$light-pink:rgb(255, 189, 179);
+$after-color-login:rgb(219, 39, 99);
+$before-color-login:rgb(240, 247, 238);
+$height-field-login:3rem;
+$font-size-custom-login:1em;
+$register-pale-pink:rgb(78,58,85);
+$register-blue:rgb(20, 212, 212);
+
+
+
+@mixin removeStyle() {
+    outline: none;
+    background: transparent;
+    text-decoration: none;
+    border: none;
+}
+
+
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    background-image: url("./images/night-gabriel-santos-usplash.jpg");
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    user-select: none;
+    font-family: 'Average Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+
+}
+
+.form-content{
+    height: 100%;
+    width: 50%;
+    background-color:$form-bg;
+    backdrop-filter: blur(20px);
+    padding: 7% 7%;
+}
+
+.form-heading{
+    font-family: 'Overlock', cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    background-image: linear-gradient(75deg, $register-blue, $grad-red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+}
+
+//form field animation
+.formi {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 90%;
+    height: $height-field;
+    overflow: hidden;
+    margin-top: 1.2em;
+}
+
+.formi input {
+    @include removeStyle();
+    color: $after-color;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    font-size: 1.1rem;
+    padding-top: $height-field - 1.5rem;
+
+    &:focus+.label-name .content-name,
+    &:valid+.label-name .content-name {
+        /* :valid ensures that when input text is added and the focus is shifted somwehere else
+            the label doesn't come back to its initial position*/
+        color: $after-color;
+        font-size: $font-size-custom - $font-size-custom/10;
+        transform: translateY(-140%);
+    }
+
+
+}
+
+.formi label {
+    @include removeStyle();
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    border-bottom: 2px solid $before-color;
+    color: $before-color;
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-bottom: 2px solid $after-color;
+        left: 0;
+        transform: translateX(-100%);
+
+        /*Moving the blue line out of frame initially also, 
+            since overflow is not hidden it is visible on the frame when overflow:hidden; 
+            not applied to parent*/
+        transition: transform 500ms ease;
+    }
+
+}
+
+.content-name {
+    position: absolute;
+    top: $height-field - 1.5rem;
+    transition: all 500ms ease;
+    font-size: $font-size-custom;
+}
+
+.formi input:focus+.label-name::after,
+.formi:valid+label::after {
+    transform: translateX(0%);
+    border-color: $after-color;
+
+
+}

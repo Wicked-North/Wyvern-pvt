@@ -95,7 +95,7 @@ app.post('/getSignup', (req, res) => {
         console.log(hashPassword)
     })
 
-    var check_sql = `select* from loginInfo where email = '${email}'`
+    var check_sql = `select * from loginInfo where email = '${email}'`
 
     con.query(check_sql, (err, result) => {
         var loginId

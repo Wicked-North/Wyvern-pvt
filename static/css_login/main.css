@@ -449,6 +449,15 @@
     top: 14px;
     font-size: 13px;
   }
+
+  .input100:valid {
+    height: 48px;
+  }
+  
+  .input100:valid+.focus-input100+.label-input100 {
+    top: 14px;
+    font-size: 13px;
+  }
   
   .has-val {
     height: 48px !important;
@@ -676,4 +685,8 @@
   .login100-form-social-item:hover {
     background: #333333;
     color: #fff;
+  }
+
+  .container-login100-form-btn{
+    margin-top:3em;
   }
