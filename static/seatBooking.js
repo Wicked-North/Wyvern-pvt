@@ -144,17 +144,16 @@ function bookSeats() {
     },6000)
 
     setTimeout(()=>{
-        // fetch('/bookSeats', pasOptions)
-        // .then(res => res.json())
-        // .then(data => {
-        //     console.log(data)
+        fetch('/bookSeats', pasOptions)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
          
 
-            // setTimeout(() => {
-            //     location.assign("confirmation1.html");
+        
+                location.assign("confirmation1.html");
 
-            // }, 3000)
-        // })
+        })
 
     },8000)
 

@@ -220,6 +220,7 @@ function searchFlights() {
         //viaFlights=[]
         viaFlights = data.slice()
         //console.log(viaFlights, "abhra")
+        document.getElementById('logoMotion').style.display="none"
 
         console.log(viaFlights, "abhra")
         // updateViaCard(viaFlights)

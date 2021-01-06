@@ -1372,7 +1372,7 @@ function fixName(str) {
 
 
 
-function updateFlight(id,numFlight) {
+function updateFlight(id, numFlight) {
     fnum = document.getElementById(`fnum-${id}`).innerHTML
     fname = document.getElementById(`fname-${id}`).innerHTML
     start = document.getElementById(`start-${id}`).innerHTML
@@ -1465,57 +1465,57 @@ function updateFlight(id,numFlight) {
 
     document.getElementById(`b_price-${id}`).innerHTML = `<input type="text"   style="width:60px" id="f_b_price-${id}" value=${b_price}>`
 
-if(numFlight=='1'){
+    if (numFlight == '1') {
 
-    document.getElementsByClassName('fa-trash-alt')[0].style.display = "none"
-    document.getElementById('a1').style.display = "none"
+        document.getElementsByClassName('fa-trash-alt')[0].style.display = "none"
+        document.getElementById('a1').style.display = "none"
 
-}else{
-    for (var i = 1; i <= flights.length; i++) {
+    } else {
+        for (var i = 1; i <= flights.length; i++) {
 
-        document.getElementById(i).style.display = "none"
+            document.getElementById(i).style.display = "none"
+        }
+
+        for (var i = 0; i < flights.length; i++) {
+
+            document.getElementsByClassName('fa-trash-alt')[i].style.display = "none"
+        }
     }
 
-    for (var i = 0; i < flights.length; i++) {
-
-        document.getElementsByClassName('fa-trash-alt')[i].style.display = "none"
-    }
-}
- 
 }
 
 
 
 
 
-function cancelUpdate(id,numFlight) {
+function cancelUpdate(id, numFlight) {
     var a = id.split('-')[1]
     console.log(a)
     document.getElementById(`button1-${a}`).style.display = "none"
     document.getElementById(id).style.display = "none"
 
-if(numFlight=='1'){
-    document.getElementsByClassName(`fa-wrench`)[0].style.display = "inline"
-    document.getElementsByClassName('fa-trash-alt')[0].style.display = "inline"
+    if (numFlight == '1') {
+        document.getElementsByClassName(`fa-wrench`)[0].style.display = "inline"
+        document.getElementsByClassName('fa-trash-alt')[0].style.display = "inline"
 
 
 
-}else{
-    for (let i = 0; i < flights.length; i++) {
-        document.getElementsByClassName(`fa-wrench`)[i].style.display = "inline"
+    } else {
+        for (let i = 0; i < flights.length; i++) {
+            document.getElementsByClassName(`fa-wrench`)[i].style.display = "inline"
+        }
+
+        // for(let i=1; i<= 343; i++){
+        //     document.getElementById(i).style.display = "block"
+        // }
+
+        for (var i = 0; i < flights.length; i++) {
+
+            document.getElementsByClassName('fa-trash-alt')[i].style.display = "inline"
+        }
     }
 
-    // for(let i=1; i<= 343; i++){
-    //     document.getElementById(i).style.display = "block"
-    // }
 
-    for (var i = 0; i < flights.length; i++) {
-
-        document.getElementsByClassName('fa-trash-alt')[i].style.display = "inline"
-    }
-}
-
-   
 
 
 
@@ -1635,7 +1635,7 @@ function searchByFnum() {
         } else {
             var i = 0;
             searchData +=
-            `<tr class='even'>
+                `<tr class='even'>
             <td id='f_snum-a1'>1</td>
             <td id='fnum-a1'>${data[i].flight_num}</td>
             <td id='fname-a1'>${data[i].flight_name}</td>
@@ -1682,4 +1682,83 @@ function logOut(flag) {
         sessionStorage.clear()
         window.location.replace('home-page.html')
     }
+}
+
+
+function getTxnId() {
+
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorisation": "Bearer " + sessionStorage.getItem('token')
+        }
+    }
+    
+
+    fetch('/getTransaction',options)
+        .then((res) => res.json())
+        .then((data) => {
+
+            transactionData =
+
+                ` <table id='txn-table'>
+                 <tr class="header">
+           <th id='tfnum'>Flight Num</th>
+           <th id='tfname'>Flight Name</th>
+           <th id='tpnr'>PNR</th>
+           <th id='Transaction'>Transaction ID</th>
+           <th id='tuserid'>User ID</th>
+           <th id='tusername'>User Name</th>
+           <th id='tusername'>Price</th>
+
+          </tr>`
+
+
+          
+    for (let i = 0; i < data.length; i++) {
+
+
+        if (i % 2 == 0) {
+            transactionData +=
+                `<tr class='even'>
+
+                <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
+                <td id='fname-${i+1}'> ${data[i].flight_name}</td>
+
+                 <td id='pnr-${i+1}'> ${data[i].pnr}</td>
+                <td id='txn-${i+1}'> ${data[i].txn_no} </td>
+                 <td id='userid-${i+1}'> ${data[i].user_id}</td>
+                 <td id='uname-${i+1}'> ${data[i].user_name} </td>
+                 <td id='tprice-${i+1}'> ${data[i].total_price} </td>
+
+               
+     
+                  </tr>
+                `
+        } else {
+            transactionData +=
+                `<tr class='odd'>
+
+                <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
+                <td id='fname-${i+1}'> ${data[i].flight_name}</td>
+
+                 <td id='pnr-${i+1}'> ${data[i].pnr}</td>
+                <td id='txn-${i+1}'> ${data[i].txn_no} </td>
+                 <td id='userid-${i+1}'> ${data[i].user_id}</td>
+                 <td id='uname-${i+1}'> ${data[i].user_name} </td>
+                 <td id='tprice-${i+1}'> ${data[i].total_price} </td>
+     
+                         </tr>`
+        }
+
+        transactionData += `</table>`
+
+        document.getElementById('mainContent-7').innerHTML = transactionData
+
+
+    }
+        })
+
+
 }
