@@ -835,7 +835,7 @@ function showSB() {
 	<div class="pay-up"><div class="pay-div-up-sub-title">Address :</div><div> ${adr}</div></div>
 	<div class="pay-up"><div class="pay-div-up-sub-title">City :</div><div> ${city}</div></div>
 	<div class="pay-up"><div class="pay-div-up-sub-title">State :</div><div> ${state}</div></div>
-</div>`
+	</div>`
 
 	paymentForm = document.getElementById('paymentDetails').innerHTML
 

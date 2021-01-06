@@ -76,7 +76,7 @@ con.connect((err, res) => {
     else console.log("Db Connected")
 })
 
-app.post('/getSignup',async (req, res) => {
+app.post('/getSignup', async (req, res) => {
     //console.log(req);
     let name = req.body.name
     let email = req.body.email
@@ -124,10 +124,14 @@ app.post('/getSignup',async (req, res) => {
             console.log(loginId, "hiiiii")
 
 
-       res.json({message:'Registered Successfully'})
-       
+            res.json({
+                message: 'Registered Successfully'
+            })
+
         } else {
-           res.json({message:'User with this email already exists. Try with a different email'})
+            res.json({
+                message: 'User with this email already exists. Try with a different email'
+            })
         }
     })
 
@@ -437,9 +441,18 @@ app.post("/bookSeats", (req, res) => {
 
                     }
 
+                    let txnSql = `insert into transaction values (${pnr}, 'TXN-${pnr+17}')`
+                    con.query(txnSql, (err, result) => {
+                        if (err) throw err;
+                        else
+                            console.log("inserted into Transaction")
+                    })
 
                 }
             })
+
+
+
         }
     })
 
@@ -1101,6 +1114,25 @@ app.post('/searchFlightsByFnum', verifyToken, async (req, res) => {
         //console.log(req)
         let fnum = req.body.fnum
         let sql = `select* from flights where flight_num = '${fnum}'`
+        console.log(sql)
+        let [result] = await pool.query(sql)
+        console.log(result)
+
+        res.json(result)
+        //res.json(result)
+        //res.json(all)
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+app.get('/getTransaction', verifyToken, async (req, res) => {
+    //console.log(req.headers)
+    try {
+        //let all = []
+        //console.log(req)
+        let fnum = req.body.fnum
+        let sql = `select t.flight_num, f.flight_name, t.pnr, tr.txn_no, u.user_id, u.user_name, t.total_price from transaction tr, userinfo u, tickets t, flights f where t.pnr = tr.pnr and t.userid = u.user_id and f.flight_num=t.flight_num`
         console.log(sql)
         let [result] = await pool.query(sql)
         console.log(result)
