@@ -47,12 +47,24 @@ var compFlightInfo = [{
 
 
 if(sessionStorage.getItem('flagOnReload') == '1'){
-    console.log("hi+hello")
-    document.getElementById('start').value = sessionStorage.getItem('sourceOnReload')
-    document.getElementById('end').value = sessionStorage.getItem('destination')
-    document.getElementById('date').value = sessionStorage.getItem('deptDate')
-    document.getElementById('passenger').value = sessionStorage.getItem('numPass')
-    document.getElementById('tier').value = sessionStorage.getItem('class')
+    if(sessionStorage.getItem('sourceOnReload')==null ||
+    sessionStorage.getItem('sourceOnReload')=='' || sessionStorage.getItem('sourceOnReload')=='null'){
+        console.log('abhra')
+        document.getElementById('start').value = ''
+        document.getElementById('end').value = ''
+        document.getElementById('date').value = ''
+        document.getElementById('passenger').value = ''
+        document.getElementById('tier').value = ''
+    }else{
+        console.log(sessionStorage.getItem('sourceOnReload'))
+        console.log("hi+hello")
+        document.getElementById('start').value = sessionStorage.getItem('sourceOnReload')
+        document.getElementById('end').value = sessionStorage.getItem('destination')
+        document.getElementById('date').value = sessionStorage.getItem('deptDate')
+        document.getElementById('passenger').value = sessionStorage.getItem('numPass')
+        document.getElementById('tier').value = sessionStorage.getItem('class')
+    }
+
 }
 
 //time difference

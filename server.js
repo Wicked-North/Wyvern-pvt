@@ -55,7 +55,7 @@ const app = express();
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "", //change password 
+    password: "abhra", //change password 
     database: "wyvern",
     multipleStatements: true
 })
@@ -76,7 +76,7 @@ con.connect((err, res) => {
     else console.log("Db Connected")
 })
 
-app.post('/getSignup', (req, res) => {
+app.post('/getSignup',async (req, res) => {
     //console.log(req);
     let name = req.body.name
     let email = req.body.email
@@ -88,12 +88,7 @@ app.post('/getSignup', (req, res) => {
     let address = req.body.address
 
     console.log(name, email, birthday)
-    let hashPassword;
-    bcrypt.hash(password, saltRounds, (err, hash) => {
-        if (err) throw err
-        hashPassword = hash;
-        console.log(hashPassword)
-    })
+    let hashPassword = await bcrypt.hash(password, saltRounds);
 
     var check_sql = `select* from loginInfo where email = '${email}'`
 
@@ -129,10 +124,10 @@ app.post('/getSignup', (req, res) => {
             console.log(loginId, "hiiiii")
 
 
-            res.send("Successfully Registered");
-
+       res.json({message:'Registered Successfully'})
+       
         } else {
-            res.send("User with this email already exists. Try with a different email.")
+           res.json({message:'User with this email already exists. Try with a different email'})
         }
     })
 
@@ -449,7 +444,9 @@ app.post("/bookSeats", (req, res) => {
     })
 
 
-res.json({status:"done"})
+    res.json({
+        status: "done"
+    })
 
 });
 
@@ -984,14 +981,14 @@ app.post('/insertFlight', verifyToken, async (req, res) => {
         let arrival = req.body.arrival
         let e_price = req.body.e_price
         let b_price = req.body.b_price
-       
+
         let sql
-        if(via == null){
-             sql = `insert into flights values('${fnum}', '${fname}', '${start}',${null},'${end}','${departure}','${arrival}', ${e_price}, ${b_price} )`
-        }else{
-             sql = `insert into flights values('${fnum}', '${fname}', '${start}','${via}','${end}','${departure}','${arrival}', ${e_price}, ${b_price})`
+        if (via == null) {
+            sql = `insert into flights values('${fnum}', '${fname}', '${start}',${null},'${end}','${departure}','${arrival}', ${e_price}, ${b_price} )`
+        } else {
+            sql = `insert into flights values('${fnum}', '${fname}', '${start}','${via}','${end}','${departure}','${arrival}', ${e_price}, ${b_price})`
         }
-       
+
         console.log(sql)
         await pool.query(sql)
         //res.json(result)
@@ -1075,12 +1072,12 @@ app.post('/updateFlight', verifyToken, async (req, res) => {
 
         let sql
         if (via == null) {
-             sql = `update flights set flight_name = '${fname}', start = '${start}', via = ${null}, end = '${end}', departure = '${departure}', arrival = '${arrival}', e_price = ${e_price}, b_price = ${b_price} where flight_num = '${fnum}'`
-        }else{
-             sql = `update flights set flight_name = '${fname}', start = '${start}', via = '${via}', end = '${end}', departure = '${departure}', arrival = '${arrival}', e_price = ${e_price}, b_price = ${b_price}  where flight_num = '${fnum}'`
+            sql = `update flights set flight_name = '${fname}', start = '${start}', via = ${null}, end = '${end}', departure = '${departure}', arrival = '${arrival}', e_price = ${e_price}, b_price = ${b_price} where flight_num = '${fnum}'`
+        } else {
+            sql = `update flights set flight_name = '${fname}', start = '${start}', via = '${via}', end = '${end}', departure = '${departure}', arrival = '${arrival}', e_price = ${e_price}, b_price = ${b_price}  where flight_num = '${fnum}'`
         }
 
-        
+
         console.log(sql)
         await pool.query(sql)
         //res.json(result)
