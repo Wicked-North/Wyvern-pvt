@@ -518,8 +518,8 @@ body {
   top: 0;
   right: 0;
   background-image: linear-gradient(45deg, #2a2a30, #101011);
-  -webkit-box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
-          box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
+  -webkit-box-shadow: 10px 0 30px rgba(0, 0, 0, 0.521);
+          box-shadow: 10px 0 30px rgba(0, 0, 0, 0.521);
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -570,6 +570,14 @@ body {
 
 .nav .nav-elem-1 a {
   text-transform: capitalize;
+}
+
+.nav #uname a {
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(45deg, #f0f7ee, #ff9a8b);
 }
 
 .termsnservices {

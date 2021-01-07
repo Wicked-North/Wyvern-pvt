@@ -974,7 +974,7 @@ input[type=number] {
     right: 0;
     //background-color:$darkest-grey;
     background-image: linear-gradient(45deg, $darkest-grey, $black);
-    box-shadow: 10px 0 20px rgba(189, 189, 189, 0.7);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.521);
     //left:0;
     //right:50%;
     //width:49%;
@@ -1024,6 +1024,15 @@ input[type=number] {
 
     .nav-elem-1 a{
         text-transform:capitalize;
+    }
+
+    #uname a{
+        color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        background-image:linear-gradient(45deg, $font-light,$grad-pink);
+
     }
 
 }

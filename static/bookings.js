@@ -151,12 +151,14 @@ function displayTickets() {
         let passArr = current[i]
         //console.log(passArr[i])
         console.log(current.length)
-        var departureDate=sessionStorage.getItem('deptDate')
+       
+        console.log(passArr[0])
+        var departureDate=passArr[0].boarding
         const d = new Date(departureDate);
         var date=d.getDate()
         var month=monthNames[d.getMonth()]
         var year=d.getFullYear()
-        console.log(passArr[0])
+        //console.log("dmy cur",date,month,year)
 
         currBooking = `
         <div class="content-present-booking content-present-booking-${i}" >
@@ -271,14 +273,15 @@ function displayTickets() {
 
     for (var i = 0; i < past.length; i++) {
         //console.log(past.length)
-        var departureDate=sessionStorage.getItem('deptDate')
+
+        let pastPassArr = past[i]
+        console.log('past array', pastPassArr)
+        var departureDate=pastPassArr[0].boarding
         const d = new Date(departureDate);
         var date=d.getDate()
         var month=monthNames[d.getMonth()]
         var year=d.getFullYear()
-        let pastPassArr = past[i]
-        console.log('past array', pastPassArr)
-
+        //console.log("dmy",date,month,year)
 
         prevBooking = ` <div class="content-previous-booking content-previous-booking-${i}" >
         <div class="right-div">

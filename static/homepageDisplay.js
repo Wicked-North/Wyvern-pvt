@@ -757,7 +757,7 @@ function staticCardOpen(event) {
     var cardClass = ''
     var cardArray = ["card-1", "card-2", "card-3", "card-4", "card-5", "card-6", "card-7", "card-8"]
     var cardElem
-    console.log("static card open")
+    //console.log("static card open")
     for (let i = 0; i < cardArray.length; i++) {
         console.log("card element", $("." + cardArray[i]))
         console.log("border-image" + $("." + cardArray[i]).css("border-image"))
@@ -860,6 +860,10 @@ function diff(start, end) {
 
 $(".static-container").ready(() => {
 
+    //removing underlines
+    for (let i = 1; i <= 4; i++) {
+        $(`.nav-elem-${i} a`).css("box-shadow", "none")
+    }
     //getting these values on button click of homepage 
     var src = sessionStorage.getItem("source")
     var dest = sessionStorage.getItem("destination")
@@ -949,6 +953,13 @@ $(".static-container").ready(() => {
     $(".abbvTo").text(abbvNameDest)
     $(".abbvVia").text(abbvNameVia)
 
+    //leg room for economy and business class 
+    if(sessionStorage.getItem('class')=="Economy"){
+        $(".legRoomText").text("Average Leg Room (29 in)")
+    }
+    else{
+        $(".legRoomText").text("Extra Reclining Seat")
+    }
 })
 
 //button on click for the static-page
