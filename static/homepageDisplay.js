@@ -202,6 +202,7 @@ function overlayOnReload() {
 }
 
 
+
 //form selection options
 var placeSelect = {
     "Ahmedabad": "place-1",

@@ -349,7 +349,7 @@ function displayTickets() {
 
 
         document.getElementById('prevBookings').innerHTML += prevBooking;
-        if (pastPassArr.status == "completed") {
+        if (pastPassArr[0].status == "completed") {
             console.log("status conf")
             $(".status-value").text("COMPLETED")
             $(".status-value").css("color", "rgb(25, 154, 139)");
@@ -359,6 +359,7 @@ function displayTickets() {
             $(".status-value").text("CANCELLED")
             $(".status-value").css("color", "rgb(243, 9, 60)");
         }
+
         let pastPassDets = ``
         for (var k = 0; k < pastPassArr.length; k++) {
 

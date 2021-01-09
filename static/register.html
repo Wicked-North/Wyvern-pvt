@@ -27,7 +27,7 @@
             <div class="form-heading">
                 Create your Account on Wyvern
             </div>
-            <form id='registerform' onsubmit="register()">
+            <form id='registerform' onsubmit="register(event)">
                 <div class="form-fields">
                     <div class="formi formi-name">
                         <input type="text" name="name" required autocomplete="off" id="name">
@@ -126,11 +126,12 @@
     </svg>
     <script>
        
-        function register() {
+        function register(e) {
             // console.log("hello")
-            $("#registerform").submit(function (e) {
+            // document.getElementById('registerform').submit(function (e) {
                 e.preventDefault();
-            });
+               
+            // });
             let name = document.getElementById('name').value
             let birthday = document.getElementById('birthday').value
             let gender

@@ -1285,22 +1285,22 @@ svg {
   0% {
     -webkit-transform: rotateX(0deg) translateZ(80px) scale3d(1, 1, 1);
             transform: rotateX(0deg) translateZ(80px) scale3d(1, 1, 1);
-    fill: #c78989;
-    stroke: #c78989;
+    fill: #f0f7ee;
+    stroke: #f0f7ee;
     opacity: 1;
   }
   50% {
     -webkit-transform: rotateX(180deg) translateZ(80px) scale3d(1, 1, 1);
             transform: rotateX(180deg) translateZ(80px) scale3d(1, 1, 1);
-    fill: #c78989;
-    stroke: #da7777;
+    fill: #f0f7ee;
+    stroke: #f0f7ee;
     opacity: 0;
   }
   100% {
     -webkit-transform: rotateX(360deg) translateZ(80px) scale3d(1, 1, 1);
             transform: rotateX(360deg) translateZ(80px) scale3d(1, 1, 1);
-    fill: #c78989;
-    stroke: #c78989;
+    fill: #f0f7ee;
+    stroke: #f0f7ee;
     opacity: 1;
   }
 }
@@ -1309,22 +1309,22 @@ svg {
   0% {
     -webkit-transform: rotateX(0deg) translateZ(80px) scale3d(1, 1, 1);
             transform: rotateX(0deg) translateZ(80px) scale3d(1, 1, 1);
-    fill: #c78989;
-    stroke: #c78989;
+    fill: #f0f7ee;
+    stroke: #f0f7ee;
     opacity: 1;
   }
   50% {
     -webkit-transform: rotateX(180deg) translateZ(80px) scale3d(1, 1, 1);
             transform: rotateX(180deg) translateZ(80px) scale3d(1, 1, 1);
-    fill: #c78989;
-    stroke: #da7777;
+    fill: #f0f7ee;
+    stroke: #f0f7ee;
     opacity: 0;
   }
   100% {
     -webkit-transform: rotateX(360deg) translateZ(80px) scale3d(1, 1, 1);
             transform: rotateX(360deg) translateZ(80px) scale3d(1, 1, 1);
-    fill: #c78989;
-    stroke: #c78989;
+    fill: #f0f7ee;
+    stroke: #f0f7ee;
     opacity: 1;
   }
 }

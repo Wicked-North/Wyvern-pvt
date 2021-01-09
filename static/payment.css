@@ -866,10 +866,6 @@ ol {
   letter-spacing: 0.05rem;
 }
 
-.formi input:not(.email) {
-  text-transform: capitalize;
-}
-
 /*========================================SEAT BOOKING=====================================================================*/
 ::-moz-selection {
   background-color: #eee;
