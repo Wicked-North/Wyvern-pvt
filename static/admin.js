@@ -1694,12 +1694,12 @@ function getTxnId() {
             "Authorisation": "Bearer " + sessionStorage.getItem('token')
         }
     }
-    
 
-    fetch('/getTransaction',options)
+
+    fetch('/getTransaction', options)
         .then((res) => res.json())
         .then((data) => {
-
+            console.log(data)
             transactionData =
 
                 ` <table id='txn-table'>
@@ -1710,54 +1710,57 @@ function getTxnId() {
            <th id='Transaction'>Transaction ID</th>
            <th id='tuserid'>User ID</th>
            <th id='tusername'>User Name</th>
+           <th id='totPas'>Passengers</th>
+
            <th id='tusername'>Price</th>
 
           </tr>`
 
 
-          
-    for (let i = 0; i < data.length; i++) {
+
+            for (let i = 0; i < data.length; i++) {
 
 
-        if (i % 2 == 0) {
-            transactionData +=
-                `<tr class='even'>
+                if (i % 2 == 0) {
+                    transactionData +=
+                        `<tr class='even'>
 
-                <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
-                <td id='fname-${i+1}'> ${data[i].flight_name}</td>
+                 <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
+                 <td id='fname-${i+1}'> ${data[i].flight_name}</td>
 
                  <td id='pnr-${i+1}'> ${data[i].pnr}</td>
-                <td id='txn-${i+1}'> ${data[i].txn_no} </td>
+                 <td id='txn-${i+1}'> ${data[i].txn_no} </td>
                  <td id='userid-${i+1}'> ${data[i].user_id}</td>
                  <td id='uname-${i+1}'> ${data[i].user_name} </td>
+                 <td id='passengerCount-${i+1}'> ${data[i].passengers} </td>
+
                  <td id='tprice-${i+1}'> ${data[i].total_price} </td>
 
                
      
                   </tr>
                 `
-        } else {
-            transactionData +=
-                `<tr class='odd'>
+                } else {
+                    transactionData +=
+                        `<tr class='odd'>
 
-                <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
-                <td id='fname-${i+1}'> ${data[i].flight_name}</td>
+                 <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
+                 <td id='fname-${i+1}'> ${data[i].flight_name}</td>
 
                  <td id='pnr-${i+1}'> ${data[i].pnr}</td>
-                <td id='txn-${i+1}'> ${data[i].txn_no} </td>
+                 <td id='txn-${i+1}'> ${data[i].txn_no} </td>
                  <td id='userid-${i+1}'> ${data[i].user_id}</td>
                  <td id='uname-${i+1}'> ${data[i].user_name} </td>
+                 <td id='passengerCount-${i+1}'> ${data[i].passengers} </td>
+
                  <td id='tprice-${i+1}'> ${data[i].total_price} </td>
      
                          </tr>`
-        }
+                }
+            }
+            transactionData += `</table>`
+            document.getElementById('mainContent-7').innerHTML = transactionData
 
-        transactionData += `</table>`
-
-        document.getElementById('mainContent-7').innerHTML = transactionData
-
-
-    }
         })
 
 

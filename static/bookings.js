@@ -1,5 +1,8 @@
 let current = []
 let past = []
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
 
 if (sessionStorage.getItem('user_name')) {
     //console.log("thereeeee!!")
@@ -18,6 +21,13 @@ function logOut() {
     document.getElementById('lin').style.display = 'block'
     document.getElementById('lout').style.display = 'none'
 }
+
+$(document).ready(()=>{
+    for(let i=1;i<=4;i++){
+        $(`.nav-elem-${i} a`).css("box-shadow","none")
+    }
+    $(".nav-elem-2 a").css("box-shadow", "0 3px 0px rgb(219, 39, 99)")
+})
 
 setTimeout(()=>{
     getTicketsPassengers()
@@ -134,14 +144,21 @@ function displayTickets() {
         togglePast[i] = 1
     }
 
+
     
     
     for (let i = 0; i < current.length; i++) {
         let passArr = current[i]
         //console.log(passArr[i])
         console.log(current.length)
-
+       
         console.log(passArr[0])
+        var departureDate=passArr[0].boarding
+        const d = new Date(departureDate);
+        var date=d.getDate()
+        var month=monthNames[d.getMonth()]
+        var year=d.getFullYear()
+        //console.log("dmy cur",date,month,year)
 
         currBooking = `
         <div class="content-present-booking content-present-booking-${i}" >
@@ -160,9 +177,12 @@ function displayTickets() {
             <div class="place">${passArr[0].end}</div>
         </div>
         <div id='class'>${passArr[0].class}</div>
+        <div class='depart-date'>
+                Departure Date - ${date} ${month} ${year}
+        </div>
         <div class="time-div">
             <div class="depart-div">
-                <div class="depart-title"> Departure Time - </div>
+                <div class="depart-title"> Departure Time -  </div>
                 <div>${passArr[0].departure}</div>
             </div>
             <i class="fas fa-circle"></i>
@@ -253,9 +273,15 @@ function displayTickets() {
 
     for (var i = 0; i < past.length; i++) {
         //console.log(past.length)
+
         let pastPassArr = past[i]
         console.log('past array', pastPassArr)
-
+        var departureDate=pastPassArr[0].boarding
+        const d = new Date(departureDate);
+        var date=d.getDate()
+        var month=monthNames[d.getMonth()]
+        var year=d.getFullYear()
+        //console.log("dmy",date,month,year)
 
         prevBooking = ` <div class="content-previous-booking content-previous-booking-${i}" >
         <div class="right-div">
@@ -275,6 +301,9 @@ function displayTickets() {
                 <div class="place">${pastPassArr[0].end}</div>
             </div>
             <div id='class'>${pastPassArr[0].class}</div>
+            <div class='depart-date'>
+                Departure Date - ${date} ${month} ${year}
+            </div>
             <div class="time-div">
                 <div class="depart-div">
                     <div class="depart-title"> Departure Time - </div>
@@ -320,7 +349,7 @@ function displayTickets() {
 
 
         document.getElementById('prevBookings').innerHTML += prevBooking;
-        if (pastPassArr.status == "completed") {
+        if (pastPassArr[0].status == "completed") {
             console.log("status conf")
             $(".status-value").text("COMPLETED")
             $(".status-value").css("color", "rgb(25, 154, 139)");
@@ -330,6 +359,7 @@ function displayTickets() {
             $(".status-value").text("CANCELLED")
             $(".status-value").css("color", "rgb(243, 9, 60)");
         }
+
         let pastPassDets = ``
         for (var k = 0; k < pastPassArr.length; k++) {
 

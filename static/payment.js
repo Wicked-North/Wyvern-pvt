@@ -997,8 +997,8 @@ function continueToPayment() {
 	</div>
 	<hr class="personal-details-slide-up-line" noshade>`
 
-		passengerSeat += `<div id='p-${i}' class='allPass' onclick="passengerSelect(${i})">
-        <div class="select-radio-button">
+		passengerSeat += `<div id='p-${i}' class='allPass' >
+        <div class="select-radio-button" onclick="passengerSelect(${i})">
             <input type="radio" name="field" id="inlineRadio+${i}" class="allPassRadio" value="option2" onclick="passengerDivSelect(this);" />
             <label class="label-radio" for="inlineRadio+${i}">
                 <svg class="check" viewbox="0 0 40 40">

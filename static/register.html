@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Overlock:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--MATERIAL ICONS-->
+
+    <script src="https://kit.fontawesome.com/505cb8a6b1.js" crossorigin="anonymous"></script>
+    <!--ICONS-->
+    <link href="register.css" rel="stylesheet" />
+    <title>Register</title>
+</head>
+
+<body>
+    <div class="form-parent">
+        <div class="form-content">
+            <div class="form-heading">
+                Create your Account on Wyvern
+            </div>
+            <form id='registerform' onsubmit="register(event)">
+                <div class="form-fields">
+                    <div class="formi formi-name">
+                        <input type="text" name="name" required autocomplete="off" id="name">
+                        <label name="name" class="label-name">
+                            <span class="content-name">
+                                Name
+                            </span>
+                        </label>
+                    </div>
+                    <div class="formi">
+                        <input type="text" name="birthday" required autocomplete="off" id="birthday" required>
+                        <label name="birthday" class="label-name">
+                            <span class="content-name">
+                                Date Of Birth
+                            </span>
+                        </label>
+                    </div>
+                    <div class="gender-radio-button">
+                        <!-- <input type="radio" name="gender" id="malegender" value="Male" />
+                        <label class="male" for="gender">
+                            <svg class="check" viewbox="0 0 40 40">
+                                <circle id="border" r="18px" cx="20px" cy="20px"></circle>
+                                <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
+                            </svg>Male
+                        </label> -->
+                        <input type="radio" name="gender" id="malegender" value="Female" />
+                        <label class="female" for="malegender">
+                            <svg class="check" viewbox="0 0 40 40">
+                                <circle id="border" r="18px" cx="20px" cy="20px"></circle>
+                                <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
+                            </svg>Male
+                        </label>
+                        <input type="radio" name="gender" id="femalegender" value="Female" />
+                        <label class="female" for="femalegender">
+                            <svg class="check" viewbox="0 0 40 40">
+                                <circle id="border" r="18px" cx="20px" cy="20px"></circle>
+                                <circle id="dot" r="8px" cx="20px" cy="20px"></circle>
+                            </svg>Female
+                        </label>
+                    </div>
+                    <div class="formi formi-email">
+                        <input type="email" name="email" required autocomplete="off" id="email" required>
+                        <label name="email" class="label-name">
+                            <span class="content-name">
+                                Email
+                            </span>
+                        </label>
+                    </div>
+                    <div class="formi">
+                        <input type="password" name="password" required autocomplete="off" id="password" required>
+                        <label name="password" class="label-name">
+                            <span class="content-name">
+                                Password
+                            </span>
+                        </label>
+                    </div>
+                    <div class="formi">
+                        <input type="text" name="mobile_1" required autocomplete="off" id="mobile_1" required>
+                        <label name="mobile_1" class="label-name">
+                            <span class="content-name">
+                                Phone Number 1
+                            </span>
+                        </label>
+                    </div>
+                    <div class="formi">
+                        <input type="text" name="mobile_2" required autocomplete="off" id="mobile_2" required>
+                        <label name="mobile_2" class="label-name">
+                            <span class="content-name">
+                                Phone Number 2 (optional)
+                            </span>
+                        </label>
+                    </div>
+    
+                </div>
+                <button class="invisible-btn">
+                    <a class="register-btn" >
+                        <svg width="277" height="62">
+                            <rect x="5" y="5" rx="25" fill="none" stroke="url(#gradient)" width="240" height="50"></rect>
+                        </svg>
+                        <span>
+                            Register
+                        </span>
+                    </a>
+                </button>
+            </form>
+        </div>
+    </div>
+    <svg height="0" width="0">
+        <defs>
+            <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+                <stop offset="0%" stop-color="rgb(20, 212, 212)"></stop>
+                <stop offset="50%" stop-color="rgb(219, 39, 99)"></stop>
+                <stop offset="100%" stop-color="rgb(219, 39, 99)"></stop>
+            </linearGradient>
+        </defs>
+    </svg>
+    <script>
+       
+        function register(e) {
+            // console.log("hello")
+            // document.getElementById('registerform').submit(function (e) {
+                e.preventDefault();
+               
+            // });
+            let name = document.getElementById('name').value
+            let birthday = document.getElementById('birthday').value
+            let gender
+
+            if (document.getElementById('malegender').checked) {
+                gender = "Male"
+            } else {
+                gender = "Female"
+            }
+            let email = document.getElementById('email').value
+            let password = document.getElementById('password').value
+            let mobile_1 = document.getElementById('mobile_1').value
+            let mobile_2 = document.getElementById('mobile_2').value
+            //let address = document.getElementById('address').value
+
+
+            // console.log(name, birthday, gender, email, password, mobile_1, mobile_2, address)
+            let data = {
+                name,
+                birthday,
+                gender,
+                email,
+                password,
+                mobile_1,
+                mobile_2
+            }
+            const options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            };
+
+            fetch("/getSignup", options).then((res) => res.json().then((data) => {
+                console.log(data)
+                if (data.message == 'User with this email already exists. Try with a different email' ||
+                    data.message == 'The password is incorrect') {
+                    console.log('not successful')
+                    window.alert(data.message)
+
+                }
+                // else if(data.successful == 'incorrect email'){console.log('Email is incorrect')}
+                else {
+                    window.alert(data.message)
+                    console.log('successful')
+                    window.location.assign("home-page.html")
+                    // setTimeout(()=>{
+                    //   window.location.assign('home-page.html')
+                    // }, 1000)
+                }
+
+            }))
+        }
+    </script>
+</body>
+
+</html>

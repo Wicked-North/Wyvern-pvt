@@ -223,6 +223,7 @@ function searchFlights() {
         document.getElementById('logoMotion').style.display="none"
 
         console.log(viaFlights, "abhra")
+        displayPath()
         // updateViaCard(viaFlights)
         //console.log(viaFlights[1].arrival.slice(0,2), "ghosh")
         // data.sort((a, b) => {
@@ -256,6 +257,7 @@ function searchFlights() {
             // console.log(data.message)
             // document.getElementById('post').innerHTML = data.message;
             matchViaOpti()
+         
         }))
     })
 
@@ -322,6 +324,7 @@ function searchFlightsOnReload() {
         //console.log(viaFlights, "abhra")
 
         console.log(viaFlights, "abhra")
+        displayPath()
         // updateViaCard(viaFlights)
         //console.log(viaFlights[1].arrival.slice(0,2), "ghosh")
         // data.sort((a, b) => {
@@ -355,6 +358,7 @@ function searchFlightsOnReload() {
             // console.log(data.message)
             // document.getElementById('post').innerHTML = data.message;
             matchViaOpti()
+           
         }))
     })
 

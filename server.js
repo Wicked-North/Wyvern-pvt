@@ -55,7 +55,7 @@ const app = express();
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "", //change password 
+    password: "abhra", //change password 
     database: "wyvern",
     multipleStatements: true
 })
@@ -85,17 +85,17 @@ app.post('/getSignup', async (req, res) => {
     let gender = req.body.gender
     let mobile1 = req.body.mobile_1
     let mobile2 = req.body.mobile_2
-    let address = req.body.address
+    //let address = req.body.address
 
     console.log(name, email, birthday)
     let hashPassword = await bcrypt.hash(password, saltRounds);
 
-    var check_sql = `select* from loginInfo where email = '${email}'`
+    var check_sql = `select * from loginInfo where email = '${email}'`
 
     con.query(check_sql, (err, result) => {
         var loginId
         if (result.length == 0) {
-            var userIns = `insert into userInfo (user_name, email, gender, DOB, mobile_1, mobile_2, address) values ('${name}', '${email}', '${gender}', '${birthday}', '${mobile1}', '${mobile2}', '${address}')`
+            var userIns = `insert into userInfo (user_name, email, gender, DOB, mobile_1, mobile_2) values ('${name}', '${email}', '${gender}', '${birthday}', '${mobile1}', '${mobile2}')`
 
             con.query(userIns, (err, result) => {
                 if (err) throw err;
@@ -119,15 +119,12 @@ app.post('/getSignup', async (req, res) => {
                     console.log("record inserted in login table");
                 })
 
+                res.json({
+                    message: 'Registered Successfully'
+                })
             })
 
             console.log(loginId, "hiiiii")
-
-
-            res.json({
-                message: 'Registered Successfully'
-            })
-
         } else {
             res.json({
                 message: 'User with this email already exists. Try with a different email'
@@ -806,10 +803,10 @@ app.post('/getAdminLogin', async (req, res) => {
 
 app.get('/getCurrentTicketDetails', verifyToken, async (req, res) => {
     try {
-        let sql = `select* from tickets`
+        let sql = `call getCurrentTicketDetails();`
         let [result] = await pool.query(sql)
         console.log(result)
-        res.json(result)
+        res.json(result[0])
     } catch (err) {
         console.log(err)
     }
@@ -817,10 +814,10 @@ app.get('/getCurrentTicketDetails', verifyToken, async (req, res) => {
 
 app.get('/getPreviousTicketDetails', verifyToken, async (req, res) => {
     try {
-        let sql = `select* from completed_tickets where status = 'completed'`
+        let sql = `call getPreviousTicketDetails();`
         let [result] = await pool.query(sql)
         console.log(result)
-        res.json(result)
+        res.json(result[0])
     } catch (err) {
         console.log(err)
     }
@@ -828,10 +825,10 @@ app.get('/getPreviousTicketDetails', verifyToken, async (req, res) => {
 
 app.get('/getCancelledTicketDetails', verifyToken, async (req, res) => {
     try {
-        let sql = `select* from completed_tickets where status = 'cancelled'`
+        let sql = `call getCancelledTicketDetails();`
         let [result] = await pool.query(sql)
         console.log(result)
-        res.json(result)
+        res.json(result[0])
     } catch (err) {
         console.log(err)
     }
@@ -877,10 +874,10 @@ app.post('/getTicketDetailsByUserid', verifyToken, async (req, res) => {
 
 app.get('/getFlightDetails', verifyToken, async (req, res) => {
     try {
-        let sql = `select* from flights`
+        let sql = `call getAllFlights()`
         let [result] = await pool.query(sql)
         console.log(result)
-        res.json(result)
+        res.json(result[0])
     } catch (err) {
         console.log(err)
     }
@@ -888,10 +885,10 @@ app.get('/getFlightDetails', verifyToken, async (req, res) => {
 
 app.get('/getUserDetails', verifyToken, async (req, res) => {
     try {
-        let sql = `select* from userinfo`
+        let sql = `call getAllUsers()`
         let [result] = await pool.query(sql)
         console.log(result)
-        res.json(result)
+        res.json(result[0])
     } catch (err) {
         console.log(err)
     }
@@ -1132,12 +1129,12 @@ app.get('/getTransaction', verifyToken, async (req, res) => {
         //let all = []
         //console.log(req)
         let fnum = req.body.fnum
-        let sql = `select t.flight_num, f.flight_name, t.pnr, tr.txn_no, u.user_id, u.user_name, t.total_price from transaction tr, userinfo u, tickets t, flights f where t.pnr = tr.pnr and t.userid = u.user_id and f.flight_num=t.flight_num`
+        let sql = `call getTransactions()`
         console.log(sql)
         let [result] = await pool.query(sql)
         console.log(result)
 
-        res.json(result)
+        res.json(result[0])
         //res.json(result)
         //res.json(all)
     } catch (err) {

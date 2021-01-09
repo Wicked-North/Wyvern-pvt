@@ -46,16 +46,16 @@ var compFlightInfo = [{
 ]
 
 
-if(sessionStorage.getItem('flagOnReload') == '1'){
-    if(sessionStorage.getItem('sourceOnReload')==null ||
-    sessionStorage.getItem('sourceOnReload')=='' || sessionStorage.getItem('sourceOnReload')=='null'){
+if (sessionStorage.getItem('flagOnReload') == '1') {
+    if (sessionStorage.getItem('sourceOnReload') == null ||
+        sessionStorage.getItem('sourceOnReload') == '' || sessionStorage.getItem('sourceOnReload') == 'null') {
         console.log('abhra')
         document.getElementById('start').value = ''
         document.getElementById('end').value = ''
         document.getElementById('date').value = ''
         document.getElementById('passenger').value = ''
         document.getElementById('tier').value = ''
-    }else{
+    } else {
         console.log(sessionStorage.getItem('sourceOnReload'))
         console.log("hi+hello")
         document.getElementById('start').value = sessionStorage.getItem('sourceOnReload')
@@ -67,6 +67,12 @@ if(sessionStorage.getItem('flagOnReload') == '1'){
 
 }
 
+$(document).ready(() => {
+    for (let i = 1; i <= 4; i++) {
+        $(`.nav-elem-${i} a`).css("box-shadow", "none")
+    }
+    $(".nav-elem-4 a").css("box-shadow", "0 3px 0px rgb(219, 39, 99)")
+})
 //time difference
 function diff(start, end) {
     start = start.split(":");
@@ -107,17 +113,17 @@ $(".passenger-inp").keyup((evt) => {
     }
 })
 
-$(".add").click(() => {
-
+$(".add").click((e) => {
+    e.preventDefault()
     if (valuePas < 99) {
         valuePas++;
         $(".passenger-inp").val(valuePas);
     }
 });
 
-$(".subtract").click(() => {
+$(".subtract").click((e) => {
 
-
+    e.preventDefault()
     if (valuePas > 1) {
         valuePas--;
         $(".passenger-inp").val(valuePas);
@@ -171,7 +177,7 @@ function overlayOpen() {
             $(".class-error").css("transform", "scale(0)")
         }
     } else {
-        
+
         console.log("valid")
         //storing the values of input field to session storage to pass the values to next page(static-card)
         sessionStorage.setItem("source", $("#start").val())
@@ -194,6 +200,7 @@ function overlayOnReload() {
     $(".overlay").css("transform", "translateX(0%)")
     $(".overlay").css("opacity", "1")
 }
+
 
 
 //form selection options
@@ -751,7 +758,7 @@ function staticCardOpen(event) {
     var cardClass = ''
     var cardArray = ["card-1", "card-2", "card-3", "card-4", "card-5", "card-6", "card-7", "card-8"]
     var cardElem
-    console.log("static card open")
+    //console.log("static card open")
     for (let i = 0; i < cardArray.length; i++) {
         console.log("card element", $("." + cardArray[i]))
         console.log("border-image" + $("." + cardArray[i]).css("border-image"))
@@ -854,6 +861,10 @@ function diff(start, end) {
 
 $(".static-container").ready(() => {
 
+    //removing underlines
+    for (let i = 1; i <= 4; i++) {
+        $(`.nav-elem-${i} a`).css("box-shadow", "none")
+    }
     //getting these values on button click of homepage 
     var src = sessionStorage.getItem("source")
     var dest = sessionStorage.getItem("destination")
@@ -943,6 +954,13 @@ $(".static-container").ready(() => {
     $(".abbvTo").text(abbvNameDest)
     $(".abbvVia").text(abbvNameVia)
 
+    //leg room for economy and business class 
+    if(sessionStorage.getItem('class')=="Economy"){
+        $(".legRoomText").text("Average Leg Room (29 in)")
+    }
+    else{
+        $(".legRoomText").text("Extra Reclining Seat")
+    }
 })
 
 //button on click for the static-page
@@ -1263,3 +1281,34 @@ function showHomepage() {
     sessionStorage.setItem('source', '')
     window.location.replace('home-page.html')
 }
+
+
+//date validation(limiting selectionf previous dates and more than 2 months from today) 
+function dateValidate() {
+    var dateStr
+    var todayDate = new Date()
+    var tdDate = todayDate.getDate()
+    var tdMonth = todayDate.getMonth() + 1
+    var tdYear = todayDate.getFullYear()
+    var dateSelected = new Date($("#date").val())
+    console.log("validate", todayDate)
+
+    //selecting today's date if user selects previous date
+    if ((dateSelected.getDate() < todayDate.getDate() && dateSelected.getMonth() < todayDate.getMonth()) || dateSelected.getMonth() < todayDate.getMonth() || dateSelected.getFullYear() < todayDate.getFullYear()) {
+
+        //getmonth returns month in range 0-11 but we need in mm format hence adding 0 to single digits
+        tdMonth < 9 ? tdMonth = `0${tdMonth}` : tdMonth = tdMonth
+        tdDate < 9 ? tdDate = `0${tdDate}` : tdDate = tdDate
+        dateStr = `${tdYear}-${tdMonth}-${tdDate}`
+        console.log(dateStr)
+        $("#date").val(dateStr)
+    }
+
+    //limiting pre-bookings to only +2 months
+    if (dateSelected.getMonth() > todayDate.getMonth() + 2 || dateSelected.getFullYear() > todayDate.getFullYear()) {
+        window.alert("You can pre-book tickets only 2 month prior to departure!")
+    }
+
+}
+
+$("#date").on('change', dateValidate)

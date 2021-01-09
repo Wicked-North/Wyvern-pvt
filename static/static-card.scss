@@ -463,34 +463,37 @@ body {
 .nav {
     display: flex;
     position: absolute;
-    z-index:200;
-    top:0;
-    right:0;
+    z-index: 200;
+    top: 0;
+    right: 0;
     //background-color:$darkest-grey;
-    background-image:linear-gradient(45deg,$darkest-grey,$black);
-    box-shadow:  8px 0 20px rgba(189, 189, 189, 0.7);
+    background-image: linear-gradient(45deg, $darkest-grey, $black);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.521);
     //left:0;
     //right:50%;
     //width:49%;
-    justify-content: space-between; 
+    justify-content: space-between;
+
     //border:2px solid $grad-red;
     //margin: 1em 1em;
-    .left-nav, .right-nav{
-        display:flex;
-        margin:1em;
-        justify-content:space-between;
+    .left-nav,
+    .right-nav {
+        display: flex;
+        margin: 1em;
+        justify-content: space-between;
     }
-    a{
+
+    a {
         @include removeStyle();
         font-size: 1.2rem;
         font-family: 'Overlock', cursive;
         font-weight: 700;
         //display:block;
-        color:$grad-pink;
-        overflow:hidden;
-        transition:all 300ms ease;
+        color: $grad-pink;
+        overflow: hidden;
+        transition: all 300ms ease;
         margin-left: 0.8em;
-
+        cursor: pointer;
         /* &::after{
             content: "";
             display:block;
@@ -504,11 +507,26 @@ body {
             transform: opacity 100ms ease;
         } */
 
-        &:hover{
-            box-shadow:0 3px 0px $grad-red;
-        }
+        &:hover {
+           //box-shadow: 0 3px 0px $grad-red;
+            color:$grad-red;
+           
+        } 
 
-       
+
+    }
+
+    .nav-elem-1 a{
+        text-transform:capitalize;
+    }
+
+    #uname a{
+        color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        background-image:linear-gradient(45deg, $font-light,$grad-pink);
+
     }
 
 }
