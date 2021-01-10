@@ -55,7 +55,7 @@ const app = express();
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "abhra", //change password 
+    password: "", //change password 
     database: "wyvern",
     multipleStatements: true
 })
@@ -438,11 +438,11 @@ app.post("/bookSeats", (req, res) => {
 
                     }
 
-                    let txnSql = `insert into transaction values (${pnr}, 'TXN-${pnr+17}')`
+                    let txnSql = `update tickets set txn_no = 'TXN-${pnr+17}' where pnr  = ${pnr}`
                     con.query(txnSql, (err, result) => {
                         if (err) throw err;
                         else
-                            console.log("inserted into Transaction")
+                            console.log("TxnNo updated/inserted into tickets")
                     })
 
                 }
@@ -837,12 +837,25 @@ app.get('/getCancelledTicketDetails', verifyToken, async (req, res) => {
 app.post('/getTicketDetailsByPnr', verifyToken, async (req, res) => {
     //console.log(req)
     try {
-        console.log(req)
+        // console.log(req)
         let pnr = req.body.pnr
         let sql = `select* from tickets where pnr = '${pnr}'`
         let [result] = await pool.query(sql)
-        console.log(result)
-        res.json(result)
+
+        if(result.length==0){
+            let sql = `select* from completed_tickets where pnr = '${pnr}'`
+            let [result] = await pool.query(sql)
+            console.log(result)
+
+            res.json(result)
+
+        }else{
+            console.log(result)
+
+            res.json(result)
+
+        }
+
     } catch (err) {
         console.log(err)
     }
@@ -1123,24 +1136,24 @@ app.post('/searchFlightsByFnum', verifyToken, async (req, res) => {
     }
 })
 
-app.get('/getTransaction', verifyToken, async (req, res) => {
-    //console.log(req.headers)
-    try {
-        //let all = []
-        //console.log(req)
-        let fnum = req.body.fnum
-        let sql = `call getTransactions()`
-        console.log(sql)
-        let [result] = await pool.query(sql)
-        console.log(result)
+// app.get('/getTransaction', verifyToken, async (req, res) => {
+//     //console.log(req.headers)
+//     try {
+//         //let all = []
+//         //console.log(req)
+//         let fnum = req.body.fnum
+//         let sql = `call getTransactions()`
+//         console.log(sql)
+//         let [result] = await pool.query(sql)
+//         console.log(result)
 
-        res.json(result[0])
-        //res.json(result)
-        //res.json(all)
-    } catch (err) {
-        console.log(err)
-    }
-})
+//         res.json(result[0])
+//         //res.json(result)
+//         //res.json(all)
+//     } catch (err) {
+//         console.log(err)
+//     }
+// })
 
 app.listen('4000', () => {
     console.log("Server running at port 4000");

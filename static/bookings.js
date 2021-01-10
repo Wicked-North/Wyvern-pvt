@@ -54,7 +54,7 @@ function getTicketsPassengers() {
             // past=data[1]
             // upcoming=data[0]
             current = [...data]
-            console.log(current)
+            console.log('current tickets', current)
 
         })
         .then((data) => {
@@ -65,7 +65,7 @@ function getTicketsPassengers() {
                     // past=data[1]
                     // upcoming=data[0]
                     past = [...data]
-                    console.log(past)
+                    console.log('Past tickets',past)
 
                 })
                 .then(data => {
@@ -150,8 +150,7 @@ function displayTickets() {
     for (let i = 0; i < current.length; i++) {
         let passArr = current[i]
         //console.log(passArr[i])
-        console.log(current.length)
-       
+        // console.log(current.length)
         console.log(passArr[0])
         var departureDate=passArr[0].boarding
         const d = new Date(departureDate);
@@ -162,7 +161,7 @@ function displayTickets() {
 
         currBooking = `
         <div class="content-present-booking content-present-booking-${i}" >
-    <div class="right-div">
+        <div class="right-div">
         <div class="present-booking-sub-title">
             <div class="pnr-title">PNR-</div>
             <div id='pnr'>${passArr[0].pnr}</div>
@@ -322,7 +321,7 @@ function displayTickets() {
             </div>
             <div class="status-div">
                 <div id='status'> STATUS : </div>
-                <div class="status-value"></div>
+                <div class='status-value-${pastPassArr[0].pnr}'></div>
             </div>
     
     
@@ -349,15 +348,17 @@ function displayTickets() {
 
 
         document.getElementById('prevBookings').innerHTML += prevBooking;
+
         if (pastPassArr[0].status == "completed") {
             console.log("status conf")
-            $(".status-value").text("COMPLETED")
-            $(".status-value").css("color", "rgb(25, 154, 139)");
-        } else {
+            $(`.status-value-${pastPassArr[0].pnr}`).text("COMPLETED")
+            $(`.status-value-${pastPassArr[0].pnr}`).css("color", "rgb(25, 154, 139)");
+
+        }else if(pastPassArr[0].status == "cancelled"){
             // console.log("status canc", i)
             // console.log($(".status-value"))
-            $(".status-value").text("CANCELLED")
-            $(".status-value").css("color", "rgb(243, 9, 60)");
+            $(`.status-value-${pastPassArr[0].pnr}`).text("CANCELLED")
+            $(`.status-value-${pastPassArr[0].pnr}`).css("color", "rgb(243, 9, 60)");
         }
 
         let pastPassDets = ``
