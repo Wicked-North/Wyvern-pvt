@@ -160,8 +160,8 @@ function getPreviousTicketDetails() {
                 prevTicketContent +=
                     `<tr class='even'>
         <td> ${i+1}</td>
-         <td> ${data[i].userID}</td>
-         <td> ${data[i].pnr} </td>
+         <td> ${data[i].userid}</td>
+         <td> ${data[i].PNR} </td>
           <td> ${data[i].flight_num}</td>
           <td> ${data[i].class} </td>
           <td> ${data[i].boarding}</td>
@@ -176,8 +176,8 @@ function getPreviousTicketDetails() {
                 prevTicketContent +=
                     `<tr class='odd'>
         <td> ${i+1}</td>
-         <td> ${data[i].userID}</td>
-         <td> ${data[i].pnr} </td>
+         <td> ${data[i].userid}</td>
+         <td> ${data[i].PNR} </td>
           <td> ${data[i].flight_num}</td>
           <td> ${data[i].class} </td>
           <td> ${data[i].boarding}</td>
@@ -228,8 +228,8 @@ function getCancelledTicketDetails() {
                 cancTicketContent +=
                     `<tr class='even'>
         <td> ${i+1}</td>
-         <td> ${data[i].userID}</td>
-         <td> ${data[i].pnr} </td>
+         <td> ${data[i].userid}</td>
+         <td> ${data[i].PNR} </td>
           <td> ${data[i].flight_num}</td>
           <td> ${data[i].class} </td>
           <td> ${data[i].boarding}</td>
@@ -244,8 +244,8 @@ function getCancelledTicketDetails() {
                 cancTicketContent +=
                     `<tr class='odd'>
         <td> ${i+1}</td>
-         <td> ${data[i].userID}</td>
-         <td> ${data[i].pnr} </td>
+         <td> ${data[i].userid}</td>
+         <td> ${data[i].PNR} </td>
           <td> ${data[i].flight_num}</td>
           <td> ${data[i].class} </td>
           <td> ${data[i].boarding}</td>
