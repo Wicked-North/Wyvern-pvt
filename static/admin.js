@@ -83,6 +83,8 @@ function getCurrentTicketDetails() {
           <th>Boarding</th>
           <th>Total Price</th>
           <th>Status</th>
+          <th>Transaction No</th>
+
           
          
         `
@@ -99,6 +101,8 @@ function getCurrentTicketDetails() {
           <td> ${data[i].boarding}</td>
           <td> ${data[i].total_price} </td>
           <td> ${data[i].status} </td>
+          <td> ${data[i].txn_no} </td>
+
          
           </tr>
         `
@@ -113,6 +117,8 @@ function getCurrentTicketDetails() {
           <td> ${data[i].boarding}</td>
           <td> ${data[i].total_price} </td>
           <td> ${data[i].status} </td>
+          <td> ${data[i].txn_no} </td>
+
          
           </tr>
         `
@@ -145,6 +151,7 @@ function getPreviousTicketDetails() {
           <th>Boarding</th>
           <th>Total Price</th>
           <th>Status</th>
+          <th>Transaction No</th>
          
         `
 
@@ -160,6 +167,8 @@ function getPreviousTicketDetails() {
           <td> ${data[i].boarding}</td>
           <td> ${data[i].total_price} </td>
           <td> ${data[i].status} </td>
+          <td> ${data[i].txn_no} </td>
+
          
           </tr>
         `
@@ -174,6 +183,8 @@ function getPreviousTicketDetails() {
           <td> ${data[i].boarding}</td>
           <td> ${data[i].total_price} </td>
           <td> ${data[i].status} </td>
+          <td> ${data[i].txn_no} </td>
+
          
           </tr>
         `
@@ -205,6 +216,8 @@ function getCancelledTicketDetails() {
           <th>Boarding</th>
           <th>Total Price</th>
           <th>Status</th>
+          <th>Transaction No</th>
+
          
         `
 
@@ -222,6 +235,8 @@ function getCancelledTicketDetails() {
           <td> ${data[i].boarding}</td>
           <td> ${data[i].total_price} </td>
           <td> ${data[i].status} </td>
+          <td> ${data[i].txn_no} </td>
+
          
           </tr>
         `
@@ -236,6 +251,8 @@ function getCancelledTicketDetails() {
           <td> ${data[i].boarding}</td>
           <td> ${data[i].total_price} </td>
           <td> ${data[i].status} </td>
+          <td> ${data[i].txn_no} </td>
+
          
           </tr>
         `
@@ -523,45 +540,6 @@ function getUserDetails() {
     })
 }
 
-function getUserDetailsByUserid() {
-
-}
-
-function getPassengerDetails() {
-    const options = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorisation": "Bearer " + sessionStorage.getItem('token')
-        }
-    }
-    fetch('/getPassengerDetails', options).then((res) => res.json()).then((data) => {
-        console.log(data)
-    })
-}
-
-function getPassengerDetailsByPnr() {
-    let pnr = document.getElementById('paspnr').value
-    var data = {
-        pnr: pnr
-    }
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorisation": "Bearer " + sessionStorage.getItem('token')
-        },
-        body: JSON.stringify(data)
-    }
-    console.log(pnr)
-    fetch('/getPassengerDetailsByPnr', options).then((res) => res.json()).then((data) => {
-        if (data.length > 0)
-            console.log(data)
-        else
-            console.log("No Results Found")
-    })
-}
-
 
 function checkRadioButton() {
 
@@ -780,6 +758,8 @@ function checkRadioButton() {
               <th>Boarding</th>
               <th>Total Price</th>
               <th>Status</th>
+              <th>Transaction No</th>
+
             `
 
                 let y = 0
@@ -794,7 +774,7 @@ function checkRadioButton() {
                         if (y % 2 == 0) {
                             tickByUid +=
                                 `<tr class='even'>
-            <td> ${k++}</td>
+            <td> ${++k}</td>
             <td> ${tempArr[j].flight_num}</td>
             <td> ${tempArr[j].PNR} </td>
             <td> ${tempArr[j].class}</td>
@@ -802,12 +782,14 @@ function checkRadioButton() {
             <td> ${tempArr[j].boarding}</td>
             <td> ${tempArr[j].total_price} </td>
             <td> ${tempArr[j].status} </td>
+            <td> ${tempArr[j].txn_no} </td>
+
             </tr>
             `
                         } else {
                             tickByUid +=
                                 `<tr  class='odd'>
-            <td> ${k++}</td>
+            <td> ${++k}</td>
             <td> ${tempArr[j].flight_num}</td>
             <td> ${tempArr[j].PNR} </td>
             <td> ${tempArr[j].class}</td>
@@ -815,6 +797,8 @@ function checkRadioButton() {
             <td> ${tempArr[j].boarding}</td>
             <td> ${tempArr[j].total_price} </td>
             <td> ${tempArr[j].status} </td>
+            <td> ${tempArr[j].txn_no} </td>
+
             </tr>
             `
                         }
@@ -859,6 +843,8 @@ function checkRadioButton() {
                 <th>Boarding</th>
                 <th>Total Price</th>
                 <th>Status</th>
+                <th>Transaction No</th>
+
               `
 
 
@@ -873,6 +859,8 @@ function checkRadioButton() {
               <td id='odd'> ${data[i].boarding} </td>
               <td> ${data[i].total_price} </td>
               <td id='odd'> ${data[i].status} </td>
+              <td> ${data[i].txn_no} </td>
+
              
               </tr>
             `
@@ -1685,83 +1673,3 @@ function logOut(flag) {
 }
 
 
-function getTxnId() {
-
-    const options = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorisation": "Bearer " + sessionStorage.getItem('token')
-        }
-    }
-
-
-    fetch('/getTransaction', options)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-            transactionData =
-
-                ` <table id='txn-table'>
-                 <tr class="header">
-           <th id='tfnum'>Flight Num</th>
-           <th id='tfname'>Flight Name</th>
-           <th id='tpnr'>PNR</th>
-           <th id='Transaction'>Transaction ID</th>
-           <th id='tuserid'>User ID</th>
-           <th id='tusername'>User Name</th>
-           <th id='totPas'>Passengers</th>
-
-           <th id='tusername'>Price</th>
-
-          </tr>`
-
-
-
-            for (let i = 0; i < data.length; i++) {
-
-
-                if (i % 2 == 0) {
-                    transactionData +=
-                        `<tr class='even'>
-
-                 <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
-                 <td id='fname-${i+1}'> ${data[i].flight_name}</td>
-
-                 <td id='pnr-${i+1}'> ${data[i].pnr}</td>
-                 <td id='txn-${i+1}'> ${data[i].txn_no} </td>
-                 <td id='userid-${i+1}'> ${data[i].user_id}</td>
-                 <td id='uname-${i+1}'> ${data[i].user_name} </td>
-                 <td id='passengerCount-${i+1}'> ${data[i].passengers} </td>
-
-                 <td id='tprice-${i+1}'> ${data[i].total_price} </td>
-
-               
-     
-                  </tr>
-                `
-                } else {
-                    transactionData +=
-                        `<tr class='odd'>
-
-                 <td id='fnum-${i+1}'> ${data[i].flight_num}</td>
-                 <td id='fname-${i+1}'> ${data[i].flight_name}</td>
-
-                 <td id='pnr-${i+1}'> ${data[i].pnr}</td>
-                 <td id='txn-${i+1}'> ${data[i].txn_no} </td>
-                 <td id='userid-${i+1}'> ${data[i].user_id}</td>
-                 <td id='uname-${i+1}'> ${data[i].user_name} </td>
-                 <td id='passengerCount-${i+1}'> ${data[i].passengers} </td>
-
-                 <td id='tprice-${i+1}'> ${data[i].total_price} </td>
-     
-                         </tr>`
-                }
-            }
-            transactionData += `</table>`
-            document.getElementById('mainContent-7').innerHTML = transactionData
-
-        })
-
-
-}
